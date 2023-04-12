@@ -28,16 +28,11 @@ Tugas Besar OOP IF2212
     </tr>
     <tr>
         <td>4.</td>
-        <td>Pramaditya Fajri Migfar</td>
-        <td>18221111</td>
-    </tr>
-    <tr>
-        <td>5.</td>
         <td>Iskandar Muda Rizky Parlambang</td>
         <td>18221173</td>
     </tr>
     <tr>
-        <td>6.</td>
+        <td>5.</td>
         <td>Luthfi Hanif</td>
         <td>18221151</td>
     </tr>
