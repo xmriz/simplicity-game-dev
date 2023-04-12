@@ -1,6 +1,6 @@
 # IF2111_TB_05
-Tugas Besar Alstrukdat IF2111 
-Kelompok 05
+Tugas Besar OOP IF2212 
+<br>Kelompok 08</br>
 
 <table>
     <tr>
@@ -45,4 +45,5 @@ Kelompok 05
 
 **Asisten** : Afif Fahreza
 
-**How to Compile :**
+**How to Compile & Run:**
+1. ....
