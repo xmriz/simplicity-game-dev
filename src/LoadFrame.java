@@ -9,6 +9,7 @@ public class LoadFrame extends JFrame {
         ImageIcon bigLogo = new ImageIcon("assets/big-logo.png");
         ImageIcon smallLogo = new ImageIcon("assets/small-logo.png");
 
+
         // Create a border object
         Border borderWelcomingLabel = BorderFactory.createLineBorder(Color.GREEN, 3);
 
@@ -40,12 +41,17 @@ public class LoadFrame extends JFrame {
 
         // Set the icon and background color of the frame
         this.setIconImage(smallLogo.getImage());
+        this.setTitle("Loading...");
         this.getContentPane().setBackground(new Color(0x000000));
 
         // Set the properties of the frame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.setSize(640, 640);
+        this.setSize(768, 768);
+
+        // Set the frame to be centered
+        this.setLocationRelativeTo(null);
+
         this.setVisible(true);
 
         // Add the panel to the frame

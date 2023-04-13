@@ -5,12 +5,12 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        printFileContents("file.txt");
+        // printFileContents("file.txt");
 
-        LoadFrame frame = new LoadFrame(); // creates a new MyFrame object
-        delay(3000);
-        frame.dispose();
-        
+        LoadFrame openingLoad = new LoadFrame(); // creates a new MyFrame object
+        delay(4000);
+        openingLoad.dispose();
+
     }
 
     // -------------------------------------------------------------------------------
