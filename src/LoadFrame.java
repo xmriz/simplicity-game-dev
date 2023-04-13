@@ -14,7 +14,7 @@ public class LoadFrame extends JFrame {
 
         // Create a new JLabel object and set its properties
         JLabel welcomingLabel = new JLabel();
-        welcomingLabel.setText("Selamat Datang di Dunia Sim-Plicity!");
+        welcomingLabel.setText("Loading...");
         welcomingLabel.setIcon(bigLogo);
         welcomingLabel.setHorizontalTextPosition(JLabel.CENTER);
         welcomingLabel.setVerticalTextPosition(JLabel.TOP);
