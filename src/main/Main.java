@@ -26,6 +26,7 @@ public class Main {
         window.setLocationRelativeTo(null); // set the frame to be centered
         window.setVisible(true); // set the frame to be visible
     
+        gamePanel.setupGame();
         gamePanel.startGameThread();
 
     }

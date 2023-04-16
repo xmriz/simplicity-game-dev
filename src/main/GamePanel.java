@@ -27,12 +27,16 @@ public class GamePanel extends JPanel implements Runnable {
     // FPS
     int fps = 60; // frames per second
 
+    // SYSTEM
+    AssetSetter assetSetter = new AssetSetter(this); // create a new AssetSetter object
     TileManager tileManager = new TileManager(this); // create a new TileManager object
     KeyHandler keyHandler = new KeyHandler(); // create a new KeyHandler object
     Thread gameThread; // thread for the game
     public CollisionChecker collisionChecker = new CollisionChecker(this); // create a new CollisionChecker object
-    public Sim sim = new Sim(this, keyHandler);
 
+    // ENTITY 
+    public Sim sim = new Sim(this, keyHandler);
+    public NPC npc[] = new NPC[4]; // create an array of NPC objects
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the panel
@@ -40,6 +44,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true); // set the panel to be double buffered
         this.addKeyListener(keyHandler); // add the key listener to the panel
         this.setFocusable(true); // set the panel to be focusable (so that it can receive key events)
+    }
+
+    public void setupGame(){
+        assetSetter.setNPC(); // setup the assets
     }
 
     public void startGameThread() { // start the game thread
@@ -69,6 +77,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         sim.update();
+        for (int i = 0; i < npc.length; i++) {
+            if (npc[i] != null) {
+                npc[i].update();
+            }
+        }
     }
 
     @Override
@@ -79,6 +92,12 @@ public class GamePanel extends JPanel implements Runnable {
 
         tileManager.draw(g2d); // draw the tile manager
         
+        for (int i = 0; i < npc.length; i++) {
+            if (npc[i] != null) {
+                npc[i].draw(g2d); // draw the NPC
+            }
+        }
+
         sim.draw(g2d); // draw the sim
 
         g2d.dispose(); // dispose the Graphics2D object, freeing up memory

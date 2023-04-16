@@ -3,65 +3,47 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import main.*;
 
 public class Sim extends Entity {
 
-    GamePanel gamePanel;
     KeyHandler keyHandler;
 
     public final int screenX;
     public final int screenY;
 
     public Sim(GamePanel gamePanel, KeyHandler keyHandler) {
-        this.gamePanel = gamePanel;
+        super(gamePanel);
+
         this.keyHandler = keyHandler;
 
-        screenX = gamePanel.screenWidth/2 - (gamePanel.tileSize/2); // set the player's position on the screen (always center)
-        screenY = gamePanel.screenHeight/2 - (gamePanel.tileSize/2);
+        screenX = gamePanel.screenWidth / 2 - (gamePanel.tileSize / 2); // set the player's position on the screen
+                                                                        // (always center)
+        screenY = gamePanel.screenHeight / 2 - (gamePanel.tileSize / 2);
 
-        solidArea = new Rectangle(8,16,32,32); 
+        solidArea = new Rectangle(8, 16, 32, 32);
 
         setDefaultValues();
-        getPlayerImage();
+        getImage();
     }
- 
+
     public void setDefaultValues() { // set the default values of the player
-        worldX = 1*gamePanel.tileSize; // set the player's position in the world
-        worldY = 1*gamePanel.tileSize;
+        worldX = 2 * gamePanel.tileSize; // set the player's position in the world
+        worldY = 2 * gamePanel.tileSize;
         speed = 4;
         direction = "down";
     }
 
-    public void getPlayerImage() {
-        File imageUp1 = new File("assets/sim/p2_up_1.png");
-        File imageUp2 = new File("assets/sim/p2_up_2.png");
-        File imageDown1 = new File("assets/sim/p2_down_1.png");
-        File imageDown2 = new File("assets/sim/p2_down_2.png");
-        File imageLeft1 = new File("assets/sim/p2_left_1.png");
-        File imageLeft2 = new File("assets/sim/p2_left_2.png");
-        File imageRight1 = new File("assets/sim/p2_right_1.png");
-        File imageRight2 = new File("assets/sim/p2_right_2.png");
-
-        try {
-            up1 = ImageIO.read(new FileInputStream(imageUp1));
-            up2 = ImageIO.read(new FileInputStream(imageUp2));
-            down1 = ImageIO.read(new FileInputStream(imageDown1));
-            down2 = ImageIO.read(new FileInputStream(imageDown2));
-            left1 = ImageIO.read(new FileInputStream(imageLeft1));
-            left2 = ImageIO.read(new FileInputStream(imageLeft2));
-            right1 = ImageIO.read(new FileInputStream(imageRight1));
-            right2 = ImageIO.read(new FileInputStream(imageRight2));
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void getImage() {
+        up1 = setupImage("sim/p2_up_1");
+        up2 = setupImage("sim/p2_up_2");
+        down1 = setupImage("sim/p2_down_1");
+        down2 = setupImage("sim/p2_down_2");
+        left1 = setupImage("sim/p2_left_1");
+        left2 = setupImage("sim/p2_left_2");
+        right1 = setupImage("sim/p2_right_1");
+        right2 = setupImage("sim/p2_right_2");
     }
 
     public void update() { // update the position of the player
@@ -80,8 +62,12 @@ public class Sim extends Entity {
             collisionOn = false;
             gamePanel.collisionChecker.checkTile(this);
 
+            // check npc collision
+            int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
+            interactNPC(npcIndex);
+
             // if there is a collision, sim can't move
-            if (!collisionOn){
+            if (!collisionOn) {
                 switch (direction) {
                     case "up":
                         worldY -= speed;
@@ -111,6 +97,12 @@ public class Sim extends Entity {
             }
         }
 
+    }
+
+    public void interactNPC(int i){
+        if (i != 999){
+            System.out.println("interact with npc");
+        }
     }
 
     public void draw(Graphics2D g2d) {
@@ -151,7 +143,7 @@ public class Sim extends Entity {
                 break;
         }
 
-        g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+        g2d.drawImage(image, screenX, screenY, null);
 
         // g2d.setColor(Color.red);
         // g2d.fillRect(x, y, gamePanel.tileSize, gamePanel.tileSize);
