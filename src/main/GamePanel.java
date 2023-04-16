@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import entity.*;
+import map.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -12,17 +13,25 @@ public class GamePanel extends JPanel implements Runnable {
     final int scale = 3; // 3x scale
 
     public final int tileSize = originalTileSize * scale; // 48x48 tile (1 kotak)
-    final int maxScreenCol = 16;
-    final int maxScreenRow = 16;
-    final int screenWidth = maxScreenCol * tileSize; // 768 pixels
-    final int screenHeight = maxScreenRow * tileSize; // 768 pixels
+    public final int maxScreenCol = 16;
+    public final int maxScreenRow = 16;
+    public final int screenWidth = maxScreenCol * tileSize; // 768 pixels
+    public final int screenHeight = maxScreenRow * tileSize; // 768 pixels
+
+    // WORLD SETTINGS
+    public final int maxWorldCol = 66;
+    public final int maxWorldRow = 66;
+    public final int worldWidth = maxWorldCol * tileSize; // 3168 pixels
+    public final int worldHeight = maxWorldRow * tileSize; // 3168 pixels
 
     // FPS
     int fps = 60; // frames per second
 
+    TileManager tileManager = new TileManager(this); // create a new TileManager object
     KeyHandler keyHandler = new KeyHandler(); // create a new KeyHandler object
     Thread gameThread; // thread for the game
-    Sim sim = new Sim(this, keyHandler);
+    public CollisionChecker collisionChecker = new CollisionChecker(this); // create a new CollisionChecker object
+    public Sim sim = new Sim(this, keyHandler);
 
 
     public GamePanel() {
@@ -68,6 +77,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2d = (Graphics2D) g; // cast the Graphics object to Graphics2D
 
+        tileManager.draw(g2d); // draw the tile manager
+        
         sim.draw(g2d); // draw the sim
 
         g2d.dispose(); // dispose the Graphics2D object, freeing up memory

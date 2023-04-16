@@ -7,8 +7,8 @@ public class LoadFrame extends JFrame {
     public LoadFrame(){
 
         // Create ImageIcon objects from image files
-        ImageIcon bigLogo = new ImageIcon("assets/big-logo.png");
-        ImageIcon smallLogo = new ImageIcon("assets/small-logo.png");
+        ImageIcon bigLogo = new ImageIcon("assets/logo/big-logo.png");
+        ImageIcon smallLogo = new ImageIcon("assets/logo/small-logo.png");
 
 
         // Create a border object
