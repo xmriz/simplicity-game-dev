@@ -5,28 +5,60 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-    public boolean upPressed, downPressed, leftPressed, rightPressed;
+    GamePanel gamePanel;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
+
+    public KeyHandler(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
 
-        if (keyCode == KeyEvent.VK_UP) {
-            upPressed = true;
+        // PLAY STATE
+        if (gamePanel.gameState == gamePanel.playState) {
+            if (keyCode == KeyEvent.VK_UP) {
+                upPressed = true;
+            } else if (keyCode == KeyEvent.VK_DOWN) {
+                downPressed = true;
+            } else if (keyCode == KeyEvent.VK_LEFT) {
+                leftPressed = true;
+            } else if (keyCode == KeyEvent.VK_RIGHT) {
+                rightPressed = true;
+            } else if (keyCode == KeyEvent.VK_P) {
+                gamePanel.gameState = gamePanel.pauseState;
+            } else if (keyCode == KeyEvent.VK_ENTER) {
+                enterPressed = true;
+            }
         }
-        if (keyCode == KeyEvent.VK_DOWN) {
-            downPressed = true;
+
+        // PAUSE STATE
+        else if (gamePanel.gameState == gamePanel.pauseState) {
+            if (keyCode == KeyEvent.VK_P) {
+                gamePanel.gameState = gamePanel.playState;
+            }
         }
-        if (keyCode == KeyEvent.VK_LEFT) {
-            leftPressed = true;
-        }
-        if (keyCode == KeyEvent.VK_RIGHT) {
-            rightPressed = true;
+
+        // DIALOG STATE
+        else if (gamePanel.gameState == gamePanel.dialogState) {
+            if (keyCode == KeyEvent.VK_ENTER) {
+                gamePanel.gameState = gamePanel.playState;
+                // change direction of player
+                if (gamePanel.sim.direction == "up") {
+                    gamePanel.sim.direction = "down";
+                } else if (gamePanel.sim.direction == "down") {
+                    gamePanel.sim.direction = "up";
+                } else if (gamePanel.sim.direction == "left") {
+                    gamePanel.sim.direction = "right";
+                } else if (gamePanel.sim.direction == "right") {
+                    gamePanel.sim.direction = "left";
+                }
+            }
         }
     }
 

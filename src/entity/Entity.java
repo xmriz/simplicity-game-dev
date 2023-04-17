@@ -28,6 +28,9 @@ public abstract class Entity {
     public boolean collisionOn = false;
 
     public int actionLockCounter = 0;
+    int dialogCounter = 0;
+
+    public String[] dialogs = new String[4];
 
     public Entity(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -35,6 +38,33 @@ public abstract class Entity {
 
     public void setAction(){
 
+    }
+
+    public void speak(){
+        if (gamePanel.ui.currentDialog != null){
+            gamePanel.ui.currentDialog = dialogs[dialogCounter];
+            dialogCounter++;
+            if (dialogCounter > dialogs.length-1){
+                dialogCounter = 0;
+            }
+        } else {
+            dialogCounter = 0;
+        }
+
+        switch(gamePanel.sim.direction){
+            case "up":
+                direction = "down";
+                break;
+            case "down":
+                direction = "up";
+                break;
+            case "left":
+                direction = "right";
+                break;
+            case "right":
+                direction = "left";
+                break;
+        }
     }
 
     public void update(){
@@ -85,32 +115,28 @@ public abstract class Entity {
                     case "up":
                         if (spriteNumber == 1) {
                             image = up1;
-                        }
-                        if (spriteNumber == 2) {
+                        } else {
                             image = up2;
                         }
                         break;
                     case "down":
                         if (spriteNumber == 1) {
                             image = down1;
-                        }
-                        if (spriteNumber == 2) {
+                        } else {
                             image = down2;
                         }
                         break;
                     case "left":
                         if (spriteNumber == 1) {
                             image = left1;
-                        }
-                        if (spriteNumber == 2) {
+                        } else {
                             image = left2;
                         }
                         break;
                     case "right":
                         if (spriteNumber == 1) {
                             image = right1;
-                        }
-                        if (spriteNumber == 2) {
+                        } else {
                             image = right2;
                         }
                         break;

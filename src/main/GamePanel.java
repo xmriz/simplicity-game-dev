@@ -30,13 +30,20 @@ public class GamePanel extends JPanel implements Runnable {
     // SYSTEM
     AssetSetter assetSetter = new AssetSetter(this); // create a new AssetSetter object
     TileManager tileManager = new TileManager(this); // create a new TileManager object
-    KeyHandler keyHandler = new KeyHandler(); // create a new KeyHandler object
+    public KeyHandler keyHandler = new KeyHandler(this); // create a new KeyHandler object
+    public UI ui = new UI(this); // create a new UI object
     Thread gameThread; // thread for the game
     public CollisionChecker collisionChecker = new CollisionChecker(this); // create a new CollisionChecker object
 
     // ENTITY 
     public Sim sim = new Sim(this, keyHandler);
     public NPC npc[] = new NPC[4]; // create an array of NPC objects
+
+    // GAME STATE
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
+    public final int dialogState = 3; 
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the panel
@@ -47,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setupGame(){
+        gameState = playState; // set the game state to play state
         assetSetter.setNPC(); // setup the assets
     }
 
@@ -76,11 +84,17 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        sim.update();
-        for (int i = 0; i < npc.length; i++) {
-            if (npc[i] != null) {
-                npc[i].update();
+        if (gameState == playState) {
+            sim.update();
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
+                    npc[i].update();
+                }
             }
+        } else if (gameState == pauseState) {
+            // do nothing
+        } else if (gameState == dialogState) {
+            // do nothing
         }
     }
 
@@ -99,6 +113,8 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         sim.draw(g2d); // draw the sim
+
+        ui.draw(g2d); // draw the UI
 
         g2d.dispose(); // dispose the Graphics2D object, freeing up memory
     }

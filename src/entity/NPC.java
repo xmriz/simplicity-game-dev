@@ -5,6 +5,7 @@ import java.util.Random;
 import main.*;
 
 public class NPC extends Entity {
+
     public NPC(GamePanel gamePanel) {
         super(gamePanel);
 
@@ -12,6 +13,7 @@ public class NPC extends Entity {
         speed = 1;
 
         getImage();
+        setDialog();
     }
 
     public void getImage(){
@@ -25,6 +27,14 @@ public class NPC extends Entity {
         right2 = setupImage("npc/kakek_right_2");
     }
 
+    public void setDialog(){
+        dialogs[0] = "Hai, Nak.";
+        dialogs[1] = "Apakah kamu pernah melihatku \nsebelumnya?";
+        dialogs[2] = "Berhati-hatilah!";
+        dialogs[3] = "...";
+    }
+
+    @Override
     public void setAction(){
         actionLockCounter++;
 
@@ -35,16 +45,18 @@ public class NPC extends Entity {
     
             if (i <= 25){
                 direction = "up";
-            }
-            if (i > 25 && i <= 50){
+            } else if (i <= 50){
                 direction = "down";
-            }
-            if (i > 50 && i <= 75){
+            } else if (i <= 75){
                 direction = "left";
-            }
-            if (i > 75 && i <= 100){
+            } else {
                 direction = "right";
             }
         }
     }
+
+    public void speak(){
+        super.speak();
+        // NPC specific dialog 
+    } 
 }

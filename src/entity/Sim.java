@@ -96,13 +96,16 @@ public class Sim extends Entity {
                 }
             }
         }
-
     }
 
-    public void interactNPC(int i){
-        if (i != 999){
-            System.out.println("interact with npc");
+    public void interactNPC(int i) {
+        if (i != 999) {
+            if (gamePanel.keyHandler.enterPressed) {
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.npc[i].speak();
+            }
         }
+        gamePanel.keyHandler.enterPressed = false;
     }
 
     public void draw(Graphics2D g2d) {
@@ -112,32 +115,28 @@ public class Sim extends Entity {
             case "up":
                 if (spriteNumber == 1) {
                     image = up1;
-                }
-                if (spriteNumber == 2) {
+                } else {
                     image = up2;
                 }
                 break;
             case "down":
                 if (spriteNumber == 1) {
                     image = down1;
-                }
-                if (spriteNumber == 2) {
+                } else {
                     image = down2;
                 }
                 break;
             case "left":
                 if (spriteNumber == 1) {
                     image = left1;
-                }
-                if (spriteNumber == 2) {
+                } else {
                     image = left2;
                 }
                 break;
             case "right":
                 if (spriteNumber == 1) {
                     image = right1;
-                }
-                if (spriteNumber == 2) {
+                } else {
                     image = right2;
                 }
                 break;
