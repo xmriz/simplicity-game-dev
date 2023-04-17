@@ -29,7 +29,7 @@ Tugas Besar OOP IF2212
     <tr>
         <td>4.</td>
         <td>Iskandar Muda Rizky Parlambang</td>
-        <td>18221173</td>
+        <td>18221109</td>
     </tr>
     <tr>
         <td>5.</td>
