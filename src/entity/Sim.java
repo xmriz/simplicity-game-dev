@@ -8,6 +8,17 @@ import main.*;
 
 public class Sim extends Entity {
 
+    // SIM INFO
+    public String nama = "Kandar";
+    public String pekerjaan = "Pengangguran";
+    public int uang = 0;
+    public int kesehatan = 100;
+    public final int maxKesehatan = 100;
+    public int kekenyangan = 100;
+    public final int maxKekenyangan = 100;
+    public int mood = 100;
+    public final int maxMood = 100;
+
     KeyHandler keyHandler;
 
     public final int screenX;
@@ -29,9 +40,9 @@ public class Sim extends Entity {
     }
 
     public void setDefaultValues() { // set the default values of the player
-        worldX = 2 * gamePanel.tileSize; // set the player's position in the world
-        worldY = 2 * gamePanel.tileSize;
-        speed = 4;
+        worldX = 1 * gamePanel.tileSize; // set the player's position in the world
+        worldY = 1 * gamePanel.tileSize;
+        speed = 4; 
         direction = "down";
     }
 
@@ -80,8 +91,6 @@ public class Sim extends Entity {
                         break;
                     case "right":
                         worldX += speed;
-                        break;
-                    default:
                         break;
                 }
             }

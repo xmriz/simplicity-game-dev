@@ -45,6 +45,8 @@ public class UI {
             drawPauseScreen();
         } else if (gamePanel.gameState == gamePanel.dialogState) { // if game is in dialog
             drawDialogScreen();
+        } else if (gamePanel.gameState == gamePanel.simInfoState){ // if game is in sim info
+            drawSimInfoScreen();
         }
     }
 
@@ -77,6 +79,61 @@ public class UI {
         }
     }
 
+    public void drawSimInfoScreen(){
+        // CREATE A FRAME
+        final int lineHeight = 35;
+        final int frameX = gamePanel.tileSize * 2;
+        final int frameY = gamePanel.tileSize;
+        final int frameWidth = gamePanel.tileSize * 12;
+        final int frameHeight = frameY + gamePanel.tileSize + lineHeight * 6;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // TEXT
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(40f));
+
+        // SIM INFO
+        final int textXSIMINFO = getXforCenteredText("SIM INFO");
+        int textYSIMINFO = frameY + gamePanel.tileSize;
+        g2d.drawString("SIM INFO", textXSIMINFO, textYSIMINFO);
+
+        // SIM INFO TEXT
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+        int textX = frameX + 20;
+        int textY = textYSIMINFO + lineHeight + 20;
+        g2d.drawString("Nama", textX, textY);
+        textY += lineHeight;
+        g2d.drawString("Pekerjaan", textX, textY);
+        textY += lineHeight;
+        g2d.drawString("Uang", textX, textY);
+        textY += lineHeight;
+        g2d.drawString("Kesehatan", textX, textY);
+        textY += lineHeight;
+        g2d.drawString("Kekenyangan", textX, textY);
+        textY += lineHeight;
+        g2d.drawString("Mood", textX, textY);
+
+        // SIM INFO VALUE
+        int tailX = frameX + frameWidth / 3;
+        textY = textYSIMINFO + lineHeight + 20;
+        String value;
+        g2d.drawString(" : " + gamePanel.sim.nama, tailX, textY);
+        textY += lineHeight;
+        g2d.drawString(" : " +gamePanel.sim.pekerjaan, tailX, textY);
+        textY += lineHeight;
+        value = String.valueOf(gamePanel.sim.uang);
+        g2d.drawString(" : " +value, tailX, textY);
+        textY += lineHeight;
+        value = String.valueOf(" : " +gamePanel.sim.kesehatan + "/" + gamePanel.sim.maxKesehatan);
+        g2d.drawString(value, tailX, textY);
+        textY += lineHeight;
+        value = String.valueOf(" : " +gamePanel.sim.kekenyangan + "/" + gamePanel.sim.maxKekenyangan);
+        g2d.drawString(value, tailX, textY);
+        textY += lineHeight;
+        value = String.valueOf(" : " +gamePanel.sim.mood + "/" + gamePanel.sim.maxMood);
+        g2d.drawString(value, tailX, textY);
+    }
+
     public void drawSubWindow(int x, int y, int width, int height) {
         // grey window
         g2d.setColor(new Color(0,0,0,210));
@@ -92,6 +149,14 @@ public class UI {
         int length = (int) g2d.getFontMetrics().getStringBounds(message, g2d).getWidth();
 
         int x = gamePanel.screenWidth / 2 - length / 2;
+
+        return x;
+    }
+
+    public int getXforAlignToRightText(String message, int tailX) {
+        int length = (int) g2d.getFontMetrics().getStringBounds(message, g2d).getWidth();
+
+        int x = tailX - length;
 
         return x;
     }
