@@ -35,20 +35,6 @@ public class CollisionChecker {
                                                                                           // on after moving
                 tileNum2 = gamePanel.tileManager.mapTileNum[entityRightCol][entityTopRow];
                 if (gamePanel.tileManager.tile[tileNum1].collision || gamePanel.tileManager.tile[tileNum2].collision) { // if
-                                                                                                                        // the
-                                                                                                                        // tile
-                                                                                                                        // the
-                                                                                                                        // entity
-                                                                                                                        // will
-                                                                                                                        // be
-                                                                                                                        // standing
-                                                                                                                        // on
-                                                                                                                        // after
-                                                                                                                        // moving
-                                                                                                                        // is
-                                                                                                                        // a
-                                                                                                                        // collision
-                                                                                                                        // tile
                     entity.collisionOn = true;
                 }
                 break;

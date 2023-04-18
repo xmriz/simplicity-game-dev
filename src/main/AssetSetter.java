@@ -1,7 +1,6 @@
 package main;
 
-import benda.BahanMakanan_Kentang;
-import benda.Furnitur_Jam;
+import benda.*;
 import entity.NPC;
 
 public class AssetSetter {
@@ -18,7 +17,7 @@ public class AssetSetter {
         gamePanel.benda[0].worldX = 3 * gamePanel.tileSize;
         gamePanel.benda[0].worldY = 3 * gamePanel.tileSize;
 
-        gamePanel.benda[1] = new BahanMakanan_Kentang();
+        gamePanel.benda[1] = new BahanMakanan_Sapi();
         gamePanel.benda[1].worldX = 4 * gamePanel.tileSize;
         gamePanel.benda[1].worldY = 4 * gamePanel.tileSize;
 
