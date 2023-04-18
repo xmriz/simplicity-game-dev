@@ -1,6 +1,6 @@
 package benda;
 
-public class IFurnitur extends Benda{
+public abstract class IFurnitur extends Benda{
 
     
 } 

@@ -1,5 +1,5 @@
 package benda;
 
-public class IMakanan extends Benda {
+public abstract class IMakanan extends Benda {
     
 }

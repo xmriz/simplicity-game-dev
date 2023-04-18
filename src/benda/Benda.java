@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.UtilityTool;
 
-public class Benda {
+public abstract class Benda {
     GamePanel gamePanel;
 
     public BufferedImage image;
