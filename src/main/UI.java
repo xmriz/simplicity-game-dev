@@ -134,14 +134,17 @@ public class UI {
         int x = getXforCenteredText(text);
         int y = gamePanel.tileSize * 4 + 10;
         g2d.drawString(text, x, y);
+        text = "(maks. 25 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
 
-        // meminta input nama karakter 
-        g2d.fillRect(165, y + gamePanel.tileSize, gamePanel.screenWidth - 2*145 - 50, gamePanel.tileSize);
-        Graphics2D g2d2 = (Graphics2D) g2d.create();;
+        // meminta input nama karakter
+        g2d.fillRect(170, y + gamePanel.tileSize, gamePanel.screenWidth - 2*170, gamePanel.tileSize);
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
         g2d2.setColor(Color.BLACK);
-        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 36f));
-        x = getXforCenteredText(input);
-        g2d2.drawString(input, x+20, y + gamePanel.tileSize*2 - 10);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 37f));
+        g2d2.drawString(input, 183, y + gamePanel.tileSize*2 - 10);
         text = "Oke";
         x = getXforCenteredText(text);
         y += gamePanel.tileSize * 3;
