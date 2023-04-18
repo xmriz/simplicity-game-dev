@@ -55,7 +55,7 @@ public class KeyHandler implements KeyListener {
                     if (gamePanel.ui.commandNumber > 1) {
                         gamePanel.ui.commandNumber = 0;
                     }
-                } else if (keyCode == KeyEvent.VK_BACK_SPACE){
+                } else if (keyCode == KeyEvent.VK_BACK_SPACE && gamePanel.ui.inputFirstSimName.length() > 0){
                     gamePanel.ui.inputFirstSimName = gamePanel.ui.inputFirstSimName.substring(0, gamePanel.ui.inputFirstSimName.length() - 1);
                 } else if (keyCode == KeyEvent.VK_A && gamePanel.ui.inputFirstSimName.length() < 25) {
                     gamePanel.ui.inputFirstSimName += "A";
@@ -114,20 +114,25 @@ public class KeyHandler implements KeyListener {
                 } else if (keyCode == KeyEvent.VK_ENTER) {
                     if (gamePanel.ui.commandNumber == 0) { // start game
                         gamePanel.sim.nama = gamePanel.ui.inputFirstSimName;
-                        // capitalize first letter
-                        String[] pecah = gamePanel.sim.nama.split(" ");
-                        StringBuilder sb = new StringBuilder();
-                        for (int i = 0; i < pecah.length; i++) {
-                            sb.append(pecah[i].substring(0, 1).toUpperCase());
-                            sb.append(pecah[i].substring(1).toLowerCase());
-                            sb.append(" ");
+                        if (gamePanel.sim.nama.length() == 0) {
+                            gamePanel.sim.nama = "Sim";
+                        } else {
+                            // capitalize first letter
+                            String[] pecah = gamePanel.sim.nama.split(" ");
+                            StringBuilder sb = new StringBuilder();
+                            for (int i = 0; i < pecah.length; i++) {
+                                sb.append(pecah[i].substring(0, 1).toUpperCase());
+                                sb.append(pecah[i].substring(1).toLowerCase());
+                                sb.append(" ");
+                            }
+                            gamePanel.sim.nama = sb.toString().trim();
                         }
-                        gamePanel.sim.nama = sb.toString().trim();
                         // set game state to play state
                         gamePanel.gameState = gamePanel.playState;
                     } else if (gamePanel.ui.commandNumber == 1) { // back to Title Screen 0
                         gamePanel.ui.titleScreenState = 0;
                         gamePanel.ui.commandNumber = 0;
+                        gamePanel.ui.inputFirstSimName = "";
                     } 
                 }
             }

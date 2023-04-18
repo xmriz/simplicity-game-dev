@@ -130,18 +130,18 @@ public class UI {
         g2d.setColor(Color.WHITE);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 42f));
 
-        String text = "Masukkan nama karakter anda:";
+        String text = "Masukkan nama sim anda:";
         int x = getXforCenteredText(text);
         int y = gamePanel.tileSize * 4 + 10;
         g2d.drawString(text, x, y);
 
         // meminta input nama karakter 
-        g2d.fillRect(x, y + gamePanel.tileSize, gamePanel.tileSize * 10, gamePanel.tileSize);
+        g2d.fillRect(165, y + gamePanel.tileSize, gamePanel.screenWidth - 2*145 - 50, gamePanel.tileSize);
         Graphics2D g2d2 = (Graphics2D) g2d.create();;
         g2d2.setColor(Color.BLACK);
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 36f));
         x = getXforCenteredText(input);
-        g2d2.drawString(input, x + gamePanel.tileSize/2 + 4, y + gamePanel.tileSize*2 - 10);
+        g2d2.drawString(input, x+20, y + gamePanel.tileSize*2 - 10);
         text = "Oke";
         x = getXforCenteredText(text);
         y += gamePanel.tileSize * 3;
