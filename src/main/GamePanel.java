@@ -45,6 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // GAME STATE
     public int gameState;
+    public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogState = 3;
@@ -59,7 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setupGame(){
-        gameState = playState; // set the game state to play state
+        gameState = titleState; // set the default game state to titleState
         assetSetter.setBenda(); // setup the benda
         assetSetter.setNPC(); // setup the assets
     }
@@ -110,29 +111,29 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2d = (Graphics2D) g; // cast the Graphics object to Graphics2D
 
-        // draw the background
-        tileManager.draw(g2d);
-        
-        
-        // draw benda
-        for (int i = 0; i < benda.length; i++) {
-            if (benda[i] != null) {
-                benda[i].draw(g2d, this);
+        if (gameState == titleState){
+            ui.draw(g2d);
+        } else {
+            // draw the background
+            tileManager.draw(g2d);
+            // draw benda
+            for (int i = 0; i < benda.length; i++) {
+                if (benda[i] != null) {
+                    benda[i].draw(g2d, this);
+                }
             }
-        }
-        
-        // draw sim
-        sim.draw(g2d);
-        
-        // draw npc
-        for (int i = 0; i < npc.length; i++) {
-            if (npc[i] != null) {
-                npc[i].draw(g2d);
+            // draw sim
+            sim.draw(g2d);
+            // draw npc
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
+                    npc[i].draw(g2d);
+                }
             }
+            // draw ui
+            ui.draw(g2d);
         }
-        
-        // draw ui
-        ui.draw(g2d);
+
 
         g2d.dispose(); // dispose the Graphics2D object, freeing up memory
     }

@@ -9,7 +9,7 @@ import main.*;
 public class Sim extends Entity {
 
     // SIM INFO
-    public String nama = "Kandar";
+    public String nama = "Sim";
     public String pekerjaan = "Pengangguran";
     public int uang = 0;
     public int kesehatan = 100;
