@@ -9,7 +9,6 @@ import java.io.*;
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
-import main.UtilityTool;
 
 public abstract class Benda {
     GamePanel gamePanel;

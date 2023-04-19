@@ -37,12 +37,10 @@ public class TileManager {
     }
 
     public void setupImage(int index, String imagePath, boolean collision){
-        UtilityTool uTool = new UtilityTool();
-
         try {
             tile[index] = new Tile();
             tile[index].image = ImageIO.read(new FileInputStream(new File("assets/tiles/" + imagePath +".png")));
-            tile[index].image = uTool.scaleImage(tile[index].image, gamePanel.tileSize, gamePanel.tileSize);
+            tile[index].image = UtilityTool.scaleImage(tile[index].image, gamePanel.tileSize, gamePanel.tileSize);
             tile[index].collision = collision;
         } catch (IOException e) {
             e.printStackTrace();

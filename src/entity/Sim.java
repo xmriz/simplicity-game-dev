@@ -11,12 +11,12 @@ public class Sim extends Entity {
     // SIM INFO
     public String nama = "Sim";
     public String pekerjaan = "Pengangguran";
-    public int uang = 0;
-    public int kesehatan = 100;
+    public int uang = 100;
+    public int kesehatan = 80;
     public final int maxKesehatan = 100;
-    public int kekenyangan = 100;
+    public int kekenyangan = 80;
     public final int maxKekenyangan = 100;
-    public int mood = 100;
+    public int mood = 80;
     public final int maxMood = 100;
 
     KeyHandler keyHandler;

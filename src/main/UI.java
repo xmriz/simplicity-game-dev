@@ -32,7 +32,7 @@ public class UI {
                     new FileInputStream(new File("data/fonts/x12y16pxMaruMonica.ttf")));
             purisaB = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("data/fonts/Purisa Bold.ttf")));
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
     }
 

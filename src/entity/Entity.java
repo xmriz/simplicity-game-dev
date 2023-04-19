@@ -147,12 +147,11 @@ public abstract class Entity {
     }
 
     public BufferedImage setupImage(String imagePath){
-        UtilityTool uTool = new UtilityTool();
         BufferedImage scaledImage = null;
 
         try {
             scaledImage = ImageIO.read(new FileInputStream(new File("assets/" + imagePath +".png")));
-            scaledImage = uTool.scaleImage(scaledImage, gamePanel.tileSize, gamePanel.tileSize);
+            scaledImage = UtilityTool.scaleImage(scaledImage, gamePanel.tileSize, gamePanel.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
         }
