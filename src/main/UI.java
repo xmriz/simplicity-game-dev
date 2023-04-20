@@ -8,6 +8,8 @@ import java.io.FileInputStream;
 import javax.imageio.ImageIO;
 
 import benda.*;
+import entity.Entity;
+import entity.Sim;
 
 public class UI {
     GamePanel gamePanel;
@@ -24,7 +26,9 @@ public class UI {
     public String currentDialog = "";
     public int commandNumber = 0;
     public int titleScreenState = 0; // 0 = first screen, 1 = second screen, 2 = third screen
-    public int slotCol = 0, slotRow = 0; // default slot position
+    public int SimSlotCol = 0, SimSlotRow = 0; // default slot position
+    public int npcSlotCol = 0, npcSlotRow = 0; // default slot position for npc
+    public Entity npc;
 
     public UI(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -60,7 +64,9 @@ public class UI {
         } else if (gamePanel.gameState == gamePanel.simInfoState) { // if game is in sim info
             drawSimInfoScreen();
         } else if (gamePanel.gameState == gamePanel.inventoryState) { // if game is in inventory
-            drawInventoryScreen();
+            drawInventoryScreen(gamePanel.sim);
+        } else if (gamePanel.gameState == gamePanel.beliState){ // if game is in beli
+            drawBeliScreen();
         }
     }
 
@@ -254,7 +260,7 @@ public class UI {
     }
 
     // INVENTORY SCREEN
-    public void drawInventoryScreen() {
+    public void drawInventoryScreen(Sim sim) {
         // create frame
         int frameX = gamePanel.tileSize * 2;
         int frameY = gamePanel.tileSize;
@@ -266,10 +272,12 @@ public class UI {
         g2d.setColor(Color.WHITE);
         g2d.setFont(g2d.getFont().deriveFont(40f));
 
-        // inventory title
-        final int textXINVENTORY = getXforCenteredText("INVENTORY");
-        int textYINVENTORY = frameY + gamePanel.tileSize;
-        g2d.drawString("INVENTORY", textXINVENTORY, textYINVENTORY);
+        
+            // inventory title
+            final int textXINVENTORY = getXforCenteredText("INVENTORY");
+            int textYINVENTORY = frameY + gamePanel.tileSize;
+            g2d.drawString("INVENTORY", textXINVENTORY, textYINVENTORY);
+        
 
         // slot
         final int slotXstart = frameX + 19;
@@ -291,8 +299,8 @@ public class UI {
         }
 
         // cursor
-        int cursorX = slotXstart + (slotSize * slotCol);
-        int cursorY = slotYstart + (slotSize * slotRow);
+        int cursorX = slotXstart + (slotSize * SimSlotCol);
+        int cursorY = slotYstart + (slotSize * SimSlotRow);
         int cursorWidth = gamePanel.tileSize;
         int cursorHeight = gamePanel.tileSize;
         // draw cursor
@@ -320,7 +328,7 @@ public class UI {
         int textY = textYITEMINFO + lineHeight + 20;
         g2d.setFont(g2d.getFont().deriveFont(32f));
 
-        int itemIndex = getItemIndexOnSlot(slotRow, slotCol);
+        int itemIndex = getItemIndexOnSlot(SimSlotRow, SimSlotCol);
         if (itemIndex < gamePanel.sim.inventory.size()) {
             if (gamePanel.sim.inventory.get(itemIndex) != null) {
                 if (gamePanel.sim.inventory.get(itemIndex) instanceof BahanMakanan) {
@@ -406,6 +414,10 @@ public class UI {
                 }
             }
         }
+    }
+
+    public void drawBeliScreen(){
+        // TODO : later
     }
 
     public static int getItemIndexOnSlot(int slotRow, int slotCol) {

@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -29,8 +31,8 @@ public abstract class Entity {
 
     public int actionLockCounter = 0;
     int dialogCounter = 0;
-
-    public String[] dialogs = new String[4];
+    
+    public List<String> dialogs = new ArrayList<String>();
 
     public Entity(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -42,9 +44,9 @@ public abstract class Entity {
 
     public void speak(){
         if (gamePanel.ui.currentDialog != null){
-            gamePanel.ui.currentDialog = dialogs[dialogCounter];
+            gamePanel.ui.currentDialog = dialogs.get(dialogCounter);
             dialogCounter++;
-            if (dialogCounter > dialogs.length-1){
+            if (dialogCounter > dialogs.size()-1){
                 dialogCounter = 0;
             }
         } else {

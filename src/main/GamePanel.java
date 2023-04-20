@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // ENTITY 
     public Sim sim = new Sim(this, keyHandler);
-    public NPC npc[][] = new NPC[maxMap][4]; // create an array of NPC objects
+    public Entity npc[][] = new Entity[maxMap][5]; // create an array of NPC objects
 
     // BENDA
     public Benda benda[][] = new Benda[maxMap][9]; // create an array of Benda objects yang dapat diletakkan
@@ -55,6 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int dialogState = 3;
     public final int simInfoState = 4;
     public final int inventoryState = 5;
+    public final int beliState = 6;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the panel
@@ -121,20 +122,24 @@ public class GamePanel extends JPanel implements Runnable {
         } else {
             // draw the background
             tileManager.draw(g2d);
+
             // draw benda
             for (int i = 0; i < benda[currentMap].length; i++) {
                 if (benda[currentMap][i] != null) {
                     benda[currentMap][i].draw(g2d, this);
                 }
             }
-            // draw sim
-            sim.draw(g2d);
+
             // draw npc
-            for (int i = 0; i < npc.length; i++) {
+            for (int i = 0; i < npc[currentMap].length; i++) {
                 if (npc[currentMap][i] != null) {
                     npc[currentMap][i].draw(g2d);
                 }
             }
+
+            // draw sim
+            sim.draw(g2d);
+
             // draw ui
             ui.draw(g2d);
         }

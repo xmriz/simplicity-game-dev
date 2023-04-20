@@ -161,6 +161,11 @@ public class KeyHandler implements KeyListener {
         else if (gamePanel.gameState == gamePanel.inventoryState) {
             inventoryState(keyCode);
         }
+
+        // BELI STATE
+        else if (gamePanel.gameState == gamePanel.beliState) {
+            beliState(keyCode);
+        }
     }
 
     public void playState(int keyCode) {
@@ -178,7 +183,10 @@ public class KeyHandler implements KeyListener {
             gamePanel.gameState = gamePanel.simInfoState;
         } else if (keyCode == KeyEvent.VK_B) {
             gamePanel.gameState = gamePanel.inventoryState;
-        } else if (keyCode == KeyEvent.VK_ENTER) {
+        } else if (keyCode == KeyEvent.VK_T){
+            gamePanel.gameState = gamePanel.beliState;
+        } 
+        else if (keyCode == KeyEvent.VK_ENTER) {
             enterPressed = true;
         }
     }
@@ -216,53 +224,62 @@ public class KeyHandler implements KeyListener {
         if (keyCode == KeyEvent.VK_B) {
             gamePanel.gameState = gamePanel.playState;
         } else if (keyCode == KeyEvent.VK_UP){
-            if (gamePanel.ui.slotRow > 0) {
-                index = UI.getItemIndexOnSlot(gamePanel.ui.slotRow - 1, gamePanel.ui.slotCol);
+            if (gamePanel.ui.SimSlotRow > 0) {
+                index = UI.getItemIndexOnSlot(gamePanel.ui.SimSlotRow - 1, gamePanel.ui.SimSlotCol);
                 if (index <= gamePanel.sim.inventory.size() - 1) {
-                    gamePanel.ui.slotRow--;
+                    gamePanel.ui.SimSlotRow--;
                 }
             } else {
-                index = UI.getItemIndexOnSlot(2, gamePanel.ui.slotCol);
+                index = UI.getItemIndexOnSlot(2, gamePanel.ui.SimSlotCol);
                 if (index <= gamePanel.sim.inventory.size() - 1) {
-                    gamePanel.ui.slotRow = 2;
+                    gamePanel.ui.SimSlotRow = 2;
                 }
             }
         } else if (keyCode == KeyEvent.VK_DOWN){
-            if (gamePanel.ui.slotRow < 2){
-                index = UI.getItemIndexOnSlot(gamePanel.ui.slotRow + 1, gamePanel.ui.slotCol);
+            if (gamePanel.ui.SimSlotRow < 2){
+                index = UI.getItemIndexOnSlot(gamePanel.ui.SimSlotRow + 1, gamePanel.ui.SimSlotCol);
                 if (index <= gamePanel.sim.inventory.size() - 1) {
-                    gamePanel.ui.slotRow++;
+                    gamePanel.ui.SimSlotRow++;
                 }
             } else {
-                index = UI.getItemIndexOnSlot(0, gamePanel.ui.slotCol);
+                index = UI.getItemIndexOnSlot(0, gamePanel.ui.SimSlotCol);
                 if (index <= gamePanel.sim.inventory.size() - 1) {
-                    gamePanel.ui.slotRow = 0;
+                    gamePanel.ui.SimSlotRow = 0;
                 }
             }
         } else if (keyCode == KeyEvent.VK_LEFT){
-            if (gamePanel.ui.slotCol > 0) {
-                index = UI.getItemIndexOnSlot(gamePanel.ui.slotRow, gamePanel.ui.slotCol - 1);
+            if (gamePanel.ui.SimSlotCol > 0) {
+                index = UI.getItemIndexOnSlot(gamePanel.ui.SimSlotRow, gamePanel.ui.SimSlotCol - 1);
                 if (index <= gamePanel.sim.inventory.size() - 1) {
-                    gamePanel.ui.slotCol--;
+                    gamePanel.ui.SimSlotCol--;
                 }
             } else {
-                index = UI.getItemIndexOnSlot(gamePanel.ui.slotRow, 10);
+                index = UI.getItemIndexOnSlot(gamePanel.ui.SimSlotRow, 10);
                 if (index <= gamePanel.sim.inventory.size() - 1) {
-                    gamePanel.ui.slotCol = 10;
+                    gamePanel.ui.SimSlotCol = 10;
                 }
             }
         } else if (keyCode == KeyEvent.VK_RIGHT){
-            if (gamePanel.ui.slotCol < 10){
-                index = UI.getItemIndexOnSlot(gamePanel.ui.slotRow, gamePanel.ui.slotCol + 1);
+            if (gamePanel.ui.SimSlotCol < 10){
+                index = UI.getItemIndexOnSlot(gamePanel.ui.SimSlotRow, gamePanel.ui.SimSlotCol + 1);
                 if (index <= gamePanel.sim.inventory.size() - 1) {
-                    gamePanel.ui.slotCol++;
+                    gamePanel.ui.SimSlotCol++;
                 }
             } else {
-                index = UI.getItemIndexOnSlot(gamePanel.ui.slotRow, 0);
+                index = UI.getItemIndexOnSlot(gamePanel.ui.SimSlotRow, 0);
                 if (index <= gamePanel.sim.inventory.size() - 1) {
-                    gamePanel.ui.slotCol = 0;
+                    gamePanel.ui.SimSlotCol = 0;
                 }
             }
+        }
+    }
+
+    public void beliState(int keyCode) {
+        if (keyCode == KeyEvent.VK_T) {
+            // TODO: change dialog
+            gamePanel.ui.currentDialog = "Selamat datang kembali.";
+            gamePanel.gameState = gamePanel.dialogState;
+            gamePanel.gameState = gamePanel.playState;
         }
     }
 
@@ -283,5 +300,4 @@ public class KeyHandler implements KeyListener {
             rightPressed = false;
         }
     }
-
 }

@@ -1,7 +1,8 @@
 package main;
 
 import benda.*;
-import entity.NPC;
+import entity.NPC_Kakek;
+import entity.NPC_Penjual;
 
 public class AssetSetter {
 
@@ -13,44 +14,62 @@ public class AssetSetter {
 
     public void setBenda(){
         // position of the benda in the world
+        // furnitur
+        int i = 0;
         int mapNumber = 0;
-        gamePanel.benda[mapNumber][0] = new Rumah();
-        gamePanel.benda[mapNumber][0].worldX = 2 * gamePanel.tileSize;
-        gamePanel.benda[mapNumber][0].worldY = 2 * gamePanel.tileSize;
+        gamePanel.benda[mapNumber][i] = new Rumah();
+        gamePanel.benda[mapNumber][i].worldX = 2 * gamePanel.tileSize;
+        gamePanel.benda[mapNumber][i].worldY = 2 * gamePanel.tileSize;
+        i++;
         
-        gamePanel.benda[mapNumber][1] = new BahanMakanan_Kentang();
-        gamePanel.benda[mapNumber][1].worldX = 3 * gamePanel.tileSize;
-        gamePanel.benda[mapNumber][1].worldY = 3 * gamePanel.tileSize;
+        gamePanel.benda[mapNumber][i] = new Furnitur_Jam();
+        gamePanel.benda[mapNumber][i].worldX = 5 * gamePanel.tileSize;
+        gamePanel.benda[mapNumber][i].worldY = 5 * gamePanel.tileSize;
+        i++;
 
-        gamePanel.benda[mapNumber][2] = new BahanMakanan_Sapi();
-        gamePanel.benda[mapNumber][2].worldX = 4 * gamePanel.tileSize;
-        gamePanel.benda[mapNumber][2].worldY = 4 * gamePanel.tileSize;
+        // gamePanel.benda[mapNumber][2] = new BahanMakanan_Kentang();
+        // gamePanel.benda[mapNumber][2].worldX = 3 * gamePanel.tileSize;
+        // gamePanel.benda[mapNumber][2].worldY = 3 * gamePanel.tileSize;
+
+        // gamePanel.benda[mapNumber][3] = new BahanMakanan_Sapi();
+        // gamePanel.benda[mapNumber][3].worldX = 4 * gamePanel.tileSize;
+        // gamePanel.benda[mapNumber][3].worldY = 4 * gamePanel.tileSize;
         
-        gamePanel.benda[mapNumber][3] = new Furnitur_Jam();
-        gamePanel.benda[mapNumber][3].worldX = 5 * gamePanel.tileSize;
-        gamePanel.benda[mapNumber][3].worldY = 5 * gamePanel.tileSize;
 
         // position of the benda in the rumah
         mapNumber = 1;
     }
 
     public void setNPC() {
+        int i = 0;
+        // MAP 1
         int mapNumber = 0;
+        gamePanel.npc[mapNumber][i] = new NPC_Kakek(gamePanel);
+        gamePanel.npc[mapNumber][i].worldX = 2 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i].worldY = 2 * gamePanel.tileSize;
+        i++;
 
-        gamePanel.npc[mapNumber][0] = new NPC(gamePanel);
-        gamePanel.npc[mapNumber][0].worldX = 2 * gamePanel.tileSize;
-        gamePanel.npc[mapNumber][0].worldY = 2 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i] = new NPC_Kakek(gamePanel);
+        gamePanel.npc[mapNumber][i].worldX = 63 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i].worldY = 63 * gamePanel.tileSize;
+        i++;
 
-        gamePanel.npc[mapNumber][1] = new NPC(gamePanel);
-        gamePanel.npc[mapNumber][1].worldX = 63 * gamePanel.tileSize;
-        gamePanel.npc[mapNumber][1].worldY = 63 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i] = new NPC_Kakek(gamePanel);
+        gamePanel.npc[mapNumber][i].worldX = 2 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i].worldY = 63 * gamePanel.tileSize;
+        i++;
 
-        gamePanel.npc[mapNumber][2] = new NPC(gamePanel);
-        gamePanel.npc[mapNumber][2].worldX = 2 * gamePanel.tileSize;
-        gamePanel.npc[mapNumber][2].worldY = 63 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i] = new NPC_Kakek(gamePanel);
+        gamePanel.npc[mapNumber][i].worldX = 63 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i].worldY = 2 * gamePanel.tileSize;
+        i++;
 
-        gamePanel.npc[mapNumber][3] = new NPC(gamePanel);
-        gamePanel.npc[mapNumber][3].worldX = 63 * gamePanel.tileSize;
-        gamePanel.npc[mapNumber][3].worldY = 2 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i] = new NPC_Penjual(gamePanel);
+        gamePanel.npc[mapNumber][i].worldX = 6 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i].worldY = 6 * gamePanel.tileSize;
+        i++;
+        
+        // MAP 2
+        mapNumber = 1;
     }
 }

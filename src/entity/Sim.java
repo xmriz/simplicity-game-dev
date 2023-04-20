@@ -69,8 +69,8 @@ public class Sim extends Entity {
     }
 
     public void setDefaultValues() { // set the default values of the player
-        worldX = 6 * gamePanel.tileSize; // set the player's position in the world
-        worldY = 6 * gamePanel.tileSize;
+        worldX = 1 * gamePanel.tileSize; // set the player's position in the world
+        worldY = 1 * gamePanel.tileSize;
         speed = 4; 
         direction = "down";
     }

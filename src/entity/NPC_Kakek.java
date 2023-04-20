@@ -4,9 +4,9 @@ import java.util.Random;
 
 import main.*;
 
-public class NPC extends Entity {
+public class NPC_Kakek extends Entity {
 
-    public NPC(GamePanel gamePanel) {
+    public NPC_Kakek(GamePanel gamePanel) {
         super(gamePanel);
 
         direction = "down";
@@ -28,10 +28,10 @@ public class NPC extends Entity {
     }
 
     public void setDialog(){
-        dialogs[0] = "Hai, Nak.";
-        dialogs[1] = "Apakah kamu pernah melihatku \nsebelumnya?";
-        dialogs[2] = "Berhati-hatilah!";
-        dialogs[3] = "...";
+        dialogs.add("Hai, Nak.");
+        dialogs.add("Apakah kamu pernah melihatku \nsebelumnya?");
+        dialogs.add("Berhati-hatilah!");
+        dialogs.add("...");
     }
 
     @Override
