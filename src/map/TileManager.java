@@ -11,14 +11,15 @@ import main.UtilityTool;
 public class TileManager {
     GamePanel gamePanel;
     public Tile[] tile;
-    public int mapTileNum[][];
+    public int mapTileNum[][][];
 
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
-        tile = new Tile[12];
-        mapTileNum = new int[gamePanel.maxWorldCol][gamePanel.maxWorldRow];
+        tile = new Tile[14]; // jumlah tile yang ada
+        mapTileNum = new int[gamePanel.maxMap][gamePanel.maxWorldCol][gamePanel.maxWorldRow];
         getTileImage();
-        loadMap("data/maps/world.txt");
+        loadMap("data/maps/world.txt", 0);
+        loadMap("data/maps/ruangan.txt", 1);
     }
 
     public void getTileImage(){
@@ -34,6 +35,8 @@ public class TileManager {
             setupImage(9, "water_corner4", true);
             setupImage(10, "floor", false);
             setupImage(11, "wall", true);
+            setupImage(12, "door", false);
+            setupImage(13, "blank", true);
     }
 
     public void setupImage(int index, String imagePath, boolean collision){
@@ -48,7 +51,7 @@ public class TileManager {
 
     }
 
-    public void loadMap(String mapPath){
+    public void loadMap(String mapPath, int map){
         try {
             BufferedReader br = new BufferedReader(new FileReader(mapPath));
 
@@ -62,7 +65,7 @@ public class TileManager {
 
                     int num = Integer.parseInt(numbers[col]);
 
-                    mapTileNum[col][row] = num;
+                    mapTileNum[map][col][row] = num;
                     col++;
                 }
                 if (col == gamePanel.maxWorldCol){
@@ -82,7 +85,7 @@ public class TileManager {
         int worldRow = 0;
 
         while (worldCol < gamePanel.maxWorldCol && worldRow < gamePanel.maxWorldRow){
-            int tileNum = mapTileNum[worldCol][worldRow];
+            int tileNum = mapTileNum[gamePanel.currentMap][worldCol][worldRow];
 
             int worldX = worldCol * gamePanel.tileSize; // position of the tile in the world 
             int worldY = worldRow * gamePanel.tileSize;

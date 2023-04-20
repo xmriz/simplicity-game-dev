@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 
 import javax.imageio.ImageIO;
 
+import benda.*;
 
 public class UI {
     GamePanel gamePanel;
@@ -23,6 +24,7 @@ public class UI {
     public String currentDialog = "";
     public int commandNumber = 0;
     public int titleScreenState = 0; // 0 = first screen, 1 = second screen, 2 = third screen
+    public int slotCol = 0, slotRow = 0; // default slot position
 
     public UI(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -57,6 +59,8 @@ public class UI {
             drawDialogScreen();
         } else if (gamePanel.gameState == gamePanel.simInfoState) { // if game is in sim info
             drawSimInfoScreen();
+        } else if (gamePanel.gameState == gamePanel.inventoryState) { // if game is in inventory
+            drawInventoryScreen();
         }
     }
 
@@ -140,11 +144,11 @@ public class UI {
         g2d.drawString(text, x, y);
 
         // meminta input nama karakter
-        g2d.fillRect(170, y + gamePanel.tileSize, gamePanel.screenWidth - 2*170, gamePanel.tileSize);
+        g2d.fillRect(170, y + gamePanel.tileSize, gamePanel.screenWidth - 2 * 170, gamePanel.tileSize);
         Graphics2D g2d2 = (Graphics2D) g2d.create();
         g2d2.setColor(Color.BLACK);
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 37f));
-        g2d2.drawString(input, 183, y + gamePanel.tileSize*2 - 10);
+        g2d2.drawString(input, 183, y + gamePanel.tileSize * 2 - 10);
         text = "Oke";
         x = getXforCenteredText(text);
         y += gamePanel.tileSize * 3;
@@ -162,6 +166,7 @@ public class UI {
         }
     }
 
+    // PAUSE SCREEN
     public void drawPauseScreen() {
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 80f));
 
@@ -173,6 +178,7 @@ public class UI {
         g2d.drawString(message, x, y);
     }
 
+    // DIALOG SCREEN
     public void drawDialogScreen() {
         // WINDOW
         int x = gamePanel.tileSize * 2;
@@ -191,6 +197,7 @@ public class UI {
         }
     }
 
+    // SIM INFO SCREEN
     public void drawSimInfoScreen() {
         // CREATE A FRAME
         final int lineHeight = 35;
@@ -244,6 +251,166 @@ public class UI {
         textY += lineHeight;
         value = String.valueOf(" : " + gamePanel.sim.mood + "/" + gamePanel.sim.maxMood);
         g2d.drawString(value, tailX, textY);
+    }
+
+    // INVENTORY SCREEN
+    public void drawInventoryScreen() {
+        // create frame
+        int frameX = gamePanel.tileSize * 2;
+        int frameY = gamePanel.tileSize;
+        int frameWidth = gamePanel.screenWidth - gamePanel.tileSize * 4;
+        int frameHeight = gamePanel.screenHeight - gamePanel.tileSize * 11;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(40f));
+
+        // inventory title
+        final int textXINVENTORY = getXforCenteredText("INVENTORY");
+        int textYINVENTORY = frameY + gamePanel.tileSize;
+        g2d.drawString("INVENTORY", textXINVENTORY, textYINVENTORY);
+
+        // slot
+        final int slotXstart = frameX + 19;
+        final int slotYstart = textYINVENTORY + 19;
+        int slotX = slotXstart;
+        int slotY = slotYstart;
+        int slotSize = gamePanel.tileSize + 1;
+
+        // draw sim items
+        for (int i = 0; i < gamePanel.sim.inventory.size(); i++) {
+            g2d.drawImage(gamePanel.sim.inventory.get(i).image, slotX, slotY, gamePanel.tileSize, gamePanel.tileSize,
+                    null);
+            slotX += slotSize;
+            // jika kelipatan 11 maka pindah ke baris bawah
+            if (i % 11 == 10) {
+                slotX = slotXstart;
+                slotY += slotSize;
+            }
+        }
+
+        // cursor
+        int cursorX = slotXstart + (slotSize * slotCol);
+        int cursorY = slotYstart + (slotSize * slotRow);
+        int cursorWidth = gamePanel.tileSize;
+        int cursorHeight = gamePanel.tileSize;
+        // draw cursor
+        g2d.setColor(Color.WHITE);
+        g2d.setStroke(new BasicStroke(3)); // ngubah ukuran stroke
+        g2d.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+
+        // item info
+        int iFrameX = frameX;
+        int iFrameY = frameY + frameHeight + 10;
+        int iFrameWidth = frameWidth;
+        int iFrameHeight = gamePanel.tileSize * 6 - 20;
+        drawSubWindow(iFrameX, iFrameY, iFrameWidth, iFrameHeight);
+
+        // ITEM INFO TITLE
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(40f));
+        final int textXITEMINFO = getXforCenteredText("ITEM INFO");
+        int textYITEMINFO = iFrameY + gamePanel.tileSize;
+        g2d.drawString("ITEM INFO", textXITEMINFO, textYITEMINFO);
+
+        // draw item info
+        int lineHeight = 35;
+        int textX = iFrameX + 20;
+        int textY = textYITEMINFO + lineHeight + 20;
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+
+        int itemIndex = getItemIndexOnSlot(slotRow, slotCol);
+        if (itemIndex < gamePanel.sim.inventory.size()) {
+            if (gamePanel.sim.inventory.get(itemIndex) != null) {
+                if (gamePanel.sim.inventory.get(itemIndex) instanceof BahanMakanan) {
+                    // write item info
+                    g2d.drawString("Nama", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Kategori", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Harga", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Kekenyangan", textX, textY);
+                    // write item value
+                    int iTailX = iFrameX + iFrameWidth / 3;
+                    textY = textYITEMINFO + lineHeight + 20;
+                    String iValue;
+                    BahanMakanan bahanMakanan = (BahanMakanan) gamePanel.sim.inventory.get(itemIndex);
+                    g2d.drawString(" : " + bahanMakanan.name, iTailX, textY);
+                    textY += lineHeight;
+                    g2d.drawString(" : " + bahanMakanan.category, iTailX, textY);
+                    textY += lineHeight;
+                    iValue = String.valueOf(" : " + bahanMakanan.harga);
+                    g2d.drawString(iValue, iTailX, textY);
+                    textY += lineHeight;
+                    iValue = String.valueOf(" : " + bahanMakanan.kekenyangan);
+                    g2d.drawString(iValue, iTailX, textY);
+
+                    textY = textYITEMINFO + lineHeight + 20;
+                } else if (gamePanel.sim.inventory.get(itemIndex) instanceof Makanan) {
+                    // write item info
+                    g2d.drawString("Nama", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Kategori", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Bahan", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Kekenyangan", textX, textY);
+                    // write item value
+                    int iTailX = iFrameX + iFrameWidth / 3;
+                    textY = textYITEMINFO + lineHeight + 20;
+                    String iValue;
+                    Makanan makanan = (Makanan) gamePanel.sim.inventory.get(itemIndex);
+                    g2d.drawString(" : " + makanan.name, iTailX, textY);
+                    textY += lineHeight;
+                    g2d.drawString(" : " + makanan.category, iTailX, textY);
+                    textY += lineHeight;
+                    iValue = String.valueOf(" : " + makanan.bahan);
+                    g2d.drawString(iValue, iTailX, textY);
+                    textY += lineHeight;
+                    iValue = String.valueOf(" : " + makanan.kekenyangan);
+                    g2d.drawString(iValue, iTailX, textY);
+
+                    textY = textYITEMINFO + lineHeight + 20;
+                } else if (gamePanel.sim.inventory.get(itemIndex) instanceof Furnitur) {
+                    // write item info
+                    g2d.drawString("Nama", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Kategori", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Dimensi", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Harga", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Aksi", textX, textY);
+                    // write item value
+                    int iTailX = iFrameX + iFrameWidth / 3;
+                    textY = textYITEMINFO + lineHeight + 20;
+                    String iValue;
+                    Furnitur furnitur = (Furnitur) gamePanel.sim.inventory.get(itemIndex);
+                    g2d.drawString(" : " + furnitur.name, iTailX, textY);
+                    textY += lineHeight;
+                    g2d.drawString(" : " + furnitur.category, iTailX, textY);
+                    textY += lineHeight;
+                    iValue = String.valueOf(" : " + furnitur.dimensiX + "x" + furnitur.dimensiY);
+                    g2d.drawString(iValue, iTailX, textY);
+                    textY += lineHeight;
+                    iValue = String.valueOf(" : " + furnitur.harga);
+                    g2d.drawString(iValue, iTailX, textY);
+                    textY += lineHeight;
+                    iValue = String.valueOf(" : " + furnitur.aksi);
+                    g2d.drawString(iValue, iTailX, textY);
+
+                    textY = textYITEMINFO + lineHeight + 20;
+                }
+            }
+        }
+    }
+
+    public static int getItemIndexOnSlot(int slotRow, int slotCol) {
+        int index = slotRow * 11 + slotCol;
+        return index;
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {

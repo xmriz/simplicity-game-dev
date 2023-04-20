@@ -25,6 +25,10 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldWidth = maxWorldCol * tileSize; // 3168 pixels
     public final int worldHeight = maxWorldRow * tileSize; // 3168 pixels
 
+    // MAP SETTINGS
+    public final int maxMap = 2; // Ruangan and world
+    public int currentMap = 0;
+
     // FPS
     int fps = 60; // frames per second
 
@@ -38,10 +42,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     // ENTITY 
     public Sim sim = new Sim(this, keyHandler);
-    public NPC npc[] = new NPC[4]; // create an array of NPC objects
+    public NPC npc[][] = new NPC[maxMap][4]; // create an array of NPC objects
 
     // BENDA
-    public Benda benda[] = new Benda[8]; // create an array of Benda objects
+    public Benda benda[][] = new Benda[maxMap][9]; // create an array of Benda objects yang dapat diletakkan
 
     // GAME STATE
     public int gameState;
@@ -50,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int pauseState = 2;
     public final int dialogState = 3;
     public final int simInfoState = 4;
+    public final int inventoryState = 5;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the panel
@@ -93,9 +98,9 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
         if (gameState == playState) {
             sim.update();
-            for (int i = 0; i < npc.length; i++) {
-                if (npc[i] != null) {
-                    npc[i].update();
+            for (int i = 0; i < npc[currentMap].length; i++) {
+                if (npc[currentMap][i] != null) {
+                    npc[currentMap][i].update();
                 }
             }
         } else if (gameState == pauseState) {
@@ -117,17 +122,17 @@ public class GamePanel extends JPanel implements Runnable {
             // draw the background
             tileManager.draw(g2d);
             // draw benda
-            for (int i = 0; i < benda.length; i++) {
-                if (benda[i] != null) {
-                    benda[i].draw(g2d, this);
+            for (int i = 0; i < benda[currentMap].length; i++) {
+                if (benda[currentMap][i] != null) {
+                    benda[currentMap][i].draw(g2d, this);
                 }
             }
             // draw sim
             sim.draw(g2d);
             // draw npc
             for (int i = 0; i < npc.length; i++) {
-                if (npc[i] != null) {
-                    npc[i].draw(g2d);
+                if (npc[currentMap][i] != null) {
+                    npc[currentMap][i].draw(g2d);
                 }
             }
             // draw ui

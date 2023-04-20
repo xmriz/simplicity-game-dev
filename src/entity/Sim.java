@@ -3,7 +3,9 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.*;
 
+import benda.*;
 import main.*;
 
 public class Sim extends Entity {
@@ -19,10 +21,33 @@ public class Sim extends Entity {
     public int mood = 80;
     public final int maxMood = 100;
 
+    public Rumah rumah;
+
     KeyHandler keyHandler;
 
     public final int screenX;
     public final int screenY;
+
+    public List<Benda> inventory = new ArrayList<>();
+    public int maxInventorySize = 33;
+
+    // BahanMakanan
+    int hasAyam = 0;
+    int hasBayam = 0;
+    int hasKacang = 0;
+    int hasKentang = 0;
+    int hasNasi = 0;
+    int hasSapi = 0;
+    int hasSusu = 0;
+    int hasWortel = 0;
+
+    // int Makanan
+    int hasBistik = 0;
+    int hasNasiAyam = 0;
+    int hasNasiKari = 0;
+    int hasSusuKacang = 0;
+    int hasTumisSayur = 0;
+
 
     public Sim(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
@@ -35,15 +60,43 @@ public class Sim extends Entity {
 
         solidArea = new Rectangle(8, 16, 32, 32);
 
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+
         setDefaultValues();
         getImage();
+        setItems();
     }
 
     public void setDefaultValues() { // set the default values of the player
-        worldX = 1 * gamePanel.tileSize; // set the player's position in the world
-        worldY = 1 * gamePanel.tileSize;
+        worldX = 6 * gamePanel.tileSize; // set the player's position in the world
+        worldY = 6 * gamePanel.tileSize;
         speed = 4; 
         direction = "down";
+    }
+
+    public void setItems(){
+
+        // BAHAN MAKANAN
+        inventory.add(new BahanMakanan_Ayam());
+        inventory.add(new BahanMakanan_Bayam());
+        inventory.add(new BahanMakanan_Kacang());
+        inventory.add(new BahanMakanan_Kentang());
+        inventory.add(new BahanMakanan_Nasi());
+        inventory.add(new BahanMakanan_Sapi());
+        inventory.add(new BahanMakanan_Susu());
+        inventory.add(new BahanMakanan_Wortel());
+
+        // MAKANAN
+        inventory.add(new Makanan_Bistik());
+        inventory.add(new Makanan_NasiAyam());
+        inventory.add(new Makanan_NasiKari());
+        inventory.add(new Makanan_SusuKacang());
+        inventory.add(new Makanan_TumisSayur());
+
+        // FURNITUR
+        inventory.add(new Furnitur_Jam());
+        // to be continuedd
     }
 
     public void getImage() {
@@ -72,6 +125,11 @@ public class Sim extends Entity {
             // check for collision
             collisionOn = false;
             gamePanel.collisionChecker.checkTile(this);
+
+            // check for benda collision
+            int bendaIndex = gamePanel.collisionChecker.checkBenda(this, true); // return the index of the benda that the
+                                                                                // player is colliding with
+            pickUpObject(bendaIndex);                                                                                
 
             // check npc collision
             int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
@@ -107,11 +165,78 @@ public class Sim extends Entity {
         }
     }
 
+    public void pickUpObject(int index){
+        if (index != 999){ // 999 means there is no collision with benda
+            String bendaName = gamePanel.benda[gamePanel.currentMap][index].name;
+
+            // check nama benda (bahanMakanan/) yang diambil dan tambahkan ke inventory
+            switch (bendaName) {
+                // bahanMakanan
+                case "Ayam":
+                    hasAyam++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    break;
+                case "Bayam":
+                    hasBayam++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    break;
+                case "Kacang":
+                    hasKacang++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    break;
+                case "Kentang":
+                    hasKentang++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    System.out.println("Kentang: " + hasKentang);
+                    break;
+                case "Nasi":
+                    hasNasi++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    break;
+                case "Sapi":
+                    hasSapi++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    break;
+                case "Susu":
+                    hasSusu++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    break;
+                case "Wortel":
+                    hasWortel++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    break;
+                // makanan
+                case "Bistik":
+                    hasBistik++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    break;
+                case "NasiAyam":
+                    hasNasiAyam++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    break;
+                case "NasiKari": 
+                    hasNasiKari++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    break;
+                case "SusuKacang": 
+                    hasSusuKacang++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    break;
+                case "TumisSayur": 
+                    hasTumisSayur++;
+                    gamePanel.benda[gamePanel.currentMap][index] = null;
+                    break;
+                // furnitur
+                // ....
+            }
+        }
+    }
+
     public void interactNPC(int i) {
         if (i != 999) {
             if (gamePanel.keyHandler.enterPressed) {
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.npc[i].speak();
+                gamePanel.npc[gamePanel.currentMap][i].speak();
             }
         }
         gamePanel.keyHandler.enterPressed = false;
