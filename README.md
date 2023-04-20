@@ -41,4 +41,6 @@ Tugas Besar OOP IF2212
 **Asisten** : Afif Fahreza
 
 **How to Compile & Run:**
-1. ....
+<br>Pada path file Main.java,</br>
+compile : `javac Main.java`</br>
+run : `java Main`
