@@ -270,6 +270,8 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.simSlotCol = 0;
                 }
             }
+        } else if (keyCode == KeyEvent.VK_ENTER){
+            gamePanel.sim.selectItem();
         }
     }
 

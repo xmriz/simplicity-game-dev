@@ -108,7 +108,7 @@ public class Sim extends Entity {
     }
 
     public void update() { // update the position of the player
-        if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed) {
+        if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed || keyHandler.enterPressed) {
             if (keyHandler.upPressed) {
                 direction = "up";
             } else if (keyHandler.downPressed) {
@@ -124,8 +124,7 @@ public class Sim extends Entity {
             gamePanel.collisionChecker.checkTile(this);
 
             // check for benda collision
-            int bendaIndex = gamePanel.collisionChecker.checkBenda(this, true); // return the index of the benda that the
-                                                                                // player is colliding with
+            int bendaIndex = gamePanel.collisionChecker.checkBenda(this, true); // return the index of the benda that theplayer is colliding with
             pickUpObject(bendaIndex);                                                                                
 
             // check npc collision
@@ -133,7 +132,7 @@ public class Sim extends Entity {
             interactNPC(npcIndex);
 
             // if there is a collision, sim can't move
-            if (!collisionOn) {
+            if (!collisionOn && !keyHandler.enterPressed) {
                 switch (direction) {
                     case "up":
                         worldY -= speed;
@@ -149,6 +148,8 @@ public class Sim extends Entity {
                         break;
                 }
             }
+
+            gamePanel.keyHandler.enterPressed = false;
 
             spriteCounter++;
             if (spriteCounter > 12) {
@@ -239,6 +240,35 @@ public class Sim extends Entity {
         gamePanel.keyHandler.enterPressed = false;
     }
 
+
+    public void selectItem(){
+        int itemIndex = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, gamePanel.ui.simSlotCol);
+
+        if (itemIndex < inventory.size()){
+            Benda selectedBenda = inventory.get(itemIndex);
+
+            if (selectedBenda instanceof BahanMakanan) {
+                BahanMakanan bahanMakanan = (BahanMakanan) selectedBenda;
+                bahanMakanan.eat(this);
+                inventory.remove(itemIndex);
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Anda memakan " + bahanMakanan.name + ".\n" + "Kekenyangan bertambah " + bahanMakanan.kekenyangan + " poin.";
+            } else if (selectedBenda instanceof Makanan) {
+                Makanan makanan = (Makanan) selectedBenda;
+                makanan.eat(this);
+                inventory.remove(itemIndex);
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Anda memakan " + makanan.name + ".\n" + "Kekenyangan bertambah " + makanan.kekenyangan + " poin.";
+            } else if (selectedBenda instanceof Furnitur) {
+                // TODO : selesaikann
+                // Furnitur furnitur = (Furnitur) selectedBenda;
+                // furnitur.use(this);
+                // inventory.remove(itemIndex);
+            }
+        }
+    }
+
+
     public void draw(Graphics2D g2d) {
         BufferedImage image = null;
 
@@ -278,4 +308,6 @@ public class Sim extends Entity {
         // g2d.setColor(Color.red);
         // g2d.fillRect(x, y, gamePanel.tileSize, gamePanel.tileSize);
     }
+
+
 }
