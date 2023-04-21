@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // ENTITY 
     public Sim sim = new Sim(this, keyHandler);
-    public Entity npc[][] = new Entity[maxMap][5]; // create an array of NPC objects
+    public Entity npc[][] = new Entity[maxMap][6]; // create an array of NPC objects
 
     // BENDA
     public Benda benda[][] = new Benda[maxMap][9]; // create an array of Benda objects yang dapat diletakkan

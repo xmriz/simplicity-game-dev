@@ -23,8 +23,8 @@ public class AssetSetter {
         i++;
         
         gamePanel.benda[mapNumber][i] = new Furnitur_Jam();
-        gamePanel.benda[mapNumber][i].worldX = 5 * gamePanel.tileSize;
-        gamePanel.benda[mapNumber][i].worldY = 5 * gamePanel.tileSize;
+        gamePanel.benda[mapNumber][i].worldX = 6 * gamePanel.tileSize;
+        gamePanel.benda[mapNumber][i].worldY = 7 * gamePanel.tileSize;
         i++;
 
         // gamePanel.benda[mapNumber][2] = new BahanMakanan_Kentang();
@@ -67,6 +67,11 @@ public class AssetSetter {
         gamePanel.npc[mapNumber][i] = new NPC_Penjual(gamePanel);
         gamePanel.npc[mapNumber][i].worldX = 6 * gamePanel.tileSize;
         gamePanel.npc[mapNumber][i].worldY = 6 * gamePanel.tileSize;
+        i++;
+        
+        gamePanel.npc[mapNumber][i] = new NPC_Penjual(gamePanel);
+        gamePanel.npc[mapNumber][i].worldX = 7 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i].worldY = 7 * gamePanel.tileSize;
         i++;
         
         // MAP 2

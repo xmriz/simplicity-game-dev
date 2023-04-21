@@ -1,19 +1,18 @@
 package entity;
 
 import main.*;
+import benda.*;
 
 public class NPC_Penjual extends Entity{
-    GamePanel gamePanel;
-
     
     public NPC_Penjual(GamePanel gamePanel) {
         super(gamePanel);
 
         direction = "down";
 
-        getImage();
-        setItems();
+        getImage(); 
         setDialog();
+        setItems();
     }
 
     public void getImage(){
@@ -29,17 +28,26 @@ public class NPC_Penjual extends Entity{
 
     public void setDialog(){
         dialogs.add("Hahaha... Haloo, \nada yang bisa saya bantu?");
-        dialogs.add("Saya menjual berbagai macam barang,\nbaik bahan makanan dan furnitur.");
-        dialogs.add("Silahkan dipilih sesuai kebutuhan anda.");
     }
 
     public void setItems(){
-    //    FUCK YOUU
+        // BARANG YANG BISA DIJUAL
+        // BAHAN MAKANAN
+        inventory.add(new BahanMakanan_Ayam());
+        inventory.add(new BahanMakanan_Bayam());
+        inventory.add(new BahanMakanan_Kacang());
+        inventory.add(new BahanMakanan_Kentang());
+        inventory.add(new BahanMakanan_Nasi());
+        inventory.add(new BahanMakanan_Sapi());
+        inventory.add(new BahanMakanan_Susu());
+        inventory.add(new BahanMakanan_Wortel());
+
+        // FURNITUR
+        inventory.add(new Furnitur_Jam());
     }
 
     public void speak(){
         super.speak();
-        // gamePanel.gameState = gamePanel.beliState;
-        // gamePanel.ui.npc = this;
+        gamePanel.gameState = gamePanel.beliState;
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import benda.Benda;
 import main.GamePanel;
 import main.UtilityTool;
 
@@ -33,6 +34,9 @@ public abstract class Entity {
     int dialogCounter = 0;
     
     public List<String> dialogs = new ArrayList<String>();
+
+    public List<Benda> inventory = new ArrayList<>();
+    public int maxInventorySize = 33;
 
     public Entity(GamePanel gamePanel){
         this.gamePanel = gamePanel;

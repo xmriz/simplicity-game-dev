@@ -3,7 +3,6 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.*;
 
 import benda.*;
 import main.*;
@@ -28,8 +27,6 @@ public class Sim extends Entity {
     public final int screenX;
     public final int screenY;
 
-    public List<Benda> inventory = new ArrayList<>();
-    public int maxInventorySize = 33;
 
     // BahanMakanan
     int hasAyam = 0;
@@ -76,7 +73,7 @@ public class Sim extends Entity {
     }
 
     public void setItems(){
-
+        // barang yang bisa dimiliki
         // BAHAN MAKANAN
         inventory.add(new BahanMakanan_Ayam());
         inventory.add(new BahanMakanan_Bayam());
