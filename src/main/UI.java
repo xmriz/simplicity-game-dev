@@ -273,12 +273,13 @@ public class UI {
         g2d.setFont(g2d.getFont().deriveFont(40f));
 
         // inventory title
-        // for sim
         int textYINVENTORY = frameY + gamePanel.tileSize;
         if (entity instanceof Sim){
+            // for sim
             final int textXINVENTORY = getXforCenteredText("INVENTORY");
             g2d.drawString("INVENTORY", textXINVENTORY, textYINVENTORY);
         } else if (entity instanceof NPC_Penjual){
+            // for penjual
             final int textXINVENTORY = getXforCenteredText("SHOP");
             g2d.drawString("SHOP", textXINVENTORY, textYINVENTORY);
         }
@@ -290,10 +291,28 @@ public class UI {
         int slotY = slotYstart;
         int slotSize = gamePanel.tileSize + 1;
 
-        // draw sim items
+        // draw entity items
         for (int i = 0; i < entity.inventory.size(); i++) {
             g2d.drawImage(entity.inventory.get(i).image, slotX, slotY, gamePanel.tileSize, gamePanel.tileSize,
                     null);
+
+            // display amount
+            if (entity == gamePanel.sim && entity.inventory.get(i).quantity > 1) {
+                g2d.setFont(g2d.getFont().deriveFont(32f));
+                int amountX, amountY;
+
+                String s = "" + entity.inventory.get(i).quantity;
+                amountX = getXforAlignToRightText(s, slotX+44);
+                amountY = slotY + gamePanel.tileSize;
+
+                //shadow
+                g2d.setColor(new Color(60, 60, 60));
+                g2d.drawString(s, amountX, amountY);
+                // number
+                g2d.setColor(Color.WHITE);
+                g2d.drawString(s, amountX-3, amountY-3);
+            }
+            
             slotX += slotSize;
             // jika kelipatan 11 maka pindah ke baris bawah
             if (i % 11 == 10) {
@@ -489,8 +508,13 @@ public class UI {
                 if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof BahanMakanan){
                     BahanMakanan makanan = (BahanMakanan) gamePanel.npc[0][4].inventory.get(itemIndex);
                     if (gamePanel.sim.uang >= makanan.harga){
-                        gamePanel.sim.uang -= makanan.harga;
-                        gamePanel.sim.inventory.add(makanan);
+                        if (gamePanel.sim.canObtainItem(makanan)){
+                            gamePanel.sim.uang -= makanan.harga;
+                        } else {
+                            subState = 0;
+                            gamePanel.gameState = gamePanel.dialogState;
+                            currentDialog = "Inventory penuh";
+                        }
                     } else {
                         subState = 0;
                         gamePanel.gameState = gamePanel.dialogState;
@@ -500,8 +524,13 @@ public class UI {
                 } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Furnitur){
                     Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].inventory.get(itemIndex);
                     if (gamePanel.sim.uang >= furnitur.harga){
-                        gamePanel.sim.uang -= furnitur.harga;
-                        gamePanel.sim.inventory.add(furnitur);
+                        if (gamePanel.sim.canObtainItem(furnitur)){
+                            gamePanel.sim.uang -= furnitur.harga;
+                        } else {
+                            subState = 0;
+                            gamePanel.gameState = gamePanel.dialogState;
+                            currentDialog = "Inventory penuh";
+                        }
                     } else {
                         subState = 0;
                         gamePanel.gameState = gamePanel.dialogState;

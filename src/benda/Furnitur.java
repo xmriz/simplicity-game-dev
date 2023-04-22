@@ -7,5 +7,6 @@ public abstract class Furnitur extends Benda{
     public String aksi;
     public Furnitur(){
         category = "Furnitur";
+        stackable = true;
     }
 } 

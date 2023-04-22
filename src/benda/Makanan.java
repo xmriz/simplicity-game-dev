@@ -9,6 +9,7 @@ public abstract class Makanan extends Benda {
     public int kekenyangan;
     public Makanan(){
         category = "Makanan";
+        stackable = true;
     }
 
     public void eat(Sim sim){

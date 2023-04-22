@@ -20,6 +20,8 @@ public abstract class Benda {
     public int worldX, worldY;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
+    public boolean stackable = false;
+    public int quantity = 1;
 
     public boolean isPlaced = false;
 

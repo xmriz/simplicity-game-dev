@@ -7,6 +7,7 @@ public abstract class BahanMakanan extends Benda {
     public int kekenyangan;
     public BahanMakanan(){
         category = "Bahan Makanan";
+        stackable = true;
     }
 
     public void eat(Sim sim){

@@ -27,9 +27,14 @@ public class AssetSetter {
         gamePanel.benda[mapNumber][i].worldY = 7 * gamePanel.tileSize;
         i++;
 
-        // gamePanel.benda[mapNumber][2] = new BahanMakanan_Kentang();
-        // gamePanel.benda[mapNumber][2].worldX = 3 * gamePanel.tileSize;
-        // gamePanel.benda[mapNumber][2].worldY = 3 * gamePanel.tileSize;
+
+        // TODO : hapus dibawah ini
+        gamePanel.benda[mapNumber][2] = new BahanMakanan_Kentang();
+        gamePanel.benda[mapNumber][2].worldX = 3 * gamePanel.tileSize;
+        gamePanel.benda[mapNumber][2].worldY = 3 * gamePanel.tileSize;
+        gamePanel.benda[mapNumber][3] = new BahanMakanan_Kentang();
+        gamePanel.benda[mapNumber][3].worldX = 3 * gamePanel.tileSize;
+        gamePanel.benda[mapNumber][3].worldY = 4 * gamePanel.tileSize;
 
         // gamePanel.benda[mapNumber][3] = new BahanMakanan_Sapi();
         // gamePanel.benda[mapNumber][3].worldX = 4 * gamePanel.tileSize;
