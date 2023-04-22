@@ -397,10 +397,10 @@ public class UI {
                     textY += lineHeight;
                     g2d.drawString(" : " + makanan.category, iTailX, textY);
                     textY += lineHeight;
-                    iValue = String.valueOf(" : " + makanan.bahan);
+                    iValue = String.valueOf(" : " + makanan.getBahan());
                     g2d.drawString(iValue, iTailX, textY);
                     textY += lineHeight;
-                    iValue = String.valueOf(" : " + makanan.kekenyangan);
+                    iValue = String.valueOf(" : " + makanan.getKekenyangan());
                     g2d.drawString(iValue, iTailX, textY);
 
                     textY = textYITEMINFO + lineHeight + 20;

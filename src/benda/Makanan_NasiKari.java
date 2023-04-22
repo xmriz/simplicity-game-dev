@@ -4,10 +4,10 @@ public class Makanan_NasiKari extends Makanan{
     public Makanan_NasiKari(){
         name = "Nasi Kari";
         image = setupImage("benda/makanan/nasi_kari");
-        bahan.add("Nasi");
-        bahan.add("Kentang");
-        bahan.add("Wortel");
-        bahan.add("Sapi");
-        kekenyangan = 30;
+        getBahan().add("Nasi");
+        getBahan().add("Kentang");
+        getBahan().add("Wortel");
+        getBahan().add("Sapi");
+        setKekenyangan(30);
     }
 }

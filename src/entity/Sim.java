@@ -196,7 +196,7 @@ public class Sim extends Entity {
                     inventory.remove(itemIndex);
                 }
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Anda memakan " + makanan.name + ".\n" + "Kekenyangan bertambah " + makanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah " + kekenyangan + " poin.";
+                gamePanel.ui.currentDialog = "Anda memakan " + makanan.name + ".\n" + "Kekenyangan bertambah " + makanan.getKekenyangan() + " poin.\nSehingga kekenyangan anda sekarang\nadalah " + kekenyangan + " poin.";
             } else if (selectedBenda instanceof Furnitur) {
                 // TODO : selesaikann
                 // Furnitur furnitur = (Furnitur) selectedBenda;
