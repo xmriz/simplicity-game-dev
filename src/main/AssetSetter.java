@@ -17,9 +17,9 @@ public class AssetSetter {
         // furnitur
         int i = 0;
         int mapNumber = 0;
-        gamePanel.benda[mapNumber][i] = new Rumah();
-        gamePanel.benda[mapNumber][i].worldX = 2 * gamePanel.tileSize;
-        gamePanel.benda[mapNumber][i].worldY = 2 * gamePanel.tileSize;
+        gamePanel.benda[mapNumber][i] = gamePanel.sim.rumah;
+        gamePanel.benda[mapNumber][i].worldX = gamePanel.sim.rumah.dimensiX * gamePanel.tileSize;
+        gamePanel.benda[mapNumber][i].worldY = gamePanel.sim.rumah.dimensiY * gamePanel.tileSize;
         i++;
         
         gamePanel.benda[mapNumber][i] = new Furnitur_Jam();
@@ -29,12 +29,12 @@ public class AssetSetter {
 
 
         // TODO : hapus dibawah ini
-        gamePanel.benda[mapNumber][2] = new BahanMakanan_Kentang();
-        gamePanel.benda[mapNumber][2].worldX = 3 * gamePanel.tileSize;
-        gamePanel.benda[mapNumber][2].worldY = 3 * gamePanel.tileSize;
-        gamePanel.benda[mapNumber][3] = new BahanMakanan_Kentang();
-        gamePanel.benda[mapNumber][3].worldX = 3 * gamePanel.tileSize;
-        gamePanel.benda[mapNumber][3].worldY = 4 * gamePanel.tileSize;
+        // gamePanel.benda[mapNumber][2] = new BahanMakanan_Kentang();
+        // gamePanel.benda[mapNumber][2].worldX = 3 * gamePanel.tileSize;
+        // gamePanel.benda[mapNumber][2].worldY = 3 * gamePanel.tileSize;
+        // gamePanel.benda[mapNumber][3] = new BahanMakanan_Kentang();
+        // gamePanel.benda[mapNumber][3].worldX = 3 * gamePanel.tileSize;
+        // gamePanel.benda[mapNumber][3].worldY = 4 * gamePanel.tileSize;
 
         // gamePanel.benda[mapNumber][3] = new BahanMakanan_Sapi();
         // gamePanel.benda[mapNumber][3].worldX = 4 * gamePanel.tileSize;

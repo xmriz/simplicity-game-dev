@@ -20,16 +20,18 @@ public class Sim extends Entity {
     public int mood = 80;
     public final int maxMood = 100;
 
-    public Rumah rumah;
-
     KeyHandler keyHandler;
 
     public final int screenX;
     public final int screenY;
 
+    public Rumah rumah;
+
 
     public Sim(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
+
+        rumah = new Rumah();
 
         this.keyHandler = keyHandler;
 
@@ -113,6 +115,12 @@ public class Sim extends Entity {
             int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
             interactNPC(npcIndex);
 
+            // check event
+            gamePanel.eventHandler.checkEvent();
+
+            // after checking all turn of enterPressed
+            gamePanel.keyHandler.enterPressed = false;
+
             // if there is a collision, sim can't move
             if (!collisionOn && !keyHandler.enterPressed) {
                 switch (direction) {
@@ -130,8 +138,6 @@ public class Sim extends Entity {
                         break;
                 }
             }
-
-            gamePanel.keyHandler.enterPressed = false;
 
             spriteCounter++;
             if (spriteCounter > 12) {
@@ -167,7 +173,6 @@ public class Sim extends Entity {
                 gamePanel.npc[gamePanel.currentMap][i].speak();
             }
         }
-        gamePanel.keyHandler.enterPressed = false;
     }
 
 

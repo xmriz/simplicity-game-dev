@@ -189,7 +189,7 @@ public class CollisionChecker {
                             if (gamePanel.benda[gamePanel.currentMap][i].collision == true) {
                                 entity.collisionOn = true;
                             }
-                            if (sim == true){ // jika sim yang menabrak
+                            if (sim){ // jika sim yang menabrak
                                 index = i;
                             }
                         }
@@ -200,7 +200,7 @@ public class CollisionChecker {
                             if (gamePanel.benda[gamePanel.currentMap][i].collision == true) {
                                 entity.collisionOn = true;
                             }
-                            if (sim == true){ // jika sim yang menabrak
+                            if (sim){ // jika sim yang menabrak
                                 index = i;
                             }
                         }
@@ -211,7 +211,7 @@ public class CollisionChecker {
                             if (gamePanel.benda[gamePanel.currentMap][i].collision == true) {
                                 entity.collisionOn = true;
                             }
-                            if (sim == true){ // jika sim yang menabrak
+                            if (sim){ // jika sim yang menabrak
                                 index = i;
                             }
                         }
@@ -222,7 +222,7 @@ public class CollisionChecker {
                             if (gamePanel.benda[gamePanel.currentMap][i].collision == true) {
                                 entity.collisionOn = true;
                             }
-                            if (sim == true){ // jika sim yang menabrak
+                            if (sim){ // jika sim yang menabrak
                                 index = i;
                             }
                         }

@@ -33,12 +33,13 @@ public class GamePanel extends JPanel implements Runnable {
     int fps = 60; // frames per second
 
     // SYSTEM
-    AssetSetter assetSetter = new AssetSetter(this); // create a new AssetSetter object
     TileManager tileManager = new TileManager(this); // create a new TileManager object
     public KeyHandler keyHandler = new KeyHandler(this); // create a new KeyHandler object
-    public UI ui = new UI(this); // create a new UI object
-    Thread gameThread; // thread for the game
+    AssetSetter assetSetter = new AssetSetter(this); // create a new AssetSetter object
     public CollisionChecker collisionChecker = new CollisionChecker(this); // create a new CollisionChecker object
+    public UI ui = new UI(this); // create a new UI object
+    public EventHandler eventHandler = new EventHandler(this); // create a new EventHandler object
+    Thread gameThread; // thread for the game
 
     // ENTITY 
     public Sim sim = new Sim(this, keyHandler);
