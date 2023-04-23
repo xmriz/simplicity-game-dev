@@ -3,6 +3,7 @@ package main;
 import java.awt.*;
 import javax.swing.*;
 
+import Environment.EnvironmentManager;
 import benda.Benda;
 import entity.*;
 import map.TileManager;
@@ -24,6 +25,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int maxWorldRow = 66;
     public final int worldWidth = maxWorldCol * tileSize; // 3168 pixels
     public final int worldHeight = maxWorldRow * tileSize; // 3168 pixels
+    public int worldTime = 720; // waktu satu hari adalah 720 detik
+    public int worldDay = 0; // hari pertama
 
     // MAP SETTINGS
     public final int maxMap = 2; // Ruangan and world
@@ -39,6 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker collisionChecker = new CollisionChecker(this); // create a new CollisionChecker object
     public UI ui = new UI(this); // create a new UI object
     public EventHandler eventHandler = new EventHandler(this); // create a new EventHandler object
+    EnvironmentManager environmentManager = new EnvironmentManager(this); // create a new EnvironmentManager object
     Thread gameThread; // thread for the game
 
     // ENTITY 
@@ -70,6 +74,7 @@ public class GamePanel extends JPanel implements Runnable {
         gameState = titleState; // set the default game state to titleState
         assetSetter.setBenda(); // setup the benda
         assetSetter.setNPC(); // setup the assets
+        environmentManager.setup(); // setup the environment
     }
 
     public void startGameThread() { // start the game thread
@@ -140,6 +145,10 @@ public class GamePanel extends JPanel implements Runnable {
 
             // draw sim
             sim.draw(g2d);
+
+            // draw environment
+            environmentManager.update();
+            environmentManager.draw(g2d);
 
             // draw ui
             ui.draw(g2d);

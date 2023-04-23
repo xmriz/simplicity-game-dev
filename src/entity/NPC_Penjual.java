@@ -44,6 +44,9 @@ public class NPC_Penjual extends Entity{
 
         // FURNITUR
         inventory.add(new Furnitur_Jam());
+
+        // LAMPU
+        inventory.add(new Lampu(gamePanel));
     }
 
     public void speak(){

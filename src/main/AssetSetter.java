@@ -22,7 +22,7 @@ public class AssetSetter {
         gamePanel.benda[mapNumber][i].worldY = gamePanel.sim.rumah.dimensiY * gamePanel.tileSize;
         i++;
         
-        gamePanel.benda[mapNumber][i] = new Furnitur_Jam();
+        gamePanel.benda[mapNumber][i] = new Lampu(gamePanel);
         gamePanel.benda[mapNumber][i].worldX = 6 * gamePanel.tileSize;
         gamePanel.benda[mapNumber][i].worldY = 7 * gamePanel.tileSize;
         i++;

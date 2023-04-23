@@ -19,6 +19,8 @@ public class Sim extends Entity {
     public final int maxKekenyangan = 100;
     public int mood = 80;
     public final int maxMood = 100;
+    public boolean lightUpdated = false;
+    public Benda currentLight;
 
     KeyHandler keyHandler;
 
@@ -207,6 +209,13 @@ public class Sim extends Entity {
                 // Furnitur furnitur = (Furnitur) selectedBenda;
                 // furnitur.use(this);
                 // inventory.remove(itemIndex);
+            } else if (selectedBenda instanceof Lampu){
+                if (selectedBenda == currentLight){ // lampu menyala
+                    currentLight = null; // lampu mati
+                } else {
+                    currentLight = selectedBenda; // nyalakan lampu yang dipilih
+                }
+                lightUpdated = true;
             }
         }
     }
@@ -227,8 +236,21 @@ public class Sim extends Entity {
     public boolean canObtainItem(Benda item){
         boolean canObtain = false;
 
-        // check if stackable
-        if (item.stackable){
+        // lampu pada inventory hanya boleh ada 1
+        if (item instanceof Lampu){
+            int index = searchItemInInventory(item.name);
+            if (index != 999){ // item terdapat di inventory
+
+            } else {
+                if (inventory.size() < maxInventorySize){
+                    inventory.add(item);
+                    canObtain = true;
+                }
+            }
+        }
+
+        // check if item is stackable
+        else if(item.stackable){
             int index = searchItemInInventory(item.name);
             if (index != 999){
                 inventory.get(index).quantity++;
@@ -245,6 +267,7 @@ public class Sim extends Entity {
                 canObtain = true;
             }
         }
+
         return canObtain;
     }
 
