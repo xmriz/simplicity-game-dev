@@ -19,17 +19,21 @@ public class Sim extends Entity {
     public final int maxKekenyangan = 100;
     public int mood = 80;
     public final int maxMood = 100;
-
-    public Rumah rumah;
+    public boolean lightUpdated = false;
+    public Benda currentLight;
 
     KeyHandler keyHandler;
 
     public final int screenX;
     public final int screenY;
 
+    public Rumah rumah;
+
 
     public Sim(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
+
+        rumah = new Rumah();
 
         this.keyHandler = keyHandler;
 
@@ -113,6 +117,12 @@ public class Sim extends Entity {
             int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
             interactNPC(npcIndex);
 
+            // check event
+            gamePanel.eventHandler.checkEvent();
+
+            // after checking all turn of enterPressed
+            gamePanel.keyHandler.enterPressed = false;
+
             // if there is a collision, sim can't move
             if (!collisionOn && !keyHandler.enterPressed) {
                 switch (direction) {
@@ -130,8 +140,6 @@ public class Sim extends Entity {
                         break;
                 }
             }
-
-            gamePanel.keyHandler.enterPressed = false;
 
             spriteCounter++;
             if (spriteCounter > 12) {
@@ -167,7 +175,6 @@ public class Sim extends Entity {
                 gamePanel.npc[gamePanel.currentMap][i].speak();
             }
         }
-        gamePanel.keyHandler.enterPressed = false;
     }
 
 
@@ -202,6 +209,13 @@ public class Sim extends Entity {
                 // Furnitur furnitur = (Furnitur) selectedBenda;
                 // furnitur.use(this);
                 // inventory.remove(itemIndex);
+            } else if (selectedBenda instanceof Lampu){
+                if (selectedBenda == currentLight){ // lampu menyala
+                    currentLight = null; // lampu mati
+                } else {
+                    currentLight = selectedBenda; // nyalakan lampu yang dipilih
+                }
+                lightUpdated = true;
             }
         }
     }
@@ -222,8 +236,21 @@ public class Sim extends Entity {
     public boolean canObtainItem(Benda item){
         boolean canObtain = false;
 
-        // check if stackable
-        if (item.stackable){
+        // lampu pada inventory hanya boleh ada 1
+        if (item instanceof Lampu){
+            int index = searchItemInInventory(item.name);
+            if (index != 999){ // item terdapat di inventory
+
+            } else {
+                if (inventory.size() < maxInventorySize){
+                    inventory.add(item);
+                    canObtain = true;
+                }
+            }
+        }
+
+        // check if item is stackable
+        else if(item.stackable){
             int index = searchItemInInventory(item.name);
             if (index != 999){
                 inventory.get(index).quantity++;
@@ -240,6 +267,7 @@ public class Sim extends Entity {
                 canObtain = true;
             }
         }
+
         return canObtain;
     }
 

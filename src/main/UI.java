@@ -293,6 +293,12 @@ public class UI {
 
         // draw entity items
         for (int i = 0; i < entity.inventory.size(); i++) {
+            // equip cursor
+            if (entity.inventory.get(i) == gamePanel.sim.currentLight){
+                g2d.setColor(new Color(240,190,90));
+                g2d.fillRoundRect(slotX, slotY, gamePanel.tileSize, gamePanel.tileSize, 10, 10);
+            }
+            
             g2d.drawImage(entity.inventory.get(i).image, slotX, slotY, gamePanel.tileSize, gamePanel.tileSize,
                     null);
 
@@ -434,6 +440,31 @@ public class UI {
                     g2d.drawString(iValue, iTailX, textY);
 
                     textY = textYITEMINFO + lineHeight + 20;
+                } else if (entity.inventory .get(itemIndex) instanceof Lampu){
+                    // write item info
+                    g2d.drawString("Nama", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Kategori", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Harga", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Aksi", textX, textY);
+                    // write item value
+                    int iTailX = iFrameX + iFrameWidth / 3;
+                    textY = textYITEMINFO + lineHeight + 20;
+                    String iValue;
+                    Lampu lampu = (Lampu) entity.inventory.get(itemIndex);
+                    g2d.drawString(" : " + lampu.name, iTailX, textY);
+                    textY += lineHeight;
+                    g2d.drawString(" : " + lampu.category, iTailX, textY);
+                    textY += lineHeight;
+                    iValue = String.valueOf(" : " + lampu.harga);
+                    g2d.drawString(iValue, iTailX, textY);
+                    textY += lineHeight;
+                    iValue = String.valueOf(" : " + lampu.aksi);
+                    g2d.drawString(iValue, iTailX, textY);
+
+                    textY = textYITEMINFO + lineHeight + 20;
                 }
             }
         }
@@ -530,6 +561,28 @@ public class UI {
                             subState = 0;
                             gamePanel.gameState = gamePanel.dialogState;
                             currentDialog = "Inventory penuh";
+                        }
+                    } else {
+                        subState = 0;
+                        gamePanel.gameState = gamePanel.dialogState;
+                        currentDialog = "Uang tidak cukup";
+                        drawDialogScreen();
+                    }
+                } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Lampu){
+                    Lampu lampu = (Lampu) gamePanel.npc[0][4].inventory.get(itemIndex);
+                    if (gamePanel.sim.uang >= lampu.harga){
+                        if (gamePanel.sim.canObtainItem(lampu)){
+                            gamePanel.sim.uang -= lampu.harga;
+                        } else{
+                            if (gamePanel.sim.inventory.size() >= gamePanel.sim.maxInventorySize){
+                                subState = 0;
+                                gamePanel.gameState = gamePanel.dialogState;
+                                currentDialog = "Inventory penuh";
+                            } else {
+                                subState = 0;
+                                gamePanel.gameState = gamePanel.dialogState;
+                                currentDialog = "Anda sudah memiliki lampu!";
+                            }
                         }
                     } else {
                         subState = 0;
