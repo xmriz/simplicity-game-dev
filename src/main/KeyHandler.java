@@ -317,7 +317,6 @@ public class KeyHandler implements KeyListener {
     public void beliInventory(int keyCode){
         int index = 0;
         if (keyCode == KeyEvent.VK_B) {
-            // TODO: change dialog
             gamePanel.gameState = gamePanel.playState;
             gamePanel.ui.subState = 0;
         } else if (keyCode == KeyEvent.VK_UP){
