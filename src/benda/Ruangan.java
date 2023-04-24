@@ -13,7 +13,7 @@ public class Ruangan {
     Ruangan left;
     Ruangan right;
 
-    public Furnitur furnitur[];
+    public Benda bendaRuangan[] = new Benda[10]; // maksimal 10 benda di ruangan
 
     public int[][] mapRuangan;
 

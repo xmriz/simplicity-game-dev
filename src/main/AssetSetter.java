@@ -23,7 +23,6 @@ public class AssetSetter {
         i++;
 
         
-        
         // position of the benda in the rumah
         mapNumber = 1;
     }
