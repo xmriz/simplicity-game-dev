@@ -18,7 +18,7 @@ public class Pekerjaan {
     }
 
     public void setGaji(int gaji){
-        this.gaji+=gaji;
+        this.gaji=gaji;
     }
 
     public void setNamaPekerjaan(String namaPekerjaan){
