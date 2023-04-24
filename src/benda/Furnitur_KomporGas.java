@@ -1,5 +1,7 @@
 package benda;
 
+import java.awt.Rectangle;
+
 public class Furnitur_KomporGas extends Furnitur{
     public Furnitur_KomporGas(){
         name = "Kompor Gas";
@@ -9,5 +11,7 @@ public class Furnitur_KomporGas extends Furnitur{
         dimensiY = 1;
         harga = 100;
         aksi = "Memasak";
+        solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
+
     }
 }
