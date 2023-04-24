@@ -3,9 +3,9 @@ package main;
 import java.awt.*;
 import javax.swing.*;
 
-import Environment.EnvironmentManager;
 import benda.Benda;
 import entity.*;
+import environment.EnvironmentManager;
 import map.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -25,7 +25,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int maxWorldRow = 66;
     public final int worldWidth = maxWorldCol * tileSize; // 3168 pixels
     public final int worldHeight = maxWorldRow * tileSize; // 3168 pixels
-    public int worldTime = 720; // waktu satu hari adalah 720 detik
+    public static int worldTime = 720; // waktu satu hari adalah 720 detik
     public int worldDay = 0; // hari pertama
 
     // MAP SETTINGS

@@ -93,5 +93,3 @@ public class EventHandler {
         canTouchEvent = false;   
     }
 }
-
-
