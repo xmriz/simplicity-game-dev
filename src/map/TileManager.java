@@ -80,7 +80,7 @@ public class TileManager {
         }
     }
 
-    public void draw(Graphics2D g2d){
+    public void draw(Graphics2D g2d, int indexRuangan){
         int worldCol = 0; 
         int worldRow = 0;
         int tileNum;
@@ -89,7 +89,7 @@ public class TileManager {
             if (gamePanel.currentMap == 0){
                 tileNum = mapTileNum[gamePanel.currentMap][worldCol][worldRow];
             } else{
-                tileNum = gamePanel.sim.rumah.ruanganRumah.get(0).mapRuangan[worldCol][worldRow];
+                tileNum = gamePanel.sim.rumah.ruanganRumah.get(indexRuangan).mapRuangan[worldCol][worldRow];
             }
 
             int worldX = worldCol * gamePanel.tileSize; // position of the tile in the world 

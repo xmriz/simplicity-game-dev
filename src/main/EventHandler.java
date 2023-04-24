@@ -48,15 +48,16 @@ public class EventHandler {
         
         // checking for some event
         if (canTouchEvent){
-            if (hit(0,gamePanel.sim.rumah.dimensiX, gamePanel.sim.rumah.dimensiY, "any")){
-                teleport(1,2,2);
-            } else if (hit(1,5,8, "any")){
-                teleport(0,gamePanel.sim.rumah.dimensiX, gamePanel.sim.rumah.dimensiY);
+            if (hit(0,gamePanel.sim.rumah.dimensiX, gamePanel.sim.rumah.dimensiY, "any",999)){
+                teleport(1,2,2,0);
+                gamePanel.indexRuangan = 0;
+            } else if (hit(1,5,8, "any", 0)){
+                teleport(0,gamePanel.sim.rumah.dimensiX, gamePanel.sim.rumah.dimensiY, 999);
             }
         }
     }
 
-    public boolean hit(int map, int col, int row, String reqDirection){
+    public boolean hit(int map, int col, int row, String reqDirection, int indexRuangan){
         boolean hit = false;
         
         if (map == gamePanel.currentMap){
@@ -84,7 +85,7 @@ public class EventHandler {
         return hit;
     }
 
-    public void teleport(int map, int col, int row){
+    public void teleport(int map, int col, int row, int indexRuangan){
         gamePanel.currentMap = map;
         gamePanel.sim.worldX = col*gamePanel.tileSize;
         gamePanel.sim.worldY = row*gamePanel.tileSize;

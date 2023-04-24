@@ -21,6 +21,8 @@ public class AssetSetter {
         gamePanel.benda[mapNumber][i].worldX = gamePanel.sim.rumah.dimensiX * gamePanel.tileSize;
         gamePanel.benda[mapNumber][i].worldY = gamePanel.sim.rumah.dimensiY * gamePanel.tileSize;
         i++;
+
+        
         
         // position of the benda in the rumah
         mapNumber = 1;

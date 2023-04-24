@@ -156,7 +156,6 @@ public class Sim extends Entity {
 
     // public void pickUpObject(int index){
     //     if (index != 999){ // 999 means there is no collision with benda
-    //         // String text; TODO: tambah message di layar
     //         if (!(gamePanel.benda[gamePanel.currentMap][index] instanceof Furnitur || gamePanel.benda[gamePanel.currentMap][index] instanceof Rumah)){
     //             if (canObtainItem(gamePanel.benda[gamePanel.currentMap][index])){
     //                 // text = "kamu mendapatkan " + gamePanel.benda[gamePanel.currentMap][index].nama;
@@ -206,7 +205,7 @@ public class Sim extends Entity {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Anda memakan " + makanan.name + ".\n" + "Kekenyangan bertambah " + makanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah " + kekenyangan + " poin.";
             } else if (selectedBenda instanceof Furnitur) {
-                // TODO : selesaikann
+                // TODO : selesaikann -> ini bagian untuk interact dengan furnitur
                 // Furnitur furnitur = (Furnitur) selectedBenda;
                 // furnitur.use(this);
                 // inventory.remove(itemIndex);

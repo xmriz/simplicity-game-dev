@@ -31,6 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
     // MAP SETTINGS
     public final int maxMap = 2; // Ruangan and world
     public int currentMap = 0;
+    public int indexRuangan = 999;
 
     // FPS
     int fps = 60; // frames per second
@@ -115,6 +116,11 @@ public class GamePanel extends JPanel implements Runnable {
         } else if (gameState == dialogState) {
             // do nothing
         }
+
+        // memastikan kalau sim berada di world indexRuangan 999
+        if (currentMap == 0){
+            indexRuangan = 999;
+        }
     }
 
     @Override
@@ -124,10 +130,14 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2d = (Graphics2D) g; // cast the Graphics object to Graphics2D
 
         if (gameState == titleState){
-            ui.draw(g2d);
+            ui.draw(g2d); // draw the title screen
         } else {
             // draw the background
-            tileManager.draw(g2d);
+            if (currentMap == 0){
+                tileManager.draw(g2d, 999);
+            } else {
+                tileManager.draw(g2d, 0);
+            }
 
             // draw benda
             for (int i = 0; i < benda[currentMap].length; i++) {
