@@ -266,7 +266,8 @@ public class Sim extends Entity {
                         break;
                 }
 
-                for (int i = 0; i < gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.length; i++) {
+                for (int i = 0; i < 10; i++) {
+                    // gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.length
                     if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i] != null) {
                         // get entity's solid area position
                         gamePanel.sim.solidArea.x = gamePanel.sim.worldX + gamePanel.sim.solidArea.x;

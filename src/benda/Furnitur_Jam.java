@@ -8,7 +8,7 @@ public class Furnitur_Jam extends Furnitur{
         image = setupImage("benda/furnitur/jam");
         collision = true;
         dimensiX = 2;
-        dimensiY = 2;
+        dimensiY = 1;
         harga = 10;
         aksi = "Melihat waktu";
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
