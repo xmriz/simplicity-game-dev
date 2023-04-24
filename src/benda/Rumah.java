@@ -32,28 +32,32 @@ public class Rumah extends Benda{
         ruangan.name = nama;
         if (posisi == "up"){
             if (ruanganRumah.get(indexRuangan).up != null){
-                // TODO : TAMBAHIN AKSI RUANGAN DI ATAS SUDAH ADA
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Ruangan di atas sudah ada";
             } else {
                 ruanganRumah.get(indexRuangan).up = ruangan;
                 ruangan.down = ruanganRumah.get(indexRuangan);
             }
         } else if (posisi == "down"){
             if (ruanganRumah.get(indexRuangan).down != null){
-                // TODO : TAMBAHIN AKSI RUANGAN DI BAWAH SUDAH ADA
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Ruangan di bawah sudah ada";
             } else {
                 ruanganRumah.get(indexRuangan).down = ruangan;
                 ruangan.up = ruanganRumah.get(indexRuangan);
             }
         } else if (posisi == "left"){
             if (ruanganRumah.get(indexRuangan).left != null){
-                // TODO : TAMBAHIN AKSI RUANGAN DI KIRI SUDAH ADA
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Ruangan di kiri sudah ada";
             } else {
                 ruanganRumah.get(indexRuangan).left = ruangan;
                 ruangan.right = ruanganRumah.get(indexRuangan);
             }
         } else if (posisi == "right"){
             if (ruanganRumah.get(indexRuangan).right != null){
-                // TODO : TAMBAHIN AKSI RUANGAN DI KANAN SUDAH ADA
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Ruangan di kanan sudah ada";
             } else {
                 ruanganRumah.get(indexRuangan).right = ruangan;
                 ruangan.left = ruanganRumah.get(indexRuangan);

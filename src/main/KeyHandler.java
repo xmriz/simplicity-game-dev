@@ -84,6 +84,7 @@ public class KeyHandler implements KeyListener {
                     }
                 }
                 
+                // input name
                 if (gamePanel.ui.inputFirstSimName.length() < 25){
                     if (keyCode == KeyEvent.VK_A) {
                         gamePanel.ui.inputFirstSimName += "A";
@@ -174,6 +175,16 @@ public class KeyHandler implements KeyListener {
             beliState(keyCode);
         }
 
+        // UPGRADE RUMAH STATE
+        else if (gamePanel.gameState == gamePanel.upgradeRumahState){
+            upgradeRumahState(keyCode);
+        }
+
+        // INPUT TEXT STATE
+        else if (gamePanel.gameState == gamePanel.inputTextState) {
+            inputTextState(keyCode);
+        }
+
     }
 
     public void playState(int keyCode) {
@@ -201,6 +212,15 @@ public class KeyHandler implements KeyListener {
             } else {
                 checkWorldTime = false;
             }
+        } else if (keyCode == KeyEvent.VK_U){
+            // TODO: add code to upgrade rumah
+            if (gamePanel.currentMap == 0){
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Anda sedang tidak berada di rumah.\nTidak dapat melakukan upgrade rumah!";
+            } else {
+                gamePanel.gameState = gamePanel.upgradeRumahState;
+            }
+            
         }
     }
 
@@ -368,6 +388,106 @@ public class KeyHandler implements KeyListener {
                 }
             }
         }
+    }
+
+    public void upgradeRumahState(int keyCode){
+        if (keyCode == KeyEvent.VK_U){
+            gamePanel.gameState = gamePanel.playState;
+            gamePanel.ui.commandNumber = 0;
+        } 
+        
+        if (keyCode == KeyEvent.VK_UP) {
+            gamePanel.ui.commandNumber--;
+            if (gamePanel.ui.commandNumber < 0) {
+                gamePanel.ui.commandNumber = 3;
+            }
+        } else if (keyCode == KeyEvent.VK_DOWN) {
+            gamePanel.ui.commandNumber++;
+            if (gamePanel.ui.commandNumber > 3) {
+                gamePanel.ui.commandNumber = 0;
+            }
+        } else if (keyCode == KeyEvent.VK_ENTER) {
+            gamePanel.gameState = gamePanel.playState;
+            gamePanel.gameState = gamePanel.inputTextState;
+            // draw input box
+            if (gamePanel.ui.commandNumber == 0) {
+                // TODO
+                // gamePanel.sim.rumah.upgradeRumah("up", "haha");
+            } else if (gamePanel.ui.commandNumber == 1) {
+
+            } else if (gamePanel.ui.commandNumber == 2) {
+
+            } else if (gamePanel.ui.commandNumber == 3) {
+
+            }
+        }
+    }
+
+    public String inputTextState(int keyCode){
+        String input = "";
+        // input name
+        if (input.length() < 15){
+            if (keyCode == KeyEvent.VK_A) {
+                input += "A";
+            } else if (keyCode == KeyEvent.VK_B) {
+                input += "B";
+            } else if (keyCode == KeyEvent.VK_C) {
+                input += "C";
+            } else if (keyCode == KeyEvent.VK_D) {
+                input += "D";
+            } else if (keyCode == KeyEvent.VK_E) {
+                input += "E";
+            } else if (keyCode == KeyEvent.VK_F) {
+                input += "F";
+            } else if (keyCode == KeyEvent.VK_G) {
+                input += "G";
+            } else if (keyCode == KeyEvent.VK_H) {
+                input += "H";
+            } else if (keyCode == KeyEvent.VK_I) {
+                input += "I";
+            } else if (keyCode == KeyEvent.VK_J) {
+                input += "J";
+            } else if (keyCode == KeyEvent.VK_K) {
+                input += "K";
+            } else if (keyCode == KeyEvent.VK_L) {
+                input += "L";
+            } else if (keyCode == KeyEvent.VK_M) {
+                input += "M";
+            } else if (keyCode == KeyEvent.VK_N) {
+                input += "N";
+            } else if (keyCode == KeyEvent.VK_O) {
+                input += "O";
+            } else if (keyCode == KeyEvent.VK_P) {
+                input += "P";
+            } else if (keyCode == KeyEvent.VK_Q) {
+                input += "Q";
+            } else if (keyCode == KeyEvent.VK_R) {
+                input += "R";
+            } else if (keyCode == KeyEvent.VK_S) {
+                input += "S";
+            } else if (keyCode == KeyEvent.VK_T) {
+                input += "T";
+            } else if (keyCode == KeyEvent.VK_U) {
+                input += "U";
+            } else if (keyCode == KeyEvent.VK_V) {
+                input += "V";
+            } else if (keyCode == KeyEvent.VK_W) {
+                input += "W";
+            } else if (keyCode == KeyEvent.VK_X) {
+                input += "X";
+            } else if (keyCode == KeyEvent.VK_Y) {
+                input += "Y";
+            } else if (keyCode == KeyEvent.VK_Z) {
+                input += "Z";
+            } else if (keyCode == KeyEvent.VK_SPACE) {
+                input += " ";
+            } else if (keyCode == KeyEvent.VK_BACK_SPACE) {
+                if (input.length() > 0) {
+                    input = input.substring(0, input.length() - 1);
+                }
+            }
+        } 
+        return input;
     }
 
     @Override

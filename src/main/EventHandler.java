@@ -53,6 +53,7 @@ public class EventHandler {
                 gamePanel.sim.indexLocationRuangan = 0;
             } else if (hit(1,5,8, "any", 0)){
                 teleport(0,gamePanel.sim.rumah.dimensiX, gamePanel.sim.rumah.dimensiY, 999);
+                gamePanel.sim.indexLocationRuangan = 999;
             }
         }
     }

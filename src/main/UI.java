@@ -18,6 +18,8 @@ public class UI {
 
     String inputFirstSimName = "";
 
+    String inputText = "";
+
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
@@ -66,6 +68,10 @@ public class UI {
             drawInventoryScreen(gamePanel.sim, simSlotCol, simSlotRow);
         } else if (gamePanel.gameState == gamePanel.beliState) { // if game is in beli
             drawBeliScreen();
+        } else if (gamePanel.gameState == gamePanel.upgradeRumahState){ // if game is in upgrade rumah
+            drawUpgradeRumahScreen();
+        } else if (gamePanel.gameState == gamePanel.inputTextState){ // if game is in input text
+            drawInputTextScreen("INPUT TEXT");
         }
     }
 
@@ -549,7 +555,7 @@ public class UI {
                         subState = 0;
                         gamePanel.gameState = gamePanel.dialogState;
                         currentDialog = "Uang tidak cukup";
-                        drawDialogScreen();
+                        // drawDialogScreen(); // ini ga perlu karena sudah ada di atas
                     }
                 } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Furnitur){
                     Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].inventory.get(itemIndex);
@@ -565,7 +571,7 @@ public class UI {
                         subState = 0;
                         gamePanel.gameState = gamePanel.dialogState;
                         currentDialog = "Uang tidak cukup";
-                        drawDialogScreen();
+                        // drawDialogScreen(); // ini ga perlu karena sudah ada di atas
                     }
                 } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Lampu){
                     Lampu lampu = (Lampu) gamePanel.npc[0][4].inventory.get(itemIndex);
@@ -587,13 +593,76 @@ public class UI {
                         subState = 0;
                         gamePanel.gameState = gamePanel.dialogState;
                         currentDialog = "Uang tidak cukup";
-                        drawDialogScreen();
+                        // drawDialogScreen(); nggk perlu ini karena sudah ada di atas
                     }
                 }
             }
         }
 
     }
+
+
+    public void drawUpgradeRumahScreen(){
+        // draw window
+        int x = getXforCenteredText("UPGRADE RUMAH");
+        x -= 3*gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2*x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize*4;
+        drawSubWindow(x, y, width, height);
+
+        // draw UPGRADE RUMAH text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText("UPGRADE RUMAH");
+        y += gamePanel.tileSize + 5 ;
+        g2d.drawString("UPGRADE RUMAH", x, y);
+
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "UP";
+            x = getXforCenteredText(text);
+            y += 2*gamePanel.tileSize;
+            g2d.drawString(text, x, y);
+            if (commandNumber == 0) {
+                g2d.drawString(">", x - gamePanel.tileSize, y);
+            }
+
+        text = "DOWN";
+            x = getXforCenteredText(text);
+            y += gamePanel.tileSize;
+            g2d.drawString(text, x, y);
+            if (commandNumber == 1) {
+                g2d.drawString(">", x - gamePanel.tileSize, y);
+            }
+        
+        text = "LEFT";
+            x = getXforCenteredText(text);
+            y += gamePanel.tileSize;
+            g2d.drawString(text, x, y);
+            if (commandNumber == 2) {
+                g2d.drawString(">", x - gamePanel.tileSize, y);
+            }
+        
+        text = "RIGHT";
+            x = getXforCenteredText(text);
+            y += gamePanel.tileSize;
+            g2d.drawString(text, x, y);
+            if (commandNumber == 3) {
+                g2d.drawString(">", x - gamePanel.tileSize, y);
+            }
+    }
+
+    public void drawInputTextScreen(String judul){
+        // draw window
+        int x = getXforCenteredText(judul);
+        x -= 3*gamePanel.tileSize;
+        int y = gamePanel.tileSize * 5;
+        int width = gamePanel.screenWidth - 2*x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize*4;
+        drawSubWindow(x, y, width, height);
+    }
+
+
 
     public static int getItemIndexOnSlot(int slotRow, int slotCol) {
         int index = slotRow * 11 + slotCol;
