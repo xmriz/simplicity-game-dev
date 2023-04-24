@@ -22,7 +22,7 @@ public class Sim extends Entity {
     public boolean lightUpdated = false;
     public Benda currentLight;
     public String currentLocation;
-    public int locationRuangan = 999;
+    public int indexLocationRuangan = 999;
 
 
     KeyHandler keyHandler;

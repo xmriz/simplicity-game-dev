@@ -118,7 +118,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         // memastikan kalau sim berada di world indexRuangan 999
         if (currentMap == 0){
-            sim.locationRuangan = 999;
+            sim.indexLocationRuangan = 999;
             sim.currentLocation = "World";
         }
     }
@@ -148,9 +148,9 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             } else {
                 // TODO : draw benda dari ruangan
-                for (int i = 0; i < sim.rumah.ruanganRumah.get(sim.locationRuangan).bendaRuangan.length; i++) {
-                    if (sim.rumah.ruanganRumah.get(sim.locationRuangan).bendaRuangan[i] != null) {
-                        sim.rumah.ruanganRumah.get(sim.locationRuangan).bendaRuangan[i].draw(g2d, this);
+                for (int i = 0; i < sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan.length; i++) {
+                    if (sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan[i] != null) {
+                        sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan[i].draw(g2d, this);
                     }
                 }
             }
