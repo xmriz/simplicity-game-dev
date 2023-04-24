@@ -1,5 +1,7 @@
 package benda;
 
+import java.awt.Rectangle;
+
 public class Furnitur_KasurQueenSize extends Furnitur {
     public Furnitur_KasurQueenSize(){
         name = "Kasur Queen Size";
@@ -9,6 +11,7 @@ public class Furnitur_KasurQueenSize extends Furnitur {
         dimensiY = 2;
         harga = 100;
         aksi = "Tidur";
+        solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
 
     }
 }

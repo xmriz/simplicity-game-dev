@@ -31,7 +31,6 @@ public class GamePanel extends JPanel implements Runnable {
     // MAP SETTINGS
     public final int maxMap = 2; // Ruangan and world
     public int currentMap = 0;
-    public int indexRuangan = 999;
 
     // FPS
     int fps = 60; // frames per second
@@ -119,7 +118,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         // memastikan kalau sim berada di world indexRuangan 999
         if (currentMap == 0){
-            indexRuangan = 999;
+            sim.indexLocationRuangan = 999;
+            sim.currentLocation = "World";
         }
     }
 
@@ -140,9 +140,18 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             // draw benda
-            for (int i = 0; i < benda[currentMap].length; i++) {
-                if (benda[currentMap][i] != null) {
-                    benda[currentMap][i].draw(g2d, this);
+            if (currentMap == 0){
+                for (int i = 0; i < benda[currentMap].length; i++) {
+                    if (benda[currentMap][i] != null) {
+                        benda[currentMap][i].draw(g2d, this);
+                    }
+                }
+            } else {
+                // TODO : draw benda dari ruangan
+                for (int i = 0; i < sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan.length; i++) {
+                    if (sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan[i] != null) {
+                        sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan[i].draw(g2d, this);
+                    }
                 }
             }
 

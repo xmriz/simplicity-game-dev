@@ -14,7 +14,7 @@ public class UI {
     GamePanel gamePanel;
     Graphics2D g2d;
 
-    Font maruMonica, purisaB;
+    Font maruMonica;
 
     String inputFirstSimName = "";
 
@@ -36,7 +36,6 @@ public class UI {
         try {
             maruMonica = Font.createFont(Font.TRUETYPE_FONT,
                     new FileInputStream(new File("data/fonts/x12y16pxMaruMonica.ttf")));
-            purisaB = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("data/fonts/Purisa Bold.ttf")));
         } catch (Exception e) {
             e.printStackTrace();
         }

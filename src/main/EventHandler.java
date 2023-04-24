@@ -50,7 +50,7 @@ public class EventHandler {
         if (canTouchEvent){
             if (hit(0,gamePanel.sim.rumah.dimensiX, gamePanel.sim.rumah.dimensiY, "any",999)){
                 teleport(1,2,2,0);
-                gamePanel.indexRuangan = 0;
+                gamePanel.sim.indexLocationRuangan = 0;
             } else if (hit(1,5,8, "any", 0)){
                 teleport(0,gamePanel.sim.rumah.dimensiX, gamePanel.sim.rumah.dimensiY, 999);
             }

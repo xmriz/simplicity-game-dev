@@ -21,6 +21,9 @@ public class Sim extends Entity {
     public final int maxMood = 100;
     public boolean lightUpdated = false;
     public Benda currentLight;
+    public String currentLocation;
+    public int indexLocationRuangan = 999;
+
 
     KeyHandler keyHandler;
 
