@@ -254,11 +254,12 @@ public class Sim extends Entity {
                                 tileNum = gamePanel.tileManager.mapTileNum[gamePanel.currentMap][col][row];
                                 if (gamePanel.tileManager.tile[tileNum].collision) {
                                     isCollide = true;
-                                    System.out.println(gamePanel.tileManager.tile[tileNum].getClass().toString());
+                                    /*System.out.println(gamePanel.tileManager.tile[tileNum].getClass().toString());
                                     System.out.println("collide:\ncol: " + col + "\nrow: " + row);
                                 } else {
                                     System.out.println(gamePanel.tileManager.tile[tileNum].getClass().toString());
                                     System.out.println("not collide:\ncol: " + col + "\nrow: " + row);
+                                */
                                 }
                             }
                         }
@@ -279,39 +280,63 @@ public class Sim extends Entity {
         
                         switch (direction) {
                             case "up":
-                                solidArea.y -= furnitur.dimensiY*gamePanel.tileSize;
-                                if (solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
-                                    if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
-                                        isCollide = true;
+                                for (int offsetX = 0; offsetX <= (furnitur.dimensiX-1)*2; offsetX++) {
+                                    solidArea.x -= offsetX * gamePanel.tileSize/2;
+                                    for (int offsetY = 1; offsetY <= furnitur.dimensiY*2; offsetY++) {    
+                                        solidArea.y -= offsetY * gamePanel.tileSize/2;
+                                        if (solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
+                                            if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
+                                                isCollide = true;
+                                            }
+                                        }
+                                        solidArea.y += offsetY * gamePanel.tileSize/2;
                                     }
+                                    solidArea.x += offsetX * gamePanel.tileSize/2;
                                 }
                                 break;
                             case "down":
-                                solidArea.y += furnitur.dimensiY*gamePanel.tileSize;
-                                if (solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
-                                    if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
-                                        isCollide = true;
+                                for (int offsetX = 0; offsetX <= (furnitur.dimensiX-1)*2; offsetX++) {
+                                    solidArea.x += offsetX * gamePanel.tileSize/2;
+                                    for (int offsetY = 1; offsetY <= furnitur.dimensiY*2; offsetY++) {    
+                                        solidArea.y += offsetY * gamePanel.tileSize/2;
+                                        if (solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
+                                            if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
+                                                isCollide = true;
+                                            }
+                                        }
+                                        solidArea.y -= offsetY * gamePanel.tileSize/2;
                                     }
+                                    solidArea.x -= offsetX * gamePanel.tileSize/2;
                                 }
                                 break;
                             case "left":
-                                solidArea.x -= furnitur.dimensiX*gamePanel.tileSize;
-                                if (solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
-                                    if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
-                                        isCollide = true;
+                                for (int offsetX = 1; offsetX <= furnitur.dimensiX*2; offsetX++) {
+                                    solidArea.x -= offsetX * gamePanel.tileSize/2;
+                                    for (int offsetY = 0; offsetY <= (furnitur.dimensiY-1)*2; offsetY++) {    
+                                        solidArea.y -= offsetY * gamePanel.tileSize/2;
+                                        if (solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
+                                            if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
+                                                isCollide = true;
+                                            }
+                                        }
+                                        solidArea.y += offsetY * gamePanel.tileSize/2;
                                     }
+                                    solidArea.x += offsetX * gamePanel.tileSize/2;
                                 }
                                 break;
                             case "right":
-                                for (int offset = 1; offset <= furnitur.dimensiX; offset++) {
-                                    solidArea.x += gamePanel.tileSize;
-                                    if (solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
-                                        if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
-                                            isCollide = true;
-                                            System.out.println("5" + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.length);
+                                for (int offsetX = 1; offsetX <= furnitur.dimensiX*2; offsetX++) {
+                                    solidArea.x += offsetX * gamePanel.tileSize/2;
+                                    for (int offsetY = 0; offsetY <= (furnitur.dimensiY-1)*2; offsetY++) {    
+                                        solidArea.y += offsetY * gamePanel.tileSize/2;
+                                        if (solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
+                                            if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
+                                                isCollide = true;
+                                            }
                                         }
-                                        System.out.println("pppp" + speed + " , " + furnitur.dimensiX + " , " + solidArea.x + speed*48);
+                                        solidArea.y -= offsetY * gamePanel.tileSize/2;
                                     }
+                                    solidArea.x -= offsetX * gamePanel.tileSize/2;
                                 }
                                 break;
                                 }
