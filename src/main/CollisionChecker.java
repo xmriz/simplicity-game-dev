@@ -65,6 +65,9 @@ public class CollisionChecker {
                 tileNum2 = gamePanel.tileManager.mapTileNum[gamePanel.currentMap][entityRightCol][entityBottomRow];
                 if (gamePanel.tileManager.tile[tileNum1].collision || gamePanel.tileManager.tile[tileNum2].collision) {
                     entity.collisionOn = true;
+                    System.out.println("1");
+                    System.out.println(gamePanel.tileManager.tile[tileNum1].getClass().toString());
+                    System.out.println("collide:\ncol: " + entityRightCol + "\nrow: " + entityTopRow);
                 }
                 break;
             default:
@@ -114,6 +117,7 @@ public class CollisionChecker {
                         entity.solidArea.x += entity.speed;
                         if (entity.solidArea.intersects(target[gamePanel.currentMap][i].solidArea)) {
                             entity.collisionOn = true;
+                            System.out.println("2");
                             index = i;
                         }
                         break;
@@ -158,6 +162,7 @@ public class CollisionChecker {
                 entity.solidArea.x += entity.speed;
                 if (entity.solidArea.intersects(gamePanel.sim.solidArea)) {
                     entity.collisionOn = true;
+                    System.out.println("3");
                 }
                 break;
         }
@@ -221,6 +226,7 @@ public class CollisionChecker {
                             if (entity.solidArea.intersects(gamePanel.benda[gamePanel.currentMap][i].solidArea)) {
                                 if (gamePanel.benda[gamePanel.currentMap][i].collision == true) {
                                     entity.collisionOn = true;
+                                    System.out.println("4");
                                 }
                                 if (sim){ // jika sim yang menabrak
                                     index = i;
@@ -286,6 +292,7 @@ public class CollisionChecker {
                             if (entity.solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
                                 if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
                                     entity.collisionOn = true;
+                                    System.out.println("9" + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.length);
                                 }
                                 if (sim){ // jika sim yang menabrak
                                     index = i;

@@ -209,17 +209,13 @@ public class Sim extends Entity {
                 gamePanel.ui.currentDialog = "Anda memakan " + makanan.name + ".\n" + "Kekenyangan bertambah " + makanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah " + kekenyangan + " poin.";
             } else if (selectedBenda instanceof Furnitur) {
                 // TODO : selesaikann -> ini bagian untuk interact dengan furnitur
-                // Furnitur furnitur = (Furnitur) selectedBenda;
-                // furnitur.use(this);
-                // inventory.remove(itemIndex);
                 Furnitur furnitur = (Furnitur) selectedBenda;
-                //gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[banyakBenda(bendaRuangan)+1] = new Furnitur_Toilet();
                 // bikin method banyakBenda tapi gagal, mau ngecek curent benda ada berapa di rungan, mungkin ntar taroh atribut baru di class Ruangan, sekarang anggep aja 10
-                gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9] = furnitur;
+                
                 boolean isCollide = false; 
                 int tileNum;
-                int playerCol = screenX/gamePanel.tileSize;
-                int playerRow = screenY/gamePanel.tileSize;
+                int playerCol = (gamePanel.sim.worldX+(gamePanel.tileSize/2))/gamePanel.tileSize;
+                int playerRow = (gamePanel.sim.worldY+(gamePanel.tileSize/2))/gamePanel.tileSize;
 
                 switch (direction) {
                     case "up":
@@ -231,10 +227,6 @@ public class Sim extends Entity {
                                 }
                             }
                         }
-                        if (!isCollide) {
-                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldX = (playerCol-furnitur.dimensiX+1) * gamePanel.tileSize;
-                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldY = (playerRow-furnitur.dimensiY) * gamePanel.tileSize;
-                        }
                         break;
                     case "down":
                         for (int col = playerCol; col < playerCol+furnitur.dimensiX; col++) {
@@ -244,10 +236,6 @@ public class Sim extends Entity {
                                     isCollide = true;
                                 }
                             }
-                        }
-                        if (!isCollide) {
-                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldX = (playerCol) * gamePanel.tileSize;
-                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldY = (playerRow+1) * gamePanel.tileSize;
                         }
                         break;
                     case "left":
@@ -259,10 +247,6 @@ public class Sim extends Entity {
                                 }
                             }
                         }
-                        if (!isCollide) {
-                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldX = (playerCol-furnitur.dimensiX) * gamePanel.tileSize;
-                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldY = (playerRow-furnitur.dimensiY+1) * gamePanel.tileSize;
-                        }
                         break;
                     case "right":
                         for (int col = playerCol+1; col < playerCol+furnitur.dimensiX+1; col++) {
@@ -270,22 +254,100 @@ public class Sim extends Entity {
                                 tileNum = gamePanel.tileManager.mapTileNum[gamePanel.currentMap][col][row];
                                 if (gamePanel.tileManager.tile[tileNum].collision) {
                                     isCollide = true;
+                                    System.out.println(gamePanel.tileManager.tile[tileNum].getClass().toString());
+                                    System.out.println("collide:\ncol: " + col + "\nrow: " + row);
+                                } else {
+                                    System.out.println(gamePanel.tileManager.tile[tileNum].getClass().toString());
+                                    System.out.println("not collide:\ncol: " + col + "\nrow: " + row);
                                 }
                             }
                         }
-                        if (!isCollide) {
-                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldX = (playerCol+1) * gamePanel.tileSize;
-                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldY = (playerRow) * gamePanel.tileSize;
-                        }
                         break;
                 }
+
+                for (int i = 0; i < gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.length; i++) {
+                    if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i] != null) {
+                        // get entity's solid area position
+                        gamePanel.sim.solidArea.x = gamePanel.sim.worldX + gamePanel.sim.solidArea.x;
+                        gamePanel.sim.solidArea.y = gamePanel.sim.worldY + gamePanel.sim.solidArea.y;
+        
+                        // get benda's solid area position
+                        gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea.x = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].worldX
+                                + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea.x;
+                        gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea.y = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].worldY
+                                + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea.y;
+        
+                        switch (direction) {
+                            case "up":
+                                solidArea.y -= furnitur.dimensiY*gamePanel.tileSize;
+                                if (solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
+                                    if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
+                                        isCollide = true;
+                                    }
+                                }
+                                break;
+                            case "down":
+                                solidArea.y += furnitur.dimensiY*gamePanel.tileSize;
+                                if (solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
+                                    if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
+                                        isCollide = true;
+                                    }
+                                }
+                                break;
+                            case "left":
+                                solidArea.x -= furnitur.dimensiX*gamePanel.tileSize;
+                                if (solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
+                                    if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
+                                        isCollide = true;
+                                    }
+                                }
+                                break;
+                            case "right":
+                                for (int offset = 1; offset <= furnitur.dimensiX; offset++) {
+                                    solidArea.x += gamePanel.tileSize;
+                                    if (solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea)) {
+                                        if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].collision == true) {
+                                            isCollide = true;
+                                            System.out.println("5" + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.length);
+                                        }
+                                        System.out.println("pppp" + speed + " , " + furnitur.dimensiX + " , " + solidArea.x + speed*48);
+                                    }
+                                }
+                                break;
+                                }
+                            }
+                        }
                 if (!isCollide) {
+                    
+                    switch (direction) {
+                        case "up":
+                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9] = furnitur;
+                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldX = (playerCol-furnitur.dimensiX+1) * gamePanel.tileSize;
+                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldY = (playerRow-furnitur.dimensiY) * gamePanel.tileSize;
+                            
+                            break;
+                        case "down":
+                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9] = furnitur;
+                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldX = (playerCol) * gamePanel.tileSize;
+                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldY = (playerRow+1) * gamePanel.tileSize;                            
+                            break;
+                        case "left":
+                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9] = furnitur;
+                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldX = (playerCol-furnitur.dimensiX) * gamePanel.tileSize;
+                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldY = (playerRow-furnitur.dimensiY+1) * gamePanel.tileSize;
+                            break;
+                        case "right":
+                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9] = furnitur;
+                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldX = (playerCol+1) * gamePanel.tileSize;
+                            gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9].worldY = (playerRow) * gamePanel.tileSize;
+                            break;
+                    }
                     inventory.remove(itemIndex);
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Anda berhasil memasang furnitur " + furnitur.name;
+                    gamePanel.ui.currentDialog = "Anda berhasil memasang furnitur " + furnitur.name + ".";
                 } else {
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Furnitur " + furnitur.name + " gagal dipasang karena terhalang benda lain.\nCoba lagi di tempat lain.";
+                    gamePanel.ui.currentDialog = "Furnitur " + furnitur.name + " gagal dipasang\nkarena terhalang benda lain.\nCoba lagi di tempat lain.";
                 }
             } else if (selectedBenda instanceof Lampu){
                 if (selectedBenda == currentLight){ // lampu menyala
