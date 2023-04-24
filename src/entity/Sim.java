@@ -11,8 +11,8 @@ public class Sim extends Entity {
 
     // SIM INFO
     public String nama = "Sim";
-    public String pekerjaan = "Pengangguran";
-    public int uang = 100;
+    private String pekerjaan = "Pengangguran";
+    private int uang = 100;
     public int kesehatan = 80;
     public final int maxKesehatan = 100;
     public int kekenyangan = 80;
@@ -312,5 +312,42 @@ public class Sim extends Entity {
         // g2d.fillRect(x, y, gamePanel.tileSize, gamePanel.tileSize);
     }
 
+    //pekerjaan
+
+    public int getUang(){
+        return uang;
+    }
+
+    public void setUang(int uang){
+        this.uang=uang;
+    }
+
+    public String getPekerjaan(){
+        return pekerjaan;
+    }
+
+    public void setPekerjaan(String pekerjaan){
+        switch (pekerjaan){
+            case "Badut Sulap":
+            setUang(uang+15);
+            break;
+
+            case "Koki":
+            setUang(uang+30);
+            break;
+
+            case "Polisi":
+            setUang(uang+35);
+            break;
+
+            case "Programmer":
+            setUang(uang+45);
+            break;
+
+            case "Dokter":
+            setUang(uang+50);
+            break;
+        }
+    }
 
 }
