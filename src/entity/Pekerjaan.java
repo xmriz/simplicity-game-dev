@@ -26,31 +26,32 @@ public class Pekerjaan {
     }
 
     public void kerja (String namaPekerjaan,int lama) throws Exception{
+        int tempgaji=0;
         int repeat = lama/4;
         switch (namaPekerjaan){
             case "Badut Sulap":
-            gaji=15;
+            tempgaji=15;
             break;
 
             case "Koki":
-            gaji=30;
+            tempgaji=30;
             break;
 
             case "Polisi":
-            gaji=35;
+            tempgaji=35;
             break;
 
             case "Programmer":
-            gaji=45;
+            tempgaji=45;
             break;
 
             case "Dokter":
-            gaji=50;
+            tempgaji=50;
             break;
         }
         try{
             for(int i=0;i<repeat;i++){
-                this.gaji+=gaji;
+                this.gaji+=tempgaji;
             }
             Thread.sleep(lama*60000);
         } catch (Exception e){
