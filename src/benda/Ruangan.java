@@ -13,7 +13,7 @@ public class Ruangan {
     Ruangan left;
     Ruangan right;
 
-    public Benda bendaRuangan[] = new Benda[10]; // maksimal 10 benda di ruangan
+    public Benda bendaRuangan[] = new Benda[10]; // maksimal 10 benda di ruangan, sil : ini kalau lu mau buat jadi list juga sabi biar add nya gampang
 
     public int[][] mapRuangan;
 

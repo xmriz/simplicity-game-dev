@@ -14,7 +14,6 @@ public class AssetSetter {
 
     public void setBenda(){
         // position of the benda in the world
-        // furnitur
         int i = 0;
         int mapNumber = 0;
         gamePanel.benda[mapNumber][i] = gamePanel.sim.rumah;
@@ -24,7 +23,14 @@ public class AssetSetter {
 
         
         // position of the benda in the rumah
-        mapNumber = 1;
+        // contoh nambah benda di ruangan pertama: 
+        gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[0] = new Furnitur_Toilet();
+        gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[0].worldX = 2 * gamePanel.tileSize;
+        gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[0].worldY = 2 * gamePanel.tileSize;
+
+        gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1] = new Furnitur_KasurKingSize();
+        gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldX = 3 * gamePanel.tileSize;
+        gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldY = 3 * gamePanel.tileSize;
     }
 
     public void setNPC() {
