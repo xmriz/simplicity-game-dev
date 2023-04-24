@@ -11,7 +11,7 @@ import main.UtilityTool;
 public class TileManager {
     GamePanel gamePanel;
     public Tile[] tile;
-    public int mapTileNum[][][];
+    public int[][][] mapTileNum;
 
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -83,9 +83,14 @@ public class TileManager {
     public void draw(Graphics2D g2d){
         int worldCol = 0; 
         int worldRow = 0;
+        int tileNum;
 
         while (worldCol < gamePanel.maxWorldCol && worldRow < gamePanel.maxWorldRow){
-            int tileNum = mapTileNum[gamePanel.currentMap][worldCol][worldRow];
+            if (gamePanel.currentMap == 0){
+                tileNum = mapTileNum[gamePanel.currentMap][worldCol][worldRow];
+            } else{
+                tileNum = gamePanel.sim.rumah.ruanganRumah.get(0).mapRuangan[worldCol][worldRow];
+            }
 
             int worldX = worldCol * gamePanel.tileSize; // position of the tile in the world 
             int worldY = worldRow * gamePanel.tileSize;

@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
     int fps = 60; // frames per second
 
     // SYSTEM
-    TileManager tileManager = new TileManager(this); // create a new TileManager object
+    public TileManager tileManager = new TileManager(this); // create a new TileManager object
     public KeyHandler keyHandler = new KeyHandler(this); // create a new KeyHandler object
     AssetSetter assetSetter = new AssetSetter(this); // create a new AssetSetter object
     public CollisionChecker collisionChecker = new CollisionChecker(this); // create a new CollisionChecker object
@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Entity npc[][] = new Entity[maxMap][6]; // create an array of NPC objects
 
     // BENDA
-    public Benda benda[][] = new Benda[maxMap][9]; // create an array of Benda objects yang dapat diletakkan
+    public Benda benda[][] = new Benda[maxMap][8]; // create an array of Benda objects yang dapat diletakkan
 
     // GAME STATE
     public int gameState;
@@ -152,6 +152,13 @@ public class GamePanel extends JPanel implements Runnable {
 
             // draw ui
             ui.draw(g2d);
+
+            // world time
+            if (keyHandler.checkWorldTime){
+                g2d.setColor(Color.white);
+                g2d.setFont(g2d.getFont().deriveFont(40f));
+                g2d.drawString("World Time: " + worldTime, 10, 50); 
+            }
         }
 
 

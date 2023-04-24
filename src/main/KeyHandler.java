@@ -8,6 +8,9 @@ public class KeyHandler implements KeyListener {
     GamePanel gamePanel;
     public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
 
+    boolean checkWorldTime = false;
+    int moveCounter = 1;
+
     public KeyHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
@@ -170,6 +173,7 @@ public class KeyHandler implements KeyListener {
         else if (gamePanel.gameState == gamePanel.beliState) {
             beliState(keyCode);
         }
+
     }
 
     public void playState(int keyCode) {
@@ -185,12 +189,18 @@ public class KeyHandler implements KeyListener {
             gamePanel.gameState = gamePanel.pauseState;
         } else if (keyCode == KeyEvent.VK_C) {
             gamePanel.gameState = gamePanel.simInfoState;
-        } else if (keyCode == KeyEvent.VK_B) {
+        } else if (keyCode == KeyEvent.VK_I) {
             gamePanel.gameState = gamePanel.inventoryState;
-        } else if (keyCode == KeyEvent.VK_T){
+        } else if (keyCode == KeyEvent.VK_B){
             gamePanel.npc[0][4].speak();
         } else if (keyCode == KeyEvent.VK_ENTER) {
             enterPressed = true;
+        } else if (keyCode == KeyEvent.VK_T){
+            if (checkWorldTime == false){
+                checkWorldTime = true;
+            } else {
+                checkWorldTime = false;
+            }
         }
     }
 
@@ -224,7 +234,7 @@ public class KeyHandler implements KeyListener {
 
     public void inventoryState(int keyCode) {
         int index;
-        if (keyCode == KeyEvent.VK_B) {
+        if (keyCode == KeyEvent.VK_I) {
             gamePanel.gameState = gamePanel.playState;
         } else if (keyCode == KeyEvent.VK_UP){
             if (gamePanel.ui.simSlotRow > 0) {
@@ -306,7 +316,7 @@ public class KeyHandler implements KeyListener {
 
     public void beliInventory(int keyCode){
         int index = 0;
-        if (keyCode == KeyEvent.VK_T) {
+        if (keyCode == KeyEvent.VK_B) {
             // TODO: change dialog
             gamePanel.gameState = gamePanel.playState;
             gamePanel.ui.subState = 0;

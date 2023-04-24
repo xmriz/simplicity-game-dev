@@ -2,7 +2,7 @@ package benda;
 
 public class Furnitur_Toilet extends Furnitur{
     public Furnitur_Toilet(){
-        name = "KToilet";
+        name = "Toilet";
         image = setupImage("benda/furnitur/toilet");
         collision = true;
         dimensiX = 1;

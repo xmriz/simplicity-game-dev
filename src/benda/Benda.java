@@ -22,6 +22,7 @@ public abstract class Benda {
     public int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
     public boolean stackable = false;
     public int quantity = 1;
+    GamePanel gamePanel;
 
     public boolean isPlaced = false;
 

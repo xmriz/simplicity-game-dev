@@ -7,10 +7,10 @@ public class Lampu extends Benda {
     public int harga = 10;
 
     public Lampu(GamePanel gamePanel){
-        super();
+        this.gamePanel = gamePanel;
         name = "Lampu";
         image = setupImage("benda/lampu");
-        aksi = "Menerangi sekeliling kamu";
+        aksi = "Menyalakan lampu";
         category = "Equipment";
         stackable = true;
     }

@@ -10,7 +10,7 @@ public class NPC_Penjual extends Entity{
 
         direction = "down";
 
-        getImage(); 
+        getImage();
         setDialog();
         setItems();
     }

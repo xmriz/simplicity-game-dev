@@ -33,7 +33,7 @@ public class Sim extends Entity {
     public Sim(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
 
-        rumah = new Rumah();
+        rumah = new Rumah(gamePanel);
 
         this.keyHandler = keyHandler;
 
@@ -78,7 +78,7 @@ public class Sim extends Entity {
         inventory.add(new Makanan_TumisSayur());
 
         // FURNITUR
-        // inventory.add(new Furnitur_Jam());
+        inventory.add(new Furnitur_Jam());
         // to be continuedd
     }
 
@@ -111,7 +111,8 @@ public class Sim extends Entity {
 
             // check for benda collision
             int bendaIndex = gamePanel.collisionChecker.checkBenda(this, true); // return the index of the benda that theplayer is colliding with
-            pickUpObject(bendaIndex);                                                                                
+            // tambah interact dengan benda
+            // pickUpObject(bendaIndex);                                                                                
 
             // check npc collision
             int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
@@ -153,20 +154,20 @@ public class Sim extends Entity {
         }
     }
 
-    public void pickUpObject(int index){
-        if (index != 999){ // 999 means there is no collision with benda
-            // String text; TODO: tambah message di layar
-            if (!(gamePanel.benda[gamePanel.currentMap][index] instanceof Furnitur || gamePanel.benda[gamePanel.currentMap][index] instanceof Rumah)){
-                if (canObtainItem(gamePanel.benda[gamePanel.currentMap][index])){
-                    // text = "kamu mendapatkan " + gamePanel.benda[gamePanel.currentMap][index].nama;
-                } else {
-                    // text = "Inventory penuh";
-                } 
-                // gamePanel.ui.addMessage(text);
-                gamePanel.benda[gamePanel.currentMap][index] = null;
-            } 
-        }
-    }
+    // public void pickUpObject(int index){
+    //     if (index != 999){ // 999 means there is no collision with benda
+    //         // String text; TODO: tambah message di layar
+    //         if (!(gamePanel.benda[gamePanel.currentMap][index] instanceof Furnitur || gamePanel.benda[gamePanel.currentMap][index] instanceof Rumah)){
+    //             if (canObtainItem(gamePanel.benda[gamePanel.currentMap][index])){
+    //                 // text = "kamu mendapatkan " + gamePanel.benda[gamePanel.currentMap][index].nama;
+    //             } else {
+    //                 // text = "Inventory penuh";
+    //             } 
+    //             // gamePanel.ui.addMessage(text);
+    //             gamePanel.benda[gamePanel.currentMap][index] = null;
+    //         } 
+    //     }
+    // }
 
     public void interactNPC(int i) {
         if (i != 999) {
