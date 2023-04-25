@@ -676,14 +676,15 @@ public class UI {
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
         String text = "(format : x,y)";
         String textTemp = "(maks. 15 karakter)";
-        x = getXforCenteredText(textTemp);
+        x = getXforCenteredText(text);
         y += gamePanel.tileSize-10;
         g2d.drawString(text, x, y);
         
-
+        
         // draw input text
         // x -= 40;
-        y +=  gamePanel.tileSize*2;
+        x = getXforCenteredText(textTemp);
+        y +=  gamePanel.tileSize;
         width = width - 2*gamePanel.tileSize+15;
         height = gamePanel.tileSize;
         g2d.fillRect(x, y, width, height);
@@ -692,6 +693,15 @@ public class UI {
         g2d2.setColor(Color.BLACK);
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
         g2d2.drawString(gamePanel.ui.inputText, x+10, y + gamePanel.tileSize-14);
+
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        text = "Horizontal";
+        x = getXforCenteredText(text);
+        y += 2*gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 0) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
 
     }
 
