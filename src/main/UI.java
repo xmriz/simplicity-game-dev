@@ -611,17 +611,21 @@ public class UI {
 
         // text
         g2d.setFont(g2d.getFont().deriveFont(40f));
-        String title = "MENU";
-        int x = gamePanel.screenWidth / 2 - gamePanel.tileSize / (1 + 1 / 2);
+        String text = "MENU";
+        int x = getXforCenteredText(text);
+        // int x = gamePanel.screenWidth / 2 - gamePanel.tileSize / (1 + 1 / 2);
         int y = gamePanel.tileSize * 4;
         g2d.setColor(Color.WHITE);
-        g2d.drawString(title, x, y);
+        g2d.drawString(text, x, y);
 
         // DRAW TEXTS
         g2d.setFont(g2d.getFont().deriveFont(30f));
         x = gamePanel.screenWidth / 2 - gamePanel.tileSize * 2;
+
+        text = "Help";
+        x = getXforCenteredText(text);
         y += gamePanel.tileSize * 2;
-        g2d.drawString("Help", x, y);
+        g2d.drawString(text, x, y);
         if (commandNumber == 0) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
             if (gamePanel.keyHandler.enterPressed) {
@@ -629,8 +633,11 @@ public class UI {
                 gamePanel.gameState = gamePanel.playState;
             }
         }
+
+        text = "Add Sim";
+        x = getXforCenteredText(text);
         y += gamePanel.tileSize;
-        g2d.drawString("Add Sim", x, y);
+        g2d.drawString(text, x, y);
         if (commandNumber == 1) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
             if (gamePanel.keyHandler.enterPressed) {
@@ -638,8 +645,11 @@ public class UI {
                 gamePanel.gameState = gamePanel.playState;
             }
         }
+
+        text = "Change Sim";
+        x = getXforCenteredText(text);
         y += gamePanel.tileSize;
-        g2d.drawString("Change Sim", x, y);
+        g2d.drawString(text, x, y);
         if (commandNumber == 2) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
             if (gamePanel.keyHandler.enterPressed) {
@@ -649,8 +659,10 @@ public class UI {
         }
 
         g2d.setColor(Color.GRAY);
+        text = "Upgrade House";
+        x = getXforCenteredText(text);
         y += gamePanel.tileSize;
-        g2d.drawString("Upgrade House", x, y);
+        g2d.drawString(text, x, y);
         if (commandNumber == 3) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
             if (gamePanel.keyHandler.enterPressed) {
@@ -658,8 +670,11 @@ public class UI {
                 gamePanel.gameState = gamePanel.playState;
             }
         }
+
+        text = "Edit Room";
+        x = getXforCenteredText(text);
         y += gamePanel.tileSize;
-        g2d.drawString("Edit Room", x, y);
+        g2d.drawString(text, x, y);
         if (commandNumber == 4) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
             if (gamePanel.keyHandler.enterPressed) {
@@ -669,8 +684,10 @@ public class UI {
         }
 
         g2d.setColor(Color.WHITE);
+        text = "Exit to Main Menu";
+        x = getXforCenteredText(text);
         y += gamePanel.tileSize;
-        g2d.drawString("Exit to Main Menu", x, y);
+        g2d.drawString(text, x, y);
         if (commandNumber == 5) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
             if (gamePanel.keyHandler.enterPressed) {
