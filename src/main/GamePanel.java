@@ -175,6 +175,7 @@ public class GamePanel extends JPanel implements Runnable {
 
             // world time
             if (keyHandler.checkWorldTime){
+                keyHandler.checkCurrentLocation = false;
                 g2d.setColor(Color.white);
                 g2d.setFont(g2d.getFont().deriveFont(40f));
                 g2d.drawString("World Time: " + worldTime, 10, 700); 
