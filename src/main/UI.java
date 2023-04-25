@@ -609,16 +609,15 @@ public class UI {
         int frameHeight = gamePanel.screenHeight - gamePanel.tileSize * 6;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
-        // text
+        // title
         g2d.setFont(g2d.getFont().deriveFont(40f));
         String text = "MENU";
         int x = getXforCenteredText(text);
-        // int x = gamePanel.screenWidth / 2 - gamePanel.tileSize / (1 + 1 / 2);
         int y = gamePanel.tileSize * 4;
         g2d.setColor(Color.WHITE);
         g2d.drawString(text, x, y);
 
-        // DRAW TEXTS
+        // texts
         g2d.setFont(g2d.getFont().deriveFont(30f));
         x = gamePanel.screenWidth / 2 - gamePanel.tileSize * 2;
 
