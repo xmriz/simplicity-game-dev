@@ -5,7 +5,7 @@ import javax.swing.*;
 
 import benda.Benda;
 import entity.*;
-import Environment.EnvironmentManager;
+import environment.EnvironmentManager;
 import map.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {

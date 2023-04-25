@@ -300,18 +300,19 @@ public class KeyHandler implements KeyListener {
             if (keyCode == KeyEvent.VK_DOWN) {
                 gamePanel.ui.commandNumber++;
             } else if (keyCode == KeyEvent.VK_UP) {
-                gamePanel.ui.commandNumber = 5;
+                gamePanel.ui.commandNumber = 2;
             }
-        } else if (gamePanel.ui.commandNumber == 5) {
+        } else if (gamePanel.ui.commandNumber == 2) {
             if (keyCode == KeyEvent.VK_UP) {
                 gamePanel.ui.commandNumber--;
             } else if (keyCode == KeyEvent.VK_DOWN) {
                 gamePanel.ui.commandNumber = 0;
             } else if (keyCode == KeyEvent.VK_ENTER) {
                 gamePanel.gameState = gamePanel.titleState;
+                gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.titleScreenState = 0;
             }
-        } else if (gamePanel.ui.commandNumber < 5) {
+        } else if (gamePanel.ui.commandNumber == 1) {
             if (keyCode == KeyEvent.VK_UP) {
                 gamePanel.ui.commandNumber--;
             } else if (keyCode == KeyEvent.VK_DOWN) {
