@@ -681,19 +681,19 @@ public class UI {
         // draw input text
         // x -= 40;
         y +=  gamePanel.tileSize*2;
-        width = width - 2*gamePanel.tileSize+35;
+        width = width - 2*gamePanel.tileSize+15;
         height = gamePanel.tileSize;
         g2d.fillRect(x, y, width, height);
 
         Graphics2D g2d2 = (Graphics2D) g2d.create();
         g2d2.setColor(Color.BLACK);
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
-        g2d2.drawString(gamePanel.ui.inputText, x+20, y + gamePanel.tileSize-14);
+        g2d2.drawString(gamePanel.ui.inputText, x+10, y + gamePanel.tileSize-14);
 
     }
 
 
-
+    
     public static int getItemIndexOnSlot(int slotRow, int slotCol) {
         int index = slotRow * 11 + slotCol;
         return index;

@@ -149,7 +149,6 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             } else {
-                // TODO : draw benda dari ruangan
                 for (int i = 0; i < sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan.length; i++) {
                     if (sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan[i] != null) {
                         sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan[i].draw(g2d, this);
@@ -178,7 +177,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (keyHandler.checkWorldTime){
                 g2d.setColor(Color.white);
                 g2d.setFont(g2d.getFont().deriveFont(40f));
-                g2d.drawString("World Time: " + worldTime, 10, 50); 
+                g2d.drawString("World Time: " + worldTime, 10, 700); 
             }
 
             // current location
@@ -186,7 +185,7 @@ public class GamePanel extends JPanel implements Runnable {
                 keyHandler.checkWorldTime = false;
                 g2d.setColor(Color.white);
                 g2d.setFont(g2d.getFont().deriveFont(40f));
-                g2d.drawString("Current Location: " + sim.currentLocation, 10, 50); 
+                g2d.drawString("Current Location: " + sim.currentLocation, 10, 700); 
             }
         }
 

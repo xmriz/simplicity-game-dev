@@ -1,6 +1,5 @@
 package main;
 
-import benda.Ruangan;
 
 public class EventHandler {
     GamePanel gamePanel;

@@ -222,7 +222,6 @@ public class KeyHandler implements KeyListener {
                 checkCurrentLocation = false;
             }
         } else if (keyCode == KeyEvent.VK_U) {
-            // TODO: add code to upgrade rumah
             if (gamePanel.currentMap == 0) {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Anda sedang tidak berada di rumah.\nTidak dapat melakukan upgrade rumah!";
@@ -497,20 +496,25 @@ public class KeyHandler implements KeyListener {
                 String input = gamePanel.ui.inputText;
                 if (gamePanel.ui.commandNumber == 0) {
                     gamePanel.sim.rumah.upgradeRumah("up", input);
+                    gamePanel.ui.commandNumber = 0;
                 } else if (gamePanel.ui.commandNumber == 1) {
                     // System.out.println("TEST2");
                     gamePanel.sim.rumah.upgradeRumah("down", input);
                     // System.out.println(gamePanel.sim.rumah.ruanganRumah.get(0).down.name);
+                    gamePanel.ui.commandNumber = 0;
                 } else if (gamePanel.ui.commandNumber == 2) {
                     gamePanel.sim.rumah.upgradeRumah("left", input);
+                    gamePanel.ui.commandNumber = 0;
                 } else if (gamePanel.ui.commandNumber == 3) {
                     gamePanel.sim.rumah.upgradeRumah("right", input);
+                    gamePanel.ui.commandNumber = 0;
                 }
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.inputTextDone = false;
-                for (Ruangan s : gamePanel.sim.rumah.ruanganRumah){
-                    System.out.println(s.name);
-                }
+                // CEK RUANGAN APA SAJA DALAM RUMAH SIM
+                // for (Ruangan s : gamePanel.sim.rumah.ruanganRumah){
+                //     System.out.println(s.name);
+                // }
             } else {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Nama tidak boleh kosong";

@@ -35,7 +35,7 @@ public class TileManager {
             setupImage(9, "water_corner4", true);
             setupImage(10, "floor", false);
             setupImage(11, "wall", true);
-            setupImage(12, "door", false);
+            setupImage(12, "stair", false);
             setupImage(13, "blank", true);
     }
 
