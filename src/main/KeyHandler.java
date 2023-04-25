@@ -175,6 +175,11 @@ public class KeyHandler implements KeyListener {
         else if (gamePanel.gameState == gamePanel.menuState) {
             menuState(keyCode);
         }
+
+        // HELP STATE
+        else if (gamePanel.gameState == gamePanel.helpState) {
+            helpState(keyCode);
+        }
     }
 
     public void playState(int keyCode) {
@@ -303,7 +308,8 @@ public class KeyHandler implements KeyListener {
             } else if (keyCode == KeyEvent.VK_DOWN) {
                 gamePanel.ui.commandNumber = 0;
             } else if (keyCode == KeyEvent.VK_ENTER) {
-                System.exit(0);
+                gamePanel.gameState = gamePanel.titleState;
+                gamePanel.ui.titleScreenState = 0;
             }
         } else if (gamePanel.ui.commandNumber < 5) {
             if (keyCode == KeyEvent.VK_UP) {
@@ -311,6 +317,12 @@ public class KeyHandler implements KeyListener {
             } else if (keyCode == KeyEvent.VK_DOWN) {
                 gamePanel.ui.commandNumber++;
             }
+        }
+    }
+
+    public void helpState(int keyCode) {
+        if (keyCode == KeyEvent.VK_ENTER) {
+            gamePanel.gameState = gamePanel.playState;
         }
     }
 

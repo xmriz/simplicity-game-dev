@@ -69,6 +69,8 @@ public class UI {
             drawBeliScreen();
         } else if (gamePanel.gameState == gamePanel.menuState) {
             drawMenuScreen();
+        } else if (gamePanel.gameState == gamePanel.helpState) {
+            drawHelpScreen();
         }
     }
 
@@ -617,7 +619,7 @@ public class UI {
 
         // DRAW TEXTS
         g2d.setFont(g2d.getFont().deriveFont(30f));
-        x = gamePanel.screenWidth / 2 - gamePanel.tileSize;
+        x = gamePanel.screenWidth / 2 - gamePanel.tileSize * 2;
         y += gamePanel.tileSize * 2;
         g2d.drawString("Help", x, y);
         if (commandNumber == 0) {
@@ -668,7 +670,7 @@ public class UI {
 
         g2d.setColor(Color.WHITE);
         y += gamePanel.tileSize;
-        g2d.drawString("Exit", x, y);
+        g2d.drawString("Exit to Main Menu", x, y);
         if (commandNumber == 5) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
             if (gamePanel.keyHandler.enterPressed) {
@@ -676,6 +678,23 @@ public class UI {
                 gamePanel.gameState = gamePanel.playState;
             }
         }
+    }
+
+    public void drawHelpScreen() {
+        // create frame
+        int frameX = gamePanel.tileSize * 5;
+        int frameY = gamePanel.tileSize * 3;
+        int frameWidth = gamePanel.screenWidth - gamePanel.tileSize * 10;
+        int frameHeight = gamePanel.screenHeight - gamePanel.tileSize * 6;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // text
+        g2d.setFont(g2d.getFont().deriveFont(40f));
+        String title = "MENU";
+        int x = gamePanel.screenWidth / 2 - gamePanel.tileSize / (1 + 1 / 2);
+        int y = gamePanel.tileSize * 4;
+        g2d.setColor(Color.WHITE);
+        g2d.drawString(title, x, y);
     }
 
     public static int getItemIndexOnSlot(int slotRow, int slotCol) {
