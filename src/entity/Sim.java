@@ -254,12 +254,6 @@ public class Sim extends Entity {
                                 tileNum = gamePanel.tileManager.mapTileNum[gamePanel.currentMap][col][row];
                                 if (gamePanel.tileManager.tile[tileNum].collision) {
                                     isCollide = true;
-                                    /*System.out.println(gamePanel.tileManager.tile[tileNum].getClass().toString());
-                                    System.out.println("collide:\ncol: " + col + "\nrow: " + row);
-                                } else {
-                                    System.out.println(gamePanel.tileManager.tile[tileNum].getClass().toString());
-                                    System.out.println("not collide:\ncol: " + col + "\nrow: " + row);
-                                */
                                 }
                             }
                         }
@@ -267,13 +261,10 @@ public class Sim extends Entity {
                 }
 
                 for (int i = 0; i < 10; i++) {
-                    // gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.length
                     if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i] != null) {
-                        // get entity's solid area position
                         gamePanel.sim.solidArea.x = gamePanel.sim.worldX + gamePanel.sim.solidArea.x;
                         gamePanel.sim.solidArea.y = gamePanel.sim.worldY + gamePanel.sim.solidArea.y;
-        
-                        // get benda's solid area position
+                        
                         gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea.x = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].worldX
                                 + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea.x;
                         gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].solidArea.y = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan[i].worldY
@@ -344,7 +335,6 @@ public class Sim extends Entity {
                             }
                         }
                 if (!isCollide) {
-                    
                     switch (direction) {
                         case "up":
                             gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[9] = furnitur;
@@ -483,10 +473,9 @@ public class Sim extends Entity {
         for (Benda b : arr) {
             if (b != null) {
                 count++;
+                break;
             }
         }
         return count;
     }
-
-
 }
