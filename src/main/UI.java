@@ -18,7 +18,11 @@ public class UI {
 
     String inputFirstSimName = "";
 
+    String inputNamaRuangan = "";
+
     String inputText = "";
+
+    boolean inputTextDone = false;
 
     public boolean messageOn = false;
     public String message = "";
@@ -71,7 +75,7 @@ public class UI {
         } else if (gamePanel.gameState == gamePanel.upgradeRumahState){ // if game is in upgrade rumah
             drawUpgradeRumahScreen();
         } else if (gamePanel.gameState == gamePanel.inputTextState){ // if game is in input text
-            drawInputTextScreen("INPUT TEXT");
+            drawInputTextScreen("Input nama:");
         }
     }
 
@@ -656,10 +660,36 @@ public class UI {
         // draw window
         int x = getXforCenteredText(judul);
         x -= 3*gamePanel.tileSize;
-        int y = gamePanel.tileSize * 5;
+        int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2*x;
-        int height = gamePanel.screenHeight - y - gamePanel.tileSize*4;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize*5;
         drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText(judul);
+        y += gamePanel.tileSize + 5 ;
+        g2d.drawString(judul, x, y);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "(maks. 15 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize-10;
+        g2d.drawString(text, x, y);
+        
+
+        // draw input text
+        // x -= 40;
+        y +=  gamePanel.tileSize*2;
+        width = width - 2*gamePanel.tileSize+35;
+        height = gamePanel.tileSize;
+        g2d.fillRect(x, y, width, height);
+
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
+        g2d2.setColor(Color.BLACK);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d2.drawString(gamePanel.ui.inputText, x+20, y + gamePanel.tileSize-14);
+
     }
 
 

@@ -138,7 +138,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (currentMap == 0){
                 tileManager.draw(g2d, 999);
             } else {
-                tileManager.draw(g2d, 0);
+                tileManager.draw(g2d, sim.indexLocationRuangan);
             }
 
             // draw benda
@@ -179,6 +179,14 @@ public class GamePanel extends JPanel implements Runnable {
                 g2d.setColor(Color.white);
                 g2d.setFont(g2d.getFont().deriveFont(40f));
                 g2d.drawString("World Time: " + worldTime, 10, 50); 
+            }
+
+            // current location
+            if (keyHandler.checkCurrentLocation){
+                keyHandler.checkWorldTime = false;
+                g2d.setColor(Color.white);
+                g2d.setFont(g2d.getFont().deriveFont(40f));
+                g2d.drawString("Current Location: " + sim.currentLocation, 10, 50); 
             }
         }
 

@@ -1,7 +1,14 @@
+import java.util.*;;
+
 public class Tes {
     public static void main(String[] args) {
-        float x = 1.0f/12;
-        System.out.println(x);
+        List<Integer> x = new ArrayList<>();
+        
+        x.add(1);
+        x.add(3);
+        x.add(2);
+
+        System.out.println(x.indexOf(4));
         
     }
 }
