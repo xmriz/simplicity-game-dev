@@ -5,7 +5,7 @@ import javax.swing.*;
 
 import benda.Benda;
 import entity.*;
-import environment.EnvironmentManager;
+import Environment.EnvironmentManager;
 import map.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
     EnvironmentManager environmentManager = new EnvironmentManager(this); // create a new EnvironmentManager object
     Thread gameThread; // thread for the game
 
-    // ENTITY 
+    // ENTITY
     public Sim sim = new Sim(this, keyHandler);
     public Entity npc[][] = new Entity[maxMap][6]; // create an array of NPC objects
 
@@ -61,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int simInfoState = 4;
     public final int inventoryState = 5;
     public final int beliState = 6;
+    public final int menuState = 7;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the panel
@@ -70,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true); // set the panel to be focusable (so that it can receive key events)
     }
 
-    public void setupGame(){
+    public void setupGame() {
         gameState = titleState; // set the default game state to titleState
         assetSetter.setBenda(); // setup the benda
         assetSetter.setNPC(); // setup the assets
@@ -84,7 +85,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() { // the game loop
-        double drawInterval = 1000000000.0/fps; // 0.0167 seconds
+        double drawInterval = 1000000000.0 / fps; // 0.0167 seconds
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
@@ -98,7 +99,7 @@ public class GamePanel extends JPanel implements Runnable {
                 update();
                 repaint();
                 delta--;
-            }            
+            }
         }
     }
 
@@ -123,7 +124,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2d = (Graphics2D) g; // cast the Graphics object to Graphics2D
 
-        if (gameState == titleState){
+        if (gameState == titleState) {
             ui.draw(g2d);
         } else {
             // draw the background
@@ -153,7 +154,6 @@ public class GamePanel extends JPanel implements Runnable {
             // draw ui
             ui.draw(g2d);
         }
-
 
         g2d.dispose(); // dispose the Graphics2D object, freeing up memory
     }

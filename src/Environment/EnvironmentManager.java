@@ -1,4 +1,4 @@
-package environment;
+package Environment;
 
 import java.awt.Graphics2D;
 
@@ -14,15 +14,15 @@ public class EnvironmentManager {
         this.gamePanel = gamePanel;
     }
 
-    public void setup () {
+    public void setup() {
         lighting = new Lighting(gamePanel);
     }
 
-    public void update(){
+    public void update() {
         lighting.update();
     }
 
-    public void draw (Graphics2D g2d) {
+    public void draw(Graphics2D g2d) {
         lighting.draw(g2d);
     }
 }
