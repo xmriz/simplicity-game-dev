@@ -117,7 +117,7 @@ public class Sim extends Entity {
 
             // check for benda collision
             int bendaIndex = gamePanel.collisionChecker.checkBenda(this, true); // return the index of the benda that theplayer is colliding with
-            System.out.println(bendaIndex); // ngasih index benda yang disentuh
+            // System.out.println(bendaIndex); // ngasih index benda yang disentuh
             // TODO : bendaIndex buat interact dengan benda
             // pickUpObject(bendaIndex);                                                                                
 

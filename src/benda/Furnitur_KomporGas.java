@@ -6,7 +6,7 @@ public class Furnitur_KomporGas extends Furnitur{
     public Furnitur_KomporGas(){
         name = "Kompor Gas";
         image = setupImage("benda/furnitur/kompor_gas");
-        collision = false;
+        collision = true;
         dimensiX = 2;
         dimensiY = 1;
         harga = 100;

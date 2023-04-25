@@ -480,23 +480,29 @@ public class KeyHandler implements KeyListener {
                         gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.y = (y+1) * gamePanel.tileSize;
                         int horizontalCollision = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldX + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.width;
                         int verticalCollision = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldY + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.height;
-                        // check intersection dengan furnitur lain
-                        for (int i = 0; i < gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1; i++){
-                            Benda bendaR = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(i);
-                            Benda bendaT = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1);
-                            if (bendaR instanceof Furnitur && bendaT instanceof Furnitur){
-                                if (bendaR.solidArea.intersects(bendaT.solidArea) || horizontalCollision >= 9*gamePanel.tileSize || verticalCollision >= 9*gamePanel.tileSize){
-                                    gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.remove(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1));
-                                    gamePanel.sim.inventory.add(bendaT);
-                                    gamePanel.gameState = gamePanel.dialogState;
-                                    gamePanel.ui.currentDialog = "Tempat tidak cukup untuk meletakkan\nfurnitur!";
+                        Benda bendaT = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1);
+                        if (horizontalCollision >= 9*gamePanel.tileSize || verticalCollision >= 9*gamePanel.tileSize){
+                            gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.remove(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1));
+                            gamePanel.sim.inventory.add(bendaT);
+                            gamePanel.gameState = gamePanel.dialogState;
+                            gamePanel.ui.currentDialog = "Tempat tidak cukup untuk meletakkan\nfurnitur!";
+                        } else {
+                            // check intersection dengan furnitur lain
+                            for (int i = 0; i < gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1; i++){
+                                Benda bendaR = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(i);
+                                System.out.println(horizontalCollision);
+                                System.out.println(verticalCollision);
+                                
+                                if (bendaR instanceof Furnitur && bendaT instanceof Furnitur){
+                                    if (bendaR.solidArea.intersects(bendaT.solidArea)){
+                                        gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.remove(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1));
+                                        gamePanel.sim.inventory.add(bendaT);
+                                        gamePanel.gameState = gamePanel.dialogState;
+                                        gamePanel.ui.currentDialog = "Tempat tidak cukup untuk meletakkan\nfurnitur!";
+                                    }
                                 }
                             }
                         }
-                        // TODO : XXXXX
-
-
-
                         gamePanel.sim.inventory.remove(gamePanel.sim.tempInt);
                         gamePanel.sim.tempInt = -1;
                         // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldX = 2 *gamePanel.tileSize;

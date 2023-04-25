@@ -63,7 +63,7 @@ public class EventHandler {
                 } else if (hit(1,4,1,"any",gamePanel.sim.indexLocationRuangan)){ // atas
                     if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).up != null){
                         teleport(1,5, 8, gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).up));
-                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + ": " + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name;
+                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + " (" + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name + ")";
                         // gamePanel.sim.indexLocationRuangan = gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).up);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -74,7 +74,7 @@ public class EventHandler {
                 // } else if (hit(1,5,8,"any",gamePanel.sim.indexLocationRuangan)){ 
                 //     if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).down != null){
                 //         teleport(1,4, 1, gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).down));
-                //         gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + ": " + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name;
+                //         gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + " (" + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name;
                 //         // gamePanel.sim.indexLocationRuangan = gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).down);
                 //     } else {
                 //         gamePanel.gameState = gamePanel.dialogState;
@@ -84,7 +84,7 @@ public class EventHandler {
                 } else if (hit(1,1,5,"any",gamePanel.sim.indexLocationRuangan)) { // kiri
                     if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).left != null){
                         teleport(1,8, 4, gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).left));
-                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + ": " + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name;
+                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + " (" + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name + ")";
                         // gamePanel.sim.indexLocationRuangan = gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).left);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -94,7 +94,7 @@ public class EventHandler {
                 } else if (hit(1,8,4,"any",gamePanel.sim.indexLocationRuangan)) { // kanan
                     if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).right != null){
                         teleport(1,1, 5, gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).right));
-                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + ": " + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name;
+                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + " (" + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name + ")";
                         // gamePanel.sim.indexLocationRuangan = gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).right);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -106,7 +106,7 @@ public class EventHandler {
                 if (hit(1,4,1,"any",gamePanel.sim.indexLocationRuangan)){ // atas
                     if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).up != null){
                         teleport(1,5, 8, gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).up));
-                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + ": " + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name;
+                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + " (" + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name + ")";
                         // gamePanel.sim.indexLocationRuangan = gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).up);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -116,7 +116,7 @@ public class EventHandler {
                 } else if (hit(1,5,8,"any",gamePanel.sim.indexLocationRuangan)){ // bawah
                     if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).down != null){
                         teleport(1,4, 1, gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).down));
-                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + ": " + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name;
+                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + " (" + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name + ")";
                         // gamePanel.sim.indexLocationRuangan = gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).down);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -126,7 +126,7 @@ public class EventHandler {
                 } else if (hit(1,1,5,"any",gamePanel.sim.indexLocationRuangan)) { // kiri
                     if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).left != null){
                         teleport(1,8, 4, gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).left));
-                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + ": " + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name;
+                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + " (" + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name + ")";
                         // gamePanel.sim.indexLocationRuangan = gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).left);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -136,7 +136,7 @@ public class EventHandler {
                 } else if (hit(1,8,4,"any",gamePanel.sim.indexLocationRuangan)) { // kanan
                     if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).right != null){
                         teleport(1,1, 5, gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).right));
-                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + ": " + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name;
+                        gamePanel.sim.currentLocation = "Rumah " + gamePanel.sim.nama + " (" + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).name + ")";
                         // gamePanel.sim.indexLocationRuangan = gamePanel.sim.rumah.ruanganRumah.indexOf(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).right);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
