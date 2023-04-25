@@ -1,6 +1,5 @@
 package main;
 
-import benda.*;
 import entity.NPC_Kakek;
 import entity.NPC_Penjual;
 
@@ -23,14 +22,14 @@ public class AssetSetter {
 
         
         // position of the benda in the rumah
-        // sil : contoh nambah benda di ruangan pertama
-        gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[0] = new Furnitur_Toilet();
-        gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[0].worldX = 5 * gamePanel.tileSize;
-        gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[0].worldY = 5 * gamePanel.tileSize;
+        // sil : contoh nambah benda di ruangan utama
+        // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan.add(new Furnitur_Toilet());
+        // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[0].worldX = 5 * gamePanel.tileSize;
+        // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[0].worldY = 5 * gamePanel.tileSize;
 
-        gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1] = new Furnitur_KomporGas();
-        gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldX = 2 * gamePanel.tileSize;
-        gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldY = 3 * gamePanel.tileSize;
+        // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1] = new Furnitur_KomporGas();
+        // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldX = 2 * gamePanel.tileSize;
+        // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldY = 3 * gamePanel.tileSize;
     }
 
     public void setNPC() {

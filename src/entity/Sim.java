@@ -32,6 +32,9 @@ public class Sim extends Entity {
 
     public Rumah rumah;
 
+    // TEMPORARY VARIABLES
+    public int tempInt = -1;
+    public Benda tempBenda;
 
     public Sim(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
@@ -114,7 +117,8 @@ public class Sim extends Entity {
 
             // check for benda collision
             int bendaIndex = gamePanel.collisionChecker.checkBenda(this, true); // return the index of the benda that theplayer is colliding with
-            // tambah interact dengan benda
+            System.out.println(bendaIndex); // ngasih index benda yang disentuh
+            // TODO : bendaIndex buat interact dengan benda
             // pickUpObject(bendaIndex);                                                                                
 
             // check npc collision
@@ -208,10 +212,19 @@ public class Sim extends Entity {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Anda memakan " + makanan.name + ".\n" + "Kekenyangan bertambah " + makanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah " + kekenyangan + " poin.";
             } else if (selectedBenda instanceof Furnitur) {
-                // TODO : selesaikann -> ini bagian untuk interact dengan furnitur
-                // Furnitur furnitur = (Furnitur) selectedBenda;
-                // furnitur.use(this);
-                // inventory.remove(itemIndex);
+                if (gamePanel.currentMap == 0){
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Tidak dapat memasang furnitur di luar rumah!";
+                } else {
+                    tempInt = itemIndex;
+                    Furnitur furnitur = (Furnitur) selectedBenda;
+                    tempBenda = furnitur;
+                    gamePanel.gameState = gamePanel.inputKoordinatBendaState;
+                    // gamePanel.sim.rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.add(furnitur);
+                    // TODO : HUBUNGIN DENGAN KEY HANDLER
+                    
+                }
+
             } else if (selectedBenda instanceof Lampu){
                 if (selectedBenda == currentLight){ // lampu menyala
                     currentLight = null; // lampu mati

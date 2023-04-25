@@ -3,6 +3,8 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import benda.Benda;
+import benda.Furnitur;
 
 public class KeyHandler implements KeyListener {
 
@@ -182,9 +184,14 @@ public class KeyHandler implements KeyListener {
             upgradeRumahState(keyCode);
         }
 
-        // INPUT TEXT STATE
-        else if (gamePanel.gameState == gamePanel.inputTextState) {
+        // INPUT NAMA RUANGAN STATE
+        else if (gamePanel.gameState == gamePanel.inputNamaRuanganState) {
             inputNamaRuanganState(keyCode);
+        }
+
+        // INPUT KOORDINAT BENDA STATE
+        else if (gamePanel.gameState == gamePanel.inputKoordinatBendaState) {
+            inputKoordinatBendaState(keyCode);
         }
 
     }
@@ -415,13 +422,102 @@ public class KeyHandler implements KeyListener {
             }
         } else if (keyCode == KeyEvent.VK_ENTER) {
             // gamePanel.gameState = gamePanel.playState;
-            gamePanel.gameState = gamePanel.inputTextState;
-            // System.out.println(gamePanel.ui.inputTextDone);
+            gamePanel.gameState = gamePanel.inputNamaRuanganState;
         }
         // draw input box
         // if (gamePanel.ui.inputTextDone) {
 
         // }
+    }
+
+    public void inputKoordinatBendaState(int keyCode) {
+        // input name
+        if (gamePanel.ui.inputText.length() < 15) {
+            if (keyCode == KeyEvent.VK_1) {
+                gamePanel.ui.inputText += "1";
+            } else if (keyCode == KeyEvent.VK_2) {
+                gamePanel.ui.inputText += "2";
+            } else if (keyCode == KeyEvent.VK_3) {
+                gamePanel.ui.inputText += "3";
+            } else if (keyCode == KeyEvent.VK_4) {
+                gamePanel.ui.inputText += "4";
+            } else if (keyCode == KeyEvent.VK_5) {
+                gamePanel.ui.inputText += "5";
+            } else if (keyCode == KeyEvent.VK_6) {
+                gamePanel.ui.inputText += "6";
+            } else if (keyCode == KeyEvent.VK_COMMA) {
+                gamePanel.ui.inputText += ",";
+            }
+        }
+
+        if (keyCode == KeyEvent.VK_BACK_SPACE && gamePanel.ui.inputText.length() > 0) {
+            gamePanel.ui.inputText = gamePanel.ui.inputText.substring(0, gamePanel.ui.inputText.length() - 1);
+        }
+
+        if (keyCode == KeyEvent.VK_ENTER) {
+
+            if (gamePanel.ui.inputText.length() > 0) {
+                gamePanel.gameState = gamePanel.playState;
+
+                String input = gamePanel.ui.inputText;
+                int commaCounter = input.length() - input.replace(",", "").length();
+                if (input.charAt(0) == ',' || input.charAt(input.length() - 1) == ',' || commaCounter != 1) {
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Koordinat tidak valid!";
+                } else {
+                    int x = Integer.parseInt(input.substring(0, input.indexOf(",")));
+                    int y = Integer.parseInt(input.substring(input.indexOf(",") + 1));
+                    if (x < 1 || x > 6 || y < 1 || y > 6) {
+                        gamePanel.gameState = gamePanel.dialogState;
+                        gamePanel.ui.currentDialog = "Koordinat tidak valid!";
+                    } else {
+                        Furnitur tempFurnitur = (Furnitur) gamePanel.sim.tempBenda;
+                        gamePanel.sim.tempBenda = null;
+                        gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.add(tempFurnitur);
+                        gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldX = (x+1) * gamePanel.tileSize;
+                        gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.x = (x+1) * gamePanel.tileSize;
+                        gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldY = (y+1) * gamePanel.tileSize;
+                        gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.y = (y+1) * gamePanel.tileSize;
+                        int horizontalCollision = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldX + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.width;
+                        int verticalCollision = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldY + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.height;
+                        // check intersection dengan furnitur lain
+                        for (int i = 0; i < gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1; i++){
+                            Benda bendaR = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(i);
+                            Benda bendaT = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1);
+                            if (bendaR instanceof Furnitur && bendaT instanceof Furnitur){
+                                if (bendaR.solidArea.intersects(bendaT.solidArea) || horizontalCollision >= 9*gamePanel.tileSize || verticalCollision >= 9*gamePanel.tileSize){
+                                    gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.remove(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1));
+                                    gamePanel.sim.inventory.add(bendaT);
+                                    gamePanel.gameState = gamePanel.dialogState;
+                                    gamePanel.ui.currentDialog = "Tempat tidak cukup untuk meletakkan\nfurnitur!";
+                                }
+                            }
+                        }
+                        // TODO : XXXXX
+
+
+
+                        gamePanel.sim.inventory.remove(gamePanel.sim.tempInt);
+                        gamePanel.sim.tempInt = -1;
+                        // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldX = 2 *gamePanel.tileSize;
+                        // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldY = 3 *gamePanel.tileSize;
+                    }
+                }
+                gamePanel.ui.inputText = "";
+                gamePanel.ui.inputTextDone = false;
+            } else {
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
+                gamePanel.ui.commandNumber = 0;
+            }
+        }
+
+        if (keyCode == KeyEvent.VK_ESCAPE) {
+            gamePanel.ui.inputText = "";
+            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.commandNumber = 0;
+            gamePanel.gameState = gamePanel.inventoryState;
+        }
     }
 
     public void inputNamaRuanganState(int keyCode) {
@@ -512,7 +608,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.inputTextDone = false;
                 // CEK RUANGAN APA SAJA DALAM RUMAH SIM
                 // for (Ruangan s : gamePanel.sim.rumah.ruanganRumah){
-                //     System.out.println(s.name);
+                // System.out.println(s.name);
                 // }
             } else {
                 gamePanel.gameState = gamePanel.dialogState;

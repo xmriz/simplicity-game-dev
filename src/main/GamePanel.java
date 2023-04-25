@@ -62,7 +62,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int inventoryState = 5;
     public final int beliState = 6;
     public final int upgradeRumahState = 7;
-    public final int inputTextState = 8;
+    public final int inputNamaRuanganState = 8;
+    public final int inputKoordinatBendaState = 9;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the panel
@@ -149,9 +150,9 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             } else {
-                for (int i = 0; i < sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan.length; i++) {
-                    if (sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan[i] != null) {
-                        sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan[i].draw(g2d, this);
+                for (int i = 0; i < sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan.size(); i++) {
+                    if (sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan.get(i) != null) {
+                        sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan.get(i).draw(g2d, this);
                     }
                 }
             }
