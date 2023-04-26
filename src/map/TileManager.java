@@ -89,16 +89,16 @@ public class TileManager {
             if (gamePanel.currentMap == 0){
                 tileNum = mapTileNum[gamePanel.currentMap][worldCol][worldRow];
             } else{
-                tileNum = gamePanel.sim.rumah.ruanganRumah.get(indexRuangan).mapRuangan[worldCol][worldRow];
+                tileNum = gamePanel.currentSim.rumah.ruanganRumah.get(indexRuangan).mapRuangan[worldCol][worldRow];
             }
 
             int worldX = worldCol * gamePanel.tileSize; // position of the tile in the world 
             int worldY = worldRow * gamePanel.tileSize;
-            int screenX = worldX - gamePanel.sim.worldX + gamePanel.sim.screenX; // position of the tile in the screen
-            int screenY = worldY - gamePanel.sim.worldY + gamePanel.sim.screenY;
+            int screenX = worldX - gamePanel.currentSim.worldX + gamePanel.currentSim.screenX; // position of the tile in the screen
+            int screenY = worldY - gamePanel.currentSim.worldY + gamePanel.currentSim.screenY;
 
-            if (worldX - gamePanel.tileSize < gamePanel.sim.worldX + gamePanel.sim.screenX && worldX + gamePanel.tileSize > gamePanel.sim.worldX - gamePanel.sim.screenX
-                && worldY - gamePanel.tileSize < gamePanel.sim.worldY + gamePanel.sim.screenY && worldY + gamePanel.tileSize > gamePanel.sim.worldY - gamePanel.sim.screenY){
+            if (worldX - gamePanel.tileSize < gamePanel.currentSim.worldX + gamePanel.currentSim.screenX && worldX + gamePanel.tileSize > gamePanel.currentSim.worldX - gamePanel.currentSim.screenX
+                && worldY - gamePanel.tileSize < gamePanel.currentSim.worldY + gamePanel.currentSim.screenY && worldY + gamePanel.tileSize > gamePanel.currentSim.worldY - gamePanel.currentSim.screenY){
                     g2d.drawImage(tile[tileNum].image, screenX, screenY, null);
             }
 

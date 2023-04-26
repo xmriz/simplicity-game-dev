@@ -64,19 +64,19 @@ public class KeyHandler implements KeyListener {
                             gamePanel.ui.inputFirstSimName.length() - 1);
                 } else if (keyCode == KeyEvent.VK_ENTER) {
                     if (gamePanel.ui.commandNumber == 0) { // start game
-                        gamePanel.sim.nama = gamePanel.ui.inputFirstSimName;
-                        if (gamePanel.sim.nama.length() == 0) {
-                            gamePanel.sim.nama = "Sim";
+                        gamePanel.currentSim.nama = gamePanel.ui.inputFirstSimName;
+                        if (gamePanel.currentSim.nama.length() == 0) {
+                            gamePanel.currentSim.nama = "Sim";
                         } else {
                             // capitalize first letter
-                            String[] pecah = gamePanel.sim.nama.split(" ");
+                            String[] pecah = gamePanel.currentSim.nama.split(" ");
                             StringBuilder sb = new StringBuilder();
                             for (int i = 0; i < pecah.length; i++) {
                                 sb.append(pecah[i].substring(0, 1).toUpperCase());
                                 sb.append(pecah[i].substring(1).toLowerCase());
                                 sb.append(" ");
                             }
-                            gamePanel.sim.nama = sb.toString().trim();
+                            gamePanel.currentSim.nama = sb.toString().trim();
                         }
                         // set game state to play state
                         gamePanel.gameState = gamePanel.playState;
@@ -253,14 +253,14 @@ public class KeyHandler implements KeyListener {
         if (keyCode == KeyEvent.VK_ENTER) {
             gamePanel.gameState = gamePanel.playState;
             // change direction of player
-            // if (gamePanel.sim.direction == "up") {
-            // gamePanel.sim.direction = "down";
-            // } else if (gamePanel.sim.direction == "down") {
-            // gamePanel.sim.direction = "up";
-            // } else if (gamePanel.sim.direction == "left") {
-            // gamePanel.sim.direction = "right";
-            // } else if (gamePanel.sim.direction == "right") {
-            // gamePanel.sim.direction = "left";
+            // if (gamePanel.currentSim.direction == "up") {
+            // gamePanel.currentSim.direction = "down";
+            // } else if (gamePanel.currentSim.direction == "down") {
+            // gamePanel.currentSim.direction = "up";
+            // } else if (gamePanel.currentSim.direction == "left") {
+            // gamePanel.currentSim.direction = "right";
+            // } else if (gamePanel.currentSim.direction == "right") {
+            // gamePanel.currentSim.direction = "left";
             // }
         }
     }
@@ -274,53 +274,53 @@ public class KeyHandler implements KeyListener {
         } else if (keyCode == KeyEvent.VK_UP) {
             if (gamePanel.ui.simSlotRow > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow - 1, gamePanel.ui.simSlotCol);
-                if (index <= gamePanel.sim.inventory.size() - 1) {
+                if (index <= gamePanel.currentSim.inventory.size() - 1) {
                     gamePanel.ui.simSlotRow--;
                 }
             } else {
                 index = UI.getItemIndexOnSlot(2, gamePanel.ui.simSlotCol);
-                if (index <= gamePanel.sim.inventory.size() - 1) {
+                if (index <= gamePanel.currentSim.inventory.size() - 1) {
                     gamePanel.ui.simSlotRow = 2;
                 }
             }
         } else if (keyCode == KeyEvent.VK_DOWN) {
             if (gamePanel.ui.simSlotRow < 2) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow + 1, gamePanel.ui.simSlotCol);
-                if (index <= gamePanel.sim.inventory.size() - 1) {
+                if (index <= gamePanel.currentSim.inventory.size() - 1) {
                     gamePanel.ui.simSlotRow++;
                 }
             } else {
                 index = UI.getItemIndexOnSlot(0, gamePanel.ui.simSlotCol);
-                if (index <= gamePanel.sim.inventory.size() - 1) {
+                if (index <= gamePanel.currentSim.inventory.size() - 1) {
                     gamePanel.ui.simSlotRow = 0;
                 }
             }
         } else if (keyCode == KeyEvent.VK_LEFT) {
             if (gamePanel.ui.simSlotCol > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, gamePanel.ui.simSlotCol - 1);
-                if (index <= gamePanel.sim.inventory.size() - 1) {
+                if (index <= gamePanel.currentSim.inventory.size() - 1) {
                     gamePanel.ui.simSlotCol--;
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, 10);
-                if (index <= gamePanel.sim.inventory.size() - 1) {
+                if (index <= gamePanel.currentSim.inventory.size() - 1) {
                     gamePanel.ui.simSlotCol = 10;
                 }
             }
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             if (gamePanel.ui.simSlotCol < 10) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, gamePanel.ui.simSlotCol + 1);
-                if (index <= gamePanel.sim.inventory.size() - 1) {
+                if (index <= gamePanel.currentSim.inventory.size() - 1) {
                     gamePanel.ui.simSlotCol++;
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, 0);
-                if (index <= gamePanel.sim.inventory.size() - 1) {
+                if (index <= gamePanel.currentSim.inventory.size() - 1) {
                     gamePanel.ui.simSlotCol = 0;
                 }
             }
         } else if (keyCode == KeyEvent.VK_ENTER) {
-            gamePanel.sim.selectItem();
+            gamePanel.currentSim.selectItem();
             gamePanel.ui.simSlotRow = 0;
             gamePanel.ui.simSlotCol = 0;
         }
@@ -435,7 +435,7 @@ public class KeyHandler implements KeyListener {
 
     public void inputKoordinatBendaState(int keyCode) {
         // nyimpan tempBenda dari sim ke tempFurnitur
-        Furnitur tempFurnitur = (Furnitur) gamePanel.sim.tempBenda;
+        Furnitur tempFurnitur = (Furnitur) gamePanel.currentSim.tempBenda;
         // input name
         if (gamePanel.ui.inputText.length() < 15) {
             if (keyCode == KeyEvent.VK_1) {
@@ -462,15 +462,15 @@ public class KeyHandler implements KeyListener {
         if (keyCode == KeyEvent.VK_ENTER) {
             // check apakah dalam ruangan sudah terdapat furnitur yang sama
             boolean isSame = false;
-            for (int i = 0; i < gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size(); i++) {
-                if (gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(i).name.equals(tempFurnitur.name)) {
+            for (int i = 0; i < gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size(); i++) {
+                if (gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(i).name.equals(tempFurnitur.name)) {
                     isSame = true;
                 }
             }
             if (isSame){
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Sudah terdapat " + tempFurnitur.name + " di ruangan ini!";
-                gamePanel.sim.canObtainItem(tempFurnitur);
+                gamePanel.currentSim.canObtainItem(tempFurnitur);
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.inputText = "";
             } else {
@@ -484,7 +484,7 @@ public class KeyHandler implements KeyListener {
                     if (input.charAt(0) == ',' || input.charAt(input.length() - 1) == ',' || commaCounter != 1) {
                         gamePanel.gameState = gamePanel.dialogState;
                         gamePanel.ui.currentDialog = "Koordinat tidak valid!";
-                        gamePanel.sim.canObtainItem(tempFurnitur);
+                        gamePanel.currentSim.canObtainItem(tempFurnitur);
                         gamePanel.ui.commandNumber = 0;
                         gamePanel.ui.inputText = "";
                     } else {
@@ -494,7 +494,7 @@ public class KeyHandler implements KeyListener {
                         if (x < 1 || x > 6 || y < 1 || y > 6) {
                             gamePanel.gameState = gamePanel.dialogState;
                             gamePanel.ui.currentDialog = "Koordinat tidak valid!";
-                            gamePanel.sim.canObtainItem(tempFurnitur);
+                            gamePanel.currentSim.canObtainItem(tempFurnitur);
                             gamePanel.ui.commandNumber = 0;
                             gamePanel.ui.inputText = "";
                         } else {
@@ -504,7 +504,7 @@ public class KeyHandler implements KeyListener {
                             if (horizontalCollision >= 9*gamePanel.tileSize || verticalCollision >= 9*gamePanel.tileSize){
                                 gamePanel.gameState = gamePanel.dialogState;
                                 gamePanel.ui.currentDialog = "Furnitur menabrak dinding!";
-                                gamePanel.sim.canObtainItem(tempFurnitur);
+                                gamePanel.currentSim.canObtainItem(tempFurnitur);
                                 gamePanel.ui.commandNumber = 0;
                                 gamePanel.ui.inputText = "";
                             } else {
@@ -512,8 +512,8 @@ public class KeyHandler implements KeyListener {
                                 tempFurnitur.solidArea.x = (x+1) * gamePanel.tileSize;
                                 tempFurnitur.solidArea.y = (y+1) * gamePanel.tileSize;
                                 boolean intersect = false;
-                                for (int i = 0; i < gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size(); i++) {
-                                    if (tempFurnitur.solidArea.intersects(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(i).solidArea)) {
+                                for (int i = 0; i < gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size(); i++) {
+                                    if (tempFurnitur.solidArea.intersects(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(i).solidArea)) {
                                         intersect = true;
                                         break;
                                     }
@@ -521,34 +521,34 @@ public class KeyHandler implements KeyListener {
                                 if (intersect){
                                     gamePanel.gameState = gamePanel.dialogState;
                                     gamePanel.ui.currentDialog = "Furnitur tidak boleh bersebrangan!";
-                                    gamePanel.sim.canObtainItem(tempFurnitur);
+                                    gamePanel.currentSim.canObtainItem(tempFurnitur);
                                     gamePanel.ui.commandNumber = 0;
                                     gamePanel.ui.inputText = "";
                                 } else {
-                                    gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.add(tempFurnitur);
-                                    gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldX = (x+1) * gamePanel.tileSize;
-                                    gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldY = (y+1) * gamePanel.tileSize;
+                                    gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.add(tempFurnitur);
+                                    gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).worldX = (x+1) * gamePanel.tileSize;
+                                    gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).worldY = (y+1) * gamePanel.tileSize;
                                 }
                             }
                             // ------------------------------------BATAS------------------------------------
-                            // gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.add(tempFurnitur);
-                            // gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldX = (x+1) * gamePanel.tileSize;
-                            // gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.x = (x+1) * gamePanel.tileSize;
-                            // gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldY = (y+1) * gamePanel.tileSize;
-                            // gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.y = (y+1) * gamePanel.tileSize;
-                            // int horizontalCollision = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldX + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.width;
-                            // int verticalCollision = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldY + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.height;
-                            // Benda bendaT = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1);
+                            // gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.add(tempFurnitur);
+                            // gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).worldX = (x+1) * gamePanel.tileSize;
+                            // gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.x = (x+1) * gamePanel.tileSize;
+                            // gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).worldY = (y+1) * gamePanel.tileSize;
+                            // gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.y = (y+1) * gamePanel.tileSize;
+                            // int horizontalCollision = gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).worldX + gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.width;
+                            // int verticalCollision = gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).worldY + gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.height;
+                            // Benda bendaT = gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1);
                             // if (horizontalCollision >= 9*gamePanel.tileSize || verticalCollision >= 9*gamePanel.tileSize){
                             //     // check nabrak dinding
-                            //     gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.remove(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1));
-                            //     gamePanel.sim.canObtainItem(bendaT); // INI JANGAN DIHAPUS
+                            //     gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.remove(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1));
+                            //     gamePanel.currentSim.canObtainItem(bendaT); // INI JANGAN DIHAPUS
                             //     gamePanel.gameState = gamePanel.dialogState;
                             //     gamePanel.ui.currentDialog = "Tempat tidak cukup untuk meletakkan\nfurnitur!";
                             // } else {
                             //     // check intersection dengan furnitur lain
-                            //     for (int i = 0; i < gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1; i++){
-                            //         Benda bendaR = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(i);
+                            //     for (int i = 0; i < gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1; i++){
+                            //         Benda bendaR = gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(i);
                             //         // TODO : HAPUS DIBAWAH INI
                             //         // System.out.println(horizontalCollision);
                             //         // System.out.println(verticalCollision);
@@ -556,17 +556,17 @@ public class KeyHandler implements KeyListener {
 
                             //         if (bendaR instanceof Furnitur && bendaT instanceof Furnitur){
                             //             if (bendaR.solidArea.intersects(bendaT.solidArea)){
-                            //                 gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.remove(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1));
-                            //                 gamePanel.sim.canObtainItem(bendaT); // INI JANGAN DIHAPUS
+                            //                 gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.remove(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1));
+                            //                 gamePanel.currentSim.canObtainItem(bendaT); // INI JANGAN DIHAPUS
                             //                 gamePanel.gameState = gamePanel.dialogState;
                             //                 gamePanel.ui.currentDialog = "Tempat tidak cukup untuk meletakkan\nfurnitur atau Anda sudah memiliki\nfurnitur ini di ruangan!\nBerhasil memindahkan furnitur.";
                             //             }
                             //         }
                             //     }
                             // }
-                            // gamePanel.sim.tempInt = -1;
-                            // // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldX = 2 *gamePanel.tileSize;
-                            // // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldY = 3 *gamePanel.tileSize;
+                            // gamePanel.currentSim.tempInt = -1;
+                            // // gamePanel.currentSim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldX = 2 *gamePanel.tileSize;
+                            // // gamePanel.currentSim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldY = 3 *gamePanel.tileSize;
                             // ------------------------------------BATAS------------------------------------
                         }
                     }
@@ -575,7 +575,7 @@ public class KeyHandler implements KeyListener {
                 } else {
                     gamePanel.gameState = gamePanel.dialogState;
                     gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
-                    gamePanel.sim.canObtainItem(tempFurnitur);
+                    gamePanel.currentSim.canObtainItem(tempFurnitur);
                     gamePanel.ui.commandNumber = 0;
                     gamePanel.ui.inputText = "";
                 }
@@ -587,7 +587,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.inputTextDone = false;
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.inventoryState;
-            gamePanel.sim.canObtainItem(tempFurnitur); // INI JANGAN DIHAPUS
+            gamePanel.currentSim.canObtainItem(tempFurnitur); // INI JANGAN DIHAPUS
         }
     }
 
@@ -661,24 +661,24 @@ public class KeyHandler implements KeyListener {
                 // System.out.println("TEST1");
                 String input = gamePanel.ui.inputText;
                 if (gamePanel.ui.commandNumber == 0) {
-                    gamePanel.sim.rumah.upgradeRumah("up", input);
+                    gamePanel.currentSim.rumah.upgradeRumah("up", input);
                     gamePanel.ui.commandNumber = 0;
                 } else if (gamePanel.ui.commandNumber == 1) {
                     // System.out.println("TEST2");
-                    gamePanel.sim.rumah.upgradeRumah("down", input);
-                    // System.out.println(gamePanel.sim.rumah.ruanganRumah.get(0).down.name);
+                    gamePanel.currentSim.rumah.upgradeRumah("down", input);
+                    // System.out.println(gamePanel.currentSim.rumah.ruanganRumah.get(0).down.name);
                     gamePanel.ui.commandNumber = 0;
                 } else if (gamePanel.ui.commandNumber == 2) {
-                    gamePanel.sim.rumah.upgradeRumah("left", input);
+                    gamePanel.currentSim.rumah.upgradeRumah("left", input);
                     gamePanel.ui.commandNumber = 0;
                 } else if (gamePanel.ui.commandNumber == 3) {
-                    gamePanel.sim.rumah.upgradeRumah("right", input);
+                    gamePanel.currentSim.rumah.upgradeRumah("right", input);
                     gamePanel.ui.commandNumber = 0;
                 }
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.inputTextDone = false;
                 // CEK RUANGAN APA SAJA DALAM RUMAH SIM
-                // for (Ruangan s : gamePanel.sim.rumah.ruanganRumah){
+                // for (Ruangan s : gamePanel.currentSim.rumah.ruanganRumah){
                 // System.out.println(s.name);
                 // }
             } else {
@@ -788,19 +788,19 @@ public class KeyHandler implements KeyListener {
 //                             gamePanel.ui.inputFirstSimName.length() - 1);
 //                 } else if (keyCode == KeyEvent.VK_ENTER) {
 //                     if (gamePanel.ui.commandNumber == 0) { // start game
-//                         gamePanel.sim.nama = gamePanel.ui.inputFirstSimName;
-//                         if (gamePanel.sim.nama.length() == 0) {
-//                             gamePanel.sim.nama = "Sim";
+//                         gamePanel.currentSim.nama = gamePanel.ui.inputFirstSimName;
+//                         if (gamePanel.currentSim.nama.length() == 0) {
+//                             gamePanel.currentSim.nama = "Sim";
 //                         } else {
 //                             // capitalize first letter
-//                             String[] pecah = gamePanel.sim.nama.split(" ");
+//                             String[] pecah = gamePanel.currentSim.nama.split(" ");
 //                             StringBuilder sb = new StringBuilder();
 //                             for (int i = 0; i < pecah.length; i++) {
 //                                 sb.append(pecah[i].substring(0, 1).toUpperCase());
 //                                 sb.append(pecah[i].substring(1).toLowerCase());
 //                                 sb.append(" ");
 //                             }
-//                             gamePanel.sim.nama = sb.toString().trim();
+//                             gamePanel.currentSim.nama = sb.toString().trim();
 //                         }
 //                         // set game state to play state
 //                         gamePanel.gameState = gamePanel.playState;
@@ -883,7 +883,7 @@ public class KeyHandler implements KeyListener {
 //         }
 
 //         // SIM INFO STATE
-//         else if (gamePanel.gameState == gamePanel.simInfoState) {
+//         else if (gamePanel.gameState == gamePanel.currentSimInfoState) {
 //             simInfoState(keyCode);
 //         }
 
@@ -931,7 +931,7 @@ public class KeyHandler implements KeyListener {
 //         } else if (keyCode == KeyEvent.VK_P) {
 //             gamePanel.gameState = gamePanel.pauseState;
 //         } else if (keyCode == KeyEvent.VK_C) {
-//             gamePanel.gameState = gamePanel.simInfoState;
+//             gamePanel.gameState = gamePanel.currentSimInfoState;
 //         } else if (keyCode == KeyEvent.VK_I) {
 //             gamePanel.gameState = gamePanel.inventoryState;
 //         } else if (keyCode == KeyEvent.VK_B) {
@@ -977,14 +977,14 @@ public class KeyHandler implements KeyListener {
 //         if (keyCode == KeyEvent.VK_ENTER) {
 //             gamePanel.gameState = gamePanel.playState;
 //             // change direction of player
-//             // if (gamePanel.sim.direction == "up") {
-//             // gamePanel.sim.direction = "down";
-//             // } else if (gamePanel.sim.direction == "down") {
-//             // gamePanel.sim.direction = "up";
-//             // } else if (gamePanel.sim.direction == "left") {
-//             // gamePanel.sim.direction = "right";
-//             // } else if (gamePanel.sim.direction == "right") {
-//             // gamePanel.sim.direction = "left";
+//             // if (gamePanel.currentSim.direction == "up") {
+//             // gamePanel.currentSim.direction = "down";
+//             // } else if (gamePanel.currentSim.direction == "down") {
+//             // gamePanel.currentSim.direction = "up";
+//             // } else if (gamePanel.currentSim.direction == "left") {
+//             // gamePanel.currentSim.direction = "right";
+//             // } else if (gamePanel.currentSim.direction == "right") {
+//             // gamePanel.currentSim.direction = "left";
 //             // }
 //         }
 //     }
@@ -998,53 +998,53 @@ public class KeyHandler implements KeyListener {
 //         } else if (keyCode == KeyEvent.VK_UP) {
 //             if (gamePanel.ui.simSlotRow > 0) {
 //                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow - 1, gamePanel.ui.simSlotCol);
-//                 if (index <= gamePanel.sim.inventory.size() - 1) {
+//                 if (index <= gamePanel.currentSim.inventory.size() - 1) {
 //                     gamePanel.ui.simSlotRow--;
 //                 }
 //             } else {
 //                 index = UI.getItemIndexOnSlot(2, gamePanel.ui.simSlotCol);
-//                 if (index <= gamePanel.sim.inventory.size() - 1) {
+//                 if (index <= gamePanel.currentSim.inventory.size() - 1) {
 //                     gamePanel.ui.simSlotRow = 2;
 //                 }
 //             }
 //         } else if (keyCode == KeyEvent.VK_DOWN) {
 //             if (gamePanel.ui.simSlotRow < 2) {
 //                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow + 1, gamePanel.ui.simSlotCol);
-//                 if (index <= gamePanel.sim.inventory.size() - 1) {
+//                 if (index <= gamePanel.currentSim.inventory.size() - 1) {
 //                     gamePanel.ui.simSlotRow++;
 //                 }
 //             } else {
 //                 index = UI.getItemIndexOnSlot(0, gamePanel.ui.simSlotCol);
-//                 if (index <= gamePanel.sim.inventory.size() - 1) {
+//                 if (index <= gamePanel.currentSim.inventory.size() - 1) {
 //                     gamePanel.ui.simSlotRow = 0;
 //                 }
 //             }
 //         } else if (keyCode == KeyEvent.VK_LEFT) {
 //             if (gamePanel.ui.simSlotCol > 0) {
 //                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, gamePanel.ui.simSlotCol - 1);
-//                 if (index <= gamePanel.sim.inventory.size() - 1) {
+//                 if (index <= gamePanel.currentSim.inventory.size() - 1) {
 //                     gamePanel.ui.simSlotCol--;
 //                 }
 //             } else {
 //                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, 10);
-//                 if (index <= gamePanel.sim.inventory.size() - 1) {
+//                 if (index <= gamePanel.currentSim.inventory.size() - 1) {
 //                     gamePanel.ui.simSlotCol = 10;
 //                 }
 //             }
 //         } else if (keyCode == KeyEvent.VK_RIGHT) {
 //             if (gamePanel.ui.simSlotCol < 10) {
 //                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, gamePanel.ui.simSlotCol + 1);
-//                 if (index <= gamePanel.sim.inventory.size() - 1) {
+//                 if (index <= gamePanel.currentSim.inventory.size() - 1) {
 //                     gamePanel.ui.simSlotCol++;
 //                 }
 //             } else {
 //                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, 0);
-//                 if (index <= gamePanel.sim.inventory.size() - 1) {
+//                 if (index <= gamePanel.currentSim.inventory.size() - 1) {
 //                     gamePanel.ui.simSlotCol = 0;
 //                 }
 //             }
 //         } else if (keyCode == KeyEvent.VK_ENTER) {
-//             gamePanel.sim.selectItem();
+//             gamePanel.currentSim.selectItem();
 //             gamePanel.ui.simSlotRow = 0;
 //             gamePanel.ui.simSlotCol = 0;
 //         }
@@ -1158,7 +1158,7 @@ public class KeyHandler implements KeyListener {
 //     }
 
 //     public void inputKoordinatBendaState(int keyCode) {
-//         Furnitur tempFurnitur = (Furnitur) gamePanel.sim.tempBenda;
+//         Furnitur tempFurnitur = (Furnitur) gamePanel.currentSim.tempBenda;
 //         // input name
 //         if (gamePanel.ui.inputText.length() < 15) {
 //             if (keyCode == KeyEvent.VK_1) {
@@ -1199,25 +1199,25 @@ public class KeyHandler implements KeyListener {
 //                         gamePanel.gameState = gamePanel.dialogState;
 //                         gamePanel.ui.currentDialog = "Koordinat tidak valid!";
 //                     } else {
-//                         gamePanel.sim.tempBenda = null;
-//                         gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.add(tempFurnitur);
-//                         gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldX = (x+1) * gamePanel.tileSize;
-//                         gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.x = (x+1) * gamePanel.tileSize;
-//                         gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldY = (y+1) * gamePanel.tileSize;
-//                         gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.y = (y+1) * gamePanel.tileSize;
-//                         int horizontalCollision = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldX + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.width;
-//                         int verticalCollision = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).worldY + gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.height;
-//                         Benda bendaT = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1);
+//                         gamePanel.currentSim.tempBenda = null;
+//                         gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.add(tempFurnitur);
+//                         gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).worldX = (x+1) * gamePanel.tileSize;
+//                         gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.x = (x+1) * gamePanel.tileSize;
+//                         gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).worldY = (y+1) * gamePanel.tileSize;
+//                         gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.y = (y+1) * gamePanel.tileSize;
+//                         int horizontalCollision = gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).worldX + gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.width;
+//                         int verticalCollision = gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).worldY + gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1).solidArea.height;
+//                         Benda bendaT = gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1);
 //                         if (horizontalCollision >= 9*gamePanel.tileSize || verticalCollision >= 9*gamePanel.tileSize){
 //                             // check nabrak dinding
-//                             gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.remove(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1));
-//                             gamePanel.sim.canObtainItem(bendaT); // INI JANGAN DIHAPUS
+//                             gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.remove(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1));
+//                             gamePanel.currentSim.canObtainItem(bendaT); // INI JANGAN DIHAPUS
 //                             gamePanel.gameState = gamePanel.dialogState;
 //                             gamePanel.ui.currentDialog = "Tempat tidak cukup untuk meletakkan\nfurnitur!";
 //                         } else {
 //                             // check intersection dengan furnitur lain
-//                             for (int i = 0; i < gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1; i++){
-//                                 Benda bendaR = gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(i);
+//                             for (int i = 0; i < gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1; i++){
+//                                 Benda bendaR = gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(i);
 //                                 // TODO : HAPUS DIBAWAH INI
 //                                 // System.out.println(horizontalCollision);
 //                                 // System.out.println(verticalCollision);
@@ -1225,17 +1225,17 @@ public class KeyHandler implements KeyListener {
 
 //                                 if (bendaR instanceof Furnitur && bendaT instanceof Furnitur){
 //                                     if (bendaR.solidArea.intersects(bendaT.solidArea)){
-//                                         gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.remove(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.get(gamePanel.sim.rumah.ruanganRumah.get(gamePanel.sim.indexLocationRuangan).bendaRuangan.size() - 1));
-//                                         gamePanel.sim.canObtainItem(bendaT); // INI JANGAN DIHAPUS
+//                                         gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.remove(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.get(gamePanel.currentSim.rumah.ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).bendaRuangan.size() - 1));
+//                                         gamePanel.currentSim.canObtainItem(bendaT); // INI JANGAN DIHAPUS
 //                                         gamePanel.gameState = gamePanel.dialogState;
 //                                         gamePanel.ui.currentDialog = "Tempat tidak cukup untuk meletakkan\nfurnitur atau Anda sudah memiliki\nfurnitur ini di ruangan!\nBerhasil memindahkan furnitur.";
 //                                     }
 //                                 }
 //                             }
 //                         }
-//                         gamePanel.sim.tempInt = -1;
-//                         // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldX = 2 *gamePanel.tileSize;
-//                         // gamePanel.sim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldY = 3 *gamePanel.tileSize;
+//                         gamePanel.currentSim.tempInt = -1;
+//                         // gamePanel.currentSim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldX = 2 *gamePanel.tileSize;
+//                         // gamePanel.currentSim.rumah.ruanganRumah.get(0).bendaRuangan[1].worldY = 3 *gamePanel.tileSize;
 //                     }
 //                 }
 //                 gamePanel.ui.inputText = "";
@@ -1243,7 +1243,7 @@ public class KeyHandler implements KeyListener {
 //             } else {
 //                 gamePanel.gameState = gamePanel.dialogState;
 //                 gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
-//                 gamePanel.sim.canObtainItem(tempFurnitur);
+//                 gamePanel.currentSim.canObtainItem(tempFurnitur);
 //                 gamePanel.ui.commandNumber = 0;
 //             }
 //         }
@@ -1253,7 +1253,7 @@ public class KeyHandler implements KeyListener {
 //             gamePanel.ui.inputTextDone = false;
 //             gamePanel.ui.commandNumber = 0;
 //             gamePanel.gameState = gamePanel.inventoryState;
-//             gamePanel.sim.canObtainItem(tempFurnitur); // INI JANGAN DIHAPUS
+//             gamePanel.currentSim.canObtainItem(tempFurnitur); // INI JANGAN DIHAPUS
 //         }
 //     }
 
@@ -1327,24 +1327,24 @@ public class KeyHandler implements KeyListener {
 //                 // System.out.println("TEST1");
 //                 String input = gamePanel.ui.inputText;
 //                 if (gamePanel.ui.commandNumber == 0) {
-//                     gamePanel.sim.rumah.upgradeRumah("up", input);
+//                     gamePanel.currentSim.rumah.upgradeRumah("up", input);
 //                     gamePanel.ui.commandNumber = 0;
 //                 } else if (gamePanel.ui.commandNumber == 1) {
 //                     // System.out.println("TEST2");
-//                     gamePanel.sim.rumah.upgradeRumah("down", input);
-//                     // System.out.println(gamePanel.sim.rumah.ruanganRumah.get(0).down.name);
+//                     gamePanel.currentSim.rumah.upgradeRumah("down", input);
+//                     // System.out.println(gamePanel.currentSim.rumah.ruanganRumah.get(0).down.name);
 //                     gamePanel.ui.commandNumber = 0;
 //                 } else if (gamePanel.ui.commandNumber == 2) {
-//                     gamePanel.sim.rumah.upgradeRumah("left", input);
+//                     gamePanel.currentSim.rumah.upgradeRumah("left", input);
 //                     gamePanel.ui.commandNumber = 0;
 //                 } else if (gamePanel.ui.commandNumber == 3) {
-//                     gamePanel.sim.rumah.upgradeRumah("right", input);
+//                     gamePanel.currentSim.rumah.upgradeRumah("right", input);
 //                     gamePanel.ui.commandNumber = 0;
 //                 }
 //                 gamePanel.ui.inputText = "";
 //                 gamePanel.ui.inputTextDone = false;
 //                 // CEK RUANGAN APA SAJA DALAM RUMAH SIM
-//                 // for (Ruangan s : gamePanel.sim.rumah.ruanganRumah){
+//                 // for (Ruangan s : gamePanel.currentSim.rumah.ruanganRumah){
 //                 // System.out.println(s.name);
 //                 // }
 //             } else {

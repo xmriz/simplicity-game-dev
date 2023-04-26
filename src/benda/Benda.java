@@ -40,13 +40,13 @@ public abstract class Benda {
     }
 
     public void draw(Graphics2D g2d, GamePanel gamePanel) {
-        int screenX = worldX - gamePanel.sim.worldX + gamePanel.sim.screenX; // position of the tile in the screen
-        int screenY = worldY - gamePanel.sim.worldY + gamePanel.sim.screenY;
+        int screenX = worldX - gamePanel.currentSim.worldX + gamePanel.currentSim.screenX; // position of the tile in the screen
+        int screenY = worldY - gamePanel.currentSim.worldY + gamePanel.currentSim.screenY;
 
-        if (worldX - gamePanel.tileSize < gamePanel.sim.worldX + gamePanel.sim.screenX
-                && worldX + gamePanel.tileSize > gamePanel.sim.worldX - gamePanel.sim.screenX
-                && worldY - gamePanel.tileSize < gamePanel.sim.worldY + gamePanel.sim.screenY
-                && worldY + gamePanel.tileSize > gamePanel.sim.worldY - gamePanel.sim.screenY) {
+        if (worldX - gamePanel.tileSize < gamePanel.currentSim.worldX + gamePanel.currentSim.screenX
+                && worldX + gamePanel.tileSize > gamePanel.currentSim.worldX - gamePanel.currentSim.screenX
+                && worldY - gamePanel.tileSize < gamePanel.currentSim.worldY + gamePanel.currentSim.screenY
+                && worldY + gamePanel.tileSize > gamePanel.currentSim.worldY - gamePanel.currentSim.screenY) {
             g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
         }
     }

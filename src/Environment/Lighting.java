@@ -32,12 +32,12 @@ public class Lighting {
         darknessFilter = new BufferedImage(gamePanel.screenWidth, gamePanel.screenHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = (Graphics2D) darknessFilter.getGraphics();
 
-        if (gamePanel.sim.currentLight == null){
+        if (gamePanel.currentSim.currentLight == null){
             g2d.setColor(new Color(0, 0, 0, 0.7f));
         } else {
             // get the center x and y of the light circle
-            int centerX = gamePanel.sim.screenX + gamePanel.tileSize/2;
-            int centerY = gamePanel.sim.screenY + gamePanel.tileSize/2;
+            int centerX = gamePanel.currentSim.screenX + gamePanel.tileSize/2;
+            int centerY = gamePanel.currentSim.screenY + gamePanel.tileSize/2;
 
             // create a gradation effect within the light circle
             Color color[] = new Color[8];
@@ -108,9 +108,9 @@ public class Lighting {
         }
 
         // update the light source
-        if (gamePanel.sim.lightUpdated){
+        if (gamePanel.currentSim.lightUpdated){
             setLightSource();
-            gamePanel.sim.lightUpdated = false;
+            gamePanel.currentSim.lightUpdated = false;
         }
     }
 

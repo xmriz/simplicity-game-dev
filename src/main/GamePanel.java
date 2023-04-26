@@ -1,7 +1,12 @@
 package main;
 
-import java.awt.*;
 import javax.swing.*;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.*;
 
 import benda.Benda;
 import entity.*;
@@ -45,12 +50,20 @@ public class GamePanel extends JPanel implements Runnable {
     EnvironmentManager environmentManager = new EnvironmentManager(this); // create a new EnvironmentManager object
     Thread gameThread; // thread for the game
 
+    // Multisim
+    public List<Sim> listSim = new ArrayList<>();
+    public Sim currentSim;
+
     // ENTITY 
-    public Sim sim = new Sim(this, keyHandler);
+    // public Sim sim = new Sim(this, keyHandler);
     public Entity npc[][] = new Entity[maxMap][6]; // create an array of NPC objects
 
     // BENDA
-    public Benda benda[][] = new Benda[maxMap][8]; // create an array of Benda objects yang dapat diletakkan
+    // @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
+    public List<Benda>[] listRumah = new ArrayList[maxMap]; // create an array of ArrayList of Integer objects
+
+    // public Benda rumah[][] = new Benda[maxMap][8]; // create an array of Benda objects yang dapat diletakkan
 
     // GAME STATE
     public int gameState;
@@ -64,8 +77,14 @@ public class GamePanel extends JPanel implements Runnable {
     public final int upgradeRumahState = 7;
     public final int inputNamaRuanganState = 8;
     public final int inputKoordinatBendaState = 9;
+    public final int addSimState = 10;
 
     public GamePanel() {
+        for (int i = 0; i < maxMap; i++) {
+            listRumah[i] = new ArrayList<Benda>();
+        }
+        listSim.add(new Sim(this, keyHandler));
+        currentSim = listSim.get(0);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the panel
         this.setBackground(Color.black); // set the background color of the panel
         this.setDoubleBuffered(true); // set the panel to be double buffered
@@ -107,7 +126,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         if (gameState == playState) {
-            sim.update();
+            currentSim.update();
             for (int i = 0; i < npc[currentMap].length; i++) {
                 if (npc[currentMap][i] != null) {
                     npc[currentMap][i].update();
@@ -121,8 +140,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         // memastikan kalau sim berada di world indexRuangan 999
         if (currentMap == 0){
-            sim.indexLocationRuangan = 999;
-            sim.currentLocation = "World";
+            currentSim.indexLocationRuangan = 999;
+            currentSim.currentLocation = "World";
         }
     }
 
@@ -139,20 +158,20 @@ public class GamePanel extends JPanel implements Runnable {
             if (currentMap == 0){
                 tileManager.draw(g2d, 999);
             } else {
-                tileManager.draw(g2d, sim.indexLocationRuangan);
+                tileManager.draw(g2d, currentSim.indexLocationRuangan);
             }
 
             // draw benda
             if (currentMap == 0){
-                for (int i = 0; i < benda[currentMap].length; i++) {
-                    if (benda[currentMap][i] != null) {
-                        benda[currentMap][i].draw(g2d, this);
+                for (int i = 0; i < listRumah[currentMap].size(); i++) {
+                    if (listRumah[currentMap].get(i) != null) {
+                        listRumah[currentMap].get(i).draw(g2d, this);
                     }
                 }
             } else {
-                for (int i = 0; i < sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan.size(); i++) {
-                    if (sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan.get(i) != null) {
-                        sim.rumah.ruanganRumah.get(sim.indexLocationRuangan).bendaRuangan.get(i).draw(g2d, this);
+                for (int i = 0; i < currentSim.rumah.ruanganRumah.get(currentSim.indexLocationRuangan).bendaRuangan.size(); i++) {
+                    if (currentSim.rumah.ruanganRumah.get(currentSim.indexLocationRuangan).bendaRuangan.get(i) != null) {
+                        currentSim.rumah.ruanganRumah.get(currentSim.indexLocationRuangan).bendaRuangan.get(i).draw(g2d, this);
                     }
                 }
             }
@@ -165,7 +184,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             // draw sim
-            sim.draw(g2d);
+            currentSim.draw(g2d);
 
             // draw environment
             environmentManager.update();
@@ -187,7 +206,7 @@ public class GamePanel extends JPanel implements Runnable {
                 keyHandler.checkWorldTime = false;
                 g2d.setColor(Color.white);
                 g2d.setFont(g2d.getFont().deriveFont(40f));
-                g2d.drawString("Current Location: " + sim.currentLocation, 10, 700); 
+                g2d.drawString("Current Location: " + currentSim.currentLocation, 10, 700); 
             }
         }
 
