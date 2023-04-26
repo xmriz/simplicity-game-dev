@@ -87,6 +87,7 @@ public class GamePanel extends JPanel implements Runnable {
         listSim.add(new Sim(this, keyHandler));
         // TODO: HAPUS, HANYA UJI COBA
         listSim.add(new Sim(this, keyHandler));
+        listSim.get(1).nama = "Sim 2";
         listSim.get(1).rumah.colRumah = 8;
         listSim.get(1).rumah.rowRumah = 1;
         
@@ -175,9 +176,9 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             } else { // TODO: TANGANI DRAW BUKAN DI RUMAH SENDIRI
-                for (int i = 0; i < listSim.get(indexCurrentSim).rumah.ruanganRumah.get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.size(); i++) {
-                    if (listSim.get(indexCurrentSim).rumah.ruanganRumah.get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i) != null) {
-                        listSim.get(indexCurrentSim).rumah.ruanganRumah.get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).draw(g2d, this);
+                for (int i = 0; i < listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah.get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.size(); i++) {
+                    if (listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah.get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i) != null) {
+                        listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah.get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).draw(g2d, this);
                     }
                 }
             }

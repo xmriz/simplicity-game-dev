@@ -24,6 +24,7 @@ public class Sim extends Entity {
     public String currentLocation;
     public int indexLocationRuangan = 999;
     public int indexBendaYangDisentuh = 999;
+    public int indexRumahYangDimasuki = 999;
 
 
     KeyHandler keyHandler;
@@ -118,7 +119,8 @@ public class Sim extends Entity {
 
             // check for benda collision
             indexBendaYangDisentuh = gamePanel.collisionChecker.checkBenda(this, true); // return the index of the benda that theplayer is colliding with
-            System.out.println(indexBendaYangDisentuh); // ngasih index benda yang disentuh
+            indexRumahYangDimasuki = indexBendaYangDisentuh;
+            // System.out.println(indexBendaYangDisentuh); // ngasih index benda yang disentuh
             // TODO : indexBendaYangDisentuh buat interact dengan benda
             // pickUpObject(indexBendaYangDisentuh);                                                                                
 
