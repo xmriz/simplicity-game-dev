@@ -3,9 +3,7 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import benda.Benda;
 import benda.Furnitur;
-import benda.Rumah;
 import entity.Sim;
 
 public class KeyHandler implements KeyListener {
