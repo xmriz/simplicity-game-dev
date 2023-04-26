@@ -90,12 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
         for (int i = 0; i < maxMap; i++) {
             listRumah[i] = new ArrayList<Benda>();
         }
-        listSim.add(new Sim(this, keyHandler));
-        // TODO: HAPUS, HANYA UJI COBA
-        listSim.add(new Sim(this, keyHandler));
-        listSim.get(1).nama = "Sim 2";
-        listSim.get(1).rumah.colRumah = 8;
-        listSim.get(1).rumah.rowRumah = 1;
+        listSim.add(new Sim(this, keyHandler)); // nambah sim pertama
 
         indexCurrentSim = 0;
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the panel
