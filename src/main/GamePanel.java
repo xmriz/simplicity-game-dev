@@ -78,7 +78,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int inputNamaRuanganState = 8;
     public final int inputKoordinatBendaState = 9;
     public final int addSimState = 10;
-    public final int changeSimState = 11;
+    public final int inputKoordinatRumahSimState = 11;
+    public final int changeSimState = 12;
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {

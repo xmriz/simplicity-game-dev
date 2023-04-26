@@ -72,14 +72,16 @@ public class UI {
             drawInventoryScreen(gamePanel.listSim.get(gamePanel.indexCurrentSim), simSlotCol, simSlotRow);
         } else if (gamePanel.gameState == gamePanel.beliState) { // if game is in beli
             drawBeliScreen();
-        } else if (gamePanel.gameState == gamePanel.upgradeRumahState){ // if game is in upgrade rumah
+        } else if (gamePanel.gameState == gamePanel.upgradeRumahState) { // if game is in upgrade rumah
             drawUpgradeRumahScreen();
-        } else if (gamePanel.gameState == gamePanel.inputNamaRuanganState){ // if game is in input nama ruangan
+        } else if (gamePanel.gameState == gamePanel.inputNamaRuanganState) { // if game is in input nama ruangan
             drawInputNamaRuanganScreen("Input nama:");
-        } else if (gamePanel.gameState == gamePanel.inputKoordinatBendaState){ // if game is in input koordinat
+        } else if (gamePanel.gameState == gamePanel.inputKoordinatBendaState) { // if game is in input koordinat
             drawInputKoordinatScreen("Input koordinat:");
-        } else if (gamePanel.gameState == gamePanel.addSimState){
+        } else if (gamePanel.gameState == gamePanel.addSimState) {
             drawInputSimNameScreen("Input nama:");
+        } else if (gamePanel.gameState == gamePanel.inputKoordinatRumahSimState) {
+            drawInputKoordinatRumahSimScreen("Input koordinat:");
         }
     }
 
@@ -262,13 +264,16 @@ public class UI {
         value = String.valueOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).uang);
         g2d.drawString(" : " + value, tailX, textY);
         textY += lineHeight;
-        value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).kesehatan + "/" + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxKesehatan);
+        value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).kesehatan + "/"
+                + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxKesehatan);
         g2d.drawString(value, tailX, textY);
         textY += lineHeight;
-        value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).kekenyangan + "/" + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxKekenyangan);
+        value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).kekenyangan + "/"
+                + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxKekenyangan);
         g2d.drawString(value, tailX, textY);
         textY += lineHeight;
-        value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).mood + "/" + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxMood);
+        value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).mood + "/"
+                + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxMood);
         g2d.drawString(value, tailX, textY);
     }
 
@@ -287,11 +292,11 @@ public class UI {
 
         // inventory title
         int textYINVENTORY = frameY + gamePanel.tileSize;
-        if (entity instanceof Sim){
+        if (entity instanceof Sim) {
             // for sim
             final int textXINVENTORY = getXforCenteredText("INVENTORY");
             g2d.drawString("INVENTORY", textXINVENTORY, textYINVENTORY);
-        } else if (entity instanceof NPC_Penjual){
+        } else if (entity instanceof NPC_Penjual) {
             // for penjual
             final int textXINVENTORY = getXforCenteredText("SHOP");
             g2d.drawString("SHOP", textXINVENTORY, textYINVENTORY);
@@ -307,11 +312,11 @@ public class UI {
         // draw entity items
         for (int i = 0; i < entity.inventory.size(); i++) {
             // equip cursor
-            if (entity.inventory.get(i) == gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLight){
-                g2d.setColor(new Color(240,190,90));
+            if (entity.inventory.get(i) == gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLight) {
+                g2d.setColor(new Color(240, 190, 90));
                 g2d.fillRoundRect(slotX, slotY, gamePanel.tileSize, gamePanel.tileSize, 10, 10);
             }
-            
+
             g2d.drawImage(entity.inventory.get(i).image, slotX, slotY, gamePanel.tileSize, gamePanel.tileSize,
                     null);
 
@@ -321,17 +326,17 @@ public class UI {
                 int amountX, amountY;
 
                 String s = "" + entity.inventory.get(i).quantity;
-                amountX = getXforAlignToRightText(s, slotX+44);
+                amountX = getXforAlignToRightText(s, slotX + 44);
                 amountY = slotY + gamePanel.tileSize;
 
-                //shadow
+                // shadow
                 g2d.setColor(new Color(60, 60, 60));
                 g2d.drawString(s, amountX, amountY);
                 // number
                 g2d.setColor(Color.WHITE);
-                g2d.drawString(s, amountX-3, amountY-3);
+                g2d.drawString(s, amountX - 3, amountY - 3);
             }
-            
+
             slotX += slotSize;
             // jika kelipatan 11 maka pindah ke baris bawah
             if (i % 11 == 10) {
@@ -453,7 +458,7 @@ public class UI {
                     g2d.drawString(iValue, iTailX, textY);
 
                     textY = textYITEMINFO + lineHeight + 20;
-                } else if (entity.inventory .get(itemIndex) instanceof Lampu){
+                } else if (entity.inventory.get(itemIndex) instanceof Lampu) {
                     // write item info
                     g2d.drawString("Nama", textX, textY);
                     textY += lineHeight;
@@ -484,8 +489,8 @@ public class UI {
     }
 
     public void drawBeliScreen() {
-        switch(subState){
-            case 0: 
+        switch (subState) {
+            case 0:
                 drawBeliSelect();
                 break;
             case 1:
@@ -495,17 +500,17 @@ public class UI {
         gamePanel.keyHandler.enterPressed = false;
     }
 
-    public void drawBeliSelect(){
+    public void drawBeliSelect() {
         drawDialogScreen();
 
-        //DRAW WINDOW
+        // DRAW WINDOW
         int x = gamePanel.tileSize * 11;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.tileSize * 3;
         int height = (int) (gamePanel.tileSize * 2.5);
         drawSubWindow(x, y, width, height);
 
-        //DRAW TEXTS
+        // DRAW TEXTS
         x += gamePanel.tileSize;
         y += gamePanel.tileSize;
         g2d.drawString("Buy", x, y);
@@ -526,7 +531,7 @@ public class UI {
         }
     }
 
-    public void drawBeliBuy(){
+    public void drawBeliBuy() {
         drawInventoryScreen(gamePanel.npc[0][4], npcSlotCol, npcSlotRow);
 
         // draw hint window
@@ -535,7 +540,7 @@ public class UI {
         int width = gamePanel.tileSize * 6;
         int height = gamePanel.tileSize * 2;
         drawSubWindow(x, y, width, height);
-        g2d.drawString("[ESC/B] Back", x+24, y+60);
+        g2d.drawString("[ESC/B] Back", x + 24, y + 60);
 
         // draw sim uang window
         x = gamePanel.tileSize * 8;
@@ -543,16 +548,16 @@ public class UI {
         width = gamePanel.tileSize * 6;
         height = gamePanel.tileSize * 2;
         drawSubWindow(x, y, width, height);
-        g2d.drawString("Sim Uang : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).uang, x+24, y+60);
+        g2d.drawString("Sim Uang : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).uang, x + 24, y + 60);
 
         // buy an item
         int itemIndex = getItemIndexOnSlot(npcSlotRow, npcSlotCol);
-        if (itemIndex < gamePanel.npc[0][4].inventory.size()){
-            if (gamePanel.keyHandler.enterPressed){
-                if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof BahanMakanan){
+        if (itemIndex < gamePanel.npc[0][4].inventory.size()) {
+            if (gamePanel.keyHandler.enterPressed) {
+                if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof BahanMakanan) {
                     BahanMakanan makanan = (BahanMakanan) gamePanel.npc[0][4].inventory.get(itemIndex);
-                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= makanan.harga){
-                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(makanan)){
+                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= makanan.harga) {
+                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(makanan)) {
                             gamePanel.listSim.get(gamePanel.indexCurrentSim).uang -= makanan.harga;
                         } else {
                             subState = 0;
@@ -565,10 +570,10 @@ public class UI {
                         currentDialog = "Uang tidak cukup";
                         // drawDialogScreen(); // ini ga perlu karena sudah ada di atas
                     }
-                } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Furnitur){
+                } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Furnitur) {
                     Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].inventory.get(itemIndex);
-                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= furnitur.harga){
-                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(furnitur)){
+                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= furnitur.harga) {
+                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(furnitur)) {
                             gamePanel.listSim.get(gamePanel.indexCurrentSim).uang -= furnitur.harga;
                         } else {
                             subState = 0;
@@ -581,13 +586,14 @@ public class UI {
                         currentDialog = "Uang tidak cukup";
                         // drawDialogScreen(); // ini ga perlu karena sudah ada di atas
                     }
-                } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Lampu){
+                } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Lampu) {
                     Lampu lampu = (Lampu) gamePanel.npc[0][4].inventory.get(itemIndex);
-                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= lampu.harga){
-                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(lampu)){
+                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= lampu.harga) {
+                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(lampu)) {
                             gamePanel.listSim.get(gamePanel.indexCurrentSim).uang -= lampu.harga;
-                        } else{
-                            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() >= gamePanel.listSim.get(gamePanel.indexCurrentSim).maxInventorySize){
+                        } else {
+                            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory
+                                    .size() >= gamePanel.listSim.get(gamePanel.indexCurrentSim).maxInventorySize) {
                                 subState = 0;
                                 gamePanel.gameState = gamePanel.dialogState;
                                 currentDialog = "Inventory penuh";
@@ -609,97 +615,95 @@ public class UI {
 
     }
 
-
-    public void drawUpgradeRumahScreen(){
+    public void drawUpgradeRumahScreen() {
         // draw window
         int x = getXforCenteredText("UPGRADE RUMAH");
-        x -= 3*gamePanel.tileSize;
+        x -= 3 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
-        int width = gamePanel.screenWidth - 2*x;
-        int height = gamePanel.screenHeight - y - gamePanel.tileSize*4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 4;
         drawSubWindow(x, y, width, height);
 
         // draw UPGRADE RUMAH text
         g2d.setColor(Color.WHITE);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
         x = getXforCenteredText("UPGRADE RUMAH");
-        y += gamePanel.tileSize + 5 ;
+        y += gamePanel.tileSize + 5;
         g2d.drawString("UPGRADE RUMAH", x, y);
 
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
         String text = "UP";
-            x = getXforCenteredText(text);
-            y += 2*gamePanel.tileSize;
-            g2d.drawString(text, x, y);
-            if (commandNumber == 0) {
-                g2d.drawString(">", x - gamePanel.tileSize, y);
-            }
+        x = getXforCenteredText(text);
+        y += 2 * gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 0) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
 
         text = "DOWN";
-            x = getXforCenteredText(text);
-            y += gamePanel.tileSize;
-            g2d.drawString(text, x, y);
-            if (commandNumber == 1) {
-                g2d.drawString(">", x - gamePanel.tileSize, y);
-            }
-        
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 1) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
+
         text = "LEFT";
-            x = getXforCenteredText(text);
-            y += gamePanel.tileSize;
-            g2d.drawString(text, x, y);
-            if (commandNumber == 2) {
-                g2d.drawString(">", x - gamePanel.tileSize, y);
-            }
-        
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 2) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
+
         text = "RIGHT";
-            x = getXforCenteredText(text);
-            y += gamePanel.tileSize;
-            g2d.drawString(text, x, y);
-            if (commandNumber == 3) {
-                g2d.drawString(">", x - gamePanel.tileSize, y);
-            }
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 3) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
     }
 
-    public void drawInputKoordinatScreen(String judul){
+    public void drawInputKoordinatScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 3*gamePanel.tileSize;
+        x -= 3 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
-        int width = gamePanel.screenWidth - 2*x;
-        int height = gamePanel.screenHeight - y - gamePanel.tileSize*5;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
         drawSubWindow(x, y, width, height);
 
         // draw judul text
         g2d.setColor(Color.WHITE);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
         x = getXforCenteredText(judul);
-        y += gamePanel.tileSize + 5 ;
+        y += gamePanel.tileSize + 5;
         g2d.drawString(judul, x, y);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
         String text = "(format : x,y)";
         String textTemp = "(maks. 15 karakter)";
         x = getXforCenteredText(text);
-        y += gamePanel.tileSize-10;
+        y += gamePanel.tileSize - 10;
         g2d.drawString(text, x, y);
-        
-        
+
         // draw input text
         // x -= 40;
         x = getXforCenteredText(textTemp);
-        y +=  gamePanel.tileSize;
-        width = width - 2*gamePanel.tileSize+15;
+        y += gamePanel.tileSize;
+        width = width - 2 * gamePanel.tileSize + 15;
         height = gamePanel.tileSize;
         g2d.fillRect(x, y, width, height);
 
         Graphics2D g2d2 = (Graphics2D) g2d.create();
         g2d2.setColor(Color.BLACK);
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
-        g2d2.drawString(gamePanel.ui.inputText, x+10, y + gamePanel.tileSize-14);
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
 
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
         text = "Horizontal";
         x = getXforCenteredText(text);
-        y += 2*gamePanel.tileSize;
+        y += 2 * gamePanel.tileSize;
         g2d.drawString(text, x, y);
         if (commandNumber == 0) {
             g2d.drawString(">", x - gamePanel.tileSize, y);
@@ -714,52 +718,112 @@ public class UI {
 
     }
 
-
-    public void drawInputNamaRuanganScreen(String judul){
+    public void drawInputNamaRuanganScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 3*gamePanel.tileSize;
+        x -= 3 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
-        int width = gamePanel.screenWidth - 2*x;
-        int height = gamePanel.screenHeight - y - gamePanel.tileSize*5;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
         drawSubWindow(x, y, width, height);
 
         // draw judul text
         g2d.setColor(Color.WHITE);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
         x = getXforCenteredText(judul);
-        y += gamePanel.tileSize + 5 ;
+        y += gamePanel.tileSize + 5;
         g2d.drawString(judul, x, y);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
         String text = "(maks. 15 karakter)";
         x = getXforCenteredText(text);
-        y += gamePanel.tileSize-10;
+        y += gamePanel.tileSize - 10;
         g2d.drawString(text, x, y);
-        
 
         // draw input text
         // x -= 40;
-        y +=  gamePanel.tileSize*2;
-        width = width - 2*gamePanel.tileSize+15;
+        y += gamePanel.tileSize * 2;
+        width = width - 2 * gamePanel.tileSize + 15;
         height = gamePanel.tileSize;
         g2d.fillRect(x, y, width, height);
 
         Graphics2D g2d2 = (Graphics2D) g2d.create();
         g2d2.setColor(Color.BLACK);
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
-        g2d2.drawString(gamePanel.ui.inputText, x+10, y + gamePanel.tileSize-14);
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
     }
 
-
-    public void drawInputSimNameScreen(String judul){
+    public void drawInputSimNameScreen(String judul) {
         // TODO
+        int x = getXforCenteredText(judul);
+        x -= 3 * gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText(judul);
+        y += gamePanel.tileSize + 5;
+        g2d.drawString(judul, x, y);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "(maks. 15 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize - 10;
+        g2d.drawString(text, x, y);
+
+        // draw input text
+        // x -= 40;
+        y += gamePanel.tileSize * 2;
+        width = width - 2 * gamePanel.tileSize + 15;
+        height = gamePanel.tileSize;
+        g2d.fillRect(x, y, width, height);
+
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
+        g2d2.setColor(Color.BLACK);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+
     }
 
-    public void drawInputKoordinatRumahSimScreen(Sim sim){
+    public void drawInputKoordinatRumahSimScreen(String judul) {
         // TODO
+        // draw window
+        int x = getXforCenteredText(judul);
+        x -= 3 * gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText(judul);
+        y += gamePanel.tileSize + 5;
+        g2d.drawString(judul, x, y);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "(format : x,y)";
+        String textTemp = "(maks. 15 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize - 10;
+        g2d.drawString(text, x, y);
+
+        // draw input text
+        // x -= 40;
+        x = getXforCenteredText(textTemp);
+        y += gamePanel.tileSize * 2;
+        width = width - 2 * gamePanel.tileSize + 15;
+        height = gamePanel.tileSize;
+        g2d.fillRect(x, y, width, height);
+
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
+        g2d2.setColor(Color.BLACK);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
     }
 
-    
     public static int getItemIndexOnSlot(int slotRow, int slotCol) {
         int index = slotRow * 11 + slotCol;
         return index;
