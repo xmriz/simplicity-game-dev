@@ -175,7 +175,7 @@ public class GamePanel extends JPanel implements Runnable {
                         listRumah[currentMap].get(i).draw(g2d, this);
                     }
                 }
-            } else { // TODO: TANGANI DRAW BUKAN DI RUMAH SENDIRI
+            } else { 
                 for (int i = 0; i < listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah.get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.size(); i++) {
                     if (listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah.get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i) != null) {
                         listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah.get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).draw(g2d, this);

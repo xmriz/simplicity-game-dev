@@ -78,6 +78,8 @@ public class UI {
             drawInputNamaRuanganScreen("Input nama:");
         } else if (gamePanel.gameState == gamePanel.inputKoordinatBendaState){ // if game is in input koordinat
             drawInputKoordinatScreen("Input koordinat:");
+        } else if (gamePanel.gameState == gamePanel.addSimState){
+            drawInputSimNameScreen("Input nama:");
         }
     }
 
@@ -746,9 +748,16 @@ public class UI {
         g2d2.setColor(Color.BLACK);
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
         g2d2.drawString(gamePanel.ui.inputText, x+10, y + gamePanel.tileSize-14);
-
     }
 
+
+    public void drawInputSimNameScreen(String judul){
+        // TODO
+    }
+
+    public void drawInputKoordinatRumahSimScreen(Sim sim){
+        // TODO
+    }
 
     
     public static int getItemIndexOnSlot(int slotRow, int slotCol) {

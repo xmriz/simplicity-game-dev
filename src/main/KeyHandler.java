@@ -142,6 +142,8 @@ public class KeyHandler implements KeyListener {
             }
         }
 
+        
+
         // PLAY STATE
         if (gamePanel.gameState == gamePanel.playState) {
             playState(keyCode);
@@ -187,7 +189,14 @@ public class KeyHandler implements KeyListener {
             inputKoordinatBendaState(keyCode);
         }
 
+        // ADD SIM STATE
+        else if (gamePanel.gameState == gamePanel.addSimState) {
+            addSimState(keyCode);
+        }
+
     }
+
+
 
     public void playState(int keyCode) {
         if (keyCode == KeyEvent.VK_UP) {
@@ -232,8 +241,11 @@ public class KeyHandler implements KeyListener {
                 gamePanel.gameState = gamePanel.upgradeRumahState;
             }
 
+        } else if (keyCode == KeyEvent.VK_N){
+            gamePanel.gameState = gamePanel.addSimState;
         }
     }
+
 
     public void pauseState(int keyCode) {
         if (keyCode == KeyEvent.VK_P) {
@@ -435,7 +447,6 @@ public class KeyHandler implements KeyListener {
     }
 
     public void inputKoordinatBendaState(int keyCode) {
-        // TODO : BUAT IF ELSE UNTUK RUMAH SENDIRI DAN RUMAH SIM LAIN : SIM LAIN MASUK
         // DIALOG STATE
         // nyimpan tempBenda dari sim ke tempFurnitur
         Furnitur tempFurnitur = (Furnitur) gamePanel.listSim.get(gamePanel.indexCurrentSim).tempBenda;
@@ -767,6 +778,10 @@ public class KeyHandler implements KeyListener {
             gamePanel.gameState = gamePanel.upgradeRumahState;
         }
 
+    }
+
+    public void addSimState(int keyCode){
+        // TODO : SELSAIIN ADD SIM
     }
 
     @Override
