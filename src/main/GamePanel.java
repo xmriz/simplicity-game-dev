@@ -38,6 +38,8 @@ public class GamePanel extends JPanel implements Runnable {
     // SYSTEM
     TileManager tileManager = new TileManager(this); // create a new TileManager object
     public KeyHandler keyHandler = new KeyHandler(this); // create a new KeyHandler object
+    Sound music = new Sound();
+    Sound soundEffect = new Sound();
     AssetSetter assetSetter = new AssetSetter(this); // create a new AssetSetter object
     public CollisionChecker collisionChecker = new CollisionChecker(this); // create a new CollisionChecker object
     public UI ui = new UI(this); // create a new UI object
@@ -77,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setBenda(); // setup the benda
         assetSetter.setNPC(); // setup the assets
         environmentManager.setup(); // setup the environment
+        playMusic(0);
     }
 
     public void startGameThread() { // start the game thread
@@ -117,6 +120,21 @@ public class GamePanel extends JPanel implements Runnable {
         } else if (gameState == dialogState) {
             // do nothing
         }
+    }
+
+    public void playMusic(int i) {
+        music.setFile(i);
+        music.play();
+        music.loop();
+    }
+
+    public void stopMusic() {
+        music.stop();
+    }
+
+    public void playSoundEffect(int i) {
+        soundEffect.setFile(i);
+        soundEffect.play();
     }
 
     @Override

@@ -6,8 +6,8 @@ public class EventHandler {
 
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
-    
-    public EventHandler(GamePanel gamePanel){
+
+    public EventHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
 
         eventRect = new EventRect[gamePanel.maxMap][gamePanel.maxWorldCol][gamePanel.maxWorldRow];
@@ -15,7 +15,7 @@ public class EventHandler {
         int map = 0;
         int col = 0, row = 0;
 
-        while (map < gamePanel.maxMap && col < gamePanel.maxWorldCol && row < gamePanel.maxWorldRow){
+        while (map < gamePanel.maxMap && col < gamePanel.maxWorldCol && row < gamePanel.maxWorldRow) {
             eventRect[map][col][row] = new EventRect();
             eventRect[map][col][row].x = 23;
             eventRect[map][col][row].y = 23;
@@ -25,56 +25,56 @@ public class EventHandler {
             eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
 
             col++;
-            if (col == gamePanel.maxWorldCol){
+            if (col == gamePanel.maxWorldCol) {
                 col = 0;
                 row++;
 
-                if (row == gamePanel.maxWorldRow){
+                if (row == gamePanel.maxWorldRow) {
                     row = 0;
                     map++;
-                } 
+                }
             }
         }
     }
 
-    public void checkEvent(){
+    public void checkEvent() {
         // check if the sim is more than 1 tile away from the event
         int xDistance = Math.abs(gamePanel.sim.worldX - previousEventX);
         int yDistance = Math.abs(gamePanel.sim.worldY - previousEventY);
         int distance = Math.max(xDistance, yDistance);
-        if (distance > gamePanel.tileSize){
+        if (distance > gamePanel.tileSize) {
             canTouchEvent = true;
         }
-        
+
         // checking for some event
-        if (canTouchEvent){
-            if (hit(0,gamePanel.sim.rumah.dimensiX, gamePanel.sim.rumah.dimensiY, "any")){
-                teleport(1,2,2);
-            } else if (hit(1,5,8, "any")){
-                teleport(0,gamePanel.sim.rumah.dimensiX, gamePanel.sim.rumah.dimensiY);
+        if (canTouchEvent) {
+            if (hit(0, gamePanel.sim.rumah.dimensiX, gamePanel.sim.rumah.dimensiY, "any")) {
+                teleport(1, 2, 2);
+            } else if (hit(1, 5, 8, "any")) {
+                teleport(0, gamePanel.sim.rumah.dimensiX, gamePanel.sim.rumah.dimensiY);
             }
         }
     }
 
-    public boolean hit(int map, int col, int row, String reqDirection){
+    public boolean hit(int map, int col, int row, String reqDirection) {
         boolean hit = false;
-        
-        if (map == gamePanel.currentMap){
+
+        if (map == gamePanel.currentMap) {
             gamePanel.sim.solidArea.x = gamePanel.sim.worldX + gamePanel.sim.solidArea.x;
             gamePanel.sim.solidArea.y = gamePanel.sim.worldY + gamePanel.sim.solidArea.y;
-    
-            eventRect[map][col][row].x = col*gamePanel.tileSize + eventRect[map][col][row].x;
-            eventRect[map][col][row].y = row*gamePanel.tileSize + eventRect[map][col][row].y;
-    
-            if (gamePanel.sim.solidArea.intersects(eventRect[map][col][row]) && !eventRect[map][col][row].eventDone){
-                if (gamePanel.sim.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")){
+
+            eventRect[map][col][row].x = col * gamePanel.tileSize + eventRect[map][col][row].x;
+            eventRect[map][col][row].y = row * gamePanel.tileSize + eventRect[map][col][row].y;
+
+            if (gamePanel.sim.solidArea.intersects(eventRect[map][col][row]) && !eventRect[map][col][row].eventDone) {
+                if (gamePanel.sim.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
                     hit = true;
-    
+
                     previousEventX = gamePanel.sim.worldX;
-                    previousEventY = gamePanel.sim.worldY; 
+                    previousEventY = gamePanel.sim.worldY;
                 }
             }
-    
+
             gamePanel.sim.solidArea.x = gamePanel.sim.solidAreaDefaultX;
             gamePanel.sim.solidArea.y = gamePanel.sim.solidAreaDefaultY;
             eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
@@ -84,12 +84,13 @@ public class EventHandler {
         return hit;
     }
 
-    public void teleport(int map, int col, int row){
+    public void teleport(int map, int col, int row) {
         gamePanel.currentMap = map;
-        gamePanel.sim.worldX = col*gamePanel.tileSize;
-        gamePanel.sim.worldY = row*gamePanel.tileSize;
+        gamePanel.sim.worldX = col * gamePanel.tileSize;
+        gamePanel.sim.worldY = row * gamePanel.tileSize;
         previousEventX = gamePanel.sim.worldX;
         previousEventY = gamePanel.sim.worldY;
-        canTouchEvent = false;   
+        canTouchEvent = false;
+        gamePanel.playSoundEffect(2);
     }
 }

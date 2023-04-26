@@ -74,6 +74,8 @@ public class KeyHandler implements KeyListener {
                         }
                         // set game state to play state
                         gamePanel.gameState = gamePanel.playState;
+                        gamePanel.stopMusic();
+                        gamePanel.playMusic(1);
                     } else if (gamePanel.ui.commandNumber == 1) { // back to Title Screen 0
                         gamePanel.ui.titleScreenState = 0;
                         gamePanel.ui.commandNumber = 0;
@@ -300,19 +302,50 @@ public class KeyHandler implements KeyListener {
             if (keyCode == KeyEvent.VK_DOWN) {
                 gamePanel.ui.commandNumber++;
             } else if (keyCode == KeyEvent.VK_UP) {
-                gamePanel.ui.commandNumber = 2;
+                gamePanel.ui.commandNumber = 5;
+            } else if (keyCode == KeyEvent.VK_LEFT) {
+                if (gamePanel.music.volumeScale > 0) {
+                    gamePanel.music.volumeScale--;
+                    gamePanel.music.checkVolume();
+                }
+            } else if (keyCode == KeyEvent.VK_RIGHT) {
+                if (gamePanel.music.volumeScale < 5) {
+                    gamePanel.music.volumeScale++;
+                    gamePanel.music.checkVolume();
+                }
             }
-        } else if (gamePanel.ui.commandNumber == 2) {
+        } else if (gamePanel.ui.commandNumber == 4) {
             if (keyCode == KeyEvent.VK_UP) {
                 gamePanel.ui.commandNumber--;
             } else if (keyCode == KeyEvent.VK_DOWN) {
-                gamePanel.ui.commandNumber = 0;
+                gamePanel.ui.commandNumber++;
             } else if (keyCode == KeyEvent.VK_ENTER) {
                 gamePanel.gameState = gamePanel.titleState;
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.titleScreenState = 0;
             }
+        } else if (gamePanel.ui.commandNumber == 5) {
+            if (keyCode == KeyEvent.VK_UP) {
+                gamePanel.ui.commandNumber--;
+            } else if (keyCode == KeyEvent.VK_DOWN) {
+                gamePanel.ui.commandNumber = 0;
+            } else if (keyCode == KeyEvent.VK_ENTER) {
+                gamePanel.gameState = gamePanel.playState;
+                gamePanel.ui.commandNumber = 0;
+            }
         } else if (gamePanel.ui.commandNumber == 1) {
+            if (keyCode == KeyEvent.VK_UP) {
+                gamePanel.ui.commandNumber--;
+            } else if (keyCode == KeyEvent.VK_DOWN) {
+                gamePanel.ui.commandNumber++;
+            }
+        } else if (gamePanel.ui.commandNumber == 2) {
+            if (keyCode == KeyEvent.VK_UP) {
+                gamePanel.ui.commandNumber--;
+            } else if (keyCode == KeyEvent.VK_DOWN) {
+                gamePanel.ui.commandNumber++;
+            }
+        } else if (gamePanel.ui.commandNumber == 3) {
             if (keyCode == KeyEvent.VK_UP) {
                 gamePanel.ui.commandNumber--;
             } else if (keyCode == KeyEvent.VK_DOWN) {
