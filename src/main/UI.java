@@ -702,6 +702,13 @@ public class UI {
         if (commandNumber == 0) {
             g2d.drawString(">", x - gamePanel.tileSize, y);
         }
+        text = "Vertikal";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 1) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
 
     }
 

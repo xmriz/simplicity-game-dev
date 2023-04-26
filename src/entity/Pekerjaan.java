@@ -25,7 +25,7 @@ public class Pekerjaan {
         this.namaPekerjaan=namaPekerjaan;
     }
 
-    public void kerja (String namaPekerjaan,int lama) throws Exception{
+    public void kerja (String namaPekerjaan,int lama){
         int tempgaji=0;
         int repeat = lama/4;
         switch (namaPekerjaan){
@@ -53,7 +53,7 @@ public class Pekerjaan {
             for(int i=0;i<repeat;i++){
                 this.gaji+=tempgaji;
             }
-            Thread.sleep(lama*60000);
+            // Thread.sleep(lama*60000);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }

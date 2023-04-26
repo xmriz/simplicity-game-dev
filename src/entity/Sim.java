@@ -214,10 +214,15 @@ public class Sim extends Entity {
             } else if (selectedBenda instanceof Furnitur) {
                 if (gamePanel.currentMap == 0){
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Tidak dapat memasang furnitur di luar rumah!";
+                    gamePanel.ui.currentDialog = "Tidak dapat memasang furnitur di luar\nrumah!";
                 } else {
                     tempInt = itemIndex;
                     Furnitur furnitur = (Furnitur) selectedBenda;
+                    if (furnitur.quantity > 1){
+                        furnitur.quantity--;
+                    } else {
+                        inventory.remove(itemIndex);
+                    }
                     tempBenda = furnitur;
                     gamePanel.gameState = gamePanel.inputKoordinatBendaState;
                     // gamePanel.sim.rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.add(furnitur);
@@ -260,6 +265,7 @@ public class Sim extends Entity {
             } else {
                 if (inventory.size() < maxInventorySize){
                     inventory.add(item);
+                    inventory.get(inventory.size()-1).quantity = 1;
                     canObtain = true;
                 }
             }
@@ -274,12 +280,14 @@ public class Sim extends Entity {
             } else {
                 if (inventory.size() < maxInventorySize){
                     inventory.add(item);
+                    inventory.get(inventory.size()-1).quantity = 1;
                     canObtain = true;
                 }
             }
         } else { // not stackable
             if (inventory.size() < maxInventorySize){
                 inventory.add(item);
+                inventory.get(inventory.size()-1).quantity = 1;
                 canObtain = true;
             }
         }

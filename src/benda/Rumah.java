@@ -39,14 +39,21 @@ public class Rumah extends Benda {
                 ruanganRumah.add(ruangan);
             }
         } else if (posisi == "down") {
-            if (ruanganRumah.get(gamePanel.sim.indexLocationRuangan).down != null) {
+            if (gamePanel.sim.indexLocationRuangan == 0) {
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Ruangan di bawah sudah ada!";
+                gamePanel.ui.currentDialog = "Tidak bisa membuat ruangan di bawah\nruangan utama!";
+                return;
             } else {
-                ruanganRumah.get(gamePanel.sim.indexLocationRuangan).down = ruangan;
-                ruangan.up = ruanganRumah.get(gamePanel.sim.indexLocationRuangan);
-                ruanganRumah.add(ruangan);
+                if (ruanganRumah.get(gamePanel.sim.indexLocationRuangan).down != null) {
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Ruangan di bawah sudah ada!";
+                } else {
+                    ruanganRumah.get(gamePanel.sim.indexLocationRuangan).down = ruangan;
+                    ruangan.up = ruanganRumah.get(gamePanel.sim.indexLocationRuangan);
+                    ruanganRumah.add(ruangan);
+                }
             }
+
         } else if (posisi == "left") {
             if (ruanganRumah.get(gamePanel.sim.indexLocationRuangan).left != null) {
                 gamePanel.gameState = gamePanel.dialogState;

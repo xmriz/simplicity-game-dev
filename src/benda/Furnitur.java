@@ -14,6 +14,11 @@ public abstract class Furnitur extends Benda{
         stackable = true;
     }
 
+    // bakal di override di class turunannya
+    public void interact(){
+
+    }
+
     @Override
     public void draw(Graphics2D g2d, GamePanel gamePanel) {
         int screenX = worldX - gamePanel.sim.worldX + gamePanel.sim.screenX; // position of the tile in the screen
