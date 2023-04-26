@@ -49,6 +49,15 @@ public class EventHandler {
         
         // checking for some event
         if (canTouchEvent){
+            // for (int i = 0; i < gamePanel.listSim.size(); i++){
+            //     if (gamePanel.currentMap == 0){
+            //         if (hit(0,gamePanel.listSim.get(i).rumah.colRumah, gamePanel.listSim.get(i).rumah.rowRumah, "any",999)){
+            //             teleport(1,5,8,0);
+            //             gamePanel.listSim.get(i).indexLocationRuangan = 0;
+            //             gamePanel.listSim.get(i).currentLocation = "Rumah " + gamePanel.listSim.get(i).nama + " (" + gamePanel.listSim.get(i).rumah.ruanganRumah.get(gamePanel.listSim.get(i).indexLocationRuangan).name + ")";
+            //         }    
+            //     }
+            // }
             if (gamePanel.currentMap == 0){
                 if (hit(0,gamePanel.currentSim.rumah.colRumah, gamePanel.currentSim.rumah.rowRumah, "any",999)){
                     teleport(1,5,8,0);

@@ -65,11 +65,6 @@ public class AssetSetter {
         gamePanel.npc[mapNumber][i].worldY = 6 * gamePanel.tileSize;
         i++;
         
-        gamePanel.npc[mapNumber][i] = new NPC_Penjual(gamePanel);
-        gamePanel.npc[mapNumber][i].worldX = 7 * gamePanel.tileSize;
-        gamePanel.npc[mapNumber][i].worldY = 7 * gamePanel.tileSize;
-        i++;
-        
         // MAP 2
         mapNumber = 1;
     }
