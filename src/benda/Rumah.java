@@ -30,46 +30,46 @@ public class Rumah extends Benda {
         Ruangan ruangan = new Ruangan(gamePanel);
         ruangan.name = nama;
         if (posisi == "up") {
-            if (ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).up != null) {
+            if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up != null) {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Ruangan di atas sudah ada!";
             } else {
-                ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).up = ruangan;
-                ruangan.down = ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan);
+                ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up = ruangan;
+                ruangan.down = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                 ruanganRumah.add(ruangan);
             }
         } else if (posisi == "down") {
-            if (gamePanel.currentSim.indexLocationRuangan == 0) {
+            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan == 0) {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Tidak bisa membuat ruangan di bawah\nruangan utama!";
                 return;
             } else {
-                if (ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).down != null) {
+                if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down != null) {
                     gamePanel.gameState = gamePanel.dialogState;
                     gamePanel.ui.currentDialog = "Ruangan di bawah sudah ada!";
                 } else {
-                    ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).down = ruangan;
-                    ruangan.up = ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan);
+                    ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down = ruangan;
+                    ruangan.up = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                     ruanganRumah.add(ruangan);
                 }
             }
 
         } else if (posisi == "left") {
-            if (ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).left != null) {
+            if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left != null) {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Ruangan di kiri sudah ada!";
             } else {
-                ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).left = ruangan;
-                ruangan.right = ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan);
+                ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left = ruangan;
+                ruangan.right = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                 ruanganRumah.add(ruangan);
             }
         } else if (posisi == "right") {
-            if (ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).right != null) {
+            if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right != null) {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Ruangan di kanan sudah ada!";
             } else {
-                ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan).right = ruangan;
-                ruangan.left = ruanganRumah.get(gamePanel.currentSim.indexLocationRuangan);
+                ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right = ruangan;
+                ruangan.left = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                 ruanganRumah.add(ruangan);
             }
         }

@@ -32,12 +32,12 @@ public class Lighting {
         darknessFilter = new BufferedImage(gamePanel.screenWidth, gamePanel.screenHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = (Graphics2D) darknessFilter.getGraphics();
 
-        if (gamePanel.currentSim.currentLight == null){
+        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLight == null){
             g2d.setColor(new Color(0, 0, 0, 0.7f));
         } else {
             // get the center x and y of the light circle
-            int centerX = gamePanel.currentSim.screenX + gamePanel.tileSize/2;
-            int centerY = gamePanel.currentSim.screenY + gamePanel.tileSize/2;
+            int centerX = gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX + gamePanel.tileSize/2;
+            int centerY = gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY + gamePanel.tileSize/2;
 
             // create a gradation effect within the light circle
             Color color[] = new Color[8];
@@ -108,9 +108,11 @@ public class Lighting {
         }
 
         // update the light source
-        if (gamePanel.currentSim.lightUpdated){
+        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).lightUpdated){
             setLightSource();
-            gamePanel.currentSim.lightUpdated = false;
+            gamePanel.listSim.get(gamePanel.indexCurrentSim).lightUpdated = false;
+            // TODO : klw sim lain ikut keubah errornya disini
+            // gamePanel.listSim.get(gamePanel.listSim.indexOf(gamePanel.currentSim)).lightUpdated = false;
         }
     }
 

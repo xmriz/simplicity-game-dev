@@ -89,16 +89,16 @@ public class TileManager {
             if (gamePanel.currentMap == 0){
                 tileNum = mapTileNum[gamePanel.currentMap][worldCol][worldRow];
             } else{
-                tileNum = gamePanel.currentSim.rumah.ruanganRumah.get(indexRuangan).mapRuangan[worldCol][worldRow];
+                tileNum = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(indexRuangan).mapRuangan[worldCol][worldRow];
             }
 
             int worldX = worldCol * gamePanel.tileSize; // position of the tile in the world 
             int worldY = worldRow * gamePanel.tileSize;
-            int screenX = worldX - gamePanel.currentSim.worldX + gamePanel.currentSim.screenX; // position of the tile in the screen
-            int screenY = worldY - gamePanel.currentSim.worldY + gamePanel.currentSim.screenY;
+            int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX; // position of the tile in the screen
+            int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY;
 
-            if (worldX - gamePanel.tileSize < gamePanel.currentSim.worldX + gamePanel.currentSim.screenX && worldX + gamePanel.tileSize > gamePanel.currentSim.worldX - gamePanel.currentSim.screenX
-                && worldY - gamePanel.tileSize < gamePanel.currentSim.worldY + gamePanel.currentSim.screenY && worldY + gamePanel.tileSize > gamePanel.currentSim.worldY - gamePanel.currentSim.screenY){
+            if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
+                && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY){
                     g2d.drawImage(tile[tileNum].image, screenX, screenY, null);
             }
 

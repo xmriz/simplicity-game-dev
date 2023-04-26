@@ -57,7 +57,7 @@ public abstract class Entity {
             dialogCounter = 0;
         }
 
-        switch(gamePanel.currentSim.direction){
+        switch(gamePanel.listSim.get(gamePanel.indexCurrentSim).direction){
             case "up":
                 direction = "down";
                 break;
@@ -111,11 +111,11 @@ public abstract class Entity {
 
     public void draw(Graphics2D g2d){
         BufferedImage image = null;
-        int screenX = worldX - gamePanel.currentSim.worldX + gamePanel.currentSim.screenX; // position of the tile in the screen
-        int screenY = worldY - gamePanel.currentSim.worldY + gamePanel.currentSim.screenY;
+        int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX; // position of the tile in the screen
+        int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY;
 
-        if (worldX - gamePanel.tileSize < gamePanel.currentSim.worldX + gamePanel.currentSim.screenX && worldX + gamePanel.tileSize > gamePanel.currentSim.worldX - gamePanel.currentSim.screenX
-            && worldY - gamePanel.tileSize < gamePanel.currentSim.worldY + gamePanel.currentSim.screenY && worldY + gamePanel.tileSize > gamePanel.currentSim.worldY - gamePanel.currentSim.screenY){
+        if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
+            && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY){
 
                 switch (direction) {
                     case "up":
