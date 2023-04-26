@@ -644,7 +644,7 @@ public class UI {
             int yRect = y - 24;
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
             g2d.drawRect(xRect, yRect, 120, 24);
-            int volumeWidth = 24 * gamePanel.music.volumeScale;
+            int volumeWidth = 24 * gamePanel.soundEffect.volumeScale;
             g2d.fillRect(xRect, yRect, volumeWidth, 24);
             if (gamePanel.keyHandler.enterPressed) {
                 commandNumber = 0;
@@ -699,19 +699,38 @@ public class UI {
 
     public void drawHelpScreen() {
         // create frame
-        int frameX = gamePanel.tileSize * 5;
+        int frameX = gamePanel.tileSize * 4;
         int frameY = gamePanel.tileSize * 3;
-        int frameWidth = gamePanel.screenWidth - gamePanel.tileSize * 10;
+        int frameWidth = gamePanel.screenWidth - gamePanel.tileSize * 8;
         int frameHeight = gamePanel.screenHeight - gamePanel.tileSize * 6;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
-        // text
-        g2d.setFont(g2d.getFont().deriveFont(40f));
-        String title = "MENU";
-        int x = gamePanel.screenWidth / 2 - gamePanel.tileSize / (1 + 1 / 2);
+        // title
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+        String text = "HELP";
+        int x = getXforCenteredText(text);
         int y = gamePanel.tileSize * 4;
         g2d.setColor(Color.WHITE);
-        g2d.drawString(title, x, y);
+        g2d.drawString(text, x, y);
+
+        // texts
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+        x = gamePanel.tileSize * 5;
+        text = "T: Beli Barang";
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+
+        text = "B: Melihat Inventory";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+
+        text = "U: Upgrade Rumah";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+
+        text = "C: Melihat Sim Info";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
     }
 
     public static int getItemIndexOnSlot(int slotRow, int slotCol) {

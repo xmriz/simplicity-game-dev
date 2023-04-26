@@ -338,12 +338,23 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.commandNumber--;
             } else if (keyCode == KeyEvent.VK_DOWN) {
                 gamePanel.ui.commandNumber++;
+            } else if (keyCode == KeyEvent.VK_LEFT) {
+                if (gamePanel.soundEffect.volumeScale > 0) {
+                    gamePanel.soundEffect.volumeScale--;
+                }
+            } else if (keyCode == KeyEvent.VK_RIGHT) {
+                if (gamePanel.soundEffect.volumeScale < 5) {
+                    gamePanel.soundEffect.volumeScale++;
+                }
             }
         } else if (gamePanel.ui.commandNumber == 2) {
             if (keyCode == KeyEvent.VK_UP) {
                 gamePanel.ui.commandNumber--;
             } else if (keyCode == KeyEvent.VK_DOWN) {
                 gamePanel.ui.commandNumber++;
+            } else if (keyCode == KeyEvent.VK_ENTER) {
+                gamePanel.gameState = gamePanel.helpState;
+                gamePanel.ui.commandNumber = 0;
             }
         } else if (gamePanel.ui.commandNumber == 3) {
             if (keyCode == KeyEvent.VK_UP) {
@@ -355,7 +366,7 @@ public class KeyHandler implements KeyListener {
     }
 
     public void helpState(int keyCode) {
-        if (keyCode == KeyEvent.VK_ENTER) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
         }
     }
