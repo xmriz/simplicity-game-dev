@@ -716,19 +716,31 @@ public class UI {
         // texts
         g2d.setFont(g2d.getFont().deriveFont(32f));
         x = gamePanel.tileSize * 5;
-        text = "T: Beli Barang";
+        text = "T: Melihat Waktu";
         y += gamePanel.tileSize * 2;
-        g2d.drawString(text, x, y);
-
-        text = "B: Melihat Inventory";
-        y += gamePanel.tileSize;
         g2d.drawString(text, x, y);
 
         text = "U: Upgrade Rumah";
         y += gamePanel.tileSize;
         g2d.drawString(text, x, y);
 
+        text = "I: Melihat Inventory";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+
+        text = "P: Pause";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+
+        text = "L: Melihat Lokasi";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+
         text = "C: Melihat Sim Info";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+
+        text = "B: Beli Barang";
         y += gamePanel.tileSize;
         g2d.drawString(text, x, y);
     }
