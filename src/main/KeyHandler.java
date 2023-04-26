@@ -323,6 +323,8 @@ public class KeyHandler implements KeyListener {
                 gamePanel.gameState = gamePanel.titleState;
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.titleScreenState = 0;
+                gamePanel.stopMusic();
+                gamePanel.playMusic(0);
             }
         } else if (gamePanel.ui.commandNumber == 5) {
             if (keyCode == KeyEvent.VK_UP) {
