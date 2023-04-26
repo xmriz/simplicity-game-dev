@@ -1,6 +1,5 @@
 package main;
 
-
 public class EventHandler {
     GamePanel gamePanel;
     EventRect eventRect[][][];
@@ -50,29 +49,76 @@ public class EventHandler {
         // checking for some event
         if (canTouchEvent){
             // for (int i = 0; i < gamePanel.listSim.size(); i++){
-            //     if (gamePanel.currentMap == 0){
+            //     if (gamePanel.currentMap == 0){ // DI WORLD
             //         if (hit(0,gamePanel.listSim.get(i).rumah.colRumah, gamePanel.listSim.get(i).rumah.rowRumah, "any",999)){
             //             teleport(1,5,8,0);
             //             gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = 0;
             //             gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(i).nama + " (" + gamePanel.listSim.get(i).rumah.ruanganRumah.get(gamePanel.listSim.get(i).indexLocationRuangan).name + ")";
             //         }    
+            //     } else if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan == 0){ // DI RUANGAN UTAMA
+            //         if (hit(1,5,8, "any", 0)){
+            //             teleport(0,gamePanel.listSim.get(i).rumah.colRumah, gamePanel.listSim.get(i).rumah.rowRumah, 999);
+            //             gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = 999;
+            //             gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "World";
+            //         } else if (hit(1,4,1,"any",gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan)){ // atas
+            //             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up != null){
+            //                 teleport(1,5, 8, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up));
+            //                 gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name) + ")";
+            //                 // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up);
+            //             } else {
+            //                 gamePanel.gameState = gamePanel.dialogState;
+            //                 gamePanel.ui.currentDialog = "Tidak ada ruangan di atas!";
+            //                 canTouchEvent = false;
+            //             }
+            //             // UNTUK RUANGAN UTAMA BAWAH UNTUK TELEPORT KE WORLD
+            //         // } else if (hit(1,5,8,"any",gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan)){ 
+            //         //     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down != null){
+            //         //         teleport(1,4, 1, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down));
+            //         //         gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name);
+            //         //         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down);
+            //         //     } else {
+            //         //         gamePanel.gameState = gamePanel.dialogState;
+            //         //         gamePanel.ui.currentDialog = "Tidak ada ruangan di bawah!";
+            //         //         canTouchEvent = false;
+            //         //     }
+            //         } else if (hit(1,1,5,"any",gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan)) { // kiri
+            //             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left != null){
+            //                 teleport(1,8, 4, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left));
+            //                 gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name) + ")";
+            //                 // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left);
+            //             } else {
+            //                 gamePanel.gameState = gamePanel.dialogState;
+            //                 gamePanel.ui.currentDialog = "Tidak ada ruangan di kiri!";
+            //                 canTouchEvent = false;
+            //             }
+            //         } else if (hit(1,8,4,"any",gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan)) { // kanan
+            //             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right != null){
+            //                 teleport(1,1, 5, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right));
+            //                 gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name) + ")";
+            //                 // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right);
+            //             } else {
+            //                 gamePanel.gameState = gamePanel.dialogState;
+            //                 gamePanel.ui.currentDialog = "Tidak ada ruangan di kanan!";
+            //                 canTouchEvent = false;
+            //             }
+            //         }
             //     }
             // }
+
+            // --- BATAS --- //
             if (gamePanel.currentMap == 0){
                 if (hit(0,gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.colRumah, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.rowRumah, "any",999)){
                     teleport(1,5,8,0);
-                    gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = 0;
-                    gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name + ")";
+                    gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name) + ")";
                 }    
             } else if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan == 0){
-                if (hit(1,5,8, "any", 0)){
+                if (hit(1,5,8, "any", 999)){
                     teleport(0,gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.colRumah, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.rowRumah, 999);
-                    gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = 999;
                     gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "World";
                 } else if (hit(1,4,1,"any",gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan)){ // atas
                     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up != null){
                         teleport(1,5, 8, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up));
-                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name + ")";
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name) + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -83,7 +129,7 @@ public class EventHandler {
                 // } else if (hit(1,5,8,"any",gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan)){ 
                 //     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down != null){
                 //         teleport(1,4, 1, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down));
-                //         gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name;
+                //         gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name);
                 //         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down);
                 //     } else {
                 //         gamePanel.gameState = gamePanel.dialogState;
@@ -93,7 +139,7 @@ public class EventHandler {
                 } else if (hit(1,1,5,"any",gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan)) { // kiri
                     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left != null){
                         teleport(1,8, 4, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left));
-                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name + ")";
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name) + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -103,7 +149,7 @@ public class EventHandler {
                 } else if (hit(1,8,4,"any",gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan)) { // kanan
                     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right != null){
                         teleport(1,1, 5, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right));
-                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name + ")";
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name) + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -115,7 +161,7 @@ public class EventHandler {
                 if (hit(1,4,1,"any",gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan)){ // atas
                     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up != null){
                         teleport(1,5, 8, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up));
-                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name + ")";
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name) + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -125,7 +171,7 @@ public class EventHandler {
                 } else if (hit(1,5,8,"any",gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan)){ // bawah
                     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down != null){
                         teleport(1,4, 1, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down));
-                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name + ")";
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name) + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -135,7 +181,7 @@ public class EventHandler {
                 } else if (hit(1,1,5,"any",gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan)) { // kiri
                     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left != null){
                         teleport(1,8, 4, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left));
-                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name + ")";
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name) + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -145,7 +191,7 @@ public class EventHandler {
                 } else if (hit(1,8,4,"any",gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan)) { // kanan
                     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right != null){
                         teleport(1,1, 5, gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right));
-                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name + ")";
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).name) + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right);
                     } else {
                         gamePanel.gameState = gamePanel.dialogState;
@@ -210,8 +256,9 @@ public class EventHandler {
     }
 
     public void teleport(int map, int col, int row, int indexRuangan){
-        gamePanel.currentMap = map;
-        gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX = col*gamePanel.tileSize;
+        // if (map == 0)
+        gamePanel.currentMap = map; // pindahin sim ke map 1
+        gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX = col*gamePanel.tileSize; // pindahin sim ke kolom 1
         gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY = row*gamePanel.tileSize;
         previousEventX = gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX;
         previousEventY = gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY;

@@ -85,6 +85,11 @@ public class GamePanel extends JPanel implements Runnable {
             listRumah[i] = new ArrayList<Benda>();
         }
         listSim.add(new Sim(this, keyHandler));
+        // TODO: HAPUS, HANYA UJI COBA
+        listSim.add(new Sim(this, keyHandler));
+        listSim.get(1).rumah.colRumah = 8;
+        listSim.get(1).rumah.rowRumah = 1;
+        
         indexCurrentSim = 0;
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the panel
         this.setBackground(Color.black); // set the background color of the panel
@@ -169,7 +174,7 @@ public class GamePanel extends JPanel implements Runnable {
                         listRumah[currentMap].get(i).draw(g2d, this);
                     }
                 }
-            } else {
+            } else { // TODO: TANGANI DRAW BUKAN DI RUMAH SENDIRI
                 for (int i = 0; i < listSim.get(indexCurrentSim).rumah.ruanganRumah.get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.size(); i++) {
                     if (listSim.get(indexCurrentSim).rumah.ruanganRumah.get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i) != null) {
                         listSim.get(indexCurrentSim).rumah.ruanganRumah.get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).draw(g2d, this);

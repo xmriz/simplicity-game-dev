@@ -69,14 +69,7 @@ public class KeyHandler implements KeyListener {
                             gamePanel.listSim.get(gamePanel.indexCurrentSim).nama = "Sim";
                         } else {
                             // capitalize first letter
-                            String[] pecah = gamePanel.listSim.get(gamePanel.indexCurrentSim).nama.split(" ");
-                            StringBuilder sb = new StringBuilder();
-                            for (int i = 0; i < pecah.length; i++) {
-                                sb.append(pecah[i].substring(0, 1).toUpperCase());
-                                sb.append(pecah[i].substring(1).toLowerCase());
-                                sb.append(" ");
-                            }
-                            gamePanel.listSim.get(gamePanel.indexCurrentSim).nama = sb.toString().trim();
+                            gamePanel.listSim.get(gamePanel.indexCurrentSim).nama = UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).nama);
                         }
                         // set game state to play state
                         gamePanel.gameState = gamePanel.playState;
@@ -549,7 +542,6 @@ public class KeyHandler implements KeyListener {
                             //     // check intersection dengan furnitur lain
                             //     for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.size() - 1; i++){
                             //         Benda bendaR = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i);
-                            //         // TODO : HAPUS DIBAWAH INI
                             //         // System.out.println(horizontalCollision);
                             //         // System.out.println(verticalCollision);
                             //         // System.out.println(bendaR.solidArea.x);
@@ -1218,7 +1210,6 @@ public class KeyHandler implements KeyListener {
 //                             // check intersection dengan furnitur lain
 //                             for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.size() - 1; i++){
 //                                 Benda bendaR = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i);
-//                                 // TODO : HAPUS DIBAWAH INI
 //                                 // System.out.println(horizontalCollision);
 //                                 // System.out.println(verticalCollision);
 //                                 // System.out.println(bendaR.solidArea.x);

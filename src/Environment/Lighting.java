@@ -111,8 +111,6 @@ public class Lighting {
         if (gamePanel.listSim.get(gamePanel.indexCurrentSim).lightUpdated){
             setLightSource();
             gamePanel.listSim.get(gamePanel.indexCurrentSim).lightUpdated = false;
-            // TODO : klw sim lain ikut keubah errornya disini
-            // gamePanel.listSim.get(gamePanel.listSim.indexOf(gamePanel.currentSim)).lightUpdated = false;
         }
     }
 

@@ -226,8 +226,6 @@ public class Sim extends Entity {
                     }
                     tempBenda = furnitur;
                     gamePanel.gameState = gamePanel.inputKoordinatBendaState;
-                    // gamePanel.sim.rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.add(furnitur);
-                    // TODO : HUBUNGIN DENGAN KEY HANDLER
                     
                 }
 

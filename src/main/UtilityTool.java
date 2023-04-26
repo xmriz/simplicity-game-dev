@@ -33,4 +33,15 @@ public class UtilityTool {
         return resizedImage;
     }
 
+    public static String capitalizeFirstLetter(String string) {
+        String[] pecah = string.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < pecah.length; i++) {
+            sb.append(pecah[i].substring(0, 1).toUpperCase());
+            sb.append(pecah[i].substring(1).toLowerCase());
+            sb.append(" ");
+        }
+        return sb.toString().trim();
+    }
+
 }
