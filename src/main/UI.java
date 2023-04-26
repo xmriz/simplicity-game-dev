@@ -82,6 +82,10 @@ public class UI {
             drawInputSimNameScreen("Input nama:");
         } else if (gamePanel.gameState == gamePanel.inputKoordinatRumahSimState) {
             drawInputKoordinatRumahSimScreen("Input koordinat:");
+        } else if (gamePanel.gameState == gamePanel.menuState) {
+            drawMenuScreen();
+        } else if (gamePanel.gameState == gamePanel.helpState) {
+            drawHelpScreen();
         }
     }
 
@@ -822,6 +826,151 @@ public class UI {
         g2d2.setColor(Color.BLACK);
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+    }
+
+    // Menu SCREEN
+    public void drawMenuScreen() {
+        // create frame
+        int frameX = gamePanel.tileSize * 4;
+        int frameY = gamePanel.tileSize * 3;
+        int frameWidth = gamePanel.screenWidth - gamePanel.tileSize * 8;
+        int frameHeight = gamePanel.screenHeight - gamePanel.tileSize * 6;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // title
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+        String text = "OPTIONS";
+        int x = getXforCenteredText(text);
+        int y = gamePanel.tileSize * 4;
+        g2d.setColor(Color.WHITE);
+        g2d.drawString(text, x, y);
+
+        // texts
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+        x = gamePanel.tileSize * 5;
+        text = "Music";
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 0) {
+            int xRect = x + gamePanel.tileSize * 4;
+            int yRect = y - 24;
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+            g2d.drawRect(xRect, yRect, 120, 24);
+            int volumeWidth = 24 * gamePanel.music.volumeScale;
+            g2d.fillRect(xRect, yRect, volumeWidth, 24);
+            if (gamePanel.keyHandler.enterPressed) {
+                commandNumber = 0;
+                gamePanel.gameState = gamePanel.playState;
+            }
+        }
+
+        text = "Sound Effect";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 1) {
+            int xRect = x + gamePanel.tileSize * 4;
+            int yRect = y - 24;
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+            g2d.drawRect(xRect, yRect, 120, 24);
+            int volumeWidth = 24 * gamePanel.soundEffect.volumeScale;
+            g2d.fillRect(xRect, yRect, volumeWidth, 24);
+            if (gamePanel.keyHandler.enterPressed) {
+                commandNumber = 0;
+                gamePanel.gameState = gamePanel.playState;
+            }
+        }
+
+        text = "Help";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 2) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+            if (gamePanel.keyHandler.enterPressed) {
+                commandNumber = 0;
+                gamePanel.gameState = gamePanel.playState;
+            }
+        }
+
+        text = "Save";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 3) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+            if (gamePanel.keyHandler.enterPressed) {
+                commandNumber = 0;
+                gamePanel.gameState = gamePanel.playState;
+            }
+        }
+
+        text = "Main Menu";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 4) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+            if (gamePanel.keyHandler.enterPressed) {
+                commandNumber = 0;
+                gamePanel.gameState = gamePanel.playState;
+            }
+        }
+
+        text = "Back";
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 5) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+            if (gamePanel.keyHandler.enterPressed) {
+                commandNumber = 0;
+                gamePanel.gameState = gamePanel.playState;
+            }
+        }
+    }
+
+    public void drawHelpScreen() {
+        // create frame
+        int frameX = gamePanel.tileSize * 4;
+        int frameY = gamePanel.tileSize * 3;
+        int frameWidth = gamePanel.screenWidth - gamePanel.tileSize * 8;
+        int frameHeight = gamePanel.screenHeight - gamePanel.tileSize * 6;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // title
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+        String text = "HELP";
+        int x = getXforCenteredText(text);
+        int y = gamePanel.tileSize * 4;
+        g2d.setColor(Color.WHITE);
+        g2d.drawString(text, x, y);
+
+        // texts
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+        x = gamePanel.tileSize * 5;
+        text = "T: Melihat Waktu";
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+
+        text = "U: Upgrade Rumah";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+
+        text = "I: Melihat Inventory";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+
+        text = "P: Pause";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+
+        text = "L: Melihat Lokasi";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+
+        text = "C: Melihat Sim Info";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+
+        text = "B: Beli Barang";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
     }
 
     public static int getItemIndexOnSlot(int slotRow, int slotCol) {

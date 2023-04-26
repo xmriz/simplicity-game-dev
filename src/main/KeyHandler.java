@@ -75,6 +75,8 @@ public class KeyHandler implements KeyListener {
                         }
                         // set game state to play state
                         gamePanel.gameState = gamePanel.playState;
+                        gamePanel.stopMusic();
+                        gamePanel.playMusic(1);
                     } else if (gamePanel.ui.commandNumber == 1) { // back to Title Screen 0
                         gamePanel.ui.titleScreenState = 0;
                         gamePanel.ui.commandNumber = 0;
@@ -143,8 +145,6 @@ public class KeyHandler implements KeyListener {
             }
         }
 
-        
-
         // PLAY STATE
         if (gamePanel.gameState == gamePanel.playState) {
             playState(keyCode);
@@ -200,9 +200,16 @@ public class KeyHandler implements KeyListener {
             inputKoordinatRumahSimState(keyCode);
         }
 
+        // MENU STATE
+        else if (gamePanel.gameState == gamePanel.menuState) {
+            menuState(keyCode);
+        }
+
+        // HELP STATE
+        else if (gamePanel.gameState == gamePanel.helpState) {
+            helpState(keyCode);
+        }
     }
-
-
 
     public void playState(int keyCode) {
         if (keyCode == KeyEvent.VK_UP) {
@@ -247,11 +254,12 @@ public class KeyHandler implements KeyListener {
                 gamePanel.gameState = gamePanel.upgradeRumahState;
             }
 
-        } else if (keyCode == KeyEvent.VK_N){
+        } else if (keyCode == KeyEvent.VK_N) {
             gamePanel.gameState = gamePanel.addSimState;
+        } else if (keyCode == KeyEvent.VK_ESCAPE) {
+            gamePanel.gameState = gamePanel.menuState;
         }
     }
-
 
     public void pauseState(int keyCode) {
         if (keyCode == KeyEvent.VK_P) {
@@ -342,6 +350,86 @@ public class KeyHandler implements KeyListener {
             gamePanel.listSim.get(gamePanel.indexCurrentSim).selectItem();
             gamePanel.ui.simSlotRow = 0;
             gamePanel.ui.simSlotCol = 0;
+        }
+    }
+
+    public void menuState(int keyCode) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
+            gamePanel.gameState = gamePanel.playState;
+            gamePanel.ui.commandNumber = 0;
+        }
+        if (gamePanel.ui.commandNumber == 0) {
+            if (keyCode == KeyEvent.VK_DOWN) {
+                gamePanel.ui.commandNumber++;
+            } else if (keyCode == KeyEvent.VK_UP) {
+                gamePanel.ui.commandNumber = 5;
+            } else if (keyCode == KeyEvent.VK_LEFT) {
+                if (gamePanel.music.volumeScale > 0) {
+                    gamePanel.music.volumeScale--;
+                    gamePanel.music.checkVolume();
+                }
+            } else if (keyCode == KeyEvent.VK_RIGHT) {
+                if (gamePanel.music.volumeScale < 5) {
+                    gamePanel.music.volumeScale++;
+                    gamePanel.music.checkVolume();
+                }
+            }
+        } else if (gamePanel.ui.commandNumber == 4) {
+            if (keyCode == KeyEvent.VK_UP) {
+                gamePanel.ui.commandNumber--;
+            } else if (keyCode == KeyEvent.VK_DOWN) {
+                gamePanel.ui.commandNumber++;
+            } else if (keyCode == KeyEvent.VK_ENTER) {
+                gamePanel.gameState = gamePanel.titleState;
+                gamePanel.ui.commandNumber = 0;
+                gamePanel.ui.titleScreenState = 0;
+                gamePanel.stopMusic();
+                gamePanel.playMusic(0);
+            }
+        } else if (gamePanel.ui.commandNumber == 5) {
+            if (keyCode == KeyEvent.VK_UP) {
+                gamePanel.ui.commandNumber--;
+            } else if (keyCode == KeyEvent.VK_DOWN) {
+                gamePanel.ui.commandNumber = 0;
+            } else if (keyCode == KeyEvent.VK_ENTER) {
+                gamePanel.gameState = gamePanel.playState;
+                gamePanel.ui.commandNumber = 0;
+            }
+        } else if (gamePanel.ui.commandNumber == 1) {
+            if (keyCode == KeyEvent.VK_UP) {
+                gamePanel.ui.commandNumber--;
+            } else if (keyCode == KeyEvent.VK_DOWN) {
+                gamePanel.ui.commandNumber++;
+            } else if (keyCode == KeyEvent.VK_LEFT) {
+                if (gamePanel.soundEffect.volumeScale > 0) {
+                    gamePanel.soundEffect.volumeScale--;
+                }
+            } else if (keyCode == KeyEvent.VK_RIGHT) {
+                if (gamePanel.soundEffect.volumeScale < 5) {
+                    gamePanel.soundEffect.volumeScale++;
+                }
+            }
+        } else if (gamePanel.ui.commandNumber == 2) {
+            if (keyCode == KeyEvent.VK_UP) {
+                gamePanel.ui.commandNumber--;
+            } else if (keyCode == KeyEvent.VK_DOWN) {
+                gamePanel.ui.commandNumber++;
+            } else if (keyCode == KeyEvent.VK_ENTER) {
+                gamePanel.gameState = gamePanel.helpState;
+                gamePanel.ui.commandNumber = 0;
+            }
+        } else if (gamePanel.ui.commandNumber == 3) {
+            if (keyCode == KeyEvent.VK_UP) {
+                gamePanel.ui.commandNumber--;
+            } else if (keyCode == KeyEvent.VK_DOWN) {
+                gamePanel.ui.commandNumber++;
+            }
+        }
+    }
+
+    public void helpState(int keyCode) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
+            gamePanel.gameState = gamePanel.playState;
         }
     }
 
@@ -839,16 +927,32 @@ public class KeyHandler implements KeyListener {
                     // check apakah koordinat range 1-6
                     if (x < 1 || x > 64 || y < 1 || y > 64) {
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Koordinat harus berada pada range 1-6!";
+                        gamePanel.ui.currentDialog = "Koordinat harus berada pada range 1-64!";
                         gamePanel.listSim.remove(gamePanel.listSim.size()-1);
                         gamePanel.ui.commandNumber = 0;
                         gamePanel.ui.inputText = "";
                     } else {
-                        gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.colRumah = x;
-                        gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.worldX = x*gamePanel.tileSize;
-                        gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.rowRumah = y;
-                        gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.worldY = y*gamePanel.tileSize;
-                        gamePanel.listRumah[0].add(gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah);
+                        // check apakah koordinat sudah ada rumah
+                        boolean isExist = false;
+                        for (int i = 0; i < gamePanel.listRumah[0].size()-1; i++){
+                            if (gamePanel.listRumah[0].get(i).worldX == x*gamePanel.tileSize && gamePanel.listRumah[0].get(i).worldY == y*gamePanel.tileSize){
+                                isExist = true;
+                                break;
+                            }
+                        }
+                        if (isExist){
+                            gamePanel.gameState = gamePanel.dialogState;
+                            gamePanel.ui.currentDialog = "Koordinat sudah ditempati sim lain!";
+                            gamePanel.listSim.remove(gamePanel.listSim.size()-1);
+                            gamePanel.ui.commandNumber = 0;
+                            gamePanel.ui.inputText = "";
+                        } else {
+                            gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.colRumah = x;
+                            gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.worldX = x*gamePanel.tileSize;
+                            gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.rowRumah = y;
+                            gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.worldY = y*gamePanel.tileSize;
+                            gamePanel.listRumah[0].add(gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah);
+                        }
                     }
                 }
                 gamePanel.ui.inputText = "";
