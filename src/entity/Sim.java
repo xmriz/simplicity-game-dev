@@ -203,7 +203,8 @@ public class Sim extends Entity {
     }
 
     public void usingBenda(int i) {
-        // TODO : SELESAIKAN USING BENDA untuk benda yang di sentuh
+        // TODO : SELESAIKAN USING BENDA untuk benda yang di sentuh MASIH ENRROR DI
+        // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki
         if (i != 999) {
             // gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i)
             // System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki);
