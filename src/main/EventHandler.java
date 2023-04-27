@@ -7,7 +7,7 @@ public class EventHandler {
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
 
-    public static int indexRumahTemp = 0;
+    public static int indexRumahTemp = 999;;
 
     public EventHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;

@@ -3,11 +3,8 @@ package map;
 import java.awt.Graphics2D;
 import java.io.*;
 
-import main.*;
-
 import javax.imageio.ImageIO;
 
-import benda.Rumah;
 import main.GamePanel;
 import main.UtilityTool;
 
@@ -92,10 +89,7 @@ public class TileManager {
             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0){
                 tileNum = mapTileNum[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap][worldCol][worldRow];
             } else{
-                // gambar tile untuk indexRumah yang dimasuki
-                Rumah rumahTemp = (Rumah) gamePanel.listRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki);
-                tileNum = gamePanel.listRumah.get(EventHandler.indexRumahTemp)
-                // tileNum = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(indexRuangan).mapRuangan[worldCol][worldRow];
+                tileNum = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(indexRuangan).mapRuangan[worldCol][worldRow];
             }
 
             int worldX = worldCol * gamePanel.tileSize; // position of the tile in the world 

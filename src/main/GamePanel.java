@@ -93,11 +93,6 @@ public class GamePanel extends JPanel implements Runnable {
         listSim.add(new Sim(this, keyHandler)); // nambah sim pertama
 
         indexCurrentSim = 0;
-
-        listSim.get(indexCurrentSim).currentMap = 1; // sim pertama berada di ruangan
-        listSim.get(indexCurrentSim).indexRumahYangDimasuki = 0; // sim pertama berada di rumah pertama
-        listSim.get(indexCurrentSim).indexLocationRuangan = 0; // sim pertama berada di ruangan
-
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the panel
         this.setBackground(Color.black); // set the background color of the panel
         this.setDoubleBuffered(true); // set the panel to be double buffered
@@ -139,8 +134,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        System.out.println(EventHandler.indexRumahTemp);
-
         if (gameState == playState) {
             listSim.get(indexCurrentSim).update();
             for (int i = 0; i < npc[listSim.get(indexCurrentSim).currentMap].length; i++) {
@@ -200,11 +193,11 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             } else {
-                for (int i = 0; i < listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                for (int i = 0; i < listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
                         .get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.size(); i++) {
-                    if (listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                    if (listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
                             .get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i) != null) {
-                        listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                        listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
                                 .get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i)
                                 .draw(g2d, this);
                     }

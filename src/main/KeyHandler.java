@@ -309,48 +309,48 @@ public class KeyHandler implements KeyListener {
         } else if (keyCode == KeyEvent.VK_UP) {
             if (gamePanel.ui.simSlotRow > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow - 1, gamePanel.ui.simSlotCol);
-                if (index <= gamePanel.listSim.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
                     gamePanel.ui.simSlotRow--;
                 }
             } else {
                 index = UI.getItemIndexOnSlot(2, gamePanel.ui.simSlotCol);
-                if (index <= gamePanel.listSim.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
                     gamePanel.ui.simSlotRow = 2;
                 }
             }
         } else if (keyCode == KeyEvent.VK_DOWN) {
             if (gamePanel.ui.simSlotRow < 2) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow + 1, gamePanel.ui.simSlotCol);
-                if (index <= gamePanel.listSim.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
                     gamePanel.ui.simSlotRow++;
                 }
             } else {
                 index = UI.getItemIndexOnSlot(0, gamePanel.ui.simSlotCol);
-                if (index <= gamePanel.listSim.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
                     gamePanel.ui.simSlotRow = 0;
                 }
             }
         } else if (keyCode == KeyEvent.VK_LEFT) {
             if (gamePanel.ui.simSlotCol > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, gamePanel.ui.simSlotCol - 1);
-                if (index <= gamePanel.listSim.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
                     gamePanel.ui.simSlotCol--;
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, 10);
-                if (index <= gamePanel.listSim.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
                     gamePanel.ui.simSlotCol = 10;
                 }
             }
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             if (gamePanel.ui.simSlotCol < 10) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, gamePanel.ui.simSlotCol + 1);
-                if (index <= gamePanel.listSim.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
                     gamePanel.ui.simSlotCol++;
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, 0);
-                if (index <= gamePanel.listSim.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
                     gamePanel.ui.simSlotCol = 0;
                 }
             }
@@ -960,10 +960,6 @@ public class KeyHandler implements KeyListener {
                             gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.rowRumah = y;
                             gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.worldY = y*gamePanel.tileSize;
                             gamePanel.listRumah[0].add(gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah);
-                            // mindahin posisi sim di rumah sendiri
-                            gamePanel.listSim.get(gamePanel.listSim.size()-1).currentMap = 1;
-                            gamePanel.listSim.get(gamePanel.listSim.size()-1).indexRumahYangDimasuki = gamePanel.listRumah[0].size()-1;
-                            gamePanel.listSim.get(gamePanel.listSim.size()-1).indexLocationRuangan = 0;
                         }
                     }
                 }
@@ -1151,7 +1147,6 @@ public class KeyHandler implements KeyListener {
             // gamePanel.listSim.get(gamePanel.indexCurrentSim).selectItem();
             int indexSim = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow, gamePanel.ui.listSimSlotCol);
             gamePanel.indexCurrentSim = indexSim;
-            EventHandler.indexRumahTemp = indexSim;
             gamePanel.ui.listSimSlotRow = 0;
             gamePanel.ui.listSimSlotCol = 0;
             gamePanel.gameState = gamePanel.dialogState;
