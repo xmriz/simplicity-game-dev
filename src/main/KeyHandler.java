@@ -80,7 +80,11 @@ public class KeyHandler implements KeyListener {
                                     .capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).nama);
                             // set currentlocation
                         }
-                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(0).name)+ ")";
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah "
+                                + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " ("
+                                + UtilityTool.capitalizeFirstLetter(
+                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(0).name)
+                                + ")";
                         // set game state to play state
                         gamePanel.gameState = gamePanel.playState;
                         gamePanel.stopMusic();
@@ -250,6 +254,11 @@ public class KeyHandler implements KeyListener {
         else if (gamePanel.gameState == gamePanel.changeSimState) {
             changeSimState(keyCode);
         }
+        // MAP STATE
+        else if (gamePanel.gameState == gamePanel.mapState) {
+            mapState(keyCode);
+        }
+
     }
 
     public void playState(int keyCode) {
@@ -302,6 +311,14 @@ public class KeyHandler implements KeyListener {
             gamePanel.gameState = gamePanel.menuState;
         } else if (keyCode == KeyEvent.VK_G) {
             gamePanel.gameState = gamePanel.changeSimState;
+        } else if (keyCode == KeyEvent.VK_M) {
+            gamePanel.gameState = gamePanel.mapState;
+        } else if (keyCode == KeyEvent.VK_X) {
+            if (gamePanel.map.mapOn == false) {
+                gamePanel.map.mapOn = true;
+            } else {
+                gamePanel.map.mapOn = false;
+            }
         }
     }
 
@@ -498,6 +515,12 @@ public class KeyHandler implements KeyListener {
     public void helpState(int keyCode) {
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.menuState;
+        }
+    }
+
+    public void mapState(int keyCode) {
+        if (keyCode == KeyEvent.VK_M) {
+            gamePanel.gameState = gamePanel.playState;
         }
     }
 

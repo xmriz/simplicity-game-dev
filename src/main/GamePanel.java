@@ -12,6 +12,7 @@ import benda.Benda;
 import entity.*;
 import environment.EnvironmentManager;
 import map.TileManager;
+import map.Map;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -50,11 +51,13 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this); // create a new UI object
     public EventHandler eventHandler = new EventHandler(this); // create a new EventHandler object
     EnvironmentManager environmentManager = new EnvironmentManager(this); // create a new EnvironmentManager object
+    Map map = new Map(this);
     Thread gameThread; // thread for the game
 
     // Multisim
     public List<Sim> listSim = new ArrayList<>();
     public int indexCurrentSim;
+    // public Sim currentSim = listSim.get(indexCurrentSim);
 
     // ENTITY
     // public Sim sim = new Sim(this, keyHandler);
@@ -85,6 +88,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int changeSimState = 12;
     public final int menuState = 13;
     public final int helpState = 14;
+    public final int mapState = 15;
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {
@@ -107,6 +111,7 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setNPC(); // setup the assets
         environmentManager.setup(); // setup the environment
         playMusic(0);
+        // soundEffect.setVolume(2);
     }
 
     public void startGameThread() { // start the game thread
@@ -170,6 +175,14 @@ public class GamePanel extends JPanel implements Runnable {
         soundEffect.play();
     }
 
+    public Sim getCurrentSim() {
+        return listSim.get(indexCurrentSim);
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g); // call the paintComponent method of the parent class
@@ -218,6 +231,9 @@ public class GamePanel extends JPanel implements Runnable {
             // draw environment
             environmentManager.update();
             environmentManager.draw(g2d);
+
+            // // draw mini map
+            // map.drawMiniMap(g2d);
 
             // draw ui
             ui.draw(g2d);

@@ -200,17 +200,29 @@ public class Sim extends Entity {
         }
     }
 
-    public void usingBenda(int i){
-        // TODO : SELESAIKAN USING BENDA untuk benda yang di sentuh MASIH ENRROR DI gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki
-        if (i != 999){
+    public void usingBenda(int i) {
+        // TODO : SELESAIKAN USING BENDA untuk benda yang di sentuh MASIH ENRROR DI
+        // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki
+        if (i != 999) {
             // gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i)
-            // System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki); 
-            // Benda bendaTemp = gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i);
-            // if (gamePanel.keyHandler.enterPressed && bendaTemp instanceof Furnitur){ // klw di tekan enter dan benda yang disentuh adalah furnitur walaupun memang furnitur
-            //     Furnitur furniturTemp = (Furnitur) bendaTemp;
-            //     furniturTemp.action();
+            // System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki);
+            // Benda bendaTemp =
+            // gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i);
+            // if (gamePanel.keyHandler.enterPressed && bendaTemp instanceof Furnitur){ //
+            // klw di tekan enter dan benda yang disentuh adalah furnitur walaupun memang
+            // furnitur
+            // Furnitur furniturTemp = (Furnitur) bendaTemp;
+            // furniturTemp.action();
             // }
         }
+    }
+
+    public int getWorldX() {
+        return worldX;
+    }
+
+    public int getWorldY() {
+        return worldY;
     }
 
     public void selectItem() {
@@ -357,7 +369,6 @@ public class Sim extends Entity {
                 }
                 break;
         }
-
         g2d.drawImage(image, screenX, screenY, null);
 
         // g2d.setColor(Color.red);
