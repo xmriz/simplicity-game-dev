@@ -111,7 +111,7 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setNPC(); // setup the assets
         environmentManager.setup(); // setup the environment
         playMusic(0);
-        // soundEffect.setVolume(2);
+        soundEffect.setVolume(2);
     }
 
     public void startGameThread() { // start the game thread

@@ -46,6 +46,10 @@ public class Sound {
         clip.stop();
     }
 
+    public void setVolume(int volume) {
+        this.volumeScale = volume;
+    }
+
     public void checkVolume() {
         switch (volumeScale) {
             case 0:
