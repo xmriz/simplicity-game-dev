@@ -6,7 +6,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Component;
 import java.util.*;
 
 import benda.Benda;
@@ -115,6 +114,7 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setNPC(); // setup the assets
         environmentManager.setup(); // setup the environment
         playMusic(0);
+        // soundEffect.setVolume(2);
     }
 
     public void startGameThread() { // start the game thread

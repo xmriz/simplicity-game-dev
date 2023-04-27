@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 import benda.*;
 import entity.*;
-import map.Map;
+// import map.Map;
 
 public class UI {
     GamePanel gamePanel;
@@ -946,8 +946,12 @@ public class UI {
             for (int i = 0; i < gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
                     .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
                     .size(); i++) {
-                int bendaX = (int) (x + gamePanel.listRumah[gamePanel.currentMap].get(i).worldX / scale);
-                int bendaY = (int) (y + gamePanel.listRumah[gamePanel.currentMap].get(i).worldY / scale);
+                int bendaX = (int) (x + gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                        .get(i).worldX / scale);
+                int bendaY = (int) (y + gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                        .get(i).worldY / scale);
                 if (gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
                         .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
                         .get(i) != null) {
@@ -992,8 +996,12 @@ public class UI {
                 for (int i = 0; i < gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
                         .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
                         .size(); i++) {
-                    int bendaX = (int) (x + gamePanel.listRumah[gamePanel.currentMap].get(i).worldX / scale);
-                    int bendaY = (int) (y + gamePanel.listRumah[gamePanel.currentMap].get(i).worldY / scale);
+                    int bendaX = (int) (x + gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                            .get(i).worldX / scale);
+                    int bendaY = (int) (y + gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                            .get(i).worldY / scale);
                     if (gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
                             .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
                             .get(i) != null) {
