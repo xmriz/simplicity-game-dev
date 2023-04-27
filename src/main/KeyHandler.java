@@ -960,6 +960,10 @@ public class KeyHandler implements KeyListener {
                             gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.rowRumah = y;
                             gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.worldY = y*gamePanel.tileSize;
                             gamePanel.listRumah[0].add(gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah);
+                            // mindahin posisi sim di rumah sendiri
+                            gamePanel.listSim.get(gamePanel.listSim.size()-1).currentMap = 1;
+                            gamePanel.listSim.get(gamePanel.listSim.size()-1).indexRumahYangDimasuki = gamePanel.listRumah[0].size()-1;
+                            gamePanel.listSim.get(gamePanel.listSim.size()-1).indexLocationRuangan = 0;
                         }
                     }
                 }
@@ -1147,6 +1151,7 @@ public class KeyHandler implements KeyListener {
             // gamePanel.listSim.get(gamePanel.indexCurrentSim).selectItem();
             int indexSim = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow, gamePanel.ui.listSimSlotCol);
             gamePanel.indexCurrentSim = indexSim;
+            EventHandler.indexRumahTemp = indexSim;
             gamePanel.ui.listSimSlotRow = 0;
             gamePanel.ui.listSimSlotCol = 0;
             gamePanel.gameState = gamePanel.dialogState;
