@@ -37,6 +37,9 @@ public class UI {
     public int listSimSlotCol = 0, listSimSlotRow = 0; // default slot position for list sim
     public int subState = 0;
     public int counter = 0;
+    public int charIndex = 0;
+    public String combinedText = "";
+    String currentDialog2 = "";
 
     public UI(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -223,7 +226,18 @@ public class UI {
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 32f));
         x += gamePanel.tileSize;
         y += gamePanel.tileSize;
-        for (String line : currentDialog.split("\n")) {
+
+        char characters[] = currentDialog.toCharArray();
+
+        if (charIndex < characters.length) {
+            gamePanel.playSoundEffect(4);
+            String s = String.valueOf(characters[charIndex]);
+            combinedText = combinedText + s;
+            currentDialog2 = combinedText;
+            charIndex++;
+        }
+
+        for (String line : currentDialog2.split("\n")) {
             g2d.drawString(line, x, y);
             y += g2d.getFontMetrics().getHeight();
         }
@@ -572,11 +586,15 @@ public class UI {
                             gamePanel.listSim.get(gamePanel.indexCurrentSim).uang -= makanan.harga;
                         } else {
                             subState = 0;
+                            charIndex = 0;
+                            combinedText = "";
                             gamePanel.gameState = gamePanel.dialogState;
                             currentDialog = "Inventory penuh";
                         }
                     } else {
                         subState = 0;
+                        charIndex = 0;
+                        combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
                         currentDialog = "Uang tidak cukup";
                         // drawDialogScreen(); // ini ga perlu karena sudah ada di atas
@@ -588,11 +606,15 @@ public class UI {
                             gamePanel.listSim.get(gamePanel.indexCurrentSim).uang -= furnitur.harga;
                         } else {
                             subState = 0;
+                            charIndex = 0;
+                            combinedText = "";
                             gamePanel.gameState = gamePanel.dialogState;
                             currentDialog = "Inventory penuh";
                         }
                     } else {
                         subState = 0;
+                        charIndex = 0;
+                        combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
                         currentDialog = "Uang tidak cukup";
                         // drawDialogScreen(); // ini ga perlu karena sudah ada di atas
@@ -606,16 +628,22 @@ public class UI {
                             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory
                                     .size() >= gamePanel.listSim.get(gamePanel.indexCurrentSim).maxInventorySize) {
                                 subState = 0;
+                                charIndex = 0;
+                                combinedText = "";
                                 gamePanel.gameState = gamePanel.dialogState;
                                 currentDialog = "Inventory penuh";
                             } else {
                                 subState = 0;
+                                charIndex = 0;
+                                combinedText = "";
                                 gamePanel.gameState = gamePanel.dialogState;
                                 currentDialog = "Anda sudah memiliki lampu!";
                             }
                         }
                     } else {
                         subState = 0;
+                        charIndex = 0;
+                        combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
                         currentDialog = "Uang tidak cukup";
                         // drawDialogScreen(); nggk perlu ini karena sudah ada di atas

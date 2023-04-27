@@ -277,6 +277,8 @@ public class KeyHandler implements KeyListener {
         } else if (keyCode == KeyEvent.VK_I) {
             gamePanel.gameState = gamePanel.inventoryState;
         } else if (keyCode == KeyEvent.VK_B) {
+            gamePanel.ui.charIndex = 0;
+            gamePanel.ui.combinedText = "";
             gamePanel.npc[0][4].speak();
         } else if (keyCode == KeyEvent.VK_ENTER) {
             enterPressed = true;
@@ -295,10 +297,14 @@ public class KeyHandler implements KeyListener {
         } else if (keyCode == KeyEvent.VK_U) {
             // System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki);
             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0) {
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Anda sedang tidak berada di rumah.\nTidak dapat melakukan upgrade rumah!";
             } else if (gamePanel.listSim
                     .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki != gamePanel.indexCurrentSim) {
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Anda harus berada di rumah sendiri.\nTidak dapat melakukan upgrade rumah!";
             } else {
@@ -687,6 +693,8 @@ public class KeyHandler implements KeyListener {
                 int commaCounter = input.length() - input.replace(",", "").length();
                 // check apakah input valid
                 if (input.charAt(0) == ',' || input.charAt(input.length() - 1) == ',' || commaCounter != 1) {
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
                     gamePanel.ui.currentDialog = "Koordinat tidak valid!";
                     gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
@@ -697,6 +705,8 @@ public class KeyHandler implements KeyListener {
                     int y = Integer.parseInt(input.substring(input.indexOf(",") + 1));
                     // check apakah koordinat range 1-6
                     if (x < 1 || x > 6 || y < 1 || y > 6) {
+                        gamePanel.ui.charIndex = 0;
+                        gamePanel.ui.combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
                         gamePanel.ui.currentDialog = "Koordinat harus berada pada range 1-6!";
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
@@ -705,6 +715,8 @@ public class KeyHandler implements KeyListener {
                     } else {
                         if (gamePanel.listSim
                                 .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki != gamePanel.indexCurrentSim) {
+                            gamePanel.ui.charIndex = 0;
+                            gamePanel.ui.combinedText = "";
                             gamePanel.gameState = gamePanel.dialogState;
                             gamePanel.ui.currentDialog = "Tidak dapat meletakkan furnitur di rumah\nsim lain!";
                             gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
@@ -724,6 +736,8 @@ public class KeyHandler implements KeyListener {
                                 }
                             }
                             if (isSame) {
+                                gamePanel.ui.charIndex = 0;
+                                gamePanel.ui.combinedText = "";
                                 gamePanel.gameState = gamePanel.dialogState;
                                 gamePanel.ui.currentDialog = "Sudah terdapat " + tempFurnitur.name + " di ruangan ini!";
                                 gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
@@ -735,6 +749,8 @@ public class KeyHandler implements KeyListener {
                                 int verticalCollision = (y + 1) * gamePanel.tileSize + tempFurnitur.solidArea.height;
                                 if (horizontalCollision >= 9 * gamePanel.tileSize
                                         || verticalCollision >= 9 * gamePanel.tileSize) {
+                                    gamePanel.ui.charIndex = 0;
+                                    gamePanel.ui.combinedText = "";
                                     gamePanel.gameState = gamePanel.dialogState;
                                     gamePanel.ui.currentDialog = "Furnitur menabrak dinding!";
                                     gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
@@ -760,6 +776,8 @@ public class KeyHandler implements KeyListener {
                                         }
                                     }
                                     if (intersect) {
+                                        gamePanel.ui.charIndex = 0;
+                                        gamePanel.ui.combinedText = "";
                                         gamePanel.gameState = gamePanel.dialogState;
                                         gamePanel.ui.currentDialog = "Furnitur tidak boleh bersebrangan!";
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
@@ -860,6 +878,8 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.inputTextDone = false;
             } else {
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
                 gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
@@ -999,6 +1019,8 @@ public class KeyHandler implements KeyListener {
                 // System.out.println(s.name);
                 // }
             } else {
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
                 gamePanel.ui.commandNumber = 0;
@@ -1069,6 +1091,8 @@ public class KeyHandler implements KeyListener {
                 int commaCounter = input.length() - input.replace(",", "").length();
                 // check apakah input valid
                 if (input.charAt(0) == ',' || input.charAt(input.length() - 1) == ',' || commaCounter != 1) {
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
                     gamePanel.ui.currentDialog = "Koordinat tidak valid!";
                     gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
@@ -1079,6 +1103,8 @@ public class KeyHandler implements KeyListener {
                     int y = Integer.parseInt(input.substring(input.indexOf(",") + 1));
                     // check apakah koordinat range 1-6
                     if (x < 1 || x > 64 || y < 1 || y > 64) {
+                        gamePanel.ui.charIndex = 0;
+                        gamePanel.ui.combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
                         gamePanel.ui.currentDialog = "Koordinat harus berada pada range 1-64!";
                         gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
@@ -1095,6 +1121,8 @@ public class KeyHandler implements KeyListener {
                             }
                         }
                         if (isExist) {
+                            gamePanel.ui.charIndex = 0;
+                            gamePanel.ui.combinedText = "";
                             gamePanel.gameState = gamePanel.dialogState;
                             gamePanel.ui.currentDialog = "Koordinat sudah ditempati sim lain!";
                             gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
@@ -1124,6 +1152,8 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.inputTextDone = false;
             } else {
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
                 gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
@@ -1247,6 +1277,8 @@ public class KeyHandler implements KeyListener {
                     }
                 }
                 if (isNameExist) {
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
                     gamePanel.ui.currentDialog = "Nama sudah dimiliki sim lain!";
                     gamePanel.ui.commandNumber = 0;
@@ -1260,6 +1292,8 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.inputTextDone = false;
                 }
             } else {
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
                 gamePanel.ui.commandNumber = 0;
@@ -1337,6 +1371,8 @@ public class KeyHandler implements KeyListener {
         } else if (keyCode == KeyEvent.VK_ENTER) {
             int indexSim = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow, gamePanel.ui.listSimSlotCol);
             gamePanel.indexCurrentSim = indexSim;
+            gamePanel.ui.charIndex = 0;
+            gamePanel.ui.combinedText = "";
             gamePanel.gameState = gamePanel.dialogState;
             gamePanel.ui.currentDialog = "Sim telah diganti menjadi "
                     + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + "!";

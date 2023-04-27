@@ -193,6 +193,8 @@ public class Sim extends Entity {
 
     public void interactNPC(int i) {
         if (i != 999) {
+            gamePanel.ui.combinedText = "";
+            gamePanel.ui.charIndex = 0;
             if (gamePanel.keyHandler.enterPressed) {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.npc[currentMap][i].speak();
@@ -239,6 +241,8 @@ public class Sim extends Entity {
                 } else {
                     inventory.remove(itemIndex);
                 }
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Anda memakan " + bahanMakanan.name + ".\n" + "Kekenyangan bertambah "
                         + bahanMakanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah " + kekenyangan
@@ -251,12 +255,16 @@ public class Sim extends Entity {
                 } else {
                     inventory.remove(itemIndex);
                 }
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Anda memakan " + makanan.name + ".\n" + "Kekenyangan bertambah "
                         + makanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah " + kekenyangan
                         + " poin.";
             } else if (selectedBenda instanceof Furnitur) {
                 if (currentMap == 0) {
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
                     gamePanel.ui.currentDialog = "Tidak dapat memasang furnitur di luar\nrumah!";
                 } else {
