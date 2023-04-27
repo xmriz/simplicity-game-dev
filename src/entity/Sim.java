@@ -127,6 +127,7 @@ public class Sim extends Entity {
             // check for benda collision
             indexBendaYangDisentuh = gamePanel.collisionChecker.checkBenda(this, true); // return the index of the benda that theplayer is colliding with
             usingBenda(indexBendaYangDisentuh);
+            System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki);
             // TODO : indexBendaYangDisentuh buat interact dengan benda
 
             // indexRumahYangDimasuki = indexBendaYangDisentuh;
@@ -200,11 +201,12 @@ public class Sim extends Entity {
         // TODO : SELESAIKAN USING BENDA untuk benda yang di sentuh
         if (i != 999){
             // gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i)
-            Benda bendaTemp = gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i);
-            if (gamePanel.keyHandler.enterPressed && bendaTemp instanceof Furnitur){ // klw di tekan enter dan benda yang disentuh adalah furnitur walaupun memang furnitur
-                Furnitur furniturTemp = (Furnitur) bendaTemp;
-                furniturTemp.action();
-            }
+            // System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki); 
+            // Benda bendaTemp = gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i);
+            // if (gamePanel.keyHandler.enterPressed && bendaTemp instanceof Furnitur){ // klw di tekan enter dan benda yang disentuh adalah furnitur walaupun memang furnitur
+            //     Furnitur furniturTemp = (Furnitur) bendaTemp;
+            //     furniturTemp.action();
+            // }
         }
     }
 

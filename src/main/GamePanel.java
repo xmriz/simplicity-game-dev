@@ -91,9 +91,10 @@ public class GamePanel extends JPanel implements Runnable {
             listRumah[i] = new ArrayList<Benda>();
         }
         listSim.add(new Sim(this, keyHandler)); // nambah sim pertama
+        // TODO : BUAT PAS DI GENERATE PERTAMA KALI TERUS VIEW CURRENT LOCATION LANGSUNG KE UBAH
 
         indexCurrentSim = 0;
-        
+
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the panel
         this.setBackground(Color.black); // set the background color of the panel
         this.setDoubleBuffered(true); // set the panel to be double buffered
