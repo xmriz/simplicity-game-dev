@@ -248,11 +248,11 @@ public class KeyHandler implements KeyListener {
                 checkCurrentLocation = false;
             }
         } else if (keyCode == KeyEvent.VK_U) {
-            // System.out.println(EventHandler.indexRumahTemp);
+            // System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki);
             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0) {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Anda sedang tidak berada di rumah.\nTidak dapat melakukan upgrade rumah!";
-            } else if (EventHandler.indexRumahTemp != gamePanel.indexCurrentSim) {
+            } else if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki != gamePanel.indexCurrentSim) {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Anda harus berada di rumah sendiri.\nTidak dapat melakukan upgrade rumah!";
             } else {
@@ -601,7 +601,7 @@ public class KeyHandler implements KeyListener {
                         gamePanel.ui.commandNumber = 0;
                         gamePanel.ui.inputText = "";
                     } else {
-                        if (EventHandler.indexRumahTemp != gamePanel.indexCurrentSim) {
+                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki != gamePanel.indexCurrentSim) {
                             gamePanel.gameState = gamePanel.dialogState;
                             gamePanel.ui.currentDialog = "Tidak dapat meletakkan furnitur di rumah\nsim lain!";
                             gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
@@ -942,7 +942,7 @@ public class KeyHandler implements KeyListener {
                     } else {
                         // check apakah koordinat sudah ada rumah
                         boolean isExist = false;
-                        for (int i = 0; i < gamePanel.listRumah[0].size()-1; i++){
+                        for (int i = 0; i < gamePanel.listRumah[0].size(); i++){
                             if (gamePanel.listRumah[0].get(i).worldX == x*gamePanel.tileSize && gamePanel.listRumah[0].get(i).worldY == y*gamePanel.tileSize){
                                 isExist = true;
                                 break;
@@ -1092,8 +1092,6 @@ public class KeyHandler implements KeyListener {
         int index;
         if (keyCode == KeyEvent.VK_G) {
             gamePanel.gameState = gamePanel.playState;
-            gamePanel.ui.listSimSlotRow = 0;
-            gamePanel.ui.listSimSlotCol = 0;
         } else if (keyCode == KeyEvent.VK_UP) {
             if (gamePanel.ui.listSimSlotRow > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow - 1, gamePanel.ui.listSimSlotCol);
@@ -1147,8 +1145,6 @@ public class KeyHandler implements KeyListener {
             // gamePanel.listSim.get(gamePanel.indexCurrentSim).selectItem();
             int indexSim = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow, gamePanel.ui.listSimSlotCol);
             gamePanel.indexCurrentSim = indexSim;
-            gamePanel.ui.listSimSlotRow = 0;
-            gamePanel.ui.listSimSlotCol = 0;
             gamePanel.gameState = gamePanel.dialogState;
             gamePanel.ui.currentDialog = "Sim telah diganti menjadi " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + "!";
 

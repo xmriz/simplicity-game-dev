@@ -5,6 +5,7 @@ import java.io.*;
 
 import javax.imageio.ImageIO;
 
+import main.EventHandler;
 import main.GamePanel;
 import main.UtilityTool;
 
@@ -89,7 +90,7 @@ public class TileManager {
             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0){
                 tileNum = mapTileNum[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap][worldCol][worldRow];
             } else{
-                tileNum = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(indexRuangan).mapRuangan[worldCol][worldRow];
+                tileNum = gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(indexRuangan).mapRuangan[worldCol][worldRow];
             }
 
             int worldX = worldCol * gamePanel.tileSize; // position of the tile in the world 
