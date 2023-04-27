@@ -15,7 +15,7 @@ public abstract class Furnitur extends Benda{
     }
 
     // bakal di override di class turunannya
-    public void interact(){
+    public void action(){
 
     }
 

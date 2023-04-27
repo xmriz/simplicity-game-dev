@@ -13,4 +13,9 @@ public class Furnitur_KasurKingSize extends Furnitur{
         aksi = "Tidur";
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
     }
+
+    @Override
+    public void action(){
+        // aksi tidur
+    }
 }

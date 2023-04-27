@@ -14,8 +14,10 @@ public class Rumah extends Benda {
         this.gamePanel = gamePanel;
         name = "Rumah";
         image = setupImage("benda/rumah");
-        colRumah = 10;
-        rowRumah = 10;
+        // random posisi rumah
+        Random rand = new Random();
+        colRumah = rand.nextInt(64)+1;
+        rowRumah = rand.nextInt(64)+1;
 
         // saat rumah dibuat Ruangan utama otomatis dibuat
         Ruangan ruanganUtama = new Ruangan(gamePanel);

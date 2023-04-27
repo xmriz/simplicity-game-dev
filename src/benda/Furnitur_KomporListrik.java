@@ -12,6 +12,10 @@ public class Furnitur_KomporListrik extends Furnitur{
         harga = 200;
         aksi = "Memasak";
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
+    }
 
+    @Override
+    public void action(){
+        // aksi masak
     }
 }

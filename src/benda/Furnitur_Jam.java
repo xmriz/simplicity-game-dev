@@ -13,4 +13,9 @@ public class Furnitur_Jam extends Furnitur{
         aksi = "Melihat waktu";
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
     }
+
+    @Override
+    public void action(){
+        // aksi melihat waktu
+    }
 }

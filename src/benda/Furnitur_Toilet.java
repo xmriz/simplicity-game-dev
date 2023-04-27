@@ -14,4 +14,8 @@ public class Furnitur_Toilet extends Furnitur{
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
 
     }
+
+    public void action(){
+        // aksi buang air
+    }
 }

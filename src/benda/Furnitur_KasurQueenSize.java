@@ -14,4 +14,8 @@ public class Furnitur_KasurQueenSize extends Furnitur {
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
 
     }
+
+    public void action(){
+        // aksi tidur
+    }
 }

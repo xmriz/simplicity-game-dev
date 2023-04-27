@@ -57,6 +57,7 @@ public abstract class Entity {
             dialogCounter = 0;
         }
 
+        // ganti direction sim
         switch(gamePanel.listSim.get(gamePanel.indexCurrentSim).direction){
             case "up":
                 direction = "down";

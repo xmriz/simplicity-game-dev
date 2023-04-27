@@ -12,6 +12,12 @@ public class Furnitur_KomporGas extends Furnitur{
         harga = 100;
         aksi = "Memasak";
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
-
     }
+
+    @Override
+    public void action(){
+        // aksi masak
+        // TODO : AKSI MASAK
+    }
+
 }

@@ -3,6 +3,9 @@ package main;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class UtilityTool {
     public static BufferedImage scaleImage(BufferedImage original, int width, int height) {
@@ -42,6 +45,27 @@ public class UtilityTool {
             sb.append(" ");
         }
         return sb.toString().trim();
+    }
+
+    public static void delay(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void printDataFile(String fileName) {
+        String path = "data/";
+        String file = path + fileName;
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.err.format("IOException: %s%n", e);
+        }
     }
 
 }

@@ -883,7 +883,6 @@ public class KeyHandler implements KeyListener {
     }
 
     public void inputKoordinatRumahSimState(int keyCode){
-        // TODO
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
                 gamePanel.ui.inputText += "1";
@@ -990,7 +989,6 @@ public class KeyHandler implements KeyListener {
     }
 
     public void addSimState(int keyCode){
-        // TODO : SELSAIIN ADD SIM
         if (gamePanel.ui.inputText.length() < 15) {
             if (keyCode == KeyEvent.VK_A) {
                 gamePanel.ui.inputText += "A";
@@ -1146,8 +1144,6 @@ public class KeyHandler implements KeyListener {
                 }
             }
         } else if (keyCode == KeyEvent.VK_ENTER) {
-            // TODO 
-            // gamePanel.listSim.get(gamePanel.indexCurrentSim).selectItem();
             int indexSim = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow, gamePanel.ui.listSimSlotCol);
             gamePanel.indexCurrentSim = indexSim;
             gamePanel.gameState = gamePanel.dialogState;

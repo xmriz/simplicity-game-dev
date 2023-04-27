@@ -861,7 +861,6 @@ public class UI {
     }
 
     public void drawInputSimNameScreen(String judul) {
-        // TODO
         int x = getXforCenteredText(judul);
         x -= 3 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
@@ -896,7 +895,6 @@ public class UI {
     }
 
     public void drawInputKoordinatRumahSimScreen(String judul) {
-        // TODO
         // draw window
         int x = getXforCenteredText(judul);
         x -= 3 * gamePanel.tileSize;
