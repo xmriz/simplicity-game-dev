@@ -91,7 +91,6 @@ public class GamePanel extends JPanel implements Runnable {
             listRumah[i] = new ArrayList<Benda>();
         }
         listSim.add(new Sim(this, keyHandler)); // nambah sim pertama
-        // TODO : BUAT PAS DI GENERATE PERTAMA KALI TERUS VIEW CURRENT LOCATION LANGSUNG KE UBAH
 
         indexCurrentSim = 0;
 

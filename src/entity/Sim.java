@@ -49,8 +49,6 @@ public class Sim extends Entity {
         currentMap = 1;
         indexRumahYangDimasuki = 0;
         indexLocationRuangan = 0;
-        currentLocation = "Rumah " + nama + " (" + UtilityTool.capitalizeFirstLetter(rumah.ruanganRumah.get(0).name)
-                + ")";
 
         screenX = gamePanel.screenWidth / 2 - (gamePanel.tileSize / 2); // set the player's position on the screen
                                                                         // (always center)

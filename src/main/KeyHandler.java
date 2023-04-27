@@ -78,7 +78,9 @@ public class KeyHandler implements KeyListener {
                             // capitalize first letter
                             gamePanel.listSim.get(gamePanel.indexCurrentSim).nama = UtilityTool
                                     .capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).nama);
+                            // set currentlocation
                         }
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(0).name)+ ")";
                         // set game state to play state
                         gamePanel.gameState = gamePanel.playState;
                         gamePanel.stopMusic();
