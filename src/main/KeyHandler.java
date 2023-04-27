@@ -344,6 +344,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow - 1, gamePanel.ui.simSlotCol);
                 if (index <= gamePanel.listSim.size() - 1) {
                     gamePanel.ui.simSlotRow--;
+                    cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(2, gamePanel.ui.simSlotCol);
@@ -351,12 +352,12 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.simSlotRow = 2;
                 }
             }
-            cursorSound();
         } else if (keyCode == KeyEvent.VK_DOWN) {
             if (gamePanel.ui.simSlotRow < 2) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow + 1, gamePanel.ui.simSlotCol);
                 if (index <= gamePanel.listSim.size() - 1) {
                     gamePanel.ui.simSlotRow++;
+                    cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(0, gamePanel.ui.simSlotCol);
@@ -364,12 +365,12 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.simSlotRow = 0;
                 }
             }
-            cursorSound();
         } else if (keyCode == KeyEvent.VK_LEFT) {
             if (gamePanel.ui.simSlotCol > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, gamePanel.ui.simSlotCol - 1);
                 if (index <= gamePanel.listSim.size() - 1) {
                     gamePanel.ui.simSlotCol--;
+                    cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, 10);
@@ -377,12 +378,12 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.simSlotCol = 10;
                 }
             }
-            cursorSound();
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             if (gamePanel.ui.simSlotCol < 10) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, gamePanel.ui.simSlotCol + 1);
                 if (index <= gamePanel.listSim.size() - 1) {
                     gamePanel.ui.simSlotCol++;
+                    cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, 0);
@@ -390,7 +391,6 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.simSlotCol = 0;
                 }
             }
-            cursorSound();
         } else if (keyCode == KeyEvent.VK_ENTER) {
             gamePanel.listSim.get(gamePanel.indexCurrentSim).selectItem();
             gamePanel.ui.simSlotRow = 0;
@@ -522,6 +522,7 @@ public class KeyHandler implements KeyListener {
             beliInventory(keyCode);
             if (keyCode == KeyEvent.VK_ESCAPE) {
                 gamePanel.ui.subState = 0;
+                cursorSound();
             }
         }
     }
@@ -536,6 +537,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.npcSlotRow - 1, gamePanel.ui.npcSlotCol);
                 if (index <= gamePanel.npc[0][4].inventory.size() - 1) {
                     gamePanel.ui.npcSlotRow--;
+                    cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(2, gamePanel.ui.npcSlotCol);
@@ -548,6 +550,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.npcSlotRow + 1, gamePanel.ui.npcSlotCol);
                 if (index <= gamePanel.npc[0][4].inventory.size() - 1) {
                     gamePanel.ui.npcSlotRow++;
+                    cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(0, gamePanel.ui.npcSlotCol);
@@ -560,6 +563,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.npcSlotRow, gamePanel.ui.npcSlotCol - 1);
                 if (index <= gamePanel.npc[0][4].inventory.size() - 1) {
                     gamePanel.ui.npcSlotCol--;
+                    cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.npcSlotRow, 10);
@@ -572,6 +576,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.npcSlotRow, gamePanel.ui.npcSlotCol + 1);
                 if (index <= gamePanel.npc[0][4].inventory.size() - 1) {
                     gamePanel.ui.npcSlotCol++;
+                    cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.npcSlotRow, 0);
@@ -593,14 +598,17 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.commandNumber < 0) {
                 gamePanel.ui.commandNumber = 3;
             }
+            cursorSound();
         } else if (keyCode == KeyEvent.VK_DOWN) {
             gamePanel.ui.commandNumber++;
             if (gamePanel.ui.commandNumber > 3) {
                 gamePanel.ui.commandNumber = 0;
             }
+            cursorSound();
         } else if (keyCode == KeyEvent.VK_ENTER) {
             // gamePanel.gameState = gamePanel.playState;
             gamePanel.gameState = gamePanel.inputNamaRuanganState;
+            cursorSound();
         }
         // draw input box
         // if (gamePanel.ui.inputTextDone) {
@@ -616,23 +624,31 @@ public class KeyHandler implements KeyListener {
         if (gamePanel.ui.inputText.length() < 3) {
             if (keyCode == KeyEvent.VK_1) {
                 gamePanel.ui.inputText += "1";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_2) {
                 gamePanel.ui.inputText += "2";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_3) {
                 gamePanel.ui.inputText += "3";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_4) {
                 gamePanel.ui.inputText += "4";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_5) {
                 gamePanel.ui.inputText += "5";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_6) {
                 gamePanel.ui.inputText += "6";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_COMMA) {
                 gamePanel.ui.inputText += ",";
+                cursorSound();
             }
         }
 
         if (keyCode == KeyEvent.VK_BACK_SPACE && gamePanel.ui.inputText.length() > 0) {
             gamePanel.ui.inputText = gamePanel.ui.inputText.substring(0, gamePanel.ui.inputText.length() - 1);
+            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -823,6 +839,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.inputText = "";
             }
+            cursorSound();
 
         }
 
@@ -840,63 +857,91 @@ public class KeyHandler implements KeyListener {
         if (gamePanel.ui.inputText.length() < 15) {
             if (keyCode == KeyEvent.VK_A) {
                 gamePanel.ui.inputText += "A";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_B) {
                 gamePanel.ui.inputText += "B";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_C) {
                 gamePanel.ui.inputText += "C";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_D) {
                 gamePanel.ui.inputText += "D";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_E) {
                 gamePanel.ui.inputText += "E";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_F) {
                 gamePanel.ui.inputText += "F";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_G) {
                 gamePanel.ui.inputText += "G";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_H) {
                 gamePanel.ui.inputText += "H";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_I) {
                 gamePanel.ui.inputText += "I";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_J) {
                 gamePanel.ui.inputText += "J";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_K) {
                 gamePanel.ui.inputText += "K";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_L) {
                 gamePanel.ui.inputText += "L";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_M) {
                 gamePanel.ui.inputText += "M";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_N) {
                 gamePanel.ui.inputText += "N";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_O) {
                 gamePanel.ui.inputText += "O";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_P) {
                 gamePanel.ui.inputText += "P";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_Q) {
                 gamePanel.ui.inputText += "Q";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_R) {
                 gamePanel.ui.inputText += "R";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_S) {
                 gamePanel.ui.inputText += "S";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_T) {
                 gamePanel.ui.inputText += "T";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_U) {
                 gamePanel.ui.inputText += "U";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_V) {
                 gamePanel.ui.inputText += "V";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_W) {
                 gamePanel.ui.inputText += "W";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_X) {
                 gamePanel.ui.inputText += "X";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_Y) {
                 gamePanel.ui.inputText += "Y";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_Z) {
                 gamePanel.ui.inputText += "Z";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_SPACE) {
                 gamePanel.ui.inputText += " ";
+                cursorSound();
             }
         }
 
         if (keyCode == KeyEvent.VK_BACK_SPACE && gamePanel.ui.inputText.length() > 0) {
             gamePanel.ui.inputText = gamePanel.ui.inputText.substring(0, gamePanel.ui.inputText.length() - 1);
+            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -931,6 +976,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
                 gamePanel.ui.commandNumber = 0;
             }
+            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
@@ -938,6 +984,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.inputTextDone = false;
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.upgradeRumahState;
+            cursorSound();
         }
 
     }
@@ -947,31 +994,43 @@ public class KeyHandler implements KeyListener {
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
                 gamePanel.ui.inputText += "1";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_2) {
                 gamePanel.ui.inputText += "2";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_3) {
                 gamePanel.ui.inputText += "3";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_4) {
                 gamePanel.ui.inputText += "4";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_5) {
                 gamePanel.ui.inputText += "5";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_6) {
                 gamePanel.ui.inputText += "6";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_7) {
                 gamePanel.ui.inputText += "7";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_8) {
                 gamePanel.ui.inputText += "8";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_9) {
                 gamePanel.ui.inputText += "9";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_0) {
                 gamePanel.ui.inputText += "0";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_COMMA) {
                 gamePanel.ui.inputText += ",";
+                cursorSound();
             }
         }
 
         if (keyCode == KeyEvent.VK_BACK_SPACE && gamePanel.ui.inputText.length() > 0) {
             gamePanel.ui.inputText = gamePanel.ui.inputText.substring(0, gamePanel.ui.inputText.length() - 1);
+            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -1033,6 +1092,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.inputText = "";
             }
+            cursorSound();
 
         }
 
@@ -1042,6 +1102,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.addSimState;
             gamePanel.listSim.remove(gamePanel.listSim.size() - 1); // INI JANGAN DIHAPUS
+            cursorSound();
         }
     }
 
@@ -1050,63 +1111,91 @@ public class KeyHandler implements KeyListener {
         if (gamePanel.ui.inputText.length() < 15) {
             if (keyCode == KeyEvent.VK_A) {
                 gamePanel.ui.inputText += "A";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_B) {
                 gamePanel.ui.inputText += "B";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_C) {
                 gamePanel.ui.inputText += "C";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_D) {
                 gamePanel.ui.inputText += "D";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_E) {
                 gamePanel.ui.inputText += "E";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_F) {
                 gamePanel.ui.inputText += "F";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_G) {
                 gamePanel.ui.inputText += "G";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_H) {
                 gamePanel.ui.inputText += "H";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_I) {
                 gamePanel.ui.inputText += "I";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_J) {
                 gamePanel.ui.inputText += "J";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_K) {
                 gamePanel.ui.inputText += "K";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_L) {
                 gamePanel.ui.inputText += "L";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_M) {
                 gamePanel.ui.inputText += "M";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_N) {
                 gamePanel.ui.inputText += "N";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_O) {
                 gamePanel.ui.inputText += "O";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_P) {
                 gamePanel.ui.inputText += "P";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_Q) {
                 gamePanel.ui.inputText += "Q";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_R) {
                 gamePanel.ui.inputText += "R";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_S) {
                 gamePanel.ui.inputText += "S";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_T) {
                 gamePanel.ui.inputText += "T";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_U) {
                 gamePanel.ui.inputText += "U";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_V) {
                 gamePanel.ui.inputText += "V";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_W) {
                 gamePanel.ui.inputText += "W";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_X) {
                 gamePanel.ui.inputText += "X";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_Y) {
                 gamePanel.ui.inputText += "Y";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_Z) {
                 gamePanel.ui.inputText += "Z";
+                cursorSound();
             } else if (keyCode == KeyEvent.VK_SPACE) {
                 gamePanel.ui.inputText += " ";
+                cursorSound();
             }
         }
 
         if (keyCode == KeyEvent.VK_BACK_SPACE && gamePanel.ui.inputText.length() > 0) {
             gamePanel.ui.inputText = gamePanel.ui.inputText.substring(0, gamePanel.ui.inputText.length() - 1);
+            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -1138,6 +1227,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
                 gamePanel.ui.commandNumber = 0;
             }
+            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
@@ -1145,6 +1235,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.inputTextDone = false;
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.playState;
+            cursorSound();
         }
     }
 
@@ -1159,6 +1250,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow - 1, gamePanel.ui.listSimSlotCol);
                 if (index <= gamePanel.listSim.size() - 1) {
                     gamePanel.ui.listSimSlotRow--;
+                    cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(2, gamePanel.ui.listSimSlotCol);
@@ -1171,6 +1263,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow + 1, gamePanel.ui.listSimSlotCol);
                 if (index <= gamePanel.listSim.size() - 1) {
                     gamePanel.ui.listSimSlotRow++;
+                    cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(0, gamePanel.ui.listSimSlotCol);
@@ -1183,6 +1276,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow, gamePanel.ui.listSimSlotCol - 1);
                 if (index <= gamePanel.listSim.size() - 1) {
                     gamePanel.ui.listSimSlotCol--;
+                    cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow, 10);
@@ -1195,6 +1289,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow, gamePanel.ui.listSimSlotCol + 1);
                 if (index <= gamePanel.listSim.size() - 1) {
                     gamePanel.ui.listSimSlotCol++;
+                    cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow, 0);
@@ -1212,6 +1307,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.gameState = gamePanel.dialogState;
             gamePanel.ui.currentDialog = "Sim telah diganti menjadi "
                     + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + "!";
+            cursorSound();
 
         }
     }
