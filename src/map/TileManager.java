@@ -86,8 +86,8 @@ public class TileManager {
         int tileNum;
 
         while (worldCol < gamePanel.maxWorldCol && worldRow < gamePanel.maxWorldRow){
-            if (gamePanel.currentMap == 0){
-                tileNum = mapTileNum[gamePanel.currentMap][worldCol][worldRow];
+            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0){
+                tileNum = mapTileNum[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap][worldCol][worldRow];
             } else{
                 tileNum = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(indexRuangan).mapRuangan[worldCol][worldRow];
             }

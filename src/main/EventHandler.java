@@ -54,7 +54,7 @@ public class EventHandler {
             // ----- BATAS ----- //
 
             // for (int i = 0; i < gamePanel.listSim.size(); i++){
-            // if (gamePanel.currentMap == 0){ // DI WORLD
+            // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0){ // DI WORLD
             // if (hit(0,gamePanel.listSim.get(i).rumah.colRumah,
             // gamePanel.listSim.get(i).rumah.rowRumah, "any",999)){
             // teleport(1,5,8,0);
@@ -152,7 +152,7 @@ public class EventHandler {
             // }
 
             // --- BATAS --- //
-            if (gamePanel.currentMap == 0) {
+            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0) {
                 int indexRumahWorldTemp = gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki;
                 indexRumahTemp = indexRumahWorldTemp;
                 if (indexRumahWorldTemp != 999) {
@@ -343,7 +343,7 @@ public class EventHandler {
     public boolean hit(int map, int col, int row, String reqDirection) {
         boolean hit = false;
         if (map == 0) {
-            if (map == gamePanel.currentMap) {
+            if (map == gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap) {
                 gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.x = gamePanel.listSim
                         .get(gamePanel.indexCurrentSim).worldX
                         + gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.x;
@@ -373,7 +373,7 @@ public class EventHandler {
                 eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
             }
         } else {
-            if (map == gamePanel.currentMap) {
+            if (map == gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap) {
                 gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.x = gamePanel.listSim
                         .get(gamePanel.indexCurrentSim).worldX
                         + gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.x;
@@ -409,7 +409,7 @@ public class EventHandler {
 
     public void teleport(int map, int col, int row, int indexRuangan) {
         // if (map == 0)
-        gamePanel.currentMap = map; // pindahin sim ke map 1
+        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap = map; // pindahin sim ke map 1
         gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX = col * gamePanel.tileSize; // pindahin sim ke kolom 1
         gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY = row * gamePanel.tileSize;
         previousEventX = gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX;

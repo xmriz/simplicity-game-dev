@@ -33,6 +33,7 @@ public class UI {
     public int titleScreenState = 0; // 0 = first screen, 1 = second screen, 2 = third screen
     public int simSlotCol = 0, simSlotRow = 0; // default slot position
     public int npcSlotCol = 0, npcSlotRow = 0; // default slot position for npc
+    public int listSimSlotCol = 0, listSimSlotRow = 0; // default slot position for list sim
     public int subState = 0;
     public int counter = 0;
 
@@ -86,6 +87,8 @@ public class UI {
             drawMenuScreen();
         } else if (gamePanel.gameState == gamePanel.helpState) {
             drawHelpScreen();
+        } else if (gamePanel.gameState == gamePanel.changeSimState){
+            drawChangeSimScreen();
         }
     }
 
@@ -618,6 +621,107 @@ public class UI {
         }
 
     }
+
+
+    public void drawChangeSimScreen(){
+        // batas
+
+        // create frame
+        int frameX = gamePanel.tileSize * 2;
+        int frameY = gamePanel.tileSize;
+        int frameWidth = gamePanel.screenWidth - gamePanel.tileSize * 4;
+        int frameHeight = gamePanel.screenHeight - gamePanel.tileSize * 11;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(40f));
+
+        // inventory title
+        int textYINVENTORY = frameY + gamePanel.tileSize;
+        final int textXINVENTORY = getXforCenteredText("LIST SIM");
+        g2d.drawString("LIST SIM", textXINVENTORY, textYINVENTORY);
+
+
+        // slot
+        final int slotXstart = frameX + 19;
+        final int slotYstart = textYINVENTORY + 19;
+        int slotX = slotXstart;
+        int slotY = slotYstart;
+        int slotSize = gamePanel.tileSize + 1;
+
+        // draw entity items
+        for (int i = 0; i < gamePanel.listSim.size(); i++) {
+
+            g2d.drawImage(gamePanel.listSim.get(i).down1, slotX, slotY, gamePanel.tileSize, gamePanel.tileSize, null);
+
+            slotX += slotSize;
+            // jika kelipatan 11 maka pindah ke baris bawah
+            if (i % 11 == 10) {
+                slotX = slotXstart;
+                slotY += slotSize;
+            }
+        }
+
+        // cursor
+        int cursorX = slotXstart + (slotSize * listSimSlotCol);
+        int cursorY = slotYstart + (slotSize * listSimSlotRow);
+        int cursorWidth = gamePanel.tileSize;
+        int cursorHeight = gamePanel.tileSize;
+        // draw cursor
+        g2d.setColor(Color.WHITE);
+        g2d.setStroke(new BasicStroke(3)); // ngubah ukuran stroke
+        g2d.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+
+        // item info
+        int iFrameX = frameX;
+        int iFrameY = frameY + frameHeight + 10;
+        int iFrameWidth = frameWidth;
+        int iFrameHeight = gamePanel.tileSize * 6 - 20 - 35 - 30;
+        drawSubWindow(iFrameX, iFrameY, iFrameWidth, iFrameHeight);
+
+        // ITEM INFO TITLE
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(40f));
+        final int textXITEMINFO = getXforCenteredText("SIM INFO");
+        int textYITEMINFO = iFrameY + gamePanel.tileSize;
+        g2d.drawString("SIM INFO", textXITEMINFO, textYITEMINFO);
+
+        // draw item info
+        int lineHeight = 35;
+        int textX = iFrameX + 20;
+        int textY = textYITEMINFO + lineHeight + 20;
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+
+        int itemIndex = getItemIndexOnSlot(listSimSlotRow, listSimSlotCol);
+        if (itemIndex < gamePanel.listSim.size()) {
+            if (gamePanel.listSim.get(itemIndex) != null) {
+                
+                    // write item info
+                    g2d.drawString("Nama", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Pekerjaan", textX, textY);
+                    textY += lineHeight;
+                    g2d.drawString("Koordinat Rumah", textX, textY);
+                    // write item value
+                    int iTailX = iFrameX + iFrameWidth / 3 + gamePanel.tileSize;
+                    textY = textYITEMINFO + lineHeight + 20;
+                    String iValue;
+                    Sim sim = gamePanel.listSim.get(itemIndex);
+                    g2d.drawString(" : " + sim.nama, iTailX, textY);
+                    textY += lineHeight;
+                    g2d.drawString(" : " + sim.pekerjaan, iTailX, textY);
+                    textY += lineHeight;
+                    iValue = String.valueOf(" : " + sim.rumah.colRumah + ", " + sim.rumah.rowRumah);
+                    g2d.drawString(iValue, iTailX, textY);
+
+                    textY = textYITEMINFO + lineHeight + 20;
+            }
+        }
+
+        // batas
+    }
+
 
     public void drawUpgradeRumahScreen() {
         // draw window

@@ -35,7 +35,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // MAP SETTINGS
     public final int maxMap = 2; // Ruangan and world
-    public int currentMap = 0;
+    // public int listSim.get(indexCurrentSim).currentMap = 0;
 
     // FPS
     int fps = 60; // frames per second
@@ -136,9 +136,9 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
         if (gameState == playState) {
             listSim.get(indexCurrentSim).update();
-            for (int i = 0; i < npc[currentMap].length; i++) {
-                if (npc[currentMap][i] != null) {
-                    npc[currentMap][i].update();
+            for (int i = 0; i < npc[listSim.get(indexCurrentSim).currentMap].length; i++) {
+                if (npc[listSim.get(indexCurrentSim).currentMap][i] != null) {
+                    npc[listSim.get(indexCurrentSim).currentMap][i].update();
                 }
             }
         } else if (gameState == pauseState) {
@@ -148,7 +148,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         // memastikan kalau sim berada di world indexRuangan 999
-        if (currentMap == 0) {
+        if (listSim.get(indexCurrentSim).currentMap == 0) {
             listSim.get(indexCurrentSim).indexLocationRuangan = 999;
             listSim.get(indexCurrentSim).currentLocation = "World";
         }
@@ -179,17 +179,17 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2d); // draw the title screen
         } else {
             // draw the background
-            if (currentMap == 0) {
+            if (listSim.get(indexCurrentSim).currentMap == 0) {
                 tileManager.draw(g2d, 999);
             } else {
                 tileManager.draw(g2d, listSim.get(indexCurrentSim).indexLocationRuangan);
             }
 
             // draw benda
-            if (currentMap == 0) {
-                for (int i = 0; i < listRumah[currentMap].size(); i++) {
-                    if (listRumah[currentMap].get(i) != null) {
-                        listRumah[currentMap].get(i).draw(g2d, this);
+            if (listSim.get(indexCurrentSim).currentMap == 0) {
+                for (int i = 0; i < listRumah[listSim.get(indexCurrentSim).currentMap].size(); i++) {
+                    if (listRumah[listSim.get(indexCurrentSim).currentMap].get(i) != null) {
+                        listRumah[listSim.get(indexCurrentSim).currentMap].get(i).draw(g2d, this);
                     }
                 }
             } else {
@@ -205,9 +205,9 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             // draw npc
-            for (int i = 0; i < npc[currentMap].length; i++) {
-                if (npc[currentMap][i] != null) {
-                    npc[currentMap][i].draw(g2d);
+            for (int i = 0; i < npc[listSim.get(indexCurrentSim).currentMap].length; i++) {
+                if (npc[listSim.get(indexCurrentSim).currentMap][i] != null) {
+                    npc[listSim.get(indexCurrentSim).currentMap][i].draw(g2d);
                 }
             }
 

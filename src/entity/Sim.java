@@ -25,6 +25,7 @@ public class Sim extends Entity {
     public int indexLocationRuangan = 999;
     public int indexBendaYangDisentuh = 999;
     public int indexRumahYangDimasuki = 999;
+    public int currentMap = 0;
 
 
     KeyHandler keyHandler;
@@ -166,14 +167,14 @@ public class Sim extends Entity {
 
     // public void pickUpObject(int index){
     //     if (index != 999){ // 999 means there is no collision with benda
-    //         if (!(gamePanel.benda[gamePanel.currentMap][index] instanceof Furnitur || gamePanel.benda[gamePanel.currentMap][index] instanceof Rumah)){
-    //             if (canObtainItem(gamePanel.benda[gamePanel.currentMap][index])){
-    //                 // text = "kamu mendapatkan " + gamePanel.benda[gamePanel.currentMap][index].nama;
+    //         if (!(gamePanel.benda[currentMap][index] instanceof Furnitur || gamePanel.benda[currentMap][index] instanceof Rumah)){
+    //             if (canObtainItem(gamePanel.benda[currentMap][index])){
+    //                 // text = "kamu mendapatkan " + gamePanel.benda[currentMap][index].nama;
     //             } else {
     //                 // text = "Inventory penuh";
     //             } 
     //             // gamePanel.ui.addMessage(text);
-    //             gamePanel.benda[gamePanel.currentMap][index] = null;
+    //             gamePanel.benda[currentMap][index] = null;
     //         } 
     //     }
     // }
@@ -182,7 +183,7 @@ public class Sim extends Entity {
         if (i != 999) {
             if (gamePanel.keyHandler.enterPressed) {
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.npc[gamePanel.currentMap][i].speak();
+                gamePanel.npc[currentMap][i].speak();
             }
         }
     }
@@ -215,7 +216,7 @@ public class Sim extends Entity {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Anda memakan " + makanan.name + ".\n" + "Kekenyangan bertambah " + makanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah " + kekenyangan + " poin.";
             } else if (selectedBenda instanceof Furnitur) {
-                if (gamePanel.currentMap == 0){
+                if (currentMap == 0){
                     gamePanel.gameState = gamePanel.dialogState;
                     gamePanel.ui.currentDialog = "Tidak dapat memasang furnitur di luar\nrumah!";
                 } else {
