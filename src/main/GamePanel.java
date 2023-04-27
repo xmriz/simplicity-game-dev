@@ -200,11 +200,11 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             } else {
-                for (int i = 0; i < listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+                for (int i = 0; i < listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
                         .get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.size(); i++) {
-                    if (listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+                    if (listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
                             .get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i) != null) {
-                        listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+                        listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
                                 .get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i)
                                 .draw(g2d, this);
                     }
