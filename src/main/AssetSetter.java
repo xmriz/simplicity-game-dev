@@ -11,7 +11,7 @@ public class AssetSetter {
         this.gamePanel = gamePanel;
     }
 
-    public void setBenda(){
+    public void setBenda(){ // dilakukan satu kali saja
         // position of the benda in the world
         int mapNumber = 0;
         for (int x = 0; x < gamePanel.listSim.size(); x++){

@@ -5,7 +5,6 @@ import java.io.*;
 
 import javax.imageio.ImageIO;
 
-import main.EventHandler;
 import main.GamePanel;
 import main.UtilityTool;
 

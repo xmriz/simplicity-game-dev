@@ -46,6 +46,12 @@ public class Sim extends Entity {
 
         this.keyHandler = keyHandler;
 
+        // set sim to his own rumah
+        currentMap = 1;
+        indexRumahYangDimasuki = 0;
+        indexLocationRuangan = 0;
+        currentLocation = "Rumah " + nama + " (" + UtilityTool.capitalizeFirstLetter(rumah.ruanganRumah.get(0).name) + ")";
+
         screenX = gamePanel.screenWidth / 2 - (gamePanel.tileSize / 2); // set the player's position on the screen
                                                                         // (always center)
         screenY = gamePanel.screenHeight / 2 - (gamePanel.tileSize / 2);
@@ -61,8 +67,8 @@ public class Sim extends Entity {
     }
 
     public void setDefaultValues() { // set the default values of the player
-        worldX = 1 * gamePanel.tileSize; // set the player's position in the world
-        worldY = 1 * gamePanel.tileSize;
+        worldX = 2 * gamePanel.tileSize; // set the player's position in the world
+        worldY = 2 * gamePanel.tileSize;
         speed = 4; 
         direction = "down";
     }

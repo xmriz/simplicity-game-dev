@@ -93,6 +93,7 @@ public class GamePanel extends JPanel implements Runnable {
         listSim.add(new Sim(this, keyHandler)); // nambah sim pertama
 
         indexCurrentSim = 0;
+        
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // set the size of the panel
         this.setBackground(Color.black); // set the background color of the panel
         this.setDoubleBuffered(true); // set the panel to be double buffered

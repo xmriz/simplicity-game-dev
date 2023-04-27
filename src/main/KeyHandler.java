@@ -960,6 +960,11 @@ public class KeyHandler implements KeyListener {
                             gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.rowRumah = y;
                             gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.worldY = y*gamePanel.tileSize;
                             gamePanel.listRumah[0].add(gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah);
+                            // set sim to own rumah
+                            gamePanel.listSim.get(gamePanel.listSim.size()-1).currentMap = 1;
+                            gamePanel.listSim.get(gamePanel.listSim.size()-1).indexRumahYangDimasuki = gamePanel.listRumah[0].size()-1;
+                            gamePanel.listSim.get(gamePanel.listSim.size()-1).indexLocationRuangan = 0;
+                            gamePanel.listSim.get(gamePanel.listSim.size()-1).currentLocation = "Rumah " + gamePanel.listSim.get(gamePanel.listSim.size()-1).nama + " (" + UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.listSim.size()-1).rumah.ruanganRumah.get(0).name) + ")";
                         }
                     }
                 }
