@@ -203,6 +203,12 @@ public class KeyHandler implements KeyListener {
         else if (gamePanel.gameState == gamePanel.helpState) {
             helpState(keyCode);
         }
+
+        // MAP STATE
+        else if (gamePanel.gameState == gamePanel.mapState) {
+            mapState(keyCode);
+        }
+
     }
 
     public void playState(int keyCode) {
@@ -252,6 +258,14 @@ public class KeyHandler implements KeyListener {
             gamePanel.gameState = gamePanel.addSimState;
         } else if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.menuState;
+        } else if (keyCode == KeyEvent.VK_M) {
+            gamePanel.gameState = gamePanel.mapState;
+        } else if (keyCode == KeyEvent.VK_X) {
+            if (gamePanel.map.mapOn == false) {
+                gamePanel.map.mapOn = true;
+            } else {
+                gamePanel.map.mapOn = false;
+            }
         }
     }
 
@@ -423,6 +437,12 @@ public class KeyHandler implements KeyListener {
 
     public void helpState(int keyCode) {
         if (keyCode == KeyEvent.VK_ESCAPE) {
+            gamePanel.gameState = gamePanel.playState;
+        }
+    }
+
+    public void mapState(int keyCode) {
+        if (keyCode == KeyEvent.VK_M) {
             gamePanel.gameState = gamePanel.playState;
         }
     }

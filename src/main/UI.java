@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 
 import benda.*;
 import entity.*;
+import map.Map;
 
 public class UI {
     GamePanel gamePanel;
@@ -62,6 +63,7 @@ public class UI {
             drawTitleScreen();
         } else if (gamePanel.gameState == gamePanel.playState) { // if game is playing
             // later
+            drawMiniMap(g2d);
         } else if (gamePanel.gameState == gamePanel.pauseState) { // if game is paused
             drawPauseScreen();
         } else if (gamePanel.gameState == gamePanel.dialogState) { // if game is in dialog
@@ -84,6 +86,8 @@ public class UI {
             drawMenuScreen();
         } else if (gamePanel.gameState == gamePanel.helpState) {
             drawHelpScreen();
+        } else if (gamePanel.gameState == gamePanel.mapState) {
+            drawFullMapScreen(g2d);
         }
     }
 
@@ -905,6 +909,154 @@ public class UI {
         text = "B: Beli Barang";
         y += gamePanel.tileSize;
         g2d.drawString(text, x, y);
+    }
+
+    public void drawFullMapScreen(Graphics2D g2d) {
+        // Background Color
+        g2d.setColor(Color.black);
+        g2d.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
+
+        // Draw Map
+        int width = 500;
+        int height = 500;
+        int x = gamePanel.screenWidth / 2 - width / 2;
+        int y = gamePanel.screenHeight / 2 - height / 2;
+        g2d.drawImage(gamePanel.getMap().worldMap[gamePanel.currentMap], x, y, width, height, null);
+
+        // Draw Player
+        double scale = (double) (gamePanel.tileSize * gamePanel.maxWorldCol) / width;
+        int playerX = (int) (x + gamePanel.getCurrentSim().getWorldX() / scale);
+        int playerY = (int) (y + gamePanel.getCurrentSim().getWorldY() / scale);
+        int playerSize = (int) (gamePanel.tileSize / scale) * 2;
+        g2d.drawImage(gamePanel.getCurrentSim().down1, playerX, playerY, playerSize,
+                playerSize, null);
+
+        // draw benda
+        int bendaSize = (int) (gamePanel.tileSize / scale);
+        if (gamePanel.currentMap == 0) {
+            for (int i = 0; i < gamePanel.listRumah[gamePanel.currentMap].size(); i++) {
+                int bendaX = (int) (x + gamePanel.listRumah[gamePanel.currentMap].get(i).worldX / scale);
+                int bendaY = (int) (y + gamePanel.listRumah[gamePanel.currentMap].get(i).worldY / scale);
+                if (gamePanel.listRumah[gamePanel.currentMap].get(i) != null) {
+                    g2d.drawImage(gamePanel.listRumah[gamePanel.currentMap].get(i).image, bendaX,
+                            bendaY, bendaSize, bendaSize, null);
+                }
+            }
+        } else {
+            for (int i = 0; i < gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+                    .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                    .size(); i++) {
+                int bendaX = (int) (x + gamePanel.listRumah[gamePanel.currentMap].get(i).worldX / scale);
+                int bendaY = (int) (y + gamePanel.listRumah[gamePanel.currentMap].get(i).worldY / scale);
+                if (gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                        .get(i) != null) {
+                    g2d.drawImage(
+                            gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah.get(
+                                    gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                    .get(i).image,
+                            bendaX,
+                            bendaY, bendaSize, bendaSize, null);
+                }
+            }
+        }
+    }
+
+    // draw miniMap
+    public void drawMiniMap(Graphics2D g2d) {
+        if (gamePanel.map.mapOn == true) {
+
+            // Draw Map
+            int width = 200;
+            int height = 200;
+            int x = gamePanel.screenWidth - width - 50;
+            int y = 50;
+            double scale = (double) (gamePanel.tileSize * gamePanel.maxWorldCol) / width;
+
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
+            g2d.drawImage(gamePanel.map.worldMap[gamePanel.currentMap], x, y, width, height, null);
+
+            // Draw Benda
+
+            int bendaSize = (int) (gamePanel.tileSize / scale) * 2;
+            if (gamePanel.currentMap == 0) {
+                for (int i = 0; i < gamePanel.listRumah[gamePanel.currentMap].size(); i++) {
+                    int bendaX = (int) (x + gamePanel.listRumah[gamePanel.currentMap].get(i).worldX / scale);
+                    int bendaY = (int) (y + gamePanel.listRumah[gamePanel.currentMap].get(i).worldY / scale);
+                    if (gamePanel.listRumah[gamePanel.currentMap].get(i) != null) {
+                        g2d.drawImage(gamePanel.listRumah[gamePanel.currentMap].get(i).image, bendaX,
+                                bendaY, bendaSize, bendaSize, null);
+                    }
+                }
+            } else {
+                for (int i = 0; i < gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                        .size(); i++) {
+                    int bendaX = (int) (x + gamePanel.listRumah[gamePanel.currentMap].get(i).worldX / scale);
+                    int bendaY = (int) (y + gamePanel.listRumah[gamePanel.currentMap].get(i).worldY / scale);
+                    if (gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                            .get(i) != null) {
+                        g2d.drawImage(
+                                gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah.get(
+                                        gamePanel.listSim
+                                                .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                        .get(i).image,
+                                bendaX,
+                                bendaY, bendaSize, bendaSize, null);
+                    }
+                }
+            }
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
+
+            // Draw Player
+
+            // double scale = (double) (gamePanel.tileSize * gamePanel.maxWorldCol) / width;
+            int playerX = (int) (x + gamePanel.getCurrentSim().getWorldX() / scale);
+            int playerY = (int) (y + gamePanel.getCurrentSim().getWorldY() / scale);
+            int playerSize = (int) (gamePanel.tileSize / 6);
+            g2d.drawImage(gamePanel.getCurrentSim().down1, playerX - 3, playerY - 3, playerSize,
+                    playerSize, null);
+
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
+            // int bendaSize = (int) (gamePanel.tileSize / scale) * 2;
+            // if (gamePanel.currentMap == 0) {
+            // for (int i = 0; i < gamePanel.listRumah[gamePanel.currentMap].size(); i++) {
+            // int bendaX = (int) (x +
+            // gamePanel.listRumah[gamePanel.currentMap].get(i).worldX / scale);
+            // int bendaY = (int) (y +
+            // gamePanel.listRumah[gamePanel.currentMap].get(i).worldY / scale);
+            // if (gamePanel.listRumah[gamePanel.currentMap].get(i) != null) {
+            // g2d.drawImage(gamePanel.listRumah[gamePanel.currentMap].get(i).image, bendaX,
+            // bendaY, bendaSize, bendaSize, null);
+            // }
+            // }
+            // } else {
+            // for (int i = 0; i <
+            // gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+            // .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+            // .size(); i++) {
+            // int bendaX = (int) (x +
+            // gamePanel.listRumah[gamePanel.currentMap].get(i).worldX / scale);
+            // int bendaY = (int) (y +
+            // gamePanel.listRumah[gamePanel.currentMap].get(i).worldY / scale);
+            // if (gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah
+            // .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+            // .get(i) != null) {
+            // g2d.drawImage(
+            // gamePanel.listSim.get(EventHandler.indexRumahTemp).rumah.ruanganRumah.get(
+            // gamePanel.listSim
+            // .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+            // .get(i).image,
+            // bendaX,
+            // bendaY, bendaSize, bendaSize, null);
+            // }
+            // }
+            // }
+            // g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
+        }
+
     }
 
     public static int getItemIndexOnSlot(int slotRow, int slotCol) {

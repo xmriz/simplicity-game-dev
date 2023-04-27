@@ -6,12 +6,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Component;
 import java.util.*;
 
 import benda.Benda;
 import entity.*;
 import environment.EnvironmentManager;
 import map.TileManager;
+import map.Map;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -50,11 +52,13 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this); // create a new UI object
     public EventHandler eventHandler = new EventHandler(this); // create a new EventHandler object
     EnvironmentManager environmentManager = new EnvironmentManager(this); // create a new EnvironmentManager object
+    Map map = new Map(this);
     Thread gameThread; // thread for the game
 
     // Multisim
     public List<Sim> listSim = new ArrayList<>();
     public int indexCurrentSim;
+    // public Sim currentSim = listSim.get(indexCurrentSim);
 
     // ENTITY
     // public Sim sim = new Sim(this, keyHandler);
@@ -84,6 +88,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int changeSimState = 11;
     public final int menuState = 12;
     public final int helpState = 13;
+    public final int mapState = 14;
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {
@@ -173,6 +178,14 @@ public class GamePanel extends JPanel implements Runnable {
         soundEffect.play();
     }
 
+    public Sim getCurrentSim() {
+        return listSim.get(indexCurrentSim);
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g); // call the paintComponent method of the parent class
@@ -221,6 +234,9 @@ public class GamePanel extends JPanel implements Runnable {
             // draw environment
             environmentManager.update();
             environmentManager.draw(g2d);
+
+            // // draw mini map
+            // map.drawMiniMap(g2d);
 
             // draw ui
             ui.draw(g2d);
