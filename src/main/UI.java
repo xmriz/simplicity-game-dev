@@ -35,6 +35,7 @@ public class UI {
     public int simSlotCol = 0, simSlotRow = 0; // default slot position
     public int npcSlotCol = 0, npcSlotRow = 0; // default slot position for npc
     public int listSimSlotCol = 0, listSimSlotRow = 0; // default slot position for list sim
+    public int kokiSlotCol = 0, kokiSlotRow = 0; // default slot position for koki
     public int subState = 0;
     public int counter = 0;
     public int charIndex = 0;
@@ -96,6 +97,8 @@ public class UI {
             drawChangeSimScreen();
         } else if (gamePanel.gameState == gamePanel.mapState) {
             drawFullMapScreen(g2d);
+        } else if (gamePanel.gameState == gamePanel.resepState){
+            drawResepScreen();
         }
     }
 
@@ -325,6 +328,10 @@ public class UI {
             // for penjual
             final int textXINVENTORY = getXforCenteredText("SHOP");
             g2d.drawString("SHOP", textXINVENTORY, textYINVENTORY);
+        } else if (entity instanceof NPC_Koki) {
+            // for koki
+            final int textXINVENTORY = getXforCenteredText("RESEP MAKANAN");
+            g2d.drawString("RESEP MAKANAN", textXINVENTORY, textYINVENTORY);
         }
 
         // slot
@@ -384,7 +391,12 @@ public class UI {
         int iFrameX = frameX;
         int iFrameY = frameY + frameHeight + 10;
         int iFrameWidth = frameWidth;
-        int iFrameHeight = gamePanel.tileSize * 6 - 20;
+        int iFrameHeight;
+        if (entity instanceof NPC_Koki){
+            iFrameHeight = gamePanel.tileSize * 6 - 50;
+        } else {
+            iFrameHeight = gamePanel.tileSize * 6 - 20;
+        }
         drawSubWindow(iFrameX, iFrameY, iFrameWidth, iFrameHeight);
 
         // ITEM INFO TITLE
@@ -964,6 +976,70 @@ public class UI {
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
     }
+
+
+    // RESEP SCREEN
+    public void drawResepScreen(){
+        drawInventoryScreen(gamePanel.kokiTemp, kokiSlotCol, kokiSlotRow);
+
+        // draw hint window
+        int x = gamePanel.tileSize * 2;
+        int y = gamePanel.tileSize * 13;
+        int width = gamePanel.tileSize * 6;
+        int height = gamePanel.tileSize * 2;
+        drawSubWindow(x, y, width, height);
+        g2d.drawString("[ESC] Back", x + 24, y + 60);
+
+        // cook makanan
+        int itemIndex = getItemIndexOnSlot(kokiSlotRow, kokiSlotCol);
+        if (itemIndex < gamePanel.kokiTemp.inventory.size()){
+            if (gamePanel.keyHandler.enterPressed){
+                if (gamePanel.kokiTemp.inventory.get(itemIndex) instanceof Makanan){
+                    Makanan makanan = (Makanan) gamePanel.kokiTemp.inventory.get(itemIndex);
+                    // check inventory containsAll makanan.bahan
+                    java.util.List <String> bahanInInventory = new java.util.ArrayList<>();
+                    for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size(); i++){
+                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i) instanceof BahanMakanan){
+                            BahanMakanan bahan = (BahanMakanan) gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i);
+                            bahanInInventory.add(bahan.name);
+                        }
+                    }
+                    // ini bisa jadi penerapan generics
+                    if (bahanInInventory.containsAll(makanan.bahan)){
+                        // TODO kurangin bahan dari inventory
+                        for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size(); i++){
+                            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i) instanceof BahanMakanan){
+                                BahanMakanan bahanInv = (BahanMakanan) gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i);
+                                if (makanan.bahan.contains(bahanInv.name)){
+                                    if (bahanInv.quantity > 1){
+                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i).quantity--;
+                                    } else {
+                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.remove(i);
+                                    }
+                                }
+                            }
+                        }
+
+                        // simpan makanan yang udah jadi ke inventory
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(makanan);
+
+                        // mulai masak : draw dialog
+                        charIndex = 0;
+                        combinedText = "";
+                        gamePanel.gameState = gamePanel.dialogState;
+                        gamePanel.ui.currentDialog = makanan.name + " berhasil dibuat dan\ndimasukkan ke inventory!";
+                    } else {
+                        charIndex = 0;
+                        combinedText = "";
+                        gamePanel.gameState = gamePanel.dialogState;
+                        gamePanel.ui.currentDialog = "Bahan tidak cukup untuk memasak\n" + makanan.name + "!";
+                    }
+                }
+            }
+        }
+        gamePanel.keyHandler.enterPressed = false;
+    }
+
 
     // Menu SCREEN
     public void drawMenuScreen() {

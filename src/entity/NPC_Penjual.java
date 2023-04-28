@@ -43,14 +43,14 @@ public class NPC_Penjual extends Entity{
         inventory.add(new BahanMakanan_Wortel());
 
         // FURNITUR
-        inventory.add(new Furnitur_KasurSingle());
-        inventory.add(new Furnitur_KasurQueenSize());
-        inventory.add(new Furnitur_KasurKingSize());
-        inventory.add(new Furnitur_Toilet());
-        inventory.add(new Furnitur_KomporGas());
-        inventory.add(new Furnitur_KomporListrik());
-        inventory.add(new Furnitur_MejaKursi());
-        inventory.add(new Furnitur_Jam());
+        inventory.add(new Furnitur_KasurSingle(gamePanel));
+        inventory.add(new Furnitur_KasurQueenSize(gamePanel));
+        inventory.add(new Furnitur_KasurKingSize(gamePanel));
+        inventory.add(new Furnitur_Toilet(gamePanel));
+        inventory.add(new Furnitur_KomporGas(gamePanel));
+        inventory.add(new Furnitur_KomporListrik(gamePanel));
+        inventory.add(new Furnitur_MejaKursi(gamePanel));
+        inventory.add(new Furnitur_Jam(gamePanel));
 
         // LAMPU
         inventory.add(new Lampu(gamePanel));

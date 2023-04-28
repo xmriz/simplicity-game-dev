@@ -2,8 +2,10 @@ package benda;
 
 import java.awt.Rectangle;
 
+import main.GamePanel;
+
 public class Furnitur_MejaKursi extends Furnitur{
-    public Furnitur_MejaKursi(){
+    public Furnitur_MejaKursi(GamePanel gamePanel){
         name = "Meja Kursi";
         image = setupImage("benda/furnitur/meja_kursi");
         collision = false;
@@ -12,7 +14,7 @@ public class Furnitur_MejaKursi extends Furnitur{
         harga = 50;
         aksi = "Makan";
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
-
+        this.gamePanel = gamePanel;
     }
 
     @Override

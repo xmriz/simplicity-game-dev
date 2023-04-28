@@ -259,6 +259,11 @@ public class KeyHandler implements KeyListener {
             mapState(keyCode);
         }
 
+        // RESEP STATE
+        else if (gamePanel.gameState == gamePanel.resepState) {
+            resepState(keyCode);
+        }
+
     }
 
     public void playState(int keyCode) {
@@ -318,14 +323,28 @@ public class KeyHandler implements KeyListener {
         } else if (keyCode == KeyEvent.VK_G) {
             gamePanel.gameState = gamePanel.changeSimState;
         } else if (keyCode == KeyEvent.VK_M) {
-            gamePanel.gameState = gamePanel.mapState;
-        } else if (keyCode == KeyEvent.VK_X) {
-            if (gamePanel.map.mapOn == false) {
-                gamePanel.map.mapOn = true;
+            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0){
+                gamePanel.gameState = gamePanel.mapState;
             } else {
-                gamePanel.map.mapOn = false;
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Tidak dapat membuka peta di rumah!";
             }
-        }
+        } else if (keyCode == KeyEvent.VK_X) {
+            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0){
+                if (gamePanel.map.mapOn == false) {
+                    gamePanel.map.mapOn = true;
+                } else {
+                    gamePanel.map.mapOn = false;
+                }
+            } else {
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Tidak dapat membuka mini peta\ndi rumah!";
+            }
+        } 
     }
 
     public void pauseState(int keyCode) {
@@ -1382,6 +1401,73 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.listSimSlotCol = gamePanel.indexCurrentSim % 11;
             gamePanel.ui.listSimSlotRow = gamePanel.indexCurrentSim / 11;
 
+        }
+    }
+
+    public void resepState(int keyCode){
+        // TODO BUAT KEY HANDLER RESEP STATE
+        int index = 0;
+        
+        if (keyCode == KeyEvent.VK_ENTER) {
+            enterPressed = true;
+            cursorSound();
+        }
+
+        if (keyCode == KeyEvent.VK_ESCAPE) {
+            gamePanel.gameState = gamePanel.playState;
+            cursorSound();
+        } else if (keyCode == KeyEvent.VK_UP) {
+            if (gamePanel.ui.kokiSlotRow > 0) {
+                index = UI.getItemIndexOnSlot(gamePanel.ui.kokiSlotRow - 1, gamePanel.ui.kokiSlotCol);
+                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                    gamePanel.ui.kokiSlotRow--;
+                    cursorSound();
+                }
+            } else {
+                index = UI.getItemIndexOnSlot(2, gamePanel.ui.kokiSlotCol);
+                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                    gamePanel.ui.kokiSlotRow = 2;
+                }
+            }
+        } else if (keyCode == KeyEvent.VK_DOWN) {
+            if (gamePanel.ui.kokiSlotRow < 2) {
+                index = UI.getItemIndexOnSlot(gamePanel.ui.kokiSlotRow + 1, gamePanel.ui.kokiSlotCol);
+                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                    gamePanel.ui.kokiSlotRow++;
+                    cursorSound();
+                }
+            } else {
+                index = UI.getItemIndexOnSlot(0, gamePanel.ui.kokiSlotCol);
+                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                    gamePanel.ui.kokiSlotRow = 0;
+                }
+            }
+        } else if (keyCode == KeyEvent.VK_LEFT) {
+            if (gamePanel.ui.kokiSlotCol > 0) {
+                index = UI.getItemIndexOnSlot(gamePanel.ui.kokiSlotRow, gamePanel.ui.kokiSlotCol - 1);
+                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                    gamePanel.ui.kokiSlotCol--;
+                    cursorSound();
+                }
+            } else {
+                index = UI.getItemIndexOnSlot(gamePanel.ui.kokiSlotRow, 10);
+                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                    gamePanel.ui.kokiSlotCol = 10;
+                }
+            }
+        } else if (keyCode == KeyEvent.VK_RIGHT) {
+            if (gamePanel.ui.kokiSlotCol < 10) {
+                index = UI.getItemIndexOnSlot(gamePanel.ui.kokiSlotRow, gamePanel.ui.kokiSlotCol + 1);
+                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                    gamePanel.ui.kokiSlotCol++;
+                    cursorSound();
+                }
+            } else {
+                index = UI.getItemIndexOnSlot(gamePanel.ui.kokiSlotRow, 0);
+                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                    gamePanel.ui.kokiSlotCol = 0;
+                }
+            }
         }
     }
 

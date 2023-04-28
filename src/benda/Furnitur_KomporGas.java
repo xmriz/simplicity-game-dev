@@ -2,8 +2,10 @@ package benda;
 
 import java.awt.Rectangle;
 
+import main.GamePanel;
+
 public class Furnitur_KomporGas extends Furnitur{
-    public Furnitur_KomporGas(){
+    public Furnitur_KomporGas(GamePanel gamePanel){
         name = "Kompor Gas";
         image = setupImage("benda/furnitur/kompor_gas");
         collision = false;
@@ -12,13 +14,15 @@ public class Furnitur_KomporGas extends Furnitur{
         harga = 100;
         aksi = "Memasak";
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
+        this.gamePanel = gamePanel;
     }
 
     @Override
     public void action(){
         // aksi masak
         // TODO : AKSI MASAK
-        System.out.println();
+        System.out.println("Aksi Masak");
+        gamePanel.gameState = gamePanel.resepState;
     }
 
 }

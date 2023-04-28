@@ -2,8 +2,10 @@ package benda;
 
 import java.awt.Rectangle;
 
+import main.GamePanel;
+
 public class Furnitur_Jam extends Furnitur{
-    public Furnitur_Jam(){
+    public Furnitur_Jam(GamePanel gamePanel){
         name = "Jam";
         image = setupImage("benda/furnitur/jam");
         collision = false;
@@ -12,6 +14,7 @@ public class Furnitur_Jam extends Furnitur{
         harga = 10;
         aksi = "Melihat waktu";
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
+        this.gamePanel = gamePanel;
     }
 
     @Override

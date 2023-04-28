@@ -62,6 +62,7 @@ public class GamePanel extends JPanel implements Runnable {
     // ENTITY
     // public Sim sim = new Sim(this, keyHandler);
     public Entity npc[][] = new Entity[maxMap][6]; // create an array of NPC objects
+    public Entity kokiTemp = new NPC_Koki(this);
 
     // BENDA
     // @SuppressWarnings("unchecked")
@@ -89,6 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int menuState = 13;
     public final int helpState = 14;
     public final int mapState = 15;
+    public final int resepState = 16;
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {

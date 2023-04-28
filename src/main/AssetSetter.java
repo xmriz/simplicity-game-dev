@@ -1,7 +1,6 @@
 package main;
 
-import entity.NPC_Kakek;
-import entity.NPC_Penjual;
+import entity.*;
 
 public class AssetSetter {
 

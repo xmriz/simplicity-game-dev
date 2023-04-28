@@ -91,7 +91,8 @@ public class Sim extends Entity {
         inventory.add(new Makanan_TumisSayur());
 
         // FURNITUR
-        inventory.add(new Furnitur_Jam());
+        inventory.add(new Furnitur_Jam(gamePanel));
+        inventory.add(new Furnitur_KomporGas(gamePanel));
         // to be continuedd
     }
 
