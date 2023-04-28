@@ -683,6 +683,12 @@ public class UI {
         // draw entity items
         for (int i = 0; i < gamePanel.listSim.size(); i++) {
 
+            // kuningin sim yang dipilih
+            if (gamePanel.listSim.get(i) == gamePanel.listSim.get(gamePanel.indexCurrentSim)) {
+                g2d.setColor(new Color(240, 190, 90));
+                g2d.fillRoundRect(slotX, slotY, gamePanel.tileSize, gamePanel.tileSize, 10, 10);
+            }
+
             g2d.drawImage(gamePanel.listSim.get(i).down1, slotX, slotY, gamePanel.tileSize, gamePanel.tileSize, null);
 
             slotX += slotSize;
