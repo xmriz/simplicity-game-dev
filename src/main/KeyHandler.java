@@ -761,16 +761,10 @@ public class KeyHandler implements KeyListener {
                                     tempFurnitur.solidArea.x = (x + 1) * gamePanel.tileSize;
                                     tempFurnitur.solidArea.y = (y + 1) * gamePanel.tileSize;
                                     boolean intersect = false;
-                                    // HAPUS
-                                    // System.out.println(tempFurnitur.solidArea);
-                                    // HAPUS
                                     for (int i = 0; i < gamePanel.listSim
                                     .get(gamePanel.indexCurrentSim).rumah.ruanganRumah
                                     .get(gamePanel.listSim
                                     .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.size(); i++) {
-                                        // HAPUS : TODO X Y yg tersimpan di listbendaruangan jadi 0 0
-                                        System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).solidArea);
-                                        // HAPUS
                                         if (tempFurnitur.solidArea.intersects(gamePanel.listSim
                                                 .get(gamePanel.indexCurrentSim).rumah.ruanganRumah
                                                 .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
@@ -792,9 +786,6 @@ public class KeyHandler implements KeyListener {
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.add(tempFurnitur); 
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.size() - 1).worldX = (x + 1) * gamePanel.tileSize;
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.size() - 1).worldY = (y + 1) * gamePanel.tileSize;
-                                        // TODO : HAPUS
-                                        System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.size() - 1).solidArea); 
-                                        // TODO : HAPUS
                                     }
                                 }
                             }
