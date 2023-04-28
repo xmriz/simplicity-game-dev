@@ -211,8 +211,7 @@ public class Sim extends Entity {
                     int indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan;
                     Furnitur furniturTemp = (Furnitur) gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.get(indexBendayangDisentuh);
                     furniturTemp.action();
-                    // TODO : SELESAIKAN USING BENDA untuk benda yang di sentuh MASIH ENRROR DI
-                    System.out.println("using benda");
+                    // TODO : KERJA DI TIAP FURNITUR
                 }
             }
 

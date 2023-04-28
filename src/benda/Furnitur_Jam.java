@@ -17,5 +17,6 @@ public class Furnitur_Jam extends Furnitur{
     @Override
     public void action(){
         // aksi melihat waktu
+        System.out.println("Aksi Melihat Waktu");
     }
 }

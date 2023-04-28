@@ -18,6 +18,7 @@ public class Furnitur_KomporGas extends Furnitur{
     public void action(){
         // aksi masak
         // TODO : AKSI MASAK
+        System.out.println();
     }
 
 }

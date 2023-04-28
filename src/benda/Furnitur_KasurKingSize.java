@@ -17,5 +17,6 @@ public class Furnitur_KasurKingSize extends Furnitur{
     @Override
     public void action(){
         // aksi tidur
+        System.out.println("Aksi Tidur");
     }
 }

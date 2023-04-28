@@ -18,5 +18,6 @@ public class Furnitur_Toilet extends Furnitur{
     @Override
     public void action(){
         // aksi buang air
+        System.out.println("Aksi Buang Air");
     }
 }
