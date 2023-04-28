@@ -762,10 +762,10 @@ public class KeyHandler implements KeyListener {
                                     tempFurnitur.solidArea.y = (y + 1) * gamePanel.tileSize;
                                     boolean intersect = false;
                                     for (int i = 0; i < gamePanel.listSim
-                                            .get(gamePanel.indexCurrentSim).rumah.ruanganRumah
-                                            .get(gamePanel.listSim
-                                                    .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                            .size(); i++) {
+                                    .get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                    .get(gamePanel.listSim
+                                    .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                    .size(); i++) {
                                         if (tempFurnitur.solidArea.intersects(gamePanel.listSim
                                                 .get(gamePanel.indexCurrentSim).rumah.ruanganRumah
                                                 .get(gamePanel.listSim.get(
@@ -993,31 +993,49 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ENTER) {
             if (gamePanel.ui.inputText.length() > 0) {
-                gamePanel.gameState = gamePanel.playState;
-                // System.out.println("TEST1");
-                String input = gamePanel.ui.inputText;
-                if (gamePanel.ui.commandNumber == 0) {
-                    gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.upgradeRumah("up", input);
-                    gamePanel.ui.commandNumber = 0;
-                } else if (gamePanel.ui.commandNumber == 1) {
-                    // System.out.println("TEST2");
-                    gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.upgradeRumah("down", input);
-                    // System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(0).down.name);
-                    gamePanel.ui.commandNumber = 0;
-                } else if (gamePanel.ui.commandNumber == 2) {
-                    gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.upgradeRumah("left", input);
-                    gamePanel.ui.commandNumber = 0;
-                } else if (gamePanel.ui.commandNumber == 3) {
-                    gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.upgradeRumah("right", input);
-                    gamePanel.ui.commandNumber = 0;
+                // nama tidak boleh sama
+                boolean isRuanganNameExist = false;
+                for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.size(); i++){
+                    if (UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(i).name).equals(UtilityTool.capitalizeFirstLetter(gamePanel.ui.inputText))){
+                        isRuanganNameExist = true;
+                    }
                 }
-                gamePanel.ui.inputText = "";
-                gamePanel.ui.inputTextDone = false;
-                // CEK RUANGAN APA SAJA DALAM RUMAH SIM
-                // for (Ruangan s :
-                // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah){
-                // System.out.println(s.name);
-                // }
+                if (isRuanganNameExist){
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Nama ruangan di rumah sudah ada!";
+                    gamePanel.ui.inputText = "";
+                    gamePanel.ui.inputTextDone = false;
+                    gamePanel.ui.commandNumber = 0;
+
+                } else {
+                    gamePanel.gameState = gamePanel.playState;
+                    // System.out.println("TEST1");
+                    String input = gamePanel.ui.inputText;
+                    if (gamePanel.ui.commandNumber == 0) {
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.upgradeRumah("up", input);
+                        gamePanel.ui.commandNumber = 0;
+                    } else if (gamePanel.ui.commandNumber == 1) {
+                        // System.out.println("TEST2");
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.upgradeRumah("down", input);
+                        // System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(0).down.name);
+                        gamePanel.ui.commandNumber = 0;
+                    } else if (gamePanel.ui.commandNumber == 2) {
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.upgradeRumah("left", input);
+                        gamePanel.ui.commandNumber = 0;
+                    } else if (gamePanel.ui.commandNumber == 3) {
+                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.upgradeRumah("right", input);
+                        gamePanel.ui.commandNumber = 0;
+                    }
+                    gamePanel.ui.inputText = "";
+                    gamePanel.ui.inputTextDone = false;
+                    // CEK RUANGAN APA SAJA DALAM RUMAH SIM
+                    // for (Ruangan s :
+                    // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah){
+                    // System.out.println(s.name);
+                    // }
+                }
             } else {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";

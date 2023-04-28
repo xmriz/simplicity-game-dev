@@ -128,7 +128,7 @@ public class Sim extends Entity {
                                                                                         // that theplayer is colliding
                                                                                         // with
             usingBenda(indexBendaYangDisentuh);
-            System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki);
+            // System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki);
             // TODO : indexBendaYangDisentuh buat interact dengan benda
 
             // indexRumahYangDimasuki = indexBendaYangDisentuh;
