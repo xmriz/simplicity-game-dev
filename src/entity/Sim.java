@@ -202,10 +202,20 @@ public class Sim extends Entity {
         }
     }
 
-    public void usingBenda(int i) {
-        // TODO : SELESAIKAN USING BENDA untuk benda yang di sentuh MASIH ENRROR DI
+    public void usingBenda(int indexBendayangDisentuh) {
         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki
-        if (i != 999) {
+        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki != 999) {
+            if (indexBendayangDisentuh != 999){
+                if (gamePanel.keyHandler.enterPressed) {
+                    int indexRumahYangDimasuki = gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki;
+                    int indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan;
+                    Furnitur furniturTemp = (Furnitur) gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.get(indexBendayangDisentuh);
+                    furniturTemp.action();
+                    // TODO : SELESAIKAN USING BENDA untuk benda yang di sentuh MASIH ENRROR DI
+                    System.out.println("using benda");
+                }
+            }
+
             // gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i)
             // System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki);
             // Benda bendaTemp =

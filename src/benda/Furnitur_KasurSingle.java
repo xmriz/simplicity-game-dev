@@ -15,6 +15,7 @@ public class Furnitur_KasurSingle extends Furnitur{
         
     }
 
+    @Override
     public void action(){
         // aksi tidur
     }
