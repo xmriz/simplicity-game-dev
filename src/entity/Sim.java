@@ -282,6 +282,7 @@ public class Sim extends Entity {
                             gamePanel.gameState = gamePanel.dialogState;
                             gamePanel.ui.currentDialog = "Anda harus makan di meja makan!.";
                         }
+                        indexBendaYangDisentuh = 999;
                     } else {
                         gamePanel.ui.charIndex = 0;
                         gamePanel.ui.combinedText = "";
