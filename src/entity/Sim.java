@@ -26,6 +26,7 @@ public class Sim extends Entity {
     public int indexBendaYangDisentuh = 999;
     public int indexRumahYangDimasuki = 999;
     public int currentMap = 0;
+    public static String keteranganMati = "";
 
     KeyHandler keyHandler;
 
@@ -65,8 +66,10 @@ public class Sim extends Entity {
     }
 
     public void setDefaultValues() { // set the default values of the player
-        worldX = 2 * gamePanel.tileSize; // set the player's position in the world
+        worldX = 2 * gamePanel.tileSize; // set the player's position in his own rumah
         worldY = 2 * gamePanel.tileSize;
+        // indexRumahYangDimasuki = gamePanel.listSim.size();
+        indexLocationRuangan = 0;
         speed = 4;
         direction = "down";
     }
@@ -173,6 +176,112 @@ public class Sim extends Entity {
                     spriteNumber = 1;
                 }
             }
+        }
+
+        if (mood <= 0){
+            // berlaku hanya jika sim yang mati adalah sim index 0
+            if (gamePanel.listSim.size() > 1){
+                gamePanel.listSim.remove(gamePanel.indexCurrentSim);
+                gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
+                for (int i = 0; i < gamePanel.listSim.size(); i++){
+                    if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999){
+                        if (gamePanel.listSim.get(i).indexRumahYangDimasuki > gamePanel.indexCurrentSim){
+                            gamePanel.listSim.get(i).indexRumahYangDimasuki--;
+                        } else if (gamePanel.listSim.get(i).indexRumahYangDimasuki == gamePanel.indexCurrentSim){
+                            gamePanel.listSim.get(i).indexRumahYangDimasuki = i;
+                            gamePanel.listSim.get(i).setDefaultValues();
+                        }
+                    }
+                }
+                gamePanel.indexCurrentSim = 0;
+
+                // for (int i = gamePanel.indexCurrentSim; i < gamePanel.listSim.size(); i++){
+                //     if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999){
+                //         gamePanel.listSim.get(i).indexRumahYangDimasuki--;
+                //     }
+                // }
+            } else if (gamePanel.listSim.size() == 1){
+                gamePanel.isOneSim = true;
+            }
+
+            keteranganMati = "Depresi";
+            gamePanel.gameState = gamePanel.gameOverState;
+            // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
+            // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
+            // if (gamePanel.indexCurrentSim == 0){
+            //     gamePanel.indexCurrentSim++;
+            // } else {
+            //     gamePanel.indexCurrentSim--;
+            // }
+            // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki == 0){
+            //     gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki++;
+            // } else {
+            //     gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki--;
+            // }
+        } else if (kekenyangan <= 0){
+            if (gamePanel.listSim.size() > 1){
+                gamePanel.listSim.remove(gamePanel.indexCurrentSim);
+                gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
+                for (int i = 0; i < gamePanel.listSim.size(); i++){
+                    if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999){
+                        if (gamePanel.listSim.get(i).indexRumahYangDimasuki > gamePanel.indexCurrentSim){
+                            gamePanel.listSim.get(i).indexRumahYangDimasuki--;
+                        } else if (gamePanel.listSim.get(i).indexRumahYangDimasuki == gamePanel.indexCurrentSim){
+                            gamePanel.listSim.get(i).indexRumahYangDimasuki = i;
+                            gamePanel.listSim.get(i).setDefaultValues();
+                        }
+                    }
+                }
+                gamePanel.indexCurrentSim = 0;
+            } else if (gamePanel.listSim.size() == 1){
+                gamePanel.isOneSim = true;
+            }
+            keteranganMati = "Kelaparan";
+            gamePanel.gameState = gamePanel.gameOverState;
+            // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
+            // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
+            // if (gamePanel.indexCurrentSim == 0){
+            //     gamePanel.indexCurrentSim++;
+            // } else {
+            //     gamePanel.indexCurrentSim--;
+            // }
+            // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki == 0){
+            //     gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki++;
+            // } else {
+            //     gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki--;
+            // }
+        } else if (kesehatan <= 0){
+            if (gamePanel.listSim.size() > 1){
+                gamePanel.listSim.remove(gamePanel.indexCurrentSim);
+                gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
+                for (int i = 0; i < gamePanel.listSim.size(); i++){
+                    if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999){
+                        if (gamePanel.listSim.get(i).indexRumahYangDimasuki > gamePanel.indexCurrentSim){
+                            gamePanel.listSim.get(i).indexRumahYangDimasuki--;
+                        } else if (gamePanel.listSim.get(i).indexRumahYangDimasuki == gamePanel.indexCurrentSim){
+                            gamePanel.listSim.get(i).indexRumahYangDimasuki = i;
+                            gamePanel.listSim.get(i).setDefaultValues();
+                        }
+                    }
+                }
+                gamePanel.indexCurrentSim = 0;
+            }else if (gamePanel.listSim.size() == 1){
+                gamePanel.isOneSim = true;
+            }
+            keteranganMati = "Sakit";
+            gamePanel.gameState = gamePanel.gameOverState;
+            // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
+            // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
+            // if (gamePanel.indexCurrentSim == 0){
+            //     gamePanel.indexCurrentSim++;
+            // } else {
+            //     gamePanel.indexCurrentSim--;
+            // }
+            // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki == 0){
+            //     gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki++;
+            // } else {
+            //     gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki--;
+            // }
         }
     }
 

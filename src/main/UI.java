@@ -107,6 +107,8 @@ public class UI {
             drawInputDurasiTidurScreen("Input Durasi Tidur:");
         } else if (gamePanel.gameState == gamePanel.timerState){
             drawTimerScreen();
+        } else if (gamePanel.gameState == gamePanel.gameOverState){
+            drawGameOverScreen();
         }
     }
 
@@ -978,7 +980,6 @@ public class UI {
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
     }
 
-
     // RESEP SCREEN
     public void drawResepScreen(){
         drawInventoryScreen(gamePanel.kokiTemp, kokiSlotCol, kokiSlotRow);
@@ -1022,6 +1023,15 @@ public class UI {
 
                         // efek
                         gamePanel.getCurrentSim().mood += 10;
+                        if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
+                            gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
+                        }
+                        if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
+                            gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
+                        }
+                        if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
+                            gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
+                        }
 
                         // simpan makanan yang udah jadi ke inventory
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(makanan);
@@ -1042,7 +1052,6 @@ public class UI {
         }
         gamePanel.keyHandler.enterPressed = false;
     }
-
 
     // Menu SCREEN
     public void drawMenuScreen() {
@@ -1343,7 +1352,66 @@ public class UI {
         }
     }
 
+    public void drawGameOverScreen(){
+        g2d.setColor(new Color(0, 0, 0, 150));
+        g2d.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
 
+        int x;
+        int y;
+        String text;
+        g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 70f));
+
+        text = "Mati Akibat " + Sim.keteranganMati;
+        // shadow
+        g2d.setColor(Color.BLACK);
+        x = getXforCenteredText(text);
+        y = gamePanel.tileSize*6;
+        g2d.drawString(text, x+4, y+4);
+        // text
+        g2d.setColor(Color.WHITE);
+        g2d.drawString(text, x, y);
+
+        // retry
+        if (gamePanel.isOneSim){
+            g2d.setFont(g2d.getFont().deriveFont(50f));
+            text = "Change Sim";
+            x = getXforCenteredText(text);
+            y += gamePanel.tileSize*4;
+            g2d.setColor(Color.GRAY);
+            g2d.drawString(text, x, y);
+        
+            // back to the the title screen
+            text = "Quit";
+            x = getXforCenteredText(text);
+            y += 55;
+            g2d.setColor(Color.WHITE);
+            g2d.drawString(text, x, y);
+            if (commandNumber == 0){
+                g2d.drawString(">", x-40, y);
+            }
+            
+        } else if (gamePanel.listSim.size() >= 1) {
+            g2d.setFont(g2d.getFont().deriveFont(50f));
+            text = "Change Sim";
+            x = getXforCenteredText(text);
+            y += gamePanel.tileSize*4;
+            g2d.drawString(text, x, y);
+            if (commandNumber == 0){
+                g2d.drawString(">", x-40, y);
+            }
+
+            // back to the the title screen
+            text = "Quit";
+            x = getXforCenteredText(text);
+            y += 55;
+            g2d.drawString(text, x, y);
+            if (commandNumber == 1){
+                g2d.drawString(">", x-40, y);
+            }
+        }
+
+        
+    }
 
     // TIMER SCREEN 
     public void drawTimerScreen(){

@@ -15,5 +15,11 @@ public abstract class BahanMakanan extends Benda {
         if (sim.kekenyangan > sim.maxKekenyangan){
             sim.kekenyangan = sim.maxKekenyangan;
         }
+        if (sim.mood > sim.maxMood) {
+            sim.mood = sim.maxMood;
+        }
+        if (sim.kesehatan > sim.maxKesehatan) {
+            sim.kesehatan = sim.maxKesehatan;
+        }
     }
 } 

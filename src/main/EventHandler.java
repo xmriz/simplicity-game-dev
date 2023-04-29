@@ -186,6 +186,18 @@ public class EventHandler {
                         // efek
                         gamePanel.getCurrentSim().mood += (durasi/30)*10;
                         gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
+                        if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
+                        gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
+                        }
+                        if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
+                        gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
+                        }
+                        if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
+                        gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
+                        }
+
+                        // matiiin mini map
+                        gamePanel.map.mapOn = false;
                     }
                 }
                 // if (hit(0,gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.colRumah,

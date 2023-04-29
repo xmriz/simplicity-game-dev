@@ -56,6 +56,7 @@ public class GamePanel extends JPanel implements Runnable {
     // Multisim
     public List<Sim> listSim = new ArrayList<>();
     public int indexCurrentSim;
+    public boolean isOneSim = true;
     // public Sim currentSim = listSim.get(indexCurrentSim);
 
     // ENTITY
@@ -258,6 +259,7 @@ public class GamePanel extends JPanel implements Runnable {
                 g2d.setFont(g2d.getFont().deriveFont(40f));
                 g2d.drawString("Current Location: " + listSim.get(indexCurrentSim).currentLocation, 10, 700);
             }
+
         }
 
         g2d.dispose(); // dispose the Graphics2D object, freeing up memory

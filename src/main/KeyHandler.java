@@ -276,6 +276,11 @@ public class KeyHandler implements KeyListener {
             timerState(keyCode);
         }
 
+        // GAME OVER STATE
+        else if (gamePanel.gameState == gamePanel.gameOverState) {
+            gameOverState(keyCode);
+        }
+
     }
 
     public void playState(int keyCode) {
@@ -1186,6 +1191,7 @@ public class KeyHandler implements KeyListener {
                             gamePanel.ui.combinedText = "";
                             gamePanel.gameState = gamePanel.dialogState;
                             gamePanel.ui.currentDialog = "Berhasil menambah sim.";
+                            gamePanel.isOneSim = false;
                         }
                     }
                 }
@@ -1489,7 +1495,6 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-
     public void timerState(int keyCode){
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
@@ -1500,7 +1505,54 @@ public class KeyHandler implements KeyListener {
         } 
     }
     
+    public void gameOverState(int keyCode){
+        if (gamePanel.isOneSim){
+            if (keyCode == KeyEvent.VK_ENTER){
+                gamePanel.ui.titleScreenState = 0;
+                gamePanel.gameState = gamePanel.titleState;
+                cursorSound();
+                gamePanel.ui.commandNumber = 0;
+            }
+            if (keyCode == KeyEvent.VK_UP){
+                gamePanel.ui.commandNumber--;
+                if (gamePanel.ui.commandNumber < 0){
+                    gamePanel.ui.commandNumber = 0;
+                }
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_DOWN){
+                gamePanel.ui.commandNumber++;
+                if (gamePanel.ui.commandNumber > 0){
+                    gamePanel.ui.commandNumber = 0;
+                }
+                cursorSound();
+            }
+        } else if (gamePanel.listSim.size() >= 1) {
+            if (keyCode == KeyEvent.VK_UP){
+                gamePanel.ui.commandNumber--;
+                if (gamePanel.ui.commandNumber < 0){
+                    gamePanel.ui.commandNumber = 1;
+                }
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_DOWN){
+                gamePanel.ui.commandNumber++;
+                if (gamePanel.ui.commandNumber > 1){
+                    gamePanel.ui.commandNumber = 0;
+                }
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_ENTER){
+                if (gamePanel.ui.commandNumber == 0){
+                    gamePanel.gameState = gamePanel.playState;
+                    gamePanel.gameState = gamePanel.changeSimState;
+                } else {
+                    gamePanel.gameState = gamePanel.titleState;
+                }
+                cursorSound();
+                gamePanel.ui.commandNumber = 0;
+            }
+        }
 
+        
+    }
 
     // ---------------------  TODO BATAS SUCI  -------------------------
     public void inputDurasiTidurState(int keyCode){
@@ -1565,11 +1617,14 @@ public class KeyHandler implements KeyListener {
                 // efek
                 gamePanel.getCurrentSim().mood += (durasi/240)*30;
                 gamePanel.getCurrentSim().kesehatan += (durasi/240)*20;
-                if (gamePanel.getCurrentSim().mood > 100) {
-                    gamePanel.getCurrentSim().mood = 100;
+                if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
+                    gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
                 }
-                if (gamePanel.getCurrentSim().kesehatan > 100) {
-                    gamePanel.getCurrentSim().kesehatan = 100;
+                if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
+                    gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
+                }
+                if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
+                    gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
                 }
 
                 // nambah WorldTimeCounter
@@ -1613,7 +1668,6 @@ public class KeyHandler implements KeyListener {
             rightPressed = false;
         }
     }
-
     
 }
 
