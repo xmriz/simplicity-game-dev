@@ -109,7 +109,7 @@ public class UI {
             drawTimerScreen();
         }
         else if (gamePanel.gameState == gamePanel.inputDurasiBacaBukuState){
-            drawInputDurasiBacaBukuScreen("Input Durasi Baca Buku: ");
+            drawInputDurasiBacaBukuScreen("Input Durasi Baca: ");
         }
         else if (gamePanel.gameState == gamePanel.inputDurasiSalatState){
             drawInputDurasiSalatScreen("Input Durasi Salat: ");

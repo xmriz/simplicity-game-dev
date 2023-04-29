@@ -9,7 +9,7 @@ public class Furnitur_Sajadah extends Furnitur{
         name = "Sajadah";
         image = setupImage("benda/furnitur/sajadah");
         collision = false;
-        dimensiX = 1;
+        dimensiX = 2;
         dimensiY = 1;
         harga = 10;
         aksi = "Salat";
