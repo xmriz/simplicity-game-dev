@@ -94,10 +94,14 @@ public class GamePanel extends JPanel implements Runnable {
     public final int timerState = 17;
     public final int inputDurasiTidurState = 18;
     public final int gameOverState = 19;
+<<<<<<< HEAD
     public final int inputDurasiNontonState = 20;
     public final int inputDurasiMandiState = 21;
     public final int inputDurasiSalatState= 22;
     public final int inputDurasiBacaBukuState= 23;
+=======
+    public final int inputDurasiRadioState = 20;
+>>>>>>> radio
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {
@@ -252,8 +256,8 @@ public class GamePanel extends JPanel implements Runnable {
                 keyHandler.checkCurrentLocation = false;
                 g2d.setColor(Color.white);
                 g2d.setFont(g2d.getFont().deriveFont(40f));
-                g2d.drawString("World Time: " + worldTimeCounter%720, 10, 700);
-                g2d.drawString("World Day: " + worldTimeCounter/720, 10, 748);
+                g2d.drawString("World Time: " + worldTimeCounter % 720, 10, 700);
+                g2d.drawString("World Day: " + worldTimeCounter / 720, 10, 748);
             }
 
             // current location

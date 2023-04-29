@@ -296,9 +296,15 @@ public class KeyHandler implements KeyListener {
             timerState(keyCode);
         }
 
+<<<<<<< HEAD
         // GAME OVER STATE
         else if (gamePanel.gameState == gamePanel.gameOverState) {
             gameOverState(keyCode);
+=======
+        // INPUT DURASI RADIO STATE
+        else if (gamePanel.gameState == gamePanel.inputDurasiRadioState) {
+            inputDurasiRadioState(keyCode);
+>>>>>>> radio
         }
 
     }
@@ -360,7 +366,7 @@ public class KeyHandler implements KeyListener {
         } else if (keyCode == KeyEvent.VK_G) {
             gamePanel.gameState = gamePanel.changeSimState;
         } else if (keyCode == KeyEvent.VK_M) {
-            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0){
+            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0) {
                 gamePanel.gameState = gamePanel.mapState;
             } else {
                 gamePanel.ui.charIndex = 0;
@@ -369,7 +375,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.currentDialog = "Tidak dapat membuka peta di rumah!";
             }
         } else if (keyCode == KeyEvent.VK_X) {
-            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0){
+            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0) {
                 if (gamePanel.map.mapOn == false) {
                     gamePanel.map.mapOn = true;
                 } else {
@@ -381,8 +387,8 @@ public class KeyHandler implements KeyListener {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Tidak dapat membuka mini peta\ndi rumah!";
             }
-        } else if (keyCode == KeyEvent.VK_Z){
-            if (gamePanel.getCurrentSim().currentMap == 1){
+        } else if (keyCode == KeyEvent.VK_Z) {
+            if (gamePanel.getCurrentSim().currentMap == 1) {
                 gamePanel.getCurrentSim().pickUpObject(gamePanel.getCurrentSim().indexBendaYangDisentuh);
             }
         }
@@ -822,12 +828,14 @@ public class KeyHandler implements KeyListener {
                                     tempFurnitur.solidArea.y = (y + 1) * gamePanel.tileSize;
                                     boolean intersect = false;
                                     for (int i = 0; i < gamePanel.listSim
-                                    .get(gamePanel.indexCurrentSim).rumah.ruanganRumah
-                                    .get(gamePanel.listSim
-                                    .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.size(); i++) {
+                                            .get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                            .get(gamePanel.listSim
+                                                    .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                            .size(); i++) {
                                         if (tempFurnitur.solidArea.intersects(gamePanel.listSim
                                                 .get(gamePanel.indexCurrentSim).rumah.ruanganRumah
-                                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                                .get(gamePanel.listSim.get(
+                                                        gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
                                                 .get(i).solidArea)) {
                                             intersect = true;
                                             break;
@@ -842,9 +850,24 @@ public class KeyHandler implements KeyListener {
                                         gamePanel.ui.commandNumber = 0;
                                         gamePanel.ui.inputText = "";
                                     } else {
-                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.add(tempFurnitur); 
-                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.size() - 1).worldX = (x + 1) * gamePanel.tileSize;
-                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.size() - 1).worldY = (y + 1) * gamePanel.tileSize;
+                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                                .get(gamePanel.listSim.get(
+                                                        gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                                .add(tempFurnitur);
+                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                                .get(gamePanel.listSim.get(
+                                                        gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                                        .get(gamePanel.listSim.get(
+                                                                gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                                        .size() - 1).worldX = (x + 1) * gamePanel.tileSize;
+                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                                .get(gamePanel.listSim.get(
+                                                        gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                                        .get(gamePanel.listSim.get(
+                                                                gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                                        .size() - 1).worldY = (y + 1) * gamePanel.tileSize;
                                     }
                                 }
                             }
@@ -1038,12 +1061,15 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.inputText.length() > 0) {
                 // nama tidak boleh sama
                 boolean isRuanganNameExist = false;
-                for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.size(); i++){
-                    if (UtilityTool.capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(i).name).equals(UtilityTool.capitalizeFirstLetter(gamePanel.ui.inputText))){
+                for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.size(); i++) {
+                    if (UtilityTool
+                            .capitalizeFirstLetter(
+                                    gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(i).name)
+                            .equals(UtilityTool.capitalizeFirstLetter(gamePanel.ui.inputText))) {
                         isRuanganNameExist = true;
                     }
                 }
-                if (isRuanganNameExist){
+                if (isRuanganNameExist) {
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
@@ -1449,9 +1475,9 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-    public void resepState(int keyCode){
+    public void resepState(int keyCode) {
         int index = 0;
-        
+
         if (keyCode == KeyEvent.VK_ENTER) {
             enterPressed = true;
             cursorSound();
@@ -1515,15 +1541,20 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+<<<<<<< HEAD
     public void timerState(int keyCode){
+=======
+    public void timerState(int keyCode) {
+>>>>>>> radio
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
             gamePanel.keyHandler.threadTemp.interrupt();
             gamePanel.ui.durasiTimer = 0;
             gamePanel.ui.currentAksi = "";
-        } 
+        }
     }
+<<<<<<< HEAD
     
     public void gameOverState(int keyCode){
         if (gamePanel.isOneSim){
@@ -1576,6 +1607,11 @@ public class KeyHandler implements KeyListener {
 
     // ---------------------  TODO BATAS SUCI  -------------------------
     public void inputDurasiTidurState(int keyCode){
+=======
+
+    // --------------------- TODO BATAS SUCI -------------------------
+    public void inputDurasiTidurState(int keyCode) {
+>>>>>>> radio
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
                 gamePanel.ui.inputText += "1";
@@ -1635,6 +1671,7 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
+<<<<<<< HEAD
                 gamePanel.getCurrentSim().mood += (durasi/240)*30;
                 gamePanel.getCurrentSim().kesehatan += (durasi/240)*20;
                 if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
@@ -1645,6 +1682,15 @@ public class KeyHandler implements KeyListener {
                 }
                 if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
                     gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
+=======
+                gamePanel.getCurrentSim().mood += (durasi / 240) * 30;
+                gamePanel.getCurrentSim().kesehatan += (durasi / 240) * 20;
+                if (gamePanel.getCurrentSim().mood > 100) {
+                    gamePanel.getCurrentSim().mood = 100;
+                }
+                if (gamePanel.getCurrentSim().kesehatan > 100) {
+                    gamePanel.getCurrentSim().kesehatan = 100;
+>>>>>>> radio
                 }
 
                 // nambah WorldTimeCounter
@@ -1664,7 +1710,11 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+<<<<<<< HEAD
     public void inputDurasiNontonState(int keyCode){
+=======
+    public void inputDurasiRadioState(int keyCode) {
+>>>>>>> radio
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
                 gamePanel.ui.inputText += "1";
@@ -1719,17 +1769,26 @@ public class KeyHandler implements KeyListener {
 
                 // timer state
                 gamePanel.ui.durasiTimer = durasi;
+<<<<<<< HEAD
                 gamePanel.ui.currentAksi = "Nonton";
+=======
+                gamePanel.ui.currentAksi = "Menyetel Radio";
+>>>>>>> radio
                 gamePanel.gameState = gamePanel.timerState;
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
+<<<<<<< HEAD
                 gamePanel.getCurrentSim().kekenyangan -= (durasi/60)*5;
                 gamePanel.getCurrentSim().mood += (durasi/60)*15;
                 gamePanel.getCurrentSim().kesehatan -= (durasi/60)*5;
                 if (gamePanel.getCurrentSim().kekenyangan > 100) {
                     gamePanel.getCurrentSim().kekenyangan = 100;
                 }
+=======
+                gamePanel.getCurrentSim().mood += (durasi / 240) * 40;
+                gamePanel.getCurrentSim().kesehatan += (durasi / 240) * 15;
+>>>>>>> radio
                 if (gamePanel.getCurrentSim().mood > 100) {
                     gamePanel.getCurrentSim().mood = 100;
                 }
@@ -2017,7 +2076,6 @@ public class KeyHandler implements KeyListener {
     }
     // --------------------- BATAS SUCI -------------------------
 
-
     public void cursorSound() {
         gamePanel.playSoundEffect(3);
     }
@@ -2039,7 +2097,11 @@ public class KeyHandler implements KeyListener {
             rightPressed = false;
         }
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> radio
 }
 
 // ------------------------------------------NYIMPAN------------------------------------------
