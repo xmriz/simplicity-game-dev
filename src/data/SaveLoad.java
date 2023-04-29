@@ -119,6 +119,12 @@ public class SaveLoad {
                     ds.itemAmountss.add(gamePanel.listSim.get(k).inventory.get(j).quantity + "");
                 }
 
+                ds.rumah.add(k);
+                ds.rumah.add(gamePanel.listSim.get(k).rumah.jumlahRuangan);
+                ds.rumah.add(gamePanel.listSim.get(k).rumah.worldX);
+                ds.rumah.add(gamePanel.listSim.get(k).rumah.worldY);
+
+                System.out.println(ds.rumah);
                 System.out.println(ds.infoSimStrings);
                 System.out.println(ds.infoSimIntegers);
                 System.out.println(ds.itemNamess);
@@ -219,13 +225,19 @@ public class SaveLoad {
             for (int k = 1; k < ds.jumlahSim; k++) {
                 Sim sim = new Sim(gamePanel, gamePanel.keyHandler);
                 gamePanel.listSim.add(sim);
+                Rumah rumah = new Rumah(gamePanel);
+                gamePanel.listRumah[0].add(rumah);
             }
             System.out.println(gamePanel.listSim.size());
 
             int sumStrings = 0;
             int sumIntegers = 0;
             int sumInventory = 0;
+            int sumRumah = 0;
             for (int j = 0; j < ds.jumlahSim; j++) {
+                gamePanel.listSim.get(j).indexLocationRuangan = 0;
+                gamePanel.listSim.get(j).indexRumahYangDimasuki = j;
+
                 gamePanel.listSim.get(j).nama = ds.infoSimStrings.get(sumStrings);
                 gamePanel.listSim.get(j).pekerjaan = ds.infoSimStrings.get(sumStrings + 1);
                 sumStrings += 2;
@@ -237,8 +249,6 @@ public class SaveLoad {
                 sumIntegers += 4;
 
                 gamePanel.listSim.get(j).inventory.clear();
-                System.out.println(9);
-                System.out.println(ds.itemAmountss.get(sumInventory + 1));
 
                 int jumlahLoop = 0;
                 for (int z = 0; z < Integer.parseInt(ds.itemNamess.get(sumInventory + 1)); z++) {
@@ -248,6 +258,17 @@ public class SaveLoad {
                     jumlahLoop += 1;
                 }
                 sumInventory += jumlahLoop + 2;
+
+                gamePanel.listSim.get(j).rumah.worldX = ds.rumah.get(sumRumah + 2);
+                gamePanel.listSim.get(j).rumah.worldY = ds.rumah.get(sumRumah + 3);
+                gamePanel.listSim.get(j).rumah.colRumah = ds.rumah.get(sumRumah + 2) /
+                        gamePanel.tileSize;
+                gamePanel.listSim.get(j).rumah.rowRumah = ds.rumah.get(sumRumah + 3) /
+                        gamePanel.tileSize;
+                gamePanel.listRumah[0].set(j, gamePanel.listSim.get(j).rumah);
+                gamePanel.listSim.get(j).currentLocation = "Rumah "
+                        + gamePanel.listSim.get(j).nama + " (Ruangan Utama)";
+                sumRumah += 4;
             }
 
             // System.out.println(gamePanel.listSim.get(0).nama);
