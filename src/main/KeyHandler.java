@@ -1350,8 +1350,9 @@ public class KeyHandler implements KeyListener {
         int index = 0;
         if (keyCode == KeyEvent.VK_G) {
             gamePanel.gameState = gamePanel.playState;
-            gamePanel.ui.listSimSlotCol = gamePanel.indexCurrentSim % 11;
-            gamePanel.ui.listSimSlotRow = gamePanel.indexCurrentSim / 11;
+            gamePanel.ui.listSimSlotCol = 0;
+            gamePanel.ui.listSimSlotRow = 0;
+            cursorSound();
         } else if (keyCode == KeyEvent.VK_UP) {
             if (gamePanel.ui.listSimSlotRow > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.listSimSlotRow - 1, gamePanel.ui.listSimSlotCol);
@@ -1413,9 +1414,8 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.currentDialog = "Sim telah diganti menjadi "
                     + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + "!";
             cursorSound();
-            gamePanel.ui.listSimSlotCol = gamePanel.indexCurrentSim % 11;
-            gamePanel.ui.listSimSlotRow = gamePanel.indexCurrentSim / 11;
-
+            gamePanel.ui.listSimSlotCol = 0;
+            gamePanel.ui.listSimSlotRow = 0;
         }
     }
 
