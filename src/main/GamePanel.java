@@ -10,7 +10,7 @@ import java.util.*;
 
 import benda.Benda;
 import entity.*;
-import environment.EnvironmentManager;
+import Environment.EnvironmentManager;
 import map.TileManager;
 import map.Map;
 
@@ -93,12 +93,9 @@ public class GamePanel extends JPanel implements Runnable {
     public final int resepState = 16;
     public final int timerState = 17;
     public final int inputDurasiTidurState = 18;
-<<<<<<< HEAD
     public final int gameOverState = 19;
-=======
-    public final int inputDurasiNontonState = 19;
-    public final int inputDurasiMandiState = 20;
->>>>>>> Aksiluthfi
+    public final int inputDurasiNontonState = 20;
+    public final int inputDurasiMandiState = 21;
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {
