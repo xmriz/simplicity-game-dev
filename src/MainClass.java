@@ -5,11 +5,16 @@ public class MainClass {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Masukkan durasi timer (dalam detik): ");
         int duration = scanner.nextInt();
-        scanner.close();
 
         OuterClass outer = new OuterClass();
-        outer.startTimerThread(duration);
+        Thread thread = outer.startTimerThread(duration);
 
         // melakukan pekerjaan lain di sini
+
+        System.out.print("Apakah ingin menghentikan timer? (y/n): ");
+        String answer = scanner.next();
+        if (answer.equals("y")) {
+            thread.interrupt();
+        }
     }
 }

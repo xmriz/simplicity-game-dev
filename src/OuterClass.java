@@ -1,8 +1,9 @@
 class OuterClass {
-    public void startTimerThread(int duration) {
+    public Thread startTimerThread(int duration) {
         TimerThread timer = new TimerThread(duration);
         Thread thread = new Thread(timer);
         thread.start();
+        return thread;
     }
 
     public class TimerThread implements Runnable {
@@ -23,7 +24,8 @@ class OuterClass {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    System.out.println("Timer dihentikan");
+                    return;
                 }
             }
 

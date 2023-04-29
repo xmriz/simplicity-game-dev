@@ -1431,10 +1431,11 @@ public class UI {
     // ------------------------------ BATAS SUCI ------------------------------
 
     // start timer thread
-    public void startTimerThread(int duration) {
+    public Thread startTimerThread(int duration) {
         TimerThread timer = new TimerThread(duration);
         Thread thread = new Thread(timer);
         thread.start();
+        return thread;
     }
 
 
@@ -1458,7 +1459,10 @@ public class UI {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    System.out.println("Timer Skipped");
+                    gamePanel.ui.durasiTimer = 0;
+                    gamePanel.ui.currentAksi = "";
+                    return;
                 }
             }
 
@@ -1466,7 +1470,6 @@ public class UI {
             gamePanel.gameState = gamePanel.playState;
             gamePanel.ui.durasiTimer = 0;
             gamePanel.ui.currentAksi = "";
-
         }
     }
 

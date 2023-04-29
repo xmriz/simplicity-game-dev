@@ -11,6 +11,8 @@ public class KeyHandler implements KeyListener {
     GamePanel gamePanel;
     public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
 
+    public Thread threadTemp;
+
     boolean checkWorldTime = false;
     boolean checkCurrentLocation = false;
     int moveCounter = 1;
@@ -1489,6 +1491,7 @@ public class KeyHandler implements KeyListener {
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
+            gamePanel.keyHandler.threadTemp.interrupt();
             gamePanel.ui.durasiTimer = 0;
             gamePanel.ui.currentAksi = "";
         } 
@@ -1554,7 +1557,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.durasiTimer = durasi;
                 gamePanel.ui.currentAksi = "tidur";
                 gamePanel.gameState = gamePanel.timerState;
-                gamePanel.ui.startTimerThread(durasi);
+                threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
                 gamePanel.getCurrentSim().mood += (durasi/240)*30;
