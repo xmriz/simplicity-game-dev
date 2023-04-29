@@ -114,6 +114,12 @@ public class UI {
         } else if (gamePanel.gameState == gamePanel.gameOverState){
             drawGameOverScreen();
         }
+        else if (gamePanel.gameState == gamePanel.inputDurasiBacaBukuState){
+            drawInputDurasiBacaBukuScreen("Input Durasi Baca: ");
+        }
+        else if (gamePanel.gameState == gamePanel.inputDurasiSalatState){
+            drawInputDurasiSalatScreen("Input Durasi Salat: ");
+        }
     }
 
 
@@ -1494,7 +1500,11 @@ public class UI {
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
     }
 
+<<<<<<< HEAD
     public void drawInputDurasiNontonScreen(String judul) {
+=======
+    public void drawInputDurasiSalatScreen(String judul) {
+>>>>>>> nadine-aksi
         // draw window
         int x = getXforCenteredText(judul);
         x -= 3 * gamePanel.tileSize;
@@ -1530,7 +1540,11 @@ public class UI {
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
     }
 
+<<<<<<< HEAD
     public void drawInputDurasiMandiScreen(String judul) {
+=======
+    public void drawInputDurasiBacaBukuScreen(String judul) {
+>>>>>>> nadine-aksi
         // draw window
         int x = getXforCenteredText(judul);
         x -= 3 * gamePanel.tileSize;
@@ -1563,9 +1577,16 @@ public class UI {
         Graphics2D g2d2 = (Graphics2D) g2d.create();
         g2d2.setColor(Color.BLACK);
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+<<<<<<< HEAD
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);        
     }
 
+=======
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+    }
+
+
+>>>>>>> nadine-aksi
     // ------------------------------ BATAS SUCI ------------------------------
 
     // start timer thread
