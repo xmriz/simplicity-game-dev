@@ -281,6 +281,16 @@ public class KeyHandler implements KeyListener {
             gameOverState(keyCode);
         }
 
+        // INPUT DURASI MENYIRAM TANAMAN STATE
+        else if (gamePanel.gameState == gamePanel.inputDurasiMenyiramTanamanState){
+            inputDurasiMenyiramTanamanState(keyCode);
+        }
+
+        // INPUT DURASI MENYIRAM TANAMAN STATE
+        else if (gamePanel.gameState == gamePanel.inputDurasiMainGameState){
+            inputDurasiMainGameState(keyCode);
+        }
+
     }
 
     public void playState(int keyCode) {
@@ -473,7 +483,7 @@ public class KeyHandler implements KeyListener {
         if (gamePanel.ui.commandNumber == 0) {
             if (keyCode == KeyEvent.VK_DOWN) {
                 gamePanel.ui.commandNumber++;
-                cursorSound();
+                cursorSound();inputDurasiTidurState(keyCode);
             } else if (keyCode == KeyEvent.VK_UP) {
                 gamePanel.ui.commandNumber = 5;
                 cursorSound();
@@ -1617,6 +1627,186 @@ public class KeyHandler implements KeyListener {
                 // efek
                 gamePanel.getCurrentSim().mood += (durasi/240)*30;
                 gamePanel.getCurrentSim().kesehatan += (durasi/240)*20;
+                if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
+                    gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
+                }
+                if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
+                    gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
+                }
+                if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
+                    gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
+                }
+
+                // nambah WorldTimeCounter
+                gamePanel.worldTimeCounter += durasi;
+
+                gamePanel.ui.inputText = "";
+                gamePanel.ui.commandNumber = 0;
+            } else {
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.commandNumber = 0;
+                gamePanel.ui.inputText = "";
+            }
+            cursorSound();
+        }
+    }
+
+    public void inputDurasiMenyiramTanamanState(int keyCode){
+        if (gamePanel.ui.inputText.length() < 5) {
+            if (keyCode == KeyEvent.VK_1) {
+                gamePanel.ui.inputText += "1";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_2) {
+                gamePanel.ui.inputText += "2";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_3) {
+                gamePanel.ui.inputText += "3";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_4) {
+                gamePanel.ui.inputText += "4";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_5) {
+                gamePanel.ui.inputText += "5";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_6) {
+                gamePanel.ui.inputText += "6";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_7) {
+                gamePanel.ui.inputText += "7";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_8) {
+                gamePanel.ui.inputText += "8";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_9) {
+                gamePanel.ui.inputText += "9";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_0) {
+                gamePanel.ui.inputText += "0";
+                cursorSound();
+            }
+        }
+
+        if (keyCode == KeyEvent.VK_BACK_SPACE && gamePanel.ui.inputText.length() > 0) {
+            gamePanel.ui.inputText = gamePanel.ui.inputText.substring(0, gamePanel.ui.inputText.length() - 1);
+            cursorSound();
+        }
+
+        if (keyCode == KeyEvent.VK_ESCAPE) {
+            gamePanel.ui.inputText = "";
+            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.commandNumber = 0;
+            gamePanel.gameState = gamePanel.playState;
+            cursorSound();
+        }
+
+        if (keyCode == KeyEvent.VK_ENTER) {
+            if (gamePanel.ui.inputText.length() > 0) {
+                int durasi = Integer.parseInt(gamePanel.ui.inputText);
+                gamePanel.gameState = gamePanel.playState;
+
+                // timer state
+                gamePanel.ui.durasiTimer = durasi;
+                gamePanel.ui.currentAksi = "menyiram tanaman";
+                gamePanel.gameState = gamePanel.timerState;
+                threadTemp = gamePanel.ui.startTimerThread(durasi);
+
+                // efek
+                gamePanel.getCurrentSim().mood += (durasi/10)*10;
+                gamePanel.getCurrentSim().kesehatan += (durasi/10)*5;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi/10)*5;
+                if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
+                    gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
+                }
+                if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
+                    gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
+                }
+                if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
+                    gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
+                }
+
+                // nambah WorldTimeCounter
+                gamePanel.worldTimeCounter += durasi;
+
+                gamePanel.ui.inputText = "";
+                gamePanel.ui.commandNumber = 0;
+            } else {
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.commandNumber = 0;
+                gamePanel.ui.inputText = "";
+            }
+            cursorSound();
+        }
+    }
+
+    public void inputDurasiMainGameState(int keyCode){
+        if (gamePanel.ui.inputText.length() < 5) {
+            if (keyCode == KeyEvent.VK_1) {
+                gamePanel.ui.inputText += "1";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_2) {
+                gamePanel.ui.inputText += "2";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_3) {
+                gamePanel.ui.inputText += "3";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_4) {
+                gamePanel.ui.inputText += "4";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_5) {
+                gamePanel.ui.inputText += "5";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_6) {
+                gamePanel.ui.inputText += "6";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_7) {
+                gamePanel.ui.inputText += "7";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_8) {
+                gamePanel.ui.inputText += "8";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_9) {
+                gamePanel.ui.inputText += "9";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_0) {
+                gamePanel.ui.inputText += "0";
+                cursorSound();
+            }
+        }
+
+        if (keyCode == KeyEvent.VK_BACK_SPACE && gamePanel.ui.inputText.length() > 0) {
+            gamePanel.ui.inputText = gamePanel.ui.inputText.substring(0, gamePanel.ui.inputText.length() - 1);
+            cursorSound();
+        }
+
+        if (keyCode == KeyEvent.VK_ESCAPE) {
+            gamePanel.ui.inputText = "";
+            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.commandNumber = 0;
+            gamePanel.gameState = gamePanel.playState;
+            cursorSound();
+        }
+
+        if (keyCode == KeyEvent.VK_ENTER) {
+            if (gamePanel.ui.inputText.length() > 0) {
+                int durasi = Integer.parseInt(gamePanel.ui.inputText);
+                gamePanel.gameState = gamePanel.playState;
+
+                // timer state
+                gamePanel.ui.durasiTimer = durasi;
+                gamePanel.ui.currentAksi = "menyiram tanaman";
+                gamePanel.gameState = gamePanel.timerState;
+                threadTemp = gamePanel.ui.startTimerThread(durasi);
+
+                // efek
+                gamePanel.getCurrentSim().mood += (durasi/30)*30;
+                gamePanel.getCurrentSim().kesehatan -= (durasi/30)*5;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
                 if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
                     gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
                 }
