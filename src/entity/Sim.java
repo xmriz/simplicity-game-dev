@@ -206,11 +206,13 @@ public class Sim extends Entity {
     public void usingBenda(int indexBendayangDisentuh) {
         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki
         if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki != 999) {
-            if (indexBendayangDisentuh != 999){
+            if (indexBendayangDisentuh != 999) {
                 if (gamePanel.keyHandler.enterPressed) {
-                    int indexRumahYangDimasuki = gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki;
+                    int indexRumahYangDimasuki = gamePanel.listSim
+                            .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki;
                     int indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan;
-                    Furnitur furniturTemp = (Furnitur) gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.get(indexBendayangDisentuh);
+                    Furnitur furniturTemp = (Furnitur) gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah
+                            .get(indexLocationRuangan).bendaRuangan.get(indexBendayangDisentuh);
                     furniturTemp.action();
                     // TODO : KERJA DI TIAP FURNITUR
                 }

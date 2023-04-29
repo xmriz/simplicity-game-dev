@@ -13,6 +13,7 @@ import entity.*;
 import environment.EnvironmentManager;
 import map.TileManager;
 import map.Map;
+import data.*;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -52,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
     public EventHandler eventHandler = new EventHandler(this); // create a new EventHandler object
     EnvironmentManager environmentManager = new EnvironmentManager(this); // create a new EnvironmentManager object
     Map map = new Map(this);
+    SaveLoad saveLoad = new SaveLoad(this);
     Thread gameThread; // thread for the game
 
     // Multisim
