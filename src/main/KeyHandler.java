@@ -1568,7 +1568,6 @@ public class KeyHandler implements KeyListener {
 
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.commandNumber = 0;
-                cursorSound();
             } else {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
@@ -1577,6 +1576,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.inputText = "";
             }
+            cursorSound();
         }
     }
 
