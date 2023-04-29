@@ -11,7 +11,6 @@ import main.GamePanel;
 public class Lighting {
     GamePanel gamePanel;
     BufferedImage darknessFilter;
-    int dayStateCounter = 0;
     float filterAlpha = 0.0f;
 
     // DAY STATE
@@ -74,11 +73,17 @@ public class Lighting {
 
     public void update() {
         // check the state of the day
+        int time = gamePanel.worldTimeCounter%720;
+
         if (dayState == day) {
-            dayStateCounter++;
-            if (dayStateCounter > 600) { // 600 = 10 seconds (60 fps)
+            if (time == 360) { 
                 dayState = dusk;
-                dayStateCounter = 0;
+            } else if (time < 360){
+                dayState = day;
+                filterAlpha = 0.0f;
+            } else {
+                dayState = night;
+                filterAlpha = 0.7f;
             }
         }
 
@@ -91,10 +96,14 @@ public class Lighting {
         }
 
         if (dayState == night) {
-            dayStateCounter++;
-            if (dayStateCounter > 600) { // 600 = 10 seconds (60 fps)
+            if (time == 0) {
                 dayState = dawn;
-                dayStateCounter = 0;
+            } else if (time < 720 && time >= 360) {
+                dayState = night;
+                filterAlpha = 0.7f;
+            } else {
+                dayState = day;
+                filterAlpha = 0.0f;
             }
         }
 

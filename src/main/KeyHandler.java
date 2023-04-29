@@ -1569,6 +1569,9 @@ public class KeyHandler implements KeyListener {
                     gamePanel.getCurrentSim().kesehatan = 100;
                 }
 
+                // nambah WorldTimeCounter
+                gamePanel.worldTimeCounter += durasi;
+
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.commandNumber = 0;
             } else {

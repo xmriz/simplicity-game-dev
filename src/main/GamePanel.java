@@ -31,8 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int maxWorldRow = 66;
     public final int worldWidth = maxWorldCol * tileSize; // 3168 pixels
     public final int worldHeight = maxWorldRow * tileSize; // 3168 pixels
-    public static int worldTime = 720; // waktu satu hari adalah 720 detik
-    public int worldDay = 0; // hari pertama
+    public int worldTimeCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
 
     // MAP SETTINGS
     public final int maxMap = 2; // Ruangan and world
@@ -247,7 +246,8 @@ public class GamePanel extends JPanel implements Runnable {
                 keyHandler.checkCurrentLocation = false;
                 g2d.setColor(Color.white);
                 g2d.setFont(g2d.getFont().deriveFont(40f));
-                g2d.drawString("World Time: " + worldTime, 10, 700);
+                g2d.drawString("World Time: " + worldTimeCounter%720, 10, 700);
+                g2d.drawString("World Day: " + worldTimeCounter/720, 10, 748);
             }
 
             // current location
