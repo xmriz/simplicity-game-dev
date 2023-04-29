@@ -281,25 +281,24 @@ public class KeyHandler implements KeyListener {
             inputDurasiMandiState(keyCode);
         }
 
-        // TIMER STATE
-        else if (gamePanel.gameState == gamePanel.timerState) {
-            timerState(keyCode);
-        }
-
-<<<<<<< HEAD
-        // GAME OVER STATE
-        else if (gamePanel.gameState == gamePanel.gameOverState) {
-            gameOverState(keyCode);
-=======
         // SALAT STATE
         else if (gamePanel.gameState == gamePanel.inputDurasiSalatState){
             inputDurasiSalatState(keyCode);
         }
 
-        //Baca Buku State
+        // BACA BUKU STATE
         else if (gamePanel.gameState == gamePanel.inputDurasiBacaBukuState){
             inputDurasiBacaBukuState(keyCode);
->>>>>>> nadine-aksi
+        }
+
+        // TIMER STATE
+        else if (gamePanel.gameState == gamePanel.timerState) {
+            timerState(keyCode);
+        }
+
+        // GAME OVER STATE
+        else if (gamePanel.gameState == gamePanel.gameOverState) {
+            gameOverState(keyCode);
         }
 
     }
