@@ -10,7 +10,7 @@ import java.util.*;
 
 import benda.Benda;
 import entity.*;
-import environment.EnvironmentManager;
+import Environment.EnvironmentManager;
 import map.TileManager;
 import map.Map;
 

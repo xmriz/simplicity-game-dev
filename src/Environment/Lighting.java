@@ -1,4 +1,4 @@
-package environment;
+package Environment;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
