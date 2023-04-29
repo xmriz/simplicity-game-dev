@@ -105,6 +105,8 @@ public class UI {
             drawResepScreen();
         } else if (gamePanel.gameState == gamePanel.inputDurasiTidurState){
             drawInputDurasiTidurScreen("Input Durasi Tidur:");
+        } else if (gamePanel.gameState == gamePanel.inputDurasiNontonState){
+            drawInputDurasiNontonScreen("Input Durasi Nonton:");
         } else if (gamePanel.gameState == gamePanel.timerState){
             drawTimerScreen();
         }
@@ -1393,6 +1395,42 @@ public class UI {
 
     // ------------------------------ TODO BATAS SUCI ------------------------------
     public void drawInputDurasiTidurScreen(String judul) {
+        // draw window
+        int x = getXforCenteredText(judul);
+        x -= 3 * gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText(judul);
+        y += gamePanel.tileSize + 5;
+        g2d.drawString(judul, x, y);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "(dalam detik)";
+        String textTemp = "(maks. 15 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize - 10;
+        g2d.drawString(text, x, y);
+
+        // draw input text
+        x = getXforCenteredText(textTemp);
+        y += gamePanel.tileSize * 2;
+        width = width - 2 * gamePanel.tileSize + 15;
+        height = gamePanel.tileSize;
+        g2d.fillRect(x, y, width, height);
+
+        // draw text
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
+        g2d2.setColor(Color.BLACK);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+    }
+
+    public void drawInputDurasiNontonScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
         x -= 3 * gamePanel.tileSize;
