@@ -47,9 +47,9 @@ public class UtilityTool {
         return sb.toString().trim();
     }
 
-    public static void delay(int ms) {
+    public static void delay(int s) {
         try {
-            Thread.sleep(ms);
+            Thread.sleep(s*1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

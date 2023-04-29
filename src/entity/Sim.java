@@ -130,7 +130,6 @@ public class Sim extends Entity {
                                                                                         // with
             usingBenda(indexBendaYangDisentuh);
             // System.out.println(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki);
-            // TODO : indexBendaYangDisentuh buat interact dengan benda
 
             // indexRumahYangDimasuki = indexBendaYangDisentuh;
             // System.out.println(indexBendaYangDisentuh); // ngasih index benda yang
@@ -212,7 +211,6 @@ public class Sim extends Entity {
                     int indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan;
                     Furnitur furniturTemp = (Furnitur) gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.get(indexBendayangDisentuh);
                     furniturTemp.action();
-                    // TODO : KERJA DI TIAP FURNITUR
                 }
             }
 

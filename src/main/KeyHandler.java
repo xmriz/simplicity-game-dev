@@ -264,6 +264,16 @@ public class KeyHandler implements KeyListener {
             resepState(keyCode);
         }
 
+        // INPUT DURASI TIDUR STATE
+        else if (gamePanel.gameState == gamePanel.inputDurasiTidurState){
+            inputDurasiTidurState(keyCode);
+        }
+
+        // TIMER STATE
+        else if (gamePanel.gameState == gamePanel.timerState) {
+            timerState(keyCode);
+        }
+
     }
 
     public void playState(int keyCode) {
@@ -792,7 +802,6 @@ public class KeyHandler implements KeyListener {
                                             break;
                                         }
                                     }
-                                    System.out.println(intersect);
                                     if (intersect) {
                                         gamePanel.ui.charIndex = 0;
                                         gamePanel.ui.combinedText = "";
@@ -1167,6 +1176,10 @@ public class KeyHandler implements KeyListener {
                                             gamePanel.listSim.get(gamePanel.listSim.size() - 1).rumah.ruanganRumah
                                                     .get(0).name)
                                     + ")";
+                            gamePanel.ui.charIndex = 0;
+                            gamePanel.ui.combinedText = "";
+                            gamePanel.gameState = gamePanel.dialogState;
+                            gamePanel.ui.currentDialog = "Berhasil menambah sim.";
                         }
                     }
                 }
@@ -1405,7 +1418,6 @@ public class KeyHandler implements KeyListener {
     }
 
     public void resepState(int keyCode){
-        // TODO BUAT KEY HANDLER RESEP STATE
         int index = 0;
         
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -1471,6 +1483,106 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+
+    public void timerState(int keyCode){
+        // TODO : KEY HANDLER timerState : cancel aksi
+        if (keyCode == KeyEvent.VK_ESCAPE) {
+            gamePanel.gameState = gamePanel.playState;
+            cursorSound();
+            gamePanel.ui.durasiTimer = 0;
+            gamePanel.ui.currentAksi = "";
+        } 
+    }
+    
+
+
+    // ---------------------  TODO BATAS SUCI  -------------------------
+    public void inputDurasiTidurState(int keyCode){
+        if (gamePanel.ui.inputText.length() < 5) {
+            if (keyCode == KeyEvent.VK_1) {
+                gamePanel.ui.inputText += "1";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_2) {
+                gamePanel.ui.inputText += "2";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_3) {
+                gamePanel.ui.inputText += "3";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_4) {
+                gamePanel.ui.inputText += "4";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_5) {
+                gamePanel.ui.inputText += "5";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_6) {
+                gamePanel.ui.inputText += "6";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_7) {
+                gamePanel.ui.inputText += "7";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_8) {
+                gamePanel.ui.inputText += "8";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_9) {
+                gamePanel.ui.inputText += "9";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_0) {
+                gamePanel.ui.inputText += "0";
+                cursorSound();
+            }
+        }
+
+        if (keyCode == KeyEvent.VK_BACK_SPACE && gamePanel.ui.inputText.length() > 0) {
+            gamePanel.ui.inputText = gamePanel.ui.inputText.substring(0, gamePanel.ui.inputText.length() - 1);
+            cursorSound();
+        }
+
+        if (keyCode == KeyEvent.VK_ESCAPE) {
+            gamePanel.ui.inputText = "";
+            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.commandNumber = 0;
+            gamePanel.gameState = gamePanel.playState;
+            cursorSound();
+        }
+
+        if (keyCode == KeyEvent.VK_ENTER) {
+            if (gamePanel.ui.inputText.length() > 0) {
+                int durasi = Integer.parseInt(gamePanel.ui.inputText);
+                gamePanel.gameState = gamePanel.playState;
+
+                // timer state
+                gamePanel.ui.durasiTimer = durasi;
+                gamePanel.ui.currentAksi = "tidur";
+                gamePanel.gameState = gamePanel.timerState;
+                gamePanel.ui.startTimerThread(durasi);
+
+                // efek
+                gamePanel.getCurrentSim().mood += (durasi/240)*30;
+                gamePanel.getCurrentSim().kesehatan += (durasi/240)*20;
+                if (gamePanel.getCurrentSim().mood > 100) {
+                    gamePanel.getCurrentSim().mood = 100;
+                }
+                if (gamePanel.getCurrentSim().kesehatan > 100) {
+                    gamePanel.getCurrentSim().kesehatan = 100;
+                }
+
+                gamePanel.ui.inputText = "";
+                gamePanel.ui.commandNumber = 0;
+                cursorSound();
+            } else {
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.commandNumber = 0;
+                gamePanel.ui.inputText = "";
+            }
+        }
+    }
+
+    // --------------------- BATAS SUCI -------------------------
+
+
     public void cursorSound() {
         gamePanel.playSoundEffect(3);
     }
@@ -1492,6 +1604,8 @@ public class KeyHandler implements KeyListener {
             rightPressed = false;
         }
     }
+
+    
 }
 
 // ------------------------------------------NYIMPAN------------------------------------------

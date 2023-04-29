@@ -41,6 +41,10 @@ public class Rumah extends Benda {
                 ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up = ruangan;
                 ruangan.down = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                 ruanganRumah.add(ruangan);
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
             }
         } else if (posisi == "down") {
             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan == 0) {
@@ -62,6 +66,10 @@ public class Rumah extends Benda {
                     ruangan.up = ruanganRumah
                             .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                     ruanganRumah.add(ruangan);
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
                 }
             }
 
@@ -75,6 +83,10 @@ public class Rumah extends Benda {
                 ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left = ruangan;
                 ruangan.right = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                 ruanganRumah.add(ruangan);
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
             }
         } else if (posisi == "right") {
             if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right != null) {
@@ -86,6 +98,10 @@ public class Rumah extends Benda {
                 ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right = ruangan;
                 ruangan.left = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                 ruanganRumah.add(ruangan);
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
             }
         }
     }

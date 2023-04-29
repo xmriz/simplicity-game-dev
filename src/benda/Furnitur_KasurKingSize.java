@@ -21,5 +21,6 @@ public class Furnitur_KasurKingSize extends Furnitur{
     public void action(){
         // aksi tidur
         System.out.println("Aksi Tidur");
+        gamePanel.gameState = gamePanel.inputDurasiTidurState;
     }
 }
