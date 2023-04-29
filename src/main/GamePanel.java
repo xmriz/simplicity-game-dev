@@ -93,6 +93,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int timerState = 17;
     public final int inputDurasiTidurState = 18;
     public final int inputDurasiNontonState = 19;
+    public final int inputDurasiMandiState = 20;
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {
