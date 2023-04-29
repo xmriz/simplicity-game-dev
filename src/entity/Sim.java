@@ -374,6 +374,7 @@ public class Sim extends Entity {
                         if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.get(indexBendaYangDisentuh) instanceof Furnitur_MejaKursi){
                             BahanMakanan bahanMakanan = (BahanMakanan) selectedBenda;
                             bahanMakanan.eat(this);
+                            gamePanel.worldTimeCounter += 30;
                             if (bahanMakanan.quantity > 1) {
                                 bahanMakanan.quantity--;
                             } else {
