@@ -12,7 +12,7 @@ public class Main {
         JFrame window = new JFrame(); // creates a new MyFrame object
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // set the default close operation (exit when it is
                                                                // closed)
-        window.setResizable(false); // set the frame to be resizable
+        window.setResizable(false); // set the frame to be unresizable
         window.setTitle("Sim-Plicity"); // set the title of the frame
         ImageIcon smallLogo = new ImageIcon("assets/logo/small-logo.png"); // create an ImageIcon object from an image file
         window.setIconImage(smallLogo.getImage());
