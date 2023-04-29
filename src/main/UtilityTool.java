@@ -68,4 +68,12 @@ public class UtilityTool {
         }
     }
 
+    public static int pythagoras(int x1, int y1, int x2, int y2) {
+        int deltaX = x2 - x1;
+        int deltaY = y2 - y1;
+        int distanceSquared = deltaX * deltaX + deltaY * deltaY;
+        int distance = (int) Math.sqrt(distanceSquared);
+        return distance;
+    }
+
 }

@@ -174,6 +174,18 @@ public class EventHandler {
                                                         .get(gamePanel.indexCurrentSim).indexLocationRuangan).name)
                                 + ")";
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki = indexRumahWorldTemp;
+
+                        // nambah worldtimecounter
+                        int x1 = gamePanel.listSim.get(indexRumahWorldTemp).rumah.colRumah;
+                        int y2 = gamePanel.listSim.get(indexRumahWorldTemp).rumah.rowRumah;
+                        int x2 = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.colRumah;
+                        int y1 = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.rowRumah;
+                        int durasi = UtilityTool.pythagoras(x1, y1, x2, y2);
+                        gamePanel.worldTimeCounter += durasi;
+
+                        // efek
+                        gamePanel.getCurrentSim().mood += (durasi/30)*10;
+                        gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
                     }
                 }
                 // if (hit(0,gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.colRumah,

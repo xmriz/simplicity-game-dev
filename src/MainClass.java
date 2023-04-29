@@ -1,20 +1,12 @@
-import java.util.Scanner;
-
-public class MainClass {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Masukkan durasi timer (dalam detik): ");
-        int duration = scanner.nextInt();
-
-        OuterClass outer = new OuterClass();
-        Thread thread = outer.startTimerThread(duration);
-
-        // melakukan pekerjaan lain di sini
-
-        System.out.print("Apakah ingin menghentikan timer? (y/n): ");
-        String answer = scanner.next();
-        if (answer.equals("y")) {
-            thread.interrupt();
-        }
+if (index != 999){ // 999 means there is no collision with benda
+    if (!(gamePanel.benda[currentMap][index] instanceof Furnitur ||
+    gamePanel.benda[currentMap][index] instanceof Rumah)){
+    if (canObtainItem(gamePanel.benda[currentMap][index])){
+    // text = "kamu mendapatkan " + gamePanel.benda[currentMap][index].nama;
+    } else {
+    // text = "Inventory penuh";
     }
-}
+    // gamePanel.ui.addMessage(text);
+    gamePanel.benda[currentMap][index] = null;
+    }
+    }

@@ -21,5 +21,6 @@ public class Furnitur_MejaKursi extends Furnitur{
     public void action(){
         // aksi makan
         System.out.println("Aksi Makan");
+        gamePanel.gameState = gamePanel.inventoryState;
     }
 }

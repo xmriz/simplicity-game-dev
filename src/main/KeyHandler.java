@@ -356,7 +356,11 @@ public class KeyHandler implements KeyListener {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Tidak dapat membuka mini peta\ndi rumah!";
             }
-        } 
+        } else if (keyCode == KeyEvent.VK_Z){
+            if (gamePanel.getCurrentSim().currentMap == 1){
+                gamePanel.getCurrentSim().pickUpObject(gamePanel.getCurrentSim().indexBendaYangDisentuh);
+            }
+        }
     }
 
     public void pauseState(int keyCode) {
@@ -1487,7 +1491,6 @@ public class KeyHandler implements KeyListener {
 
 
     public void timerState(int keyCode){
-        // TODO : KEY HANDLER timerState : cancel aksi
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
             cursorSound();

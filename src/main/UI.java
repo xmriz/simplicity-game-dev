@@ -827,6 +827,15 @@ public class UI {
         if (commandNumber == 3) {
             g2d.drawString(">", x - gamePanel.tileSize, y);
         }
+
+        // draw hint text
+        x = gamePanel.tileSize * 2;
+        y = gamePanel.tileSize * 13;
+        width = gamePanel.tileSize * 6;
+        height = gamePanel.tileSize * 2;
+        drawSubWindow(x, y, width, height);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("Harga: 18000", x + 24, y + 60);
     }
 
     public void drawInputKoordinatBendaScreen(String judul) {
@@ -1010,6 +1019,9 @@ public class UI {
                                 }
                             }
                         }
+
+                        // efek
+                        gamePanel.getCurrentSim().mood += 10;
 
                         // simpan makanan yang udah jadi ke inventory
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(makanan);
@@ -1363,7 +1375,6 @@ public class UI {
         g2d.drawString(text, x, y);
 
         // draw hint text
-        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 50f));
         x = gamePanel.tileSize * 2;
         y = gamePanel.tileSize * 13;
         width = gamePanel.tileSize * 6;

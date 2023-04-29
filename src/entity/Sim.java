@@ -176,20 +176,33 @@ public class Sim extends Entity {
         }
     }
 
-    // public void pickUpObject(int index){
-    // if (index != 999){ // 999 means there is no collision with benda
-    // if (!(gamePanel.benda[currentMap][index] instanceof Furnitur ||
-    // gamePanel.benda[currentMap][index] instanceof Rumah)){
-    // if (canObtainItem(gamePanel.benda[currentMap][index])){
-    // // text = "kamu mendapatkan " + gamePanel.benda[currentMap][index].nama;
-    // } else {
-    // // text = "Inventory penuh";
-    // }
-    // // gamePanel.ui.addMessage(text);
-    // gamePanel.benda[currentMap][index] = null;
-    // }
-    // }
-    // }
+    public void pickUpObject(int index){
+        if (index != 999){
+            if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.get(index) instanceof Furnitur){
+                if (canObtainItem(gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.get(index))){
+                    Furnitur furniturTemp = (Furnitur) gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.get(index);
+                    gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.remove(index);
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Berhasil mengambil " + furniturTemp.name;
+                }
+            }
+        }
+
+        // if (index != 999){ // 999 means there is no collision with benda
+        //     if (!(gamePanel.benda[currentMap][index] instanceof Furnitur ||
+        //             gamePanel.benda[currentMap][index] instanceof Rumah)){
+        //         if (canObtainItem(gamePanel.benda[currentMap][index])){
+        //             // text = "kamu mendapatkan " + gamePanel.benda[currentMap][index].nama;
+        //         } else {
+        //             // text = "Inventory penuh";
+        //         }
+        //         // gamePanel.ui.addMessage(text);
+        //         gamePanel.benda[currentMap][index] = null;
+        //     }
+        // }
+    }
 
     public void interactNPC(int i) {
         if (i != 999) {
@@ -242,33 +255,79 @@ public class Sim extends Entity {
             Benda selectedBenda = inventory.get(itemIndex);
 
             if (selectedBenda instanceof BahanMakanan) {
-                BahanMakanan bahanMakanan = (BahanMakanan) selectedBenda;
-                bahanMakanan.eat(this);
-                if (bahanMakanan.quantity > 1) {
-                    bahanMakanan.quantity--;
+                if (currentMap == 0){
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Anda tidak bisa makan di luar rumah.";
                 } else {
-                    inventory.remove(itemIndex);
+                    if (indexBendaYangDisentuh != 999){
+                        if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.get(indexBendaYangDisentuh) instanceof Furnitur_MejaKursi){
+                            BahanMakanan bahanMakanan = (BahanMakanan) selectedBenda;
+                            bahanMakanan.eat(this);
+                            if (bahanMakanan.quantity > 1) {
+                                bahanMakanan.quantity--;
+                            } else {
+                                inventory.remove(itemIndex);
+                            }
+                            gamePanel.ui.charIndex = 0;
+                            gamePanel.ui.combinedText = "";
+                            gamePanel.gameState = gamePanel.dialogState;
+                            gamePanel.ui.currentDialog = "Anda memakan " + bahanMakanan.name + ".\n" + "Kekenyangan bertambah "
+                                    + bahanMakanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah " + kekenyangan
+                                    + " poin.";
+                        } else {
+                            gamePanel.ui.charIndex = 0;
+                            gamePanel.ui.combinedText = "";
+                            gamePanel.gameState = gamePanel.dialogState;
+                            gamePanel.ui.currentDialog = "Anda harus makan di meja makan!.";
+                        }
+                    } else {
+                        gamePanel.ui.charIndex = 0;
+                        gamePanel.ui.combinedText = "";
+                        gamePanel.gameState = gamePanel.dialogState;
+                        gamePanel.ui.currentDialog = "Anda harus makan di meja makan!.";
+                    }
                 }
-                gamePanel.ui.charIndex = 0;
-                gamePanel.ui.combinedText = "";
-                gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Anda memakan " + bahanMakanan.name + ".\n" + "Kekenyangan bertambah "
-                        + bahanMakanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah " + kekenyangan
-                        + " poin.";
             } else if (selectedBenda instanceof Makanan) {
-                Makanan makanan = (Makanan) selectedBenda;
-                makanan.eat(this);
-                if (makanan.quantity > 1) {
-                    makanan.quantity--;
+                if (currentMap == 0){
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Anda tidak bisa makan di luar rumah.";
                 } else {
-                    inventory.remove(itemIndex);
+                    if (indexBendaYangDisentuh != 999){
+                        if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan.get(indexBendaYangDisentuh) instanceof Furnitur_MejaKursi){
+                            Makanan makanan = (Makanan) selectedBenda;
+                            makanan.eat(this);
+                            gamePanel.worldTimeCounter += 30;
+                            if (makanan.quantity > 1) {
+                                makanan.quantity--;
+                            } else {
+                                inventory.remove(itemIndex);
+                            }
+                            gamePanel.ui.charIndex = 0;
+                            gamePanel.ui.combinedText = "";
+                            gamePanel.gameState = gamePanel.dialogState;
+                            gamePanel.ui.currentDialog = "Anda memakan " + makanan.name + ".\n" + "Kekenyangan bertambah "
+                                    + makanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah " + kekenyangan
+                                    + " poin.";
+                        } else {
+                            gamePanel.ui.charIndex = 0;
+                            gamePanel.ui.combinedText = "";
+                            gamePanel.gameState = gamePanel.dialogState;
+                            gamePanel.ui.currentDialog = "Anda harus makan di meja makan!.";
+                        }
+                    } else {
+                        gamePanel.ui.charIndex = 0;
+                        gamePanel.ui.combinedText = "";
+                        gamePanel.gameState = gamePanel.dialogState;
+                        gamePanel.ui.currentDialog = "Anda harus makan di meja makan!.";
+                    }
                 }
-                gamePanel.ui.charIndex = 0;
-                gamePanel.ui.combinedText = "";
-                gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Anda memakan " + makanan.name + ".\n" + "Kekenyangan bertambah "
-                        + makanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah " + kekenyangan
-                        + " poin.";
+
+
+                
             } else if (selectedBenda instanceof Furnitur) {
                 if (currentMap == 0) {
                     gamePanel.ui.charIndex = 0;
