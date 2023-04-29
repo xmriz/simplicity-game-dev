@@ -11,7 +11,7 @@ public class Furnitur_RakBuku extends Furnitur{
         collision = false;
         dimensiX = 1;
         dimensiY = 1;
-        harga = 100;
+        harga = 50;
         aksi = "Baca Buku";
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
         this.gamePanel = gamePanel;
@@ -21,7 +21,7 @@ public class Furnitur_RakBuku extends Furnitur{
     public void action(){
         // aksi masak
         System.out.println("Aksi Baca Buku");
-        gamePanel.gameState = gamePanel.resepState;
+        gamePanel.gameState = gamePanel.inputDurasiBacaBukuState;
     }
 
 }
