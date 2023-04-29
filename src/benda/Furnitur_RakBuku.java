@@ -9,7 +9,7 @@ public class Furnitur_RakBuku extends Furnitur{
         name = "Rak Buku";
         image = setupImage("benda/furnitur/rak_buku");
         collision = false;
-        dimensiX = 1;
+        dimensiX = 2;
         dimensiY = 1;
         harga = 50;
         aksi = "Baca Buku";
