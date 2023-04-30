@@ -32,6 +32,7 @@ public class KeyHandler implements KeyListener {
         // TITLE STATE
         if (gamePanel.gameState == gamePanel.titleState) {
             if (gamePanel.ui.titleScreenState == 0) {
+                gamePanel.indexCurrentSim = 0;
                 if (keyCode == KeyEvent.VK_UP) {
                     gamePanel.ui.commandNumber--;
                     if (gamePanel.ui.commandNumber < 0) {
@@ -47,6 +48,7 @@ public class KeyHandler implements KeyListener {
                 } else if (keyCode == KeyEvent.VK_ENTER) {
                     if (gamePanel.ui.commandNumber == 0) {
                         gamePanel.ui.titleScreenState = 1; // go to input name screen
+                        gamePanel.ui.inputFirstSimName = "";
                     } else if (gamePanel.ui.commandNumber == 1) {
                         // later
                     } else if (gamePanel.ui.commandNumber == 2) {
@@ -73,19 +75,31 @@ public class KeyHandler implements KeyListener {
                     cursorSound();
                 } else if (keyCode == KeyEvent.VK_ENTER) {
                     if (gamePanel.ui.commandNumber == 0) { // start game
-                        gamePanel.listSim.get(gamePanel.indexCurrentSim).nama = gamePanel.ui.inputFirstSimName;
-                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).nama.length() == 0) {
-                            gamePanel.listSim.get(gamePanel.indexCurrentSim).nama = "Sim";
+                        Sim sim1 = new Sim(gamePanel, gamePanel.keyHandler);
+                        for (int i = 1; i < gamePanel.listSim.size(); i++) {
+                            gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
+                            gamePanel.listRumah[0].remove(gamePanel.listSim.size() - 1);
+                        }
+                        gamePanel.listSim.set(0, sim1);
+                        gamePanel.listRumah[0].set(0, gamePanel.listSim.get(0).rumah);
+                        gamePanel.listRumah[0].get(0).worldX = gamePanel.listSim.get(0).rumah.colRumah
+                                * gamePanel.tileSize;
+                        gamePanel.listRumah[0].get(0).worldY = gamePanel.listSim.get(0).rumah.rowRumah
+                                * gamePanel.tileSize;
+
+                        gamePanel.listSim.get(0).nama = gamePanel.ui.inputFirstSimName;
+                        if (gamePanel.listSim.get(0).nama.length() == 0) {
+                            gamePanel.listSim.get(0).nama = "Sim";
                         } else {
                             // capitalize first letter
-                            gamePanel.listSim.get(gamePanel.indexCurrentSim).nama = UtilityTool
-                                    .capitalizeFirstLetter(gamePanel.listSim.get(gamePanel.indexCurrentSim).nama);
+                            gamePanel.listSim.get(0).nama = UtilityTool
+                                    .capitalizeFirstLetter(gamePanel.listSim.get(0).nama);
                             // set currentlocation
                         }
-                        gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah "
-                                + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama + " ("
+                        gamePanel.listSim.get(0).currentLocation = "Rumah "
+                                + gamePanel.listSim.get(0).nama + " ("
                                 + UtilityTool.capitalizeFirstLetter(
-                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(0).name)
+                                        gamePanel.listSim.get(0).rumah.ruanganRumah.get(0).name)
                                 + ")";
                         // set game state to play state
                         gamePanel.gameState = gamePanel.playState;
@@ -282,12 +296,12 @@ public class KeyHandler implements KeyListener {
         }
 
         // SHALAT STATE
-        else if (gamePanel.gameState == gamePanel.inputDurasiShalatState){
+        else if (gamePanel.gameState == gamePanel.inputDurasiShalatState) {
             inputDurasiShalatState(keyCode);
         }
 
         // BACA BUKU STATE
-        else if (gamePanel.gameState == gamePanel.inputDurasiBacaBukuState){
+        else if (gamePanel.gameState == gamePanel.inputDurasiBacaBukuState) {
             inputDurasiBacaBukuState(keyCode);
         }
 
@@ -307,12 +321,12 @@ public class KeyHandler implements KeyListener {
         }
 
         // INPUT DURASI SIRAM TANAMAN STATE
-        else if (gamePanel.gameState == gamePanel.inputDurasiSiramTanamanState){
+        else if (gamePanel.gameState == gamePanel.inputDurasiSiramTanamanState) {
             inputDurasiSiramTanamanState(keyCode);
         }
 
         // INPUT DURASI MAIN GAME STATE
-        else if (gamePanel.gameState == gamePanel.inputDurasiMainGameState){
+        else if (gamePanel.gameState == gamePanel.inputDurasiMainGameState) {
             inputDurasiMainGameState(keyCode);
         }
 
@@ -508,7 +522,8 @@ public class KeyHandler implements KeyListener {
         if (gamePanel.ui.commandNumber == 0) {
             if (keyCode == KeyEvent.VK_DOWN) {
                 gamePanel.ui.commandNumber++;
-                cursorSound();inputDurasiTidurState(keyCode);
+                cursorSound();
+                inputDurasiTidurState(keyCode);
             } else if (keyCode == KeyEvent.VK_UP) {
                 gamePanel.ui.commandNumber = 5;
                 cursorSound();
@@ -1560,45 +1575,45 @@ public class KeyHandler implements KeyListener {
             cursorSound();
             gamePanel.keyHandler.threadTemp.interrupt();
             gamePanel.ui.durasiTimer = 0;
-        } 
+        }
     }
-    
-    public void gameOverState(int keyCode){
-        if (gamePanel.isOneSim){
-            if (keyCode == KeyEvent.VK_ENTER){
+
+    public void gameOverState(int keyCode) {
+        if (gamePanel.isOneSim) {
+            if (keyCode == KeyEvent.VK_ENTER) {
                 gamePanel.ui.titleScreenState = 0;
                 gamePanel.gameState = gamePanel.titleState;
                 cursorSound();
                 gamePanel.ui.commandNumber = 0;
             }
-            if (keyCode == KeyEvent.VK_UP){
+            if (keyCode == KeyEvent.VK_UP) {
                 gamePanel.ui.commandNumber--;
-                if (gamePanel.ui.commandNumber < 0){
+                if (gamePanel.ui.commandNumber < 0) {
                     gamePanel.ui.commandNumber = 0;
                 }
                 cursorSound();
-            } else if (keyCode == KeyEvent.VK_DOWN){
+            } else if (keyCode == KeyEvent.VK_DOWN) {
                 gamePanel.ui.commandNumber++;
-                if (gamePanel.ui.commandNumber > 0){
+                if (gamePanel.ui.commandNumber > 0) {
                     gamePanel.ui.commandNumber = 0;
                 }
                 cursorSound();
             }
         } else if (gamePanel.listSim.size() >= 1) {
-            if (keyCode == KeyEvent.VK_UP){
+            if (keyCode == KeyEvent.VK_UP) {
                 gamePanel.ui.commandNumber--;
-                if (gamePanel.ui.commandNumber < 0){
+                if (gamePanel.ui.commandNumber < 0) {
                     gamePanel.ui.commandNumber = 1;
                 }
                 cursorSound();
-            } else if (keyCode == KeyEvent.VK_DOWN){
+            } else if (keyCode == KeyEvent.VK_DOWN) {
                 gamePanel.ui.commandNumber++;
-                if (gamePanel.ui.commandNumber > 1){
+                if (gamePanel.ui.commandNumber > 1) {
                     gamePanel.ui.commandNumber = 0;
                 }
                 cursorSound();
-            } else if (keyCode == KeyEvent.VK_ENTER){
-                if (gamePanel.ui.commandNumber == 0){
+            } else if (keyCode == KeyEvent.VK_ENTER) {
+                if (gamePanel.ui.commandNumber == 0) {
                     gamePanel.gameState = gamePanel.playState;
                     gamePanel.gameState = gamePanel.changeSimState;
                 } else {
@@ -1609,11 +1624,10 @@ public class KeyHandler implements KeyListener {
             }
         }
 
-        
     }
 
     // --------------------- TODO BATAS SUCI -------------------------
-    public void inputDurasiTidurState(int keyCode){
+    public void inputDurasiTidurState(int keyCode) {
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
                 gamePanel.ui.inputText += "1";
@@ -1674,8 +1688,8 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
-                gamePanel.getCurrentSim().mood += (durasi/240)*30;
-                gamePanel.getCurrentSim().kesehatan += (durasi/240)*20;
+                gamePanel.getCurrentSim().mood += (durasi / 240) * 30;
+                gamePanel.getCurrentSim().kesehatan += (durasi / 240) * 20;
                 if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
                     gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
                 }
@@ -1703,7 +1717,7 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-    public void inputDurasiNontonState(int keyCode){
+    public void inputDurasiNontonState(int keyCode) {
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
                 gamePanel.ui.inputText += "1";
@@ -1764,9 +1778,9 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
-                gamePanel.getCurrentSim().kekenyangan -= (durasi/60)*5;
-                gamePanel.getCurrentSim().mood += (durasi/60)*15;
-                gamePanel.getCurrentSim().kesehatan -= (durasi/60)*5;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi / 60) * 5;
+                gamePanel.getCurrentSim().mood += (durasi / 60) * 15;
+                gamePanel.getCurrentSim().kesehatan -= (durasi / 60) * 5;
                 if (gamePanel.getCurrentSim().kekenyangan > 100) {
                     gamePanel.getCurrentSim().kekenyangan = 100;
                 }
@@ -1794,7 +1808,7 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-    public void inputDurasiMandiState(int keyCode){
+    public void inputDurasiMandiState(int keyCode) {
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
                 gamePanel.ui.inputText += "1";
@@ -1855,9 +1869,9 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
-                gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*5;
-                gamePanel.getCurrentSim().mood += (durasi/30)*10;
-                gamePanel.getCurrentSim().kesehatan += (durasi/30)*10;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi / 30) * 5;
+                gamePanel.getCurrentSim().mood += (durasi / 30) * 10;
+                gamePanel.getCurrentSim().kesehatan += (durasi / 30) * 10;
                 if (gamePanel.getCurrentSim().kekenyangan > 100) {
                     gamePanel.getCurrentSim().kekenyangan = 100;
                 }
@@ -1885,7 +1899,7 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-    public void inputDurasiShalatState(int keyCode){
+    public void inputDurasiShalatState(int keyCode) {
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
                 gamePanel.ui.inputText += "1";
@@ -1946,8 +1960,8 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
-                gamePanel.getCurrentSim().mood += (durasi/5)*5;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi/5)*5;
+                gamePanel.getCurrentSim().mood += (durasi / 5) * 5;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi / 5) * 5;
                 if (gamePanel.getCurrentSim().mood > 100) {
                     gamePanel.getCurrentSim().mood = 100;
                 }
@@ -1972,7 +1986,7 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-    public void inputDurasiBacaBukuState(int keyCode){
+    public void inputDurasiBacaBukuState(int keyCode) {
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
                 gamePanel.ui.inputText += "1";
@@ -2033,8 +2047,8 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
-                gamePanel.getCurrentSim().mood += (durasi/10)*10;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi/10)*3;
+                gamePanel.getCurrentSim().mood += (durasi / 10) * 10;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi / 10) * 3;
                 if (gamePanel.getCurrentSim().mood > 100) {
                     gamePanel.getCurrentSim().mood = 100;
                 }
@@ -2058,7 +2072,7 @@ public class KeyHandler implements KeyListener {
             cursorSound();
         }
     }
-    
+
     public void inputDurasiRadioState(int keyCode) {
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
@@ -2146,7 +2160,7 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-    public void inputDurasiSiramTanamanState(int keyCode){
+    public void inputDurasiSiramTanamanState(int keyCode) {
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
                 gamePanel.ui.inputText += "1";
@@ -2207,9 +2221,9 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
-                gamePanel.getCurrentSim().mood += (durasi/10)*10;
-                gamePanel.getCurrentSim().kesehatan += (durasi/10)*5;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi/10)*5;
+                gamePanel.getCurrentSim().mood += (durasi / 10) * 10;
+                gamePanel.getCurrentSim().kesehatan += (durasi / 10) * 5;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi / 10) * 5;
                 if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
                     gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
                 }
@@ -2237,8 +2251,7 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-
-    public void inputDurasiMainGameState(int keyCode){
+    public void inputDurasiMainGameState(int keyCode) {
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
                 gamePanel.ui.inputText += "1";
@@ -2299,9 +2312,9 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
-                gamePanel.getCurrentSim().mood += (durasi/30)*30;
-                gamePanel.getCurrentSim().kesehatan -= (durasi/30)*5;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
+                gamePanel.getCurrentSim().mood += (durasi / 30) * 30;
+                gamePanel.getCurrentSim().kesehatan -= (durasi / 30) * 5;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi / 30) * 10;
                 if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
                     gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
                 }
@@ -2352,7 +2365,7 @@ public class KeyHandler implements KeyListener {
             rightPressed = false;
         }
     }
-    
+
 }
 
 // ------------------------------------------NYIMPAN------------------------------------------
