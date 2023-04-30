@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldWidth = maxWorldCol * tileSize; // 3168 pixels
     public final int worldHeight = maxWorldRow * tileSize; // 3168 pixels
     public int worldTimeCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
-    public int worldTimeCounterForStartJobAfterChangeJob = 0; 
+     
 
     // MAP SETTINGS
     public final int maxMap = 2; // Ruangan and world
@@ -105,6 +105,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int kerjaState = 27;
     public final int inputDurasiKerjaState = 28;
     public final int gantiPekerjaanState = 29;
+    public final int inputDurasiOlahragaState = 30;
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {
@@ -157,15 +158,20 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         
-        if (worldTimeCounterForStartJobAfterChangeJob >= 720){
-            Pekerjaan.isCanStartPekerjaan = true;
+        for (int i = 0; i < listSim.size(); i++){
+            if (listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob >= 720){
+                listSim.get(i).pekerjaan.isCanStartPekerjaan = true;
+            }
+        }
+        
+        for (int i = 0; i < listSim.size(); i++){
+            if (listSim.get(i).pekerjaan.totalDurasiKerjaPerPekerjaan >= 720){
+                listSim.get(i).pekerjaan.isCanChangePekerjaan = true;
+            } else {
+                listSim.get(i).pekerjaan.isCanChangePekerjaan = false;
+            }
         }
 
-        if (Pekerjaan.totalDurasiKerjaPerPekerjaan >= 720){
-            Pekerjaan.isCanChangePekerjaan = true;
-        } else {
-            Pekerjaan.isCanChangePekerjaan = false;
-        }
 
         if (gameState == playState) {
             listSim.get(indexCurrentSim).update();

@@ -389,7 +389,9 @@ public class Sim extends Entity {
                             BahanMakanan bahanMakanan = (BahanMakanan) selectedBenda;
                             bahanMakanan.eat(this);
                             gamePanel.worldTimeCounter += 30;
-                            gamePanel.worldTimeCounterForStartJobAfterChangeJob += 30;
+                            for (int i = 0; i < gamePanel.listSim.size(); i++){
+                                gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += 30;
+                            }
                             if (bahanMakanan.quantity > 1) {
                                 bahanMakanan.quantity--;
                             } else {
@@ -429,7 +431,9 @@ public class Sim extends Entity {
                             Makanan makanan = (Makanan) selectedBenda;
                             makanan.eat(this);
                             gamePanel.worldTimeCounter += 30;
-                            gamePanel.worldTimeCounterForStartJobAfterChangeJob += 30;
+                            for (int i = 0; i < gamePanel.listSim.size(); i++){
+                                gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += 30;
+                            }
                             if (makanan.quantity > 1) {
                                 makanan.quantity--;
                             } else {

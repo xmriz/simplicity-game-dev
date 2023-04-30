@@ -791,7 +791,7 @@ public class UI {
                 Sim sim = gamePanel.listSim.get(itemIndex);
                 g2d.drawString(" : " + sim.nama, iTailX, textY);
                 textY += lineHeight;
-                g2d.drawString(" : " + sim.pekerjaan, iTailX, textY);
+                g2d.drawString(" : " + sim.pekerjaan.listPekerjaan[sim.pekerjaan.indexPekerjaan], iTailX, textY);
                 textY += lineHeight;
                 iValue = String.valueOf(" : " + sim.rumah.colRumah + ", " + sim.rumah.rowRumah);
                 g2d.drawString(iValue, iTailX, textY);
@@ -1869,7 +1869,7 @@ public class UI {
         y += gamePanel.tileSize + 35;
         g2d.drawString("Pekerjaan: " + gamePanel.getCurrentSim().pekerjaan.listPekerjaan[gamePanel.getCurrentSim().pekerjaan.indexPekerjaan] , x, y);
 
-        if (Pekerjaan.isCanStartPekerjaan && Pekerjaan.isCanChangePekerjaan){
+        if (gamePanel.getCurrentSim().pekerjaan.isCanStartPekerjaan && gamePanel.getCurrentSim().pekerjaan.isCanChangePekerjaan){
             // draw text
             g2d.setColor(Color.WHITE);
             g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
@@ -1886,7 +1886,7 @@ public class UI {
             if (commandNumber == 1) {
                 g2d.drawString(">", x - 40, y);
             }
-        } else if (Pekerjaan.isCanChangePekerjaan){
+        } else if (gamePanel.getCurrentSim().pekerjaan.isCanChangePekerjaan){
             // draw text
             g2d.setColor(Color.GRAY);
             g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
@@ -1901,7 +1901,7 @@ public class UI {
             if (commandNumber == 0) {
                 g2d.drawString(">", x - 40, y);
             }
-        } else if (Pekerjaan.isCanStartPekerjaan){
+        } else if (gamePanel.getCurrentSim().pekerjaan.isCanStartPekerjaan){
             // draw text
             g2d.setColor(Color.WHITE);
             g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
