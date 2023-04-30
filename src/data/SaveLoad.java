@@ -378,9 +378,9 @@ public class SaveLoad {
                         gamePanel.listSim.get(j).rumah.ruanganRumah.get(i).bendaRuangan.get(x).worldY = Integer
                                 .parseInt(ds.bendaRuangan.get(indexPencariBenda + 4 + x * 5));
                         gamePanel.listSim.get(j).rumah.ruanganRumah.get(i).bendaRuangan.get(x).solidArea.x = Integer
-                                .parseInt(ds.bendaRuangan.get(indexPencariBenda + 4 + x * 5));
+                                .parseInt(ds.bendaRuangan.get(indexPencariBenda + 5 + x * 5));
                         gamePanel.listSim.get(j).rumah.ruanganRumah.get(i).bendaRuangan.get(x).solidArea.y = Integer
-                                .parseInt(ds.bendaRuangan.get(indexPencariBenda + 4 + x * 5));
+                                .parseInt(ds.bendaRuangan.get(indexPencariBenda + 6 + x * 5));
 
                         nums += 1;
                     }
