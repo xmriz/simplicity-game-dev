@@ -126,12 +126,14 @@ public class UI {
             drawInputDurasiSiramTanamanScreen("Input Durasi Siram Tanaman:");
         } else if (gamePanel.gameState == gamePanel.inputDurasiMainGameState) {
             drawInputDurasiMainGameScreen("Input Durasi Main Game:");
-        } else if (gamePanel.gameState == gamePanel.kerjaState){
+        } else if (gamePanel.gameState == gamePanel.kerjaState) {
             drawKerjaScreen("Menu Kerja");
-        } else if (gamePanel.gameState == gamePanel.inputDurasiKerjaState){
+        } else if (gamePanel.gameState == gamePanel.inputDurasiKerjaState) {
             drawInputDurasiKerjaScreen("Input Durasi Kerja:");
-        } else if (gamePanel.gameState == gamePanel.gantiPekerjaanState){
+        } else if (gamePanel.gameState == gamePanel.gantiPekerjaanState) {
             drawGantiPekerjaanScreen("Pilih Pekerjaan");
+        } else if (gamePanel.gameState == gamePanel.saveState) {
+            drawSaveScreen();
         }
     }
 
@@ -197,6 +199,8 @@ public class UI {
             }
         } else if (titleScreenState == 1) {
             updateTitleScreen1Input(inputFirstSimName);
+        } else if (titleScreenState == 2) {
+            loadScreen();
         }
     }
 
@@ -233,6 +237,49 @@ public class UI {
         y += gamePanel.tileSize * 2;
         g2d.drawString(text, x, y);
         if (commandNumber == 1) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
+    }
+
+    public void loadScreen() {
+        // first sim name input
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 42f));
+
+        String text = "PILIH LOAD FILE";
+        int x = getXforCenteredText(text);
+        int y = gamePanel.tileSize * 4 + 10;
+        g2d.drawString(text, x, y);
+
+        text = "LOAD FILE 1";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 3;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 0) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
+
+        text = "LOAD FILE 2";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 1) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
+
+        text = "LOAD FILE 3";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 2) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
+
+        text = "Back";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 3) {
             g2d.drawString(">", x - gamePanel.tileSize, y);
         }
     }
@@ -320,7 +367,9 @@ public class UI {
         String value;
         g2d.drawString(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama, tailX, textY);
         textY += lineHeight;
-        g2d.drawString(" : " + gamePanel.getCurrentSim().pekerjaan.listPekerjaan[gamePanel.getCurrentSim().pekerjaan.indexPekerjaan], tailX, textY);
+        g2d.drawString(" : "
+                + gamePanel.getCurrentSim().pekerjaan.listPekerjaan[gamePanel.getCurrentSim().pekerjaan.indexPekerjaan],
+                tailX, textY);
         textY += lineHeight;
         value = String.valueOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).uang);
         g2d.drawString(" : " + value, tailX, textY);
@@ -1175,6 +1224,58 @@ public class UI {
         }
     }
 
+    public void drawSaveScreen() {
+        // create frame
+        int frameX = gamePanel.tileSize * 4;
+        int frameY = gamePanel.tileSize * 3;
+        int frameWidth = gamePanel.screenWidth - gamePanel.tileSize * 8;
+        int frameHeight = gamePanel.screenHeight - gamePanel.tileSize * 6;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // title
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+        String text = "PILIH LOAD";
+        int x = getXforCenteredText(text);
+        int y = gamePanel.tileSize * 4;
+        g2d.setColor(Color.WHITE);
+        g2d.drawString(text, x, y);
+
+        // texts
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+        text = "SAVE FILE 1";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 0) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+        }
+
+        text = "SAVE FILE 2";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 1) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+        }
+
+        text = "SAVE FILE 3";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 2) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+        }
+
+        text = "Back";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 3) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+        }
+
+    }
+
     // HELP SCREEN
     public void drawHelpScreen() {
         // create frame
@@ -1509,7 +1610,8 @@ public class UI {
         g2d.drawString("[ESC] Skip", x + 24, y + 60);
     }
 
-    // ----------------------------------- BATAS SUCI ----------------------------------------
+    // ----------------------------------- BATAS SUCI
+    // ----------------------------------------
     public void drawInputDurasiTidurScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
@@ -1798,8 +1900,7 @@ public class UI {
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
     }
 
-
-    public void drawGantiPekerjaanScreen(String judul){
+    public void drawGantiPekerjaanScreen(String judul) {
         // TODO GANTI PEKERJAAN
         // draw window
         int x = getXforCenteredText(judul);
@@ -1825,10 +1926,10 @@ public class UI {
         y += 15;
 
         // draw pekerjaan
-        for (int i = 0; i < gamePanel.getCurrentSim().pekerjaan.listPekerjaan.length; i++){
+        for (int i = 0; i < gamePanel.getCurrentSim().pekerjaan.listPekerjaan.length; i++) {
             text = gamePanel.getCurrentSim().pekerjaan.listPekerjaan[i];
             x = getXforCenteredText(text);
-            y += gamePanel.tileSize-10;
+            y += gamePanel.tileSize - 10;
             g2d.drawString(text, x, y);
             if (commandNumber == i) {
                 g2d.drawString(">", x - 40, y);
@@ -1843,12 +1944,11 @@ public class UI {
         height = gamePanel.tileSize * 2;
         drawSubWindow(x, y, width, height);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
-        g2d.drawString("Harga: " + (int) gamePanel.getCurrentSim().pekerjaan.gaji[commandNumber]/2, x + 24, y + 60);
-        
+        g2d.drawString("Harga: " + (int) gamePanel.getCurrentSim().pekerjaan.gaji[commandNumber] / 2, x + 24, y + 60);
+
     }
 
-
-    public void drawKerjaScreen(String judul){
+    public void drawKerjaScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
         x -= 4 * gamePanel.tileSize;
@@ -1865,11 +1965,14 @@ public class UI {
         g2d.drawString(judul, x, y);
 
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
-        x = getXforCenteredText("Pekerjaan: " + gamePanel.getCurrentSim().pekerjaan.listPekerjaan[gamePanel.getCurrentSim().pekerjaan.indexPekerjaan]) /* - 2 * gamePanel.tileSize - 35 */;
+        x = getXforCenteredText("Pekerjaan: " + gamePanel.getCurrentSim().pekerjaan.listPekerjaan[gamePanel
+                .getCurrentSim().pekerjaan.indexPekerjaan]) /* - 2 * gamePanel.tileSize - 35 */;
         y += gamePanel.tileSize + 35;
-        g2d.drawString("Pekerjaan: " + gamePanel.getCurrentSim().pekerjaan.listPekerjaan[gamePanel.getCurrentSim().pekerjaan.indexPekerjaan] , x, y);
+        g2d.drawString("Pekerjaan: "
+                + gamePanel.getCurrentSim().pekerjaan.listPekerjaan[gamePanel.getCurrentSim().pekerjaan.indexPekerjaan],
+                x, y);
 
-        if (Pekerjaan.isCanStartPekerjaan && Pekerjaan.isCanChangePekerjaan){
+        if (Pekerjaan.isCanStartPekerjaan && Pekerjaan.isCanChangePekerjaan) {
             // draw text
             g2d.setColor(Color.WHITE);
             g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
@@ -1879,21 +1982,21 @@ public class UI {
             if (commandNumber == 0) {
                 g2d.drawString(">", x - 40, y);
             }
-    
+
             x = getXforCenteredText("Ganti Pekerjaan");
             y += gamePanel.tileSize;
             g2d.drawString("Ganti Pekerjaan", x, y);
             if (commandNumber == 1) {
                 g2d.drawString(">", x - 40, y);
             }
-        } else if (Pekerjaan.isCanChangePekerjaan){
+        } else if (Pekerjaan.isCanChangePekerjaan) {
             // draw text
             g2d.setColor(Color.GRAY);
             g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
             x = getXforCenteredText("Mulai kerja");
             y += 2 * gamePanel.tileSize - 10;
             g2d.drawString("Mulai Kerja", x, y);
-            
+
             g2d.setColor(Color.WHITE);
             x = getXforCenteredText("Ganti Pekerjaan");
             y += gamePanel.tileSize;
@@ -1901,7 +2004,7 @@ public class UI {
             if (commandNumber == 0) {
                 g2d.drawString(">", x - 40, y);
             }
-        } else if (Pekerjaan.isCanStartPekerjaan){
+        } else if (Pekerjaan.isCanStartPekerjaan) {
             // draw text
             g2d.setColor(Color.WHITE);
             g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
@@ -1911,7 +2014,7 @@ public class UI {
             if (commandNumber == 0) {
                 g2d.drawString(">", x - 40, y);
             }
-            
+
             g2d.setColor(Color.GRAY);
             x = getXforCenteredText("Ganti Pekerjaan");
             y += gamePanel.tileSize;
@@ -1923,7 +2026,7 @@ public class UI {
             x = getXforCenteredText("Mulai kerja");
             y += 2 * gamePanel.tileSize - 10;
             g2d.drawString("Mulai Kerja", x, y);
-            
+
             g2d.setColor(Color.GRAY);
             x = getXforCenteredText("Ganti Pekerjaan");
             y += gamePanel.tileSize;
@@ -1932,7 +2035,7 @@ public class UI {
 
     }
 
-    public void drawInputDurasiKerjaScreen(String judul){
+    public void drawInputDurasiKerjaScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
         x -= 4 * gamePanel.tileSize;
@@ -1994,34 +2097,34 @@ public class UI {
             if (currentAksi == "Setel Radio") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(rand.nextInt(6) + 5);
-            } else if (currentAksi == "Boker"){
+            } else if (currentAksi == "Boker") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(11);
-            } else if (currentAksi == "Tidur"){
+            } else if (currentAksi == "Tidur") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(12);
-            } else if (currentAksi == "Nonton"){
+            } else if (currentAksi == "Nonton") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(13);
-            } else if (currentAksi == "Mandi"){
+            } else if (currentAksi == "Mandi") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(14);
-            } else if (currentAksi == "Makan"){
+            } else if (currentAksi == "Makan") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(15);
-            } else if (currentAksi == "Shalat"){
+            } else if (currentAksi == "Shalat") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(16);
-            } else if (currentAksi == "Baca Buku"){
+            } else if (currentAksi == "Baca Buku") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(17);
-            } else if (currentAksi == "Siram Tanaman"){
+            } else if (currentAksi == "Siram Tanaman") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(18);
-            } else if (currentAksi == "Main Game"){
+            } else if (currentAksi == "Main Game") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(19);
-            } else if (currentAksi == "Kerja"){
+            } else if (currentAksi == "Kerja") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(20);
             }
@@ -2040,8 +2143,8 @@ public class UI {
                     charIndex = 0;
                     combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
-                    if (currentAksi == "Makan"){
-                        currentDialog = "Selesai melakukan " + currentAksiCadangan ;
+                    if (currentAksi == "Makan") {
+                        currentDialog = "Selesai melakukan " + currentAksiCadangan;
                     } else {
                         currentDialog = "Selesai melakukan " + currentAksi;
                     }
