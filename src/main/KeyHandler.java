@@ -2417,8 +2417,8 @@ public class KeyHandler implements KeyListener {
 
                 // efek
                 // TODOOOOOO
-                // gamePanel.getCurrentSim().mood -= (durasi/30)*10;
-                // gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
+                gamePanel.getCurrentSim().mood -= (durasi/30)*10;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
                 Pekerjaan.totalDurasiKerjaPerPekerjaan += durasi;
                 gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji += durasi;
                 if (gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji >= 240){
@@ -2469,15 +2469,22 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.commandNumber = 0;
                 return;
             } else {
-                gamePanel.getCurrentSim().pekerjaan.indexPekerjaan = gamePanel.ui.commandNumber;
-                gamePanel.getCurrentSim().uang -= (int) gamePanel.getCurrentSim().pekerjaan.gaji[gamePanel.ui.commandNumber]/2; 
-                gamePanel.ui.currentDialog = "Pekerjaan berhasil diganti menjadi\n" + gamePanel.getCurrentSim().pekerjaan.listPekerjaan[gamePanel.getCurrentSim().pekerjaan.indexPekerjaan] + ".";
-                cursorSound();
-                gamePanel.ui.commandNumber = 0;
-                gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji = 0;
-                Pekerjaan.totalDurasiKerjaPerPekerjaan = 0;
-                Pekerjaan.isCanStartPekerjaan = false;
-                gamePanel.worldTimeCounterForStartJobAfterChangeJob = 0;
+                if (gamePanel.getCurrentSim().uang >= (int) gamePanel.getCurrentSim().pekerjaan.gaji[gamePanel.ui.commandNumber]/2){
+                    gamePanel.getCurrentSim().pekerjaan.indexPekerjaan = gamePanel.ui.commandNumber;
+                    gamePanel.getCurrentSim().uang -= (int) gamePanel.getCurrentSim().pekerjaan.gaji[gamePanel.ui.commandNumber]/2; 
+                    gamePanel.ui.currentDialog = "Pekerjaan berhasil diganti menjadi\n" + gamePanel.getCurrentSim().pekerjaan.listPekerjaan[gamePanel.getCurrentSim().pekerjaan.indexPekerjaan] + ".";
+                    cursorSound();
+                    gamePanel.ui.commandNumber = 0;
+                    gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji = 0;
+                    Pekerjaan.totalDurasiKerjaPerPekerjaan = 0;
+                    Pekerjaan.isCanStartPekerjaan = false;
+                    gamePanel.worldTimeCounterForStartJobAfterChangeJob = 0;
+                } else {
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Uang tidak cukup untuk melamar\npekerjaan!";
+                }
             }
 
         } else if (keyCode == KeyEvent.VK_UP){

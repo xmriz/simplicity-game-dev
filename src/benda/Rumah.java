@@ -38,13 +38,22 @@ public class Rumah extends Benda {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Ruangan di atas sudah ada!";
             } else {
-                ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up = ruangan;
-                ruangan.down = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
-                ruanganRumah.add(ruangan);
-                gamePanel.ui.charIndex = 0;
-                gamePanel.ui.combinedText = "";
-                gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
+                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang < 18000) {
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Uang tidak cukup untuk melakukan\nupgrade rumah!";
+                    return;
+                } else {
+                    ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up = ruangan;
+                    ruangan.down = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
+                    ruanganRumah.add(ruangan);
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
+                    gamePanel.getCurrentSim().uang -= 18000;
+                }
             }
         } else if (posisi == "down") {
             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan == 0) {
@@ -61,15 +70,24 @@ public class Rumah extends Benda {
                     gamePanel.gameState = gamePanel.dialogState;
                     gamePanel.ui.currentDialog = "Ruangan di bawah sudah ada!";
                 } else {
-                    ruanganRumah
-                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down = ruangan;
-                    ruangan.up = ruanganRumah
-                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
-                    ruanganRumah.add(ruangan);
-                    gamePanel.ui.charIndex = 0;
-                    gamePanel.ui.combinedText = "";
-                    gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
+                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang < 18000) {
+                        gamePanel.ui.charIndex = 0;
+                        gamePanel.ui.combinedText = "";
+                        gamePanel.gameState = gamePanel.dialogState;
+                        gamePanel.ui.currentDialog = "Uang tidak cukup untuk melakukan\nupgrade rumah!";
+                        return;
+                    } else {
+                        ruanganRumah
+                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down = ruangan;
+                        ruangan.up = ruanganRumah
+                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
+                        ruanganRumah.add(ruangan);
+                        gamePanel.ui.charIndex = 0;
+                        gamePanel.ui.combinedText = "";
+                        gamePanel.gameState = gamePanel.dialogState;
+                        gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
+                        gamePanel.getCurrentSim().uang -= 18000;
+                    }
                 }
             }
 
@@ -80,13 +98,22 @@ public class Rumah extends Benda {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Ruangan di kiri sudah ada!";
             } else {
-                ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left = ruangan;
-                ruangan.right = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
-                ruanganRumah.add(ruangan);
-                gamePanel.ui.charIndex = 0;
-                gamePanel.ui.combinedText = "";
-                gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
+                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang < 18000) {
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Uang tidak cukup untuk melakukan\nupgrade rumah!";
+                    return;
+                } else {
+                    ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left = ruangan;
+                    ruangan.right = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
+                    ruanganRumah.add(ruangan);
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
+                    gamePanel.getCurrentSim().uang -= 18000;
+                }
             }
         } else if (posisi == "right") {
             if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right != null) {
@@ -95,13 +122,22 @@ public class Rumah extends Benda {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Ruangan di kanan sudah ada!";
             } else {
-                ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right = ruangan;
-                ruangan.left = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
-                ruanganRumah.add(ruangan);
-                gamePanel.ui.charIndex = 0;
-                gamePanel.ui.combinedText = "";
-                gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
+                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang < 18000) {
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Uang tidak cukup untuk melakukan\nupgrade rumah!";
+                    return;
+                } else {
+                    ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right = ruangan;
+                    ruangan.left = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
+                    ruanganRumah.add(ruangan);
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
+                    gamePanel.getCurrentSim().uang -= 18000;
+                }
             }
         }
     }
