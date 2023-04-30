@@ -1501,7 +1501,6 @@ public class KeyHandler implements KeyListener {
             cursorSound();
             gamePanel.keyHandler.threadTemp.interrupt();
             gamePanel.ui.durasiTimer = 0;
-            gamePanel.ui.currentAksi = "";
         } 
     }
     

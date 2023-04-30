@@ -1521,15 +1521,22 @@ public class UI {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    System.out.println("Timer Skipped");
                     gamePanel.ui.durasiTimer = 0;
-                    gamePanel.ui.currentAksi = "";
+                    gamePanel.gameState = gamePanel.playState;
+                    gamePanel.ui.charIndex = 0;
+                    gamePanel.ui.combinedText = "";
+                    gamePanel.gameState = gamePanel.dialogState;
+                    gamePanel.ui.currentDialog = "Selesai melakukan " + gamePanel.ui.currentAksi; 
                     return;
                 }
             }
 
-            System.out.println("Waktu habis");
             gamePanel.gameState = gamePanel.playState;
+            gamePanel.ui.charIndex = 0;
+            gamePanel.ui.combinedText = "";
+            gamePanel.gameState = gamePanel.dialogState;
+            gamePanel.ui.currentDialog = "Selesai melakukan " + gamePanel.ui.currentAksi; 
+
             gamePanel.ui.durasiTimer = 0;
             gamePanel.ui.currentAksi = "";
         }
