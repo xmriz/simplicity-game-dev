@@ -389,14 +389,12 @@ public class Sim extends Entity {
                             } else {
                                 inventory.remove(itemIndex);
                             }
-                            gamePanel.ui.charIndex = 0;
-                            gamePanel.ui.combinedText = "";
-                            gamePanel.gameState = gamePanel.dialogState;
-                            gamePanel.ui.currentDialog = "Anda memakan " + bahanMakanan.name + ".\n"
-                                    + "Kekenyangan bertambah "
-                                    + bahanMakanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah "
-                                    + kekenyangan
-                                    + " poin.";
+                            gamePanel.ui.currentAksiCadangan = "Makan " + bahanMakanan.name + "\nKekenyangan bertambah " + bahanMakanan.kekenyangan;
+                            gamePanel.ui.currentAksi = "Makan" ;
+                            gamePanel.gameState = gamePanel.timerState;
+                            gamePanel.ui.currentAksiDone = false;
+                            gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(30);
+
                         } else {
                             gamePanel.ui.charIndex = 0;
                             gamePanel.ui.combinedText = "";
@@ -430,14 +428,11 @@ public class Sim extends Entity {
                             } else {
                                 inventory.remove(itemIndex);
                             }
-                            gamePanel.ui.charIndex = 0;
-                            gamePanel.ui.combinedText = "";
-                            gamePanel.gameState = gamePanel.dialogState;
-                            gamePanel.ui.currentDialog = "Anda memakan " + makanan.name + ".\n"
-                                    + "Kekenyangan bertambah "
-                                    + makanan.kekenyangan + " poin.\nSehingga kekenyangan anda sekarang\nadalah "
-                                    + kekenyangan
-                                    + " poin.";
+                            gamePanel.ui.currentAksiCadangan = "Makan " + makanan.name + "\nKekenyangan bertambah " + makanan.kekenyangan;
+                            gamePanel.ui.currentAksi = "Makan" ;
+                            gamePanel.gameState = gamePanel.timerState;
+                            gamePanel.ui.currentAksiDone = false;
+                            gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(30);
                         } else {
                             gamePanel.ui.charIndex = 0;
                             gamePanel.ui.combinedText = "";

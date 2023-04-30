@@ -29,6 +29,8 @@ public class UI {
     public int durasiTimer = 0;
 
     public String currentAksi = "";
+    public String currentAksiCadangan = "";
+    public boolean currentAksiDone = false;
 
     public boolean messageOn = false;
     public String message = "";
@@ -112,15 +114,19 @@ public class UI {
             drawInputDurasiMandiScreen("Input Durasi Mandi:");
         } else if (gamePanel.gameState == gamePanel.inputDurasiBacaBukuState){
             drawInputDurasiBacaBukuScreen("Input Durasi Baca: ");
-        } else if (gamePanel.gameState == gamePanel.inputDurasiSalatState){
-            drawInputDurasiSalatScreen("Input Durasi Salat: ");
+        } else if (gamePanel.gameState == gamePanel.inputDurasiShalatState){
+            drawInputDurasiShalatScreen("Input Durasi Shalat: ");
         } else if (gamePanel.gameState == gamePanel.inputDurasiRadioState) {
             drawInputDurasiRadioScreen("Input Durasi Radio:");
         } else if (gamePanel.gameState == gamePanel.timerState){
             drawTimerScreen();
         } else if (gamePanel.gameState == gamePanel.gameOverState){
             drawGameOverScreen();
-        } 
+        }  else if (gamePanel.gameState == gamePanel.inputDurasiSiramTanamanState){
+            drawInputDurasiSiramTanamanScreen("Input Durasi Siram Tanaman:");
+        } else if (gamePanel.gameState == gamePanel.inputDurasiMainGameState){
+            drawInputDurasiMainGameScreen("Input Durasi Main Game:");
+        }
     }
 
     // TITLE SCREEN
@@ -1430,7 +1436,7 @@ public class UI {
     public void drawTimerScreen() {
         // draw window
         int x = getXforCenteredText("Sedang " + currentAksi + "...");
-        x -= 3 * gamePanel.tileSize;
+        x -= 4 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1470,7 +1476,7 @@ public class UI {
     public void drawInputDurasiTidurScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 3 * gamePanel.tileSize;
+        x -= 4 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1492,7 +1498,7 @@ public class UI {
         // draw input text
         x = getXforCenteredText(textTemp);
         y += gamePanel.tileSize * 2;
-        width = width - 2 * gamePanel.tileSize + 15;
+        width = gamePanel.screenWidth - 2 * x;
         height = gamePanel.tileSize;
         g2d.fillRect(x, y, width, height);
 
@@ -1506,7 +1512,7 @@ public class UI {
     public void drawInputDurasiNontonScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 3 * gamePanel.tileSize;
+        x -= 4 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1528,7 +1534,7 @@ public class UI {
         // draw input text
         x = getXforCenteredText(textTemp);
         y += gamePanel.tileSize * 2;
-        width = width - 2 * gamePanel.tileSize + 15;
+        width = gamePanel.screenWidth - 2 * x;
         height = gamePanel.tileSize;
         g2d.fillRect(x, y, width, height);
 
@@ -1542,7 +1548,7 @@ public class UI {
     public void drawInputDurasiMandiScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 3 * gamePanel.tileSize;
+        x -= 4 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1564,7 +1570,7 @@ public class UI {
         // draw input text
         x = getXforCenteredText(textTemp);
         y += gamePanel.tileSize * 2;
-        width = width - 2 * gamePanel.tileSize + 15;
+        width = gamePanel.screenWidth - 2 * x;
         height = gamePanel.tileSize;
         g2d.fillRect(x, y, width, height);
 
@@ -1575,10 +1581,10 @@ public class UI {
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);        
     }
 
-    public void drawInputDurasiSalatScreen(String judul) {
+    public void drawInputDurasiShalatScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 3 * gamePanel.tileSize;
+        x -= 4 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1600,7 +1606,7 @@ public class UI {
         // draw input text
         x = getXforCenteredText(textTemp);
         y += gamePanel.tileSize * 2;
-        width = width - 2 * gamePanel.tileSize + 15;
+        width = gamePanel.screenWidth - 2 * x;
         height = gamePanel.tileSize;
         g2d.fillRect(x, y, width, height);
 
@@ -1614,7 +1620,7 @@ public class UI {
     public void drawInputDurasiBacaBukuScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 3 * gamePanel.tileSize;
+        x -= 4 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1636,7 +1642,7 @@ public class UI {
         // draw input text
         x = getXforCenteredText(textTemp);
         y += gamePanel.tileSize * 2;
-        width = width - 2 * gamePanel.tileSize + 15;
+        width = gamePanel.screenWidth - 2 * x;
         height = gamePanel.tileSize;
         g2d.fillRect(x, y, width, height);
 
@@ -1650,7 +1656,7 @@ public class UI {
     public void drawInputDurasiRadioScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 3 * gamePanel.tileSize;
+        x -= 4 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1672,7 +1678,7 @@ public class UI {
         // draw input text
         x = getXforCenteredText(textTemp);
         y += gamePanel.tileSize * 2;
-        width = width - 2 * gamePanel.tileSize + 15;
+        width = gamePanel.screenWidth - 2 * x;
         height = gamePanel.tileSize;
         g2d.fillRect(x, y, width, height);
 
@@ -1683,6 +1689,78 @@ public class UI {
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
     }
 
+    public void drawInputDurasiSiramTanamanScreen(String judul) {
+        // draw window
+        int x = getXforCenteredText(judul);
+        x -= 4 * gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText(judul);
+        y += gamePanel.tileSize + 5;
+        g2d.drawString(judul, x, y);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "(dalam detik)";
+        String textTemp = "(maks. 15 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize - 10;
+        g2d.drawString(text, x, y);
+
+        // draw input text
+        x = getXforCenteredText(textTemp);
+        y += gamePanel.tileSize * 2;
+        width = gamePanel.screenWidth - 2 * x;
+        height = gamePanel.tileSize;
+        g2d.fillRect(x, y, width, height);
+
+        // draw text
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
+        g2d2.setColor(Color.BLACK);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+    }
+
+
+    public void drawInputDurasiMainGameScreen(String judul) {
+        // draw window
+        int x = getXforCenteredText(judul);
+        x -= 4 * gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText(judul);
+        y += gamePanel.tileSize + 5;
+        g2d.drawString(judul, x, y);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "(dalam detik)";
+        String textTemp = "(maks. 15 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize - 10;
+        g2d.drawString(text, x, y);
+
+        // draw input text
+        x = getXforCenteredText(textTemp);
+        y += gamePanel.tileSize * 2;
+        width = gamePanel.screenWidth - 2 * x;
+        height = gamePanel.tileSize;
+        g2d.fillRect(x, y, width, height);
+
+        // draw text
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
+        g2d2.setColor(Color.BLACK);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+    }
 
     // ------------------------------ BATAS SUCI ------------------------------
 
@@ -1706,8 +1784,8 @@ public class UI {
         @Override
         public void run() {
             int remaining = duration;
-            if (currentAksi == "Menyetel Radio") {
-                Random rand = new Random();
+            Random rand = new Random();
+            if (currentAksi == "Setel Radio") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(rand.nextInt(6) + 5);
             }
@@ -1719,30 +1797,38 @@ public class UI {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    gamePanel.ui.durasiTimer = 0;
+                    durasiTimer = 0;
                     gamePanel.stopMusic();
                     gamePanel.playMusic(1);
                     gamePanel.gameState = gamePanel.playState;
-                    gamePanel.ui.charIndex = 0;
-                    gamePanel.ui.combinedText = "";
+                    charIndex = 0;
+                    combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Selesai melakukan " + gamePanel.ui.currentAksi; 
+                    if (currentAksi == "Makan"){
+                        currentDialog = "Selesai melakukan " + currentAksiCadangan ;
+                    } else {
+                        currentDialog = "Selesai melakukan " + currentAksi; 
+                    }
+
+                    durasiTimer = 0;
+                    currentAksiDone = true;
                     return;
                 }
             }
 
             gamePanel.gameState = gamePanel.playState;
-            if (currentAksi == "Menyetel Radio") {
+            if (currentAksi == "Setel Radio") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(1);
             }
-            gamePanel.ui.charIndex = 0;
-            gamePanel.ui.combinedText = "";
+            charIndex = 0;
+            combinedText = "";
             gamePanel.gameState = gamePanel.dialogState;
-            gamePanel.ui.currentDialog = "Selesai melakukan " + gamePanel.ui.currentAksi; 
+            currentDialog = "Selesai melakukan " + currentAksi; 
 
-            gamePanel.ui.durasiTimer = 0;
-            gamePanel.ui.currentAksi = "";
+            durasiTimer = 0;
+            currentAksi = "";
+            currentAksiDone = true;
         }
     }
 

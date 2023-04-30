@@ -12,7 +12,7 @@ public class Furnitur_Sajadah extends Furnitur{
         dimensiX = 2;
         dimensiY = 1;
         harga = 10;
-        aksi = "Salat";
+        aksi = "Shalat";
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
         this.gamePanel = gamePanel;
     }
@@ -20,8 +20,8 @@ public class Furnitur_Sajadah extends Furnitur{
     @Override
     public void action(){
         // aksi masak
-        System.out.println("Aksi Salat");
-        gamePanel.gameState = gamePanel.inputDurasiSalatState;
+        System.out.println("Aksi Shalat");
+        gamePanel.gameState = gamePanel.inputDurasiShalatState;
     }
 
 }

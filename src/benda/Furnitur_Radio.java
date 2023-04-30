@@ -7,7 +7,7 @@ import main.GamePanel;
 public class Furnitur_Radio extends Furnitur {
     public Furnitur_Radio(GamePanel gamePanel) {
         name = "Radio";
-        image = setupImage("benda/furnitur/jam");
+        image = setupImage("benda/furnitur/radio");
         collision = false;
         dimensiX = 1;
         dimensiY = 1;

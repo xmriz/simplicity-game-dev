@@ -12,16 +12,17 @@ public class Furnitur_Toilet extends Furnitur{
         dimensiX = 1;
         dimensiY = 1;
         harga = 50;
-        aksi = "Buang air";
+        aksi = "Boker";
         solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
         this.gamePanel = gamePanel;
     }
 
     @Override
     public void action(){
-        // aksi buang air
-        gamePanel.ui.currentAksi = "boker";
+        // aksi boker
+        gamePanel.ui.currentAksi = "Boker";
         gamePanel.gameState = gamePanel.timerState;
+        gamePanel.ui.currentAksiDone = false;
         gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);
         gamePanel.worldTimeCounter += 10;
         gamePanel.getCurrentSim().kekenyangan -= 20;
