@@ -51,6 +51,11 @@ public class NPC_Penjual extends Entity{
         inventory.add(new Furnitur_KomporListrik(gamePanel));
         inventory.add(new Furnitur_MejaKursi(gamePanel));
         inventory.add(new Furnitur_Jam(gamePanel));
+        inventory.add(new Furnitur_TV(gamePanel));
+        inventory.add(new Furnitur_Shower(gamePanel));
+        inventory.add(new Furnitur_Sajadah(gamePanel));
+        inventory.add(new Furnitur_RakBuku(gamePanel));
+        inventory.add(new Furnitur_Radio(gamePanel));
 
         // LAMPU
         inventory.add(new Lampu(gamePanel));

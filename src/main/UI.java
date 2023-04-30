@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -101,17 +102,26 @@ public class UI {
             drawChangeSimScreen();
         } else if (gamePanel.gameState == gamePanel.mapState) {
             drawFullMapScreen(g2d);
-        } else if (gamePanel.gameState == gamePanel.resepState){
+        } else if (gamePanel.gameState == gamePanel.resepState) {
             drawResepScreen();
-        } else if (gamePanel.gameState == gamePanel.inputDurasiTidurState){
+        } else if (gamePanel.gameState == gamePanel.inputDurasiTidurState) {
             drawInputDurasiTidurScreen("Input Durasi Tidur:");
+        } else if (gamePanel.gameState == gamePanel.inputDurasiNontonState){
+            drawInputDurasiNontonScreen("Input Durasi Nonton:");
+        } else if (gamePanel.gameState == gamePanel.inputDurasiMandiState){
+            drawInputDurasiMandiScreen("Input Durasi Mandi:");
+        } else if (gamePanel.gameState == gamePanel.inputDurasiBacaBukuState){
+            drawInputDurasiBacaBukuScreen("Input Durasi Baca: ");
+        } else if (gamePanel.gameState == gamePanel.inputDurasiSalatState){
+            drawInputDurasiSalatScreen("Input Durasi Salat: ");
+        } else if (gamePanel.gameState == gamePanel.inputDurasiRadioState) {
+            drawInputDurasiRadioScreen("Input Durasi Radio:");
         } else if (gamePanel.gameState == gamePanel.timerState){
             drawTimerScreen();
         } else if (gamePanel.gameState == gamePanel.gameOverState){
             drawGameOverScreen();
-        }
+        } 
     }
-
 
     // TITLE SCREEN
     public void drawTitleScreen() {
@@ -403,7 +413,7 @@ public class UI {
         int iFrameY = frameY + frameHeight + 10;
         int iFrameWidth = frameWidth;
         int iFrameHeight;
-        if (entity instanceof NPC_Koki){
+        if (entity instanceof NPC_Koki) {
             iFrameHeight = gamePanel.tileSize * 6 - 50;
         } else {
             iFrameHeight = gamePanel.tileSize * 6 - 20;
@@ -865,7 +875,7 @@ public class UI {
         // draw input text
         // x -= 40;
         x = getXforCenteredText(textTemp);
-        y += gamePanel.tileSize*2;
+        y += gamePanel.tileSize * 2;
         width = width - 2 * gamePanel.tileSize + 15;
         height = gamePanel.tileSize;
         g2d.fillRect(x, y, width, height);
@@ -981,7 +991,7 @@ public class UI {
     }
 
     // RESEP SCREEN
-    public void drawResepScreen(){
+    public void drawResepScreen() {
         drawInventoryScreen(gamePanel.kokiTemp, kokiSlotCol, kokiSlotRow);
 
         // draw hint window
@@ -994,25 +1004,28 @@ public class UI {
 
         // cook makanan
         int itemIndex = getItemIndexOnSlot(kokiSlotRow, kokiSlotCol);
-        if (itemIndex < gamePanel.kokiTemp.inventory.size()){
-            if (gamePanel.keyHandler.enterPressed){
-                if (gamePanel.kokiTemp.inventory.get(itemIndex) instanceof Makanan){
+        if (itemIndex < gamePanel.kokiTemp.inventory.size()) {
+            if (gamePanel.keyHandler.enterPressed) {
+                if (gamePanel.kokiTemp.inventory.get(itemIndex) instanceof Makanan) {
                     Makanan makanan = (Makanan) gamePanel.kokiTemp.inventory.get(itemIndex);
                     // check inventory containsAll makanan.bahan
-                    java.util.List <String> bahanInInventory = new java.util.ArrayList<>();
-                    for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size(); i++){
-                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i) instanceof BahanMakanan){
-                            BahanMakanan bahan = (BahanMakanan) gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i);
+                    java.util.List<String> bahanInInventory = new java.util.ArrayList<>();
+                    for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size(); i++) {
+                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i) instanceof BahanMakanan) {
+                            BahanMakanan bahan = (BahanMakanan) gamePanel.listSim
+                                    .get(gamePanel.indexCurrentSim).inventory.get(i);
                             bahanInInventory.add(bahan.name);
                         }
                     }
                     // ini bisa jadi penerapan generics
-                    if (bahanInInventory.containsAll(makanan.bahan)){
-                        for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size(); i++){
-                            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i) instanceof BahanMakanan){
-                                BahanMakanan bahanInv = (BahanMakanan) gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i);
-                                if (makanan.bahan.contains(bahanInv.name)){
-                                    if (bahanInv.quantity > 1){
+                    if (bahanInInventory.containsAll(makanan.bahan)) {
+                        for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size(); i++) {
+                            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory
+                                    .get(i) instanceof BahanMakanan) {
+                                BahanMakanan bahanInv = (BahanMakanan) gamePanel.listSim
+                                        .get(gamePanel.indexCurrentSim).inventory.get(i);
+                                if (makanan.bahan.contains(bahanInv.name)) {
+                                    if (bahanInv.quantity > 1) {
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i).quantity--;
                                     } else {
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.remove(i);
@@ -1413,8 +1426,8 @@ public class UI {
         
     }
 
-    // TIMER SCREEN 
-    public void drawTimerScreen(){
+    // TIMER SCREEN
+    public void drawTimerScreen() {
         // draw window
         int x = getXforCenteredText("Sedang " + currentAksi + "...");
         x -= 3 * gamePanel.tileSize;
@@ -1439,7 +1452,7 @@ public class UI {
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 50f));
         text = String.valueOf(durasiTimer);
         x = getXforCenteredText(text);
-        y += gamePanel.tileSize*3;
+        y += gamePanel.tileSize * 3;
         g2d.drawString(text, x, y);
 
         // draw hint text
@@ -1490,6 +1503,187 @@ public class UI {
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
     }
 
+    public void drawInputDurasiNontonScreen(String judul) {
+        // draw window
+        int x = getXforCenteredText(judul);
+        x -= 3 * gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText(judul);
+        y += gamePanel.tileSize + 5;
+        g2d.drawString(judul, x, y);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "(dalam detik)";
+        String textTemp = "(maks. 15 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize - 10;
+        g2d.drawString(text, x, y);
+
+        // draw input text
+        x = getXforCenteredText(textTemp);
+        y += gamePanel.tileSize * 2;
+        width = width - 2 * gamePanel.tileSize + 15;
+        height = gamePanel.tileSize;
+        g2d.fillRect(x, y, width, height);
+
+        // draw text
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
+        g2d2.setColor(Color.BLACK);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+    }
+
+    public void drawInputDurasiMandiScreen(String judul) {
+        // draw window
+        int x = getXforCenteredText(judul);
+        x -= 3 * gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText(judul);
+        y += gamePanel.tileSize + 5;
+        g2d.drawString(judul, x, y);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "(dalam detik)";
+        String textTemp = "(maks. 15 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize - 10;
+        g2d.drawString(text, x, y);
+
+        // draw input text
+        x = getXforCenteredText(textTemp);
+        y += gamePanel.tileSize * 2;
+        width = width - 2 * gamePanel.tileSize + 15;
+        height = gamePanel.tileSize;
+        g2d.fillRect(x, y, width, height);
+
+        // draw text
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
+        g2d2.setColor(Color.BLACK);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);        
+    }
+
+    public void drawInputDurasiSalatScreen(String judul) {
+        // draw window
+        int x = getXforCenteredText(judul);
+        x -= 3 * gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText(judul);
+        y += gamePanel.tileSize + 5;
+        g2d.drawString(judul, x, y);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "(dalam detik)";
+        String textTemp = "(maks. 15 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize - 10;
+        g2d.drawString(text, x, y);
+
+        // draw input text
+        x = getXforCenteredText(textTemp);
+        y += gamePanel.tileSize * 2;
+        width = width - 2 * gamePanel.tileSize + 15;
+        height = gamePanel.tileSize;
+        g2d.fillRect(x, y, width, height);
+
+        // draw text
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
+        g2d2.setColor(Color.BLACK);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+    }
+
+    public void drawInputDurasiBacaBukuScreen(String judul) {
+        // draw window
+        int x = getXforCenteredText(judul);
+        x -= 3 * gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText(judul);
+        y += gamePanel.tileSize + 5;
+        g2d.drawString(judul, x, y);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "(dalam detik)";
+        String textTemp = "(maks. 15 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize - 10;
+        g2d.drawString(text, x, y);
+
+        // draw input text
+        x = getXforCenteredText(textTemp);
+        y += gamePanel.tileSize * 2;
+        width = width - 2 * gamePanel.tileSize + 15;
+        height = gamePanel.tileSize;
+        g2d.fillRect(x, y, width, height);
+
+        // draw text
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
+        g2d2.setColor(Color.BLACK);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);        
+    }
+
+    public void drawInputDurasiRadioScreen(String judul) {
+        // draw window
+        int x = getXforCenteredText(judul);
+        x -= 3 * gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText(judul);
+        y += gamePanel.tileSize + 5;
+        g2d.drawString(judul, x, y);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "(dalam detik)";
+        String textTemp = "(maks. 15 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize - 10;
+        g2d.drawString(text, x, y);
+
+        // draw input text
+        x = getXforCenteredText(textTemp);
+        y += gamePanel.tileSize * 2;
+        width = width - 2 * gamePanel.tileSize + 15;
+        height = gamePanel.tileSize;
+        g2d.fillRect(x, y, width, height);
+
+        // draw text
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
+        g2d2.setColor(Color.BLACK);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+    }
+
+
     // ------------------------------ BATAS SUCI ------------------------------
 
     // start timer thread
@@ -1499,7 +1693,6 @@ public class UI {
         thread.start();
         return thread;
     }
-
 
     // inner class for timer thread
 
@@ -1513,6 +1706,11 @@ public class UI {
         @Override
         public void run() {
             int remaining = duration;
+            if (currentAksi == "Menyetel Radio") {
+                Random rand = new Random();
+                gamePanel.stopMusic();
+                gamePanel.playMusic(rand.nextInt(6) + 5);
+            }
 
             while (remaining > 0) {
                 durasiTimer = remaining;
@@ -1522,6 +1720,8 @@ public class UI {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     gamePanel.ui.durasiTimer = 0;
+                    gamePanel.stopMusic();
+                    gamePanel.playMusic(1);
                     gamePanel.gameState = gamePanel.playState;
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
@@ -1532,6 +1732,10 @@ public class UI {
             }
 
             gamePanel.gameState = gamePanel.playState;
+            if (currentAksi == "Menyetel Radio") {
+                gamePanel.stopMusic();
+                gamePanel.playMusic(1);
+            }
             gamePanel.ui.charIndex = 0;
             gamePanel.ui.combinedText = "";
             gamePanel.gameState = gamePanel.dialogState;
@@ -1541,9 +1745,6 @@ public class UI {
             gamePanel.ui.currentAksi = "";
         }
     }
-
-
-
 
     public static int getItemIndexOnSlot(int slotRow, int slotCol) {
         int index = slotRow * 11 + slotCol;
@@ -1577,5 +1778,3 @@ public class UI {
         return x;
     }
 }
-
-
