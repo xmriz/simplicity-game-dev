@@ -50,7 +50,10 @@ public class KeyHandler implements KeyListener {
                         gamePanel.ui.titleScreenState = 1; // go to input name screen
                         gamePanel.ui.inputFirstSimName = "";
                     } else if (gamePanel.ui.commandNumber == 1) {
-                        // later
+                        gamePanel.saveLoad.load();
+                        gamePanel.gameState = gamePanel.playState;
+                        gamePanel.stopMusic();
+                        gamePanel.playMusic(1);
                     } else if (gamePanel.ui.commandNumber == 2) {
                         System.exit(0);
                     }
@@ -80,6 +83,7 @@ public class KeyHandler implements KeyListener {
                             gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
                             gamePanel.listRumah[0].remove(gamePanel.listSim.size() - 1);
                         }
+                        System.out.println(0);
                         gamePanel.listSim.set(0, sim1);
                         gamePanel.listRumah[0].set(0, gamePanel.listSim.get(0).rumah);
                         gamePanel.listRumah[0].get(0).worldX = gamePanel.listSim.get(0).rumah.colRumah
@@ -603,6 +607,10 @@ public class KeyHandler implements KeyListener {
                 cursorSound();
             } else if (keyCode == KeyEvent.VK_DOWN) {
                 gamePanel.ui.commandNumber++;
+                cursorSound();
+            }
+            if (keyCode == KeyEvent.VK_ENTER) {
+                gamePanel.saveLoad.save();
                 cursorSound();
             }
         }

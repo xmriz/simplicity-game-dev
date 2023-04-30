@@ -32,25 +32,25 @@ public abstract class Entity {
 
     public int actionLockCounter = 0;
     int dialogCounter = 0;
-    
+
     public List<String> dialogs = new ArrayList<String>();
 
     public List<Benda> inventory = new ArrayList<>();
     public int maxInventorySize = 33;
 
-    public Entity(GamePanel gamePanel){
+    public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 
-    public void setAction(){
+    public void setAction() {
 
     }
 
-    public void speak(){
-        if (gamePanel.ui.currentDialog != null){
+    public void speak() {
+        if (gamePanel.ui.currentDialog != null) {
             gamePanel.ui.currentDialog = dialogs.get(dialogCounter);
             dialogCounter++;
-            if (dialogCounter > dialogs.size()-1){
+            if (dialogCounter > dialogs.size() - 1) {
                 dialogCounter = 0;
             }
         } else {
@@ -58,7 +58,7 @@ public abstract class Entity {
         }
 
         // ganti direction sim
-        switch(gamePanel.listSim.get(gamePanel.indexCurrentSim).direction){
+        switch (gamePanel.listSim.get(gamePanel.indexCurrentSim).direction) {
             case "up":
                 direction = "down";
                 break;
@@ -74,7 +74,7 @@ public abstract class Entity {
         }
     }
 
-    public void update(){
+    public void update() {
         setAction();
 
         collisionOn = false;
@@ -109,55 +109,62 @@ public abstract class Entity {
         }
     }
 
-
-    public void draw(Graphics2D g2d){
+    public void draw(Graphics2D g2d) {
         BufferedImage image = null;
-        int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX; // position of the tile in the screen
-        int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY;
+        int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
+                + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX; // position of the tile in the screen
+        int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
+                + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY;
 
-        if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
-            && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY){
+        if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
+                + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
+                && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
+                        - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
+                && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
+                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY
+                && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
+                        - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY) {
 
-                switch (direction) {
-                    case "up":
-                        if (spriteNumber == 1) {
-                            image = up1;
-                        } else {
-                            image = up2;
-                        }
-                        break;
-                    case "down":
-                        if (spriteNumber == 1) {
-                            image = down1;
-                        } else {
-                            image = down2;
-                        }
-                        break;
-                    case "left":
-                        if (spriteNumber == 1) {
-                            image = left1;
-                        } else {
-                            image = left2;
-                        }
-                        break;
-                    case "right":
-                        if (spriteNumber == 1) {
-                            image = right1;
-                        } else {
-                            image = right2;
-                        }
-                        break;
-                }
+            switch (direction) {
+                case "up":
+                    if (spriteNumber == 1) {
+                        image = up1;
+                    } else {
+                        image = up2;
+                    }
+                    break;
+                case "down":
+                    if (spriteNumber == 1) {
+                        image = down1;
+                    } else {
+                        image = down2;
+                    }
+                    break;
+                case "left":
+                    if (spriteNumber == 1) {
+                        image = left1;
+                    } else {
+                        image = left2;
+                    }
+                    break;
+                case "right":
+                    if (spriteNumber == 1) {
+                        image = right1;
+                    } else {
+                        image = right2;
+                    }
+                    break;
+            }
 
-                g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+            g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
         }
     }
 
-    public BufferedImage setupImage(String imagePath){
+    public BufferedImage setupImage(String imagePath) {
         BufferedImage scaledImage = null;
 
         try {
-            scaledImage = ImageIO.read(new FileInputStream(new File("assets/" + imagePath +".png")));
+            scaledImage = ImageIO.read(new FileInputStream(new File("assets/" + imagePath + ".png")));
             scaledImage = UtilityTool.scaleImage(scaledImage, gamePanel.tileSize, gamePanel.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
