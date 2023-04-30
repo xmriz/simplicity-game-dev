@@ -15,7 +15,7 @@ public class TileManager {
 
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
-        tile = new Tile[14]; // jumlah tile yang ada
+        tile = new Tile[15]; // jumlah tile yang ada
         mapTileNum = new int[gamePanel.maxMap][gamePanel.maxWorldCol][gamePanel.maxWorldRow];
         getTileImage();
         loadMap("data/maps/world.txt", 0);
@@ -35,8 +35,9 @@ public class TileManager {
             setupImage(9, "water_corner4", true);
             setupImage(10, "floor", false);
             setupImage(11, "wall", true);
-            setupImage(12, "stair", false);
+            setupImage(12, "door", false);
             setupImage(13, "blank", true);
+            setupImage(14, "door2", false);
     }
 
     public void setupImage(int index, String imagePath, boolean collision){

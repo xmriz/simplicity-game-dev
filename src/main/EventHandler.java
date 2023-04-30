@@ -543,5 +543,6 @@ public class EventHandler {
         previousEventY = gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY;
         canTouchEvent = false;
         gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan = indexRuangan;
+        gamePanel.playSoundEffect(2);
     }
 }
