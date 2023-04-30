@@ -1546,7 +1546,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.keyHandler.threadTemp.interrupt();
             gamePanel.ui.durasiTimer = 0;
             gamePanel.ui.currentAksi = "";
-        }
+        } 
     }
     
     public void gameOverState(int keyCode){
