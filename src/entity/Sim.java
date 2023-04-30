@@ -136,11 +136,12 @@ public class Sim extends Entity {
             // System.out.println(indexBendaYangDisentuh); // ngasih index benda yang
             // disentuh
             // pickUpObject(indexBendaYangDisentuh);
-            System.out.println(indexBendaYangDisentuh);
-            System.out.println(worldX);
-            System.out.println(rumah.ruanganRumah.get(0).bendaRuangan.get(0).worldX);
-            System.out.println(solidArea.x);
-            System.out.println(rumah.ruanganRumah.get(0).bendaRuangan.get(0).solidArea.x);
+
+            // System.out.println(indexBendaYangDisentuh);
+            // System.out.println(worldX);
+            // System.out.println(rumah.ruanganRumah.get(0).bendaRuangan.get(0).worldX);
+            // System.out.println(solidArea.x);
+            // System.out.println(rumah.ruanganRumah.get(0).bendaRuangan.get(0).solidArea.x);
 
             // check npc collision
             int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
