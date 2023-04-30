@@ -1173,16 +1173,16 @@ public class UI {
     public void drawHelpScreen() {
         // create frame
         int frameX = gamePanel.tileSize * 2;
-        int frameY = gamePanel.tileSize * 3;
+        int frameY = gamePanel.tileSize * 2;
         int frameWidth = gamePanel.screenWidth - gamePanel.tileSize * 4;
-        int frameHeight = gamePanel.screenHeight - gamePanel.tileSize * 6;
+        int frameHeight = gamePanel.screenHeight - gamePanel.tileSize * 4;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         // title
         g2d.setFont(g2d.getFont().deriveFont(40f));
         String text = "HELP";
         int x = getXforCenteredText(text);
-        int y = gamePanel.tileSize * 4;
+        int y = gamePanel.tileSize * 3;
         g2d.setColor(Color.WHITE);
         g2d.drawString(text, x, y);
 
@@ -1213,13 +1213,17 @@ public class UI {
         y += gamePanel.tileSize;
         g2d.drawString(text, x, y);
 
+        text = "Z: Mengambil Objek";
+        y += gamePanel.tileSize;
+        g2d.drawString(text, x, y);
+
         text = "ESC: Melihat Options";
         y += gamePanel.tileSize;
         g2d.drawString(text, x, y);
 
         x = gamePanel.tileSize * 9;
         text = "P: Pause";
-        y = gamePanel.tileSize * 6;
+        y = gamePanel.tileSize * 5;
         g2d.drawString(text, x, y);
 
         text = "K: Kerja";
