@@ -111,9 +111,10 @@ public class SaveLoad {
         return obj;
     }
 
-    public void save() {
+    public void save(String string) {
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
+            ObjectOutputStream oos = new ObjectOutputStream(
+                    new FileOutputStream(new File("src/res/" + string + ".dat")));
             DataStorage ds = new DataStorage();
 
             ds.jumlahSim = gamePanel.listSim.size();
@@ -288,9 +289,9 @@ public class SaveLoad {
         }
     }
 
-    public void load() {
+    public void load(String string) {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("src/res/" + string + ".dat")));
             DataStorage ds = (DataStorage) ois.readObject();
             gamePanel.indexCurrentSim = 0;
 
@@ -319,6 +320,9 @@ public class SaveLoad {
                 gamePanel.listSim.get(j).indexRumahYangDimasuki = j;
                 gamePanel.listSim.get(j).indexBendaYangDisentuh = 999;
                 gamePanel.listSim.get(j).currentMap = 1;
+                gamePanel.listSim.get(j).worldX = 2 * gamePanel.tileSize;
+                gamePanel.listSim.get(j).worldY = 2 * gamePanel.tileSize;
+                gamePanel.listSim.get(j).direction = "down";
 
                 gamePanel.listSim.get(j).nama = ds.infoSimStrings.get(sumStrings);
                 gamePanel.listSim.get(j).pekerjaan = ds.infoSimStrings.get(sumStrings + 1);

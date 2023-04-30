@@ -126,6 +126,8 @@ public class UI {
             drawInputDurasiSiramTanamanScreen("Input Durasi Siram Tanaman:");
         } else if (gamePanel.gameState == gamePanel.inputDurasiMainGameState) {
             drawInputDurasiMainGameScreen("Input Durasi Main Game:");
+        } else if (gamePanel.gameState == gamePanel.saveState) {
+            drawSaveScreen();
         }
     }
 
@@ -191,6 +193,8 @@ public class UI {
             }
         } else if (titleScreenState == 1) {
             updateTitleScreen1Input(inputFirstSimName);
+        } else if (titleScreenState == 2) {
+            loadScreen();
         }
     }
 
@@ -227,6 +231,49 @@ public class UI {
         y += gamePanel.tileSize * 2;
         g2d.drawString(text, x, y);
         if (commandNumber == 1) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
+    }
+
+    public void loadScreen() {
+        // first sim name input
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 42f));
+
+        String text = "PILIH LOAD FILE";
+        int x = getXforCenteredText(text);
+        int y = gamePanel.tileSize * 4 + 10;
+        g2d.drawString(text, x, y);
+
+        text = "LOAD FILE 1";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 3;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 0) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
+
+        text = "LOAD FILE 2";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 1) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
+
+        text = "LOAD FILE 3";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 2) {
+            g2d.drawString(">", x - gamePanel.tileSize, y);
+        }
+
+        text = "Back";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 3) {
             g2d.drawString(">", x - gamePanel.tileSize, y);
         }
     }
@@ -1167,6 +1214,58 @@ public class UI {
                 gamePanel.gameState = gamePanel.playState;
             }
         }
+    }
+
+    public void drawSaveScreen() {
+        // create frame
+        int frameX = gamePanel.tileSize * 4;
+        int frameY = gamePanel.tileSize * 3;
+        int frameWidth = gamePanel.screenWidth - gamePanel.tileSize * 8;
+        int frameHeight = gamePanel.screenHeight - gamePanel.tileSize * 6;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // title
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+        String text = "PILIH LOAD";
+        int x = getXforCenteredText(text);
+        int y = gamePanel.tileSize * 4;
+        g2d.setColor(Color.WHITE);
+        g2d.drawString(text, x, y);
+
+        // texts
+        g2d.setFont(g2d.getFont().deriveFont(32f));
+        text = "SAVE FILE 1";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 0) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+        }
+
+        text = "SAVE FILE 2";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 1) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+        }
+
+        text = "SAVE FILE 3";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 2) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+        }
+
+        text = "Back";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize * 2;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 3) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+        }
+
     }
 
     // HELP SCREEN
