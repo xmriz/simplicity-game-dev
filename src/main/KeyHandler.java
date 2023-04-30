@@ -2531,9 +2531,8 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
-                // TODO : 
-                // gamePanel.getCurrentSim().mood -= (durasi/30)*10;
-                // gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
+                gamePanel.getCurrentSim().mood -= (durasi/30)*10;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
                 gamePanel.getCurrentSim().pekerjaan.totalDurasiKerjaPerPekerjaan += durasi;
                 gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji += durasi;
                 if (gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji >= 240){

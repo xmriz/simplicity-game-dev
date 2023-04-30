@@ -38,7 +38,7 @@ public class Rumah extends Benda {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Ruangan di atas sudah ada!";
             } else {
-                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang < 18000) {
+                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang < 1500) {
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
@@ -52,7 +52,7 @@ public class Rumah extends Benda {
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
                     gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
-                    gamePanel.getCurrentSim().uang -= 18000;
+                    gamePanel.getCurrentSim().uang -= 1500;
                 }
             }
         } else if (posisi == "down") {
@@ -70,7 +70,7 @@ public class Rumah extends Benda {
                     gamePanel.gameState = gamePanel.dialogState;
                     gamePanel.ui.currentDialog = "Ruangan di bawah sudah ada!";
                 } else {
-                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang < 18000) {
+                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang < 1500) {
                         gamePanel.ui.charIndex = 0;
                         gamePanel.ui.combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
@@ -86,7 +86,7 @@ public class Rumah extends Benda {
                         gamePanel.ui.combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
                         gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
-                        gamePanel.getCurrentSim().uang -= 18000;
+                        gamePanel.getCurrentSim().uang -= 1500;
                     }
                 }
             }
@@ -98,7 +98,7 @@ public class Rumah extends Benda {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Ruangan di kiri sudah ada!";
             } else {
-                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang < 18000) {
+                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang < 1500) {
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
@@ -112,7 +112,7 @@ public class Rumah extends Benda {
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
                     gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
-                    gamePanel.getCurrentSim().uang -= 18000;
+                    gamePanel.getCurrentSim().uang -= 1500;
                 }
             }
         } else if (posisi == "right") {
@@ -122,7 +122,7 @@ public class Rumah extends Benda {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Ruangan di kanan sudah ada!";
             } else {
-                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang < 18000) {
+                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang < 1500) {
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
@@ -136,7 +136,7 @@ public class Rumah extends Benda {
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
                     gamePanel.ui.currentDialog = "Berhasil menambah ruangan.";
-                    gamePanel.getCurrentSim().uang -= 18000;
+                    gamePanel.getCurrentSim().uang -= 1500;
                 }
             }
         }

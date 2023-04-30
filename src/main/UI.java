@@ -859,7 +859,7 @@ public class UI {
         height = gamePanel.tileSize * 2;
         drawSubWindow(x, y, width, height);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
-        g2d.drawString("Harga: 18000", x + 24, y + 60);
+        g2d.drawString("Harga: 1500", x + 24, y + 60);
     }
 
     public void drawInputKoordinatBendaScreen(String judul) {
