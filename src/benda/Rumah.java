@@ -7,6 +7,7 @@ import main.GamePanel;
 public class Rumah extends Benda {
     public int colRumah;
     public int rowRumah;
+    public int jumlahRuangan;
     // public int indexRuangan = 0;
     public List<Ruangan> ruanganRumah = new ArrayList<>();
 
@@ -21,6 +22,7 @@ public class Rumah extends Benda {
 
         // saat rumah dibuat Ruangan utama otomatis dibuat
         Ruangan ruanganUtama = new Ruangan(gamePanel);
+        jumlahRuangan = 1;
         ruanganUtama.name = "Ruangan Utama";
         ruanganRumah.add(ruanganUtama);
 
@@ -45,8 +47,10 @@ public class Rumah extends Benda {
                     gamePanel.ui.currentDialog = "Uang tidak cukup untuk melakukan\nupgrade rumah!";
                     return;
                 } else {
-                    ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up = ruangan;
-                    ruangan.down = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
+                    ruanganRumah
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up = ruangan;
+                    ruangan.down = ruanganRumah
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                     ruanganRumah.add(ruangan);
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
@@ -78,7 +82,8 @@ public class Rumah extends Benda {
                         return;
                     } else {
                         ruanganRumah
-                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down = ruangan;
+                                .get(gamePanel.listSim
+                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).down = ruangan;
                         ruangan.up = ruanganRumah
                                 .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                         ruanganRumah.add(ruangan);
@@ -105,8 +110,10 @@ public class Rumah extends Benda {
                     gamePanel.ui.currentDialog = "Uang tidak cukup untuk melakukan\nupgrade rumah!";
                     return;
                 } else {
-                    ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left = ruangan;
-                    ruangan.right = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
+                    ruanganRumah
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left = ruangan;
+                    ruangan.right = ruanganRumah
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                     ruanganRumah.add(ruangan);
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
@@ -129,8 +136,10 @@ public class Rumah extends Benda {
                     gamePanel.ui.currentDialog = "Uang tidak cukup untuk melakukan\nupgrade rumah!";
                     return;
                 } else {
-                    ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right = ruangan;
-                    ruangan.left = ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
+                    ruanganRumah
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right = ruangan;
+                    ruangan.left = ruanganRumah
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                     ruanganRumah.add(ruangan);
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
