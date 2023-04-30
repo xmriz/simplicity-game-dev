@@ -20,7 +20,6 @@ public class Furnitur_Shower extends Furnitur{
     @Override
     public void action(){
         // aksi mandi
-        System.out.println("Aksi Mandi");
         gamePanel.gameState = gamePanel.inputDurasiMandiState;
     }
 }

@@ -182,6 +182,7 @@ public class EventHandler {
                         int y1 = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.rowRumah;
                         int durasi = UtilityTool.pythagoras(x1, y1, x2, y2);
                         gamePanel.worldTimeCounter += durasi;
+                        gamePanel.worldTimeCounterForStartJobAfterChangeJob += durasi;
 
                         // efek
                         gamePanel.getCurrentSim().mood += (durasi/30)*10;

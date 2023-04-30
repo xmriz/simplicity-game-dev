@@ -20,7 +20,6 @@ public class Furnitur_Radio extends Furnitur {
     @Override
     public void action() {
         // aksi tidur
-        System.out.println("Setel Radio");
         gamePanel.gameState = gamePanel.inputDurasiRadioState;
     }
 }

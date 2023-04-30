@@ -1,64 +1,16 @@
 package entity;
 
 public class Pekerjaan {
-    private String namaPekerjaan;
-    private int gaji;
 
-    public Pekerjaan(){
-        namaPekerjaan="Pengangguran";
-        gaji=0;
-    }
+    public String[] listPekerjaan = {"Badut Sulap", "Koki", "Polisi", "Programmer", "Dokter"};
+    public int[] gaji = {15, 30, 35, 45, 50};
 
-    public int getGaji(){
-        return gaji;
-    }
+    public int indexPekerjaan;
 
-    public String getNamaPekerjaan(){
-        return namaPekerjaan;
-    }
+    public int durasiKerjaYangBelumDigaji = 0;
+    public static int totalDurasiKerjaPerPekerjaan = 0;
 
-    public void setGaji(int gaji){
-        this.gaji=gaji;
-    }
-
-    public void setNamaPekerjaan(String namaPekerjaan){
-        this.namaPekerjaan=namaPekerjaan;
-    }
-
-    public void kerja (String namaPekerjaan,int lama){
-        int tempgaji=0;
-        int repeat = lama/4;
-        switch (namaPekerjaan){
-            case "Badut Sulap":
-            tempgaji=15;
-            break;
-
-            case "Koki":
-            tempgaji=30;
-            break;
-
-            case "Polisi":
-            tempgaji=35;
-            break;
-
-            case "Programmer":
-            tempgaji=45;
-            break;
-
-            case "Dokter":
-            tempgaji=50;
-            break;
-        }
-        try{
-            for(int i=0;i<repeat;i++){
-                this.gaji+=tempgaji;
-            }
-            // Thread.sleep(lama*60000);
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-
-    }
-
+    public static boolean isCanStartPekerjaan = true; // dapat mulai pekerjaan setelah 1 hari setelah ganti pekerjaan
+    public static boolean isCanChangePekerjaan = false; // dapat ganti pekerjaan setelah 1 hari bekerja di pekerjaan sebelumnya
 }
 

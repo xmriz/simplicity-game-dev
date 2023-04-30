@@ -3,6 +3,7 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 import benda.*;
 import main.*;
@@ -11,7 +12,7 @@ public class Sim extends Entity {
 
     // SIM INFO
     public String nama = "Sim";
-    public String pekerjaan = "Pengangguran";
+    public Pekerjaan pekerjaan = new Pekerjaan();
     public int uang = 100;
     public int kesehatan = 80;
     public final int maxKesehatan = 100;
@@ -50,6 +51,10 @@ public class Sim extends Entity {
         currentMap = 1;
         indexRumahYangDimasuki = 0;
         indexLocationRuangan = 0;
+        
+        // random pekerjaan index 0-4
+        Random rand = new Random();
+        pekerjaan.indexPekerjaan =  rand.nextInt(5);
 
         screenX = gamePanel.screenWidth / 2 - (gamePanel.tileSize / 2); // set the player's position on the screen
                                                                         // (always center)
@@ -384,6 +389,7 @@ public class Sim extends Entity {
                             BahanMakanan bahanMakanan = (BahanMakanan) selectedBenda;
                             bahanMakanan.eat(this);
                             gamePanel.worldTimeCounter += 30;
+                            gamePanel.worldTimeCounterForStartJobAfterChangeJob += 30;
                             if (bahanMakanan.quantity > 1) {
                                 bahanMakanan.quantity--;
                             } else {
@@ -423,6 +429,7 @@ public class Sim extends Entity {
                             Makanan makanan = (Makanan) selectedBenda;
                             makanan.eat(this);
                             gamePanel.worldTimeCounter += 30;
+                            gamePanel.worldTimeCounterForStartJobAfterChangeJob += 30;
                             if (makanan.quantity > 1) {
                                 makanan.quantity--;
                             } else {

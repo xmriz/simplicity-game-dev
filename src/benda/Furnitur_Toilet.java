@@ -25,6 +25,7 @@ public class Furnitur_Toilet extends Furnitur{
         gamePanel.ui.currentAksiDone = false;
         gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);
         gamePanel.worldTimeCounter += 10;
+        gamePanel.worldTimeCounterForStartJobAfterChangeJob += 10;
         gamePanel.getCurrentSim().kekenyangan -= 20;
         gamePanel.getCurrentSim().mood += 10;
         if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {

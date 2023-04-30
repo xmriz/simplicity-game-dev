@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import benda.Furnitur;
+import entity.Pekerjaan;
 import entity.Sim;
 
 public class KeyHandler implements KeyListener {
@@ -15,7 +16,6 @@ public class KeyHandler implements KeyListener {
 
     boolean checkWorldTime = false;
     boolean checkCurrentLocation = false;
-    int moveCounter = 1;
 
     public KeyHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -316,6 +316,20 @@ public class KeyHandler implements KeyListener {
             inputDurasiMainGameState(keyCode);
         }
 
+        // KERJA STATE
+        else if (gamePanel.gameState == gamePanel.kerjaState){
+            kerjaState(keyCode);
+        }
+
+        // INPUT DURASI KERJA STATE
+        else if (gamePanel.gameState == gamePanel.inputDurasiKerjaState){
+            inputDurasiKerjaState(keyCode);
+        }
+
+        // GANTI PEKERJAAN STATE
+        else if (gamePanel.gameState == gamePanel.gantiPekerjaanState){
+            gantiPekerjaanState(keyCode);
+        }
     }
 
     public void playState(int keyCode) {
@@ -400,6 +414,8 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.getCurrentSim().currentMap == 1) {
                 gamePanel.getCurrentSim().pickUpObject(gamePanel.getCurrentSim().indexBendaYangDisentuh);
             }
+        } else if (keyCode == KeyEvent.VK_K){
+            gamePanel.gameState = gamePanel.kerjaState;
         }
     }
 
@@ -1602,6 +1618,7 @@ public class KeyHandler implements KeyListener {
                     gamePanel.gameState = gamePanel.playState;
                     gamePanel.gameState = gamePanel.changeSimState;
                 } else {
+                    gamePanel.ui.titleScreenState = 0;
                     gamePanel.gameState = gamePanel.titleState;
                 }
                 cursorSound();
@@ -1612,7 +1629,7 @@ public class KeyHandler implements KeyListener {
         
     }
 
-    // --------------------- TODO BATAS SUCI -------------------------
+    // --------------------- BATAS SUCI  -------------------------
     public void inputDurasiTidurState(int keyCode){
         if (gamePanel.ui.inputText.length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
@@ -1688,6 +1705,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeCounterForStartJobAfterChangeJob += durasi;
 
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.commandNumber = 0;
@@ -1779,6 +1797,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeCounterForStartJobAfterChangeJob += durasi;
 
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.commandNumber = 0;
@@ -1870,6 +1889,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeCounterForStartJobAfterChangeJob += durasi;
 
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.commandNumber = 0;
@@ -1957,6 +1977,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeCounterForStartJobAfterChangeJob += durasi;
 
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.commandNumber = 0;
@@ -2044,6 +2065,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeCounterForStartJobAfterChangeJob += durasi;
 
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.commandNumber = 0;
@@ -2131,6 +2153,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeCounterForStartJobAfterChangeJob += durasi;
 
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.commandNumber = 0;
@@ -2222,6 +2245,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeCounterForStartJobAfterChangeJob += durasi;
 
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.commandNumber = 0;
@@ -2314,6 +2338,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeCounterForStartJobAfterChangeJob += durasi;
 
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.commandNumber = 0;
@@ -2325,6 +2350,223 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.inputText = "";
             }
+            cursorSound();
+        }
+    }
+
+
+    public void inputDurasiKerjaState(int keyCode){
+        if (gamePanel.ui.inputText.length() < 5) {
+            if (keyCode == KeyEvent.VK_1) {
+                gamePanel.ui.inputText += "1";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_2) {
+                gamePanel.ui.inputText += "2";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_3) {
+                gamePanel.ui.inputText += "3";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_4) {
+                gamePanel.ui.inputText += "4";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_5) {
+                gamePanel.ui.inputText += "5";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_6) {
+                gamePanel.ui.inputText += "6";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_7) {
+                gamePanel.ui.inputText += "7";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_8) {
+                gamePanel.ui.inputText += "8";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_9) {
+                gamePanel.ui.inputText += "9";
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_0) {
+                gamePanel.ui.inputText += "0";
+                cursorSound();
+            }
+        }
+
+        if (keyCode == KeyEvent.VK_BACK_SPACE && gamePanel.ui.inputText.length() > 0) {
+            gamePanel.ui.inputText = gamePanel.ui.inputText.substring(0, gamePanel.ui.inputText.length() - 1);
+            cursorSound();
+        }
+
+        if (keyCode == KeyEvent.VK_ESCAPE) {
+            gamePanel.ui.inputText = "";
+            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.commandNumber = 0;
+            gamePanel.gameState = gamePanel.kerjaState;
+            cursorSound();
+        }
+
+        if (keyCode == KeyEvent.VK_ENTER) {
+            if (gamePanel.ui.inputText.length() > 0) {
+                int durasi = Integer.parseInt(gamePanel.ui.inputText);
+                gamePanel.gameState = gamePanel.playState;
+
+                // timer state
+                gamePanel.ui.durasiTimer = durasi;
+                gamePanel.ui.currentAksi = "Kerja";
+                gamePanel.gameState = gamePanel.timerState;
+                gamePanel.ui.currentAksiDone = false;
+                threadTemp = gamePanel.ui.startTimerThread(durasi);
+
+                // efek
+                // TODOOOOOO
+                // gamePanel.getCurrentSim().mood -= (durasi/30)*10;
+                // gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
+                Pekerjaan.totalDurasiKerjaPerPekerjaan += durasi;
+                gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji += durasi;
+                if (gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji >= 240){
+                    gamePanel.getCurrentSim().uang += gamePanel.getCurrentSim().pekerjaan.gaji[gamePanel.getCurrentSim().pekerjaan.indexPekerjaan] * (gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji/240);
+                    gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji -= 240 * (durasi/240);
+                }
+                if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
+                    gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
+                }
+                if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
+                    gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
+                }
+                if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
+                    gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
+                }
+
+                // nambah WorldTimeCounter
+                gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                
+
+                gamePanel.ui.inputText = "";
+                gamePanel.ui.commandNumber = 0;
+            } else {
+                gamePanel.ui.charIndex = 0;
+                gamePanel.ui.combinedText = "";
+                gamePanel.gameState = gamePanel.dialogState;
+                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.commandNumber = 0;
+                gamePanel.ui.inputText = "";
+            }
+            cursorSound();
+        }
+    }
+
+
+    public void gantiPekerjaanState(int keyCode){
+        // TODO GANTI PEKERJAAN
+        if (keyCode == KeyEvent.VK_ENTER){
+            gamePanel.gameState = gamePanel.playState;
+            gamePanel.ui.charIndex = 0;
+            gamePanel.ui.combinedText = "";
+            gamePanel.gameState = gamePanel.dialogState;
+            // cek pekerjaan sama seperti sebelumnya
+            if (gamePanel.getCurrentSim().pekerjaan.indexPekerjaan == gamePanel.ui.commandNumber){
+                gamePanel.ui.currentDialog = "Pekerjaan tidak berubah.";
+                cursorSound();
+                gamePanel.ui.commandNumber = 0;
+                return;
+            } else {
+                gamePanel.getCurrentSim().pekerjaan.indexPekerjaan = gamePanel.ui.commandNumber;
+                gamePanel.getCurrentSim().uang -= (int) gamePanel.getCurrentSim().pekerjaan.gaji[gamePanel.ui.commandNumber]/2; 
+                gamePanel.ui.currentDialog = "Pekerjaan berhasil diganti menjadi\n" + gamePanel.getCurrentSim().pekerjaan.listPekerjaan[gamePanel.getCurrentSim().pekerjaan.indexPekerjaan] + ".";
+                cursorSound();
+                gamePanel.ui.commandNumber = 0;
+                gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji = 0;
+                Pekerjaan.totalDurasiKerjaPerPekerjaan = 0;
+                Pekerjaan.isCanStartPekerjaan = false;
+                gamePanel.worldTimeCounterForStartJobAfterChangeJob = 0;
+            }
+
+        } else if (keyCode == KeyEvent.VK_UP){
+            gamePanel.ui.commandNumber--;
+            if (gamePanel.ui.commandNumber < 0){
+                gamePanel.ui.commandNumber = 4;
+            }
+            cursorSound();
+        } else if (keyCode == KeyEvent.VK_DOWN){
+            gamePanel.ui.commandNumber++;
+            if (gamePanel.ui.commandNumber > 4){
+                gamePanel.ui.commandNumber = 0;
+            }
+            cursorSound();
+        }
+
+        if (keyCode == KeyEvent.VK_ESCAPE){
+            gamePanel.gameState = gamePanel.kerjaState;
+            cursorSound();
+        }
+    }
+
+
+    public void kerjaState(int keyCode){
+        if (Pekerjaan.isCanChangePekerjaan && Pekerjaan.isCanStartPekerjaan){
+            if (keyCode == KeyEvent.VK_UP){
+                gamePanel.ui.commandNumber--;
+                if (gamePanel.ui.commandNumber < 0){
+                    gamePanel.ui.commandNumber = 1;
+                }
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_DOWN){
+                gamePanel.ui.commandNumber++;
+                if (gamePanel.ui.commandNumber > 1){
+                    gamePanel.ui.commandNumber = 0;
+                }
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_ENTER){
+                if (gamePanel.ui.commandNumber == 0){
+                    gamePanel.gameState = gamePanel.inputDurasiKerjaState;
+                } else {
+                    gamePanel.gameState = gamePanel.gantiPekerjaanState;
+                }
+                cursorSound();
+                gamePanel.ui.commandNumber = 0;
+            }
+        } else if (Pekerjaan.isCanChangePekerjaan) {
+            if (keyCode == KeyEvent.VK_UP){
+                gamePanel.ui.commandNumber--;
+                if (gamePanel.ui.commandNumber < 0){
+                    gamePanel.ui.commandNumber = 0;
+                }
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_DOWN){
+                gamePanel.ui.commandNumber++;
+                if (gamePanel.ui.commandNumber > 0){
+                    gamePanel.ui.commandNumber = 0;
+                }
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_ENTER){
+                gamePanel.gameState = gamePanel.gantiPekerjaanState;
+                cursorSound();
+                gamePanel.ui.commandNumber = 0;
+            }
+        } else if (Pekerjaan.isCanStartPekerjaan){
+            if (keyCode == KeyEvent.VK_UP){
+                gamePanel.ui.commandNumber--;
+                if (gamePanel.ui.commandNumber < 0){
+                    gamePanel.ui.commandNumber = 0;
+                }
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_DOWN){
+                gamePanel.ui.commandNumber++;
+                if (gamePanel.ui.commandNumber > 0){
+                    gamePanel.ui.commandNumber = 0;
+                }
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_ENTER){
+                gamePanel.gameState = gamePanel.inputDurasiKerjaState;
+                cursorSound();
+                gamePanel.ui.commandNumber = 0;
+            }
+        }
+
+        if (keyCode == KeyEvent.VK_K) {
+            gamePanel.ui.inputText = "";
+            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.commandNumber = 0;
+            gamePanel.gameState = gamePanel.playState;
             cursorSound();
         }
     }

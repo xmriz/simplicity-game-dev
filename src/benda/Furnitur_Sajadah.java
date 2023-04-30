@@ -20,7 +20,6 @@ public class Furnitur_Sajadah extends Furnitur{
     @Override
     public void action(){
         // aksi masak
-        System.out.println("Aksi Shalat");
         gamePanel.gameState = gamePanel.inputDurasiShalatState;
     }
 

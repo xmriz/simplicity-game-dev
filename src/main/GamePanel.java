@@ -32,6 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldWidth = maxWorldCol * tileSize; // 3168 pixels
     public final int worldHeight = maxWorldRow * tileSize; // 3168 pixels
     public int worldTimeCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
+    public int worldTimeCounterForStartJobAfterChangeJob = 0; 
 
     // MAP SETTINGS
     public final int maxMap = 2; // Ruangan and world
@@ -101,7 +102,9 @@ public class GamePanel extends JPanel implements Runnable {
     public final int inputDurasiRadioState = 24;
     public final int inputDurasiSiramTanamanState = 25;
     public final int inputDurasiMainGameState = 26;
-    public final int kerjastate = 27;
+    public final int kerjaState = 27;
+    public final int inputDurasiKerjaState = 28;
+    public final int gantiPekerjaanState = 29;
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {
@@ -153,6 +156,17 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
+        
+        if (worldTimeCounterForStartJobAfterChangeJob >= 720){
+            Pekerjaan.isCanStartPekerjaan = true;
+        }
+
+        if (Pekerjaan.totalDurasiKerjaPerPekerjaan >= 720){
+            Pekerjaan.isCanChangePekerjaan = true;
+        } else {
+            Pekerjaan.isCanChangePekerjaan = false;
+        }
+
         if (gameState == playState) {
             listSim.get(indexCurrentSim).update();
             for (int i = 0; i < npc[listSim.get(indexCurrentSim).currentMap].length; i++) {

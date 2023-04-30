@@ -20,7 +20,6 @@ public class Furnitur_RakBuku extends Furnitur{
     @Override
     public void action(){
         // aksi masak
-        System.out.println("Aksi Baca Buku");
         gamePanel.gameState = gamePanel.inputDurasiBacaBukuState;
     }
 
