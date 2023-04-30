@@ -9,6 +9,7 @@ import entity.*;
 public class DataStorage implements Serializable {
 
     int jumlahSim;
+    int indexCurrentSim;
 
     // SIM
     ArrayList<String> infoSimStrings = new ArrayList<>();

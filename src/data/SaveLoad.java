@@ -99,17 +99,23 @@ public class SaveLoad {
             DataStorage ds = new DataStorage();
 
             ds.jumlahSim = gamePanel.listSim.size();
+            ds.indexCurrentSim = gamePanel.indexCurrentSim;
             System.out.println(ds.jumlahSim);
 
             for (int k = 0; k < gamePanel.listSim.size(); k++) {
                 ds.infoSimStrings.add(gamePanel.listSim.get(k).nama);
                 ds.infoSimStrings.add(gamePanel.listSim.get(k).pekerjaan);
+                // ds.infoSimStrings.add(gamePanel.listSim.get(k).currentLocation);
                 ds.infoSimIntegers.add(gamePanel.listSim.get(k).uang);
                 ds.infoSimIntegers.add(gamePanel.listSim.get(k).kesehatan);
                 ds.infoSimIntegers.add(gamePanel.listSim.get(k).kekenyangan);
                 ds.infoSimIntegers.add(gamePanel.listSim.get(k).mood);
                 // ds.infoSimIntegers.add(gamePanel.listSim.get(k).solidArea.x);
                 // ds.infoSimIntegers.add(gamePanel.listSim.get(k).solidArea.y);
+                // ds.infoSimIntegers.add(gamePanel.listSim.get(k).indexLocationRuangan);
+                // ds.infoSimIntegers.add(gamePanel.listSim.get(k).indexBendaYangDisentuh);
+                // ds.infoSimIntegers.add(gamePanel.listSim.get(k).indexRumahYangDimasuki);
+                // ds.infoSimIntegers.add(gamePanel.listSim.get(k).currentMap);
 
                 ds.itemNamess.add(k + "");
                 ds.itemNamess.add(gamePanel.listSim.get(k).inventory.size() + "");
@@ -268,8 +274,14 @@ public class SaveLoad {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
             DataStorage ds = (DataStorage) ois.readObject();
+            gamePanel.indexCurrentSim = 0;
 
             System.out.println(ds.jumlahSim);
+            System.out.println(ds.indexCurrentSim);
+            for (int i = 1; i < gamePanel.listSim.size(); i++) {
+                gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
+                gamePanel.listRumah[0].remove(gamePanel.listSim.size() - 1);
+            }
             for (int k = 1; k < ds.jumlahSim; k++) {
                 Sim sim = new Sim(gamePanel, gamePanel.keyHandler);
                 gamePanel.listSim.add(sim);
@@ -287,6 +299,8 @@ public class SaveLoad {
             for (int j = 0; j < ds.jumlahSim; j++) {
                 gamePanel.listSim.get(j).indexLocationRuangan = 0;
                 gamePanel.listSim.get(j).indexRumahYangDimasuki = j;
+                gamePanel.listSim.get(j).indexBendaYangDisentuh = 999;
+                gamePanel.listSim.get(j).currentMap = 1;
 
                 gamePanel.listSim.get(j).nama = ds.infoSimStrings.get(sumStrings);
                 gamePanel.listSim.get(j).pekerjaan = ds.infoSimStrings.get(sumStrings + 1);
@@ -489,6 +503,7 @@ public class SaveLoad {
             // System.out.println(indexPencariBenda);
             // System.out.println(100);
             // }
+            gamePanel.indexCurrentSim = ds.indexCurrentSim;
 
             System.out.println('a');
 
