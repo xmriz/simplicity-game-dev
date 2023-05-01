@@ -2127,6 +2127,11 @@ public class UI {
     public Thread startTimerThread(int duration) {
         TimerThread timer = new TimerThread(duration);
         Thread thread = new Thread(timer);
+        for (int i = 0; i < gamePanel.listSim.size(); i++ ){
+            if (gamePanel.listSim.get(i).rumah.isCanUpgrade == false){
+                gamePanel.listSim.get(i).rumah.isLockUpgrade = false;
+            }
+        }
         thread.start();
         return thread;
     }
