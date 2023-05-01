@@ -291,7 +291,6 @@ public class Rumah extends Benda {
                 jumlahRuangan += 1;
                 System.out.println(ruanganUpgrade.index);
                 System.out.println(ruanganUpgrade.up);
-                System.out.println(ruanganUpgrade.down.index);
                 System.out.println(ruanganUpgrade.left);
                 System.out.println(ruanganUpgrade.right);
 

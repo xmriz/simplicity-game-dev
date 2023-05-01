@@ -90,7 +90,6 @@ public class TileManager {
             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0){
                 tileNum = mapTileNum[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap][worldCol][worldRow];
             } else{
-                // System.out.println();
                 tileNum = gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(indexRuangan).mapRuangan[worldCol][worldRow];
             }
 
