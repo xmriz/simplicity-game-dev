@@ -179,6 +179,7 @@ public class SaveLoad {
                 ds.rumah.add(gamePanel.listSim.get(k).rumah.worldY);
 
                 for (int i = 0; i < gamePanel.listSim.get(k).rumah.jumlahRuangan; i++) {
+                    System.out.println(777);
                     ds.ruangan.add(gamePanel.listSim.get(k).rumah.ruanganRumah.get(i).index);
                     ds.namaRuangan.add(gamePanel.listSim.get(k).rumah.ruanganRumah.get(i).name);
                     if (gamePanel.listSim.get(k).rumah.ruanganRumah.get(i).up != null) {

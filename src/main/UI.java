@@ -245,12 +245,12 @@ public class UI {
         // first sim name input
         g2d.setColor(Color.WHITE);
         g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 42f));
-        
+
         String text = "PILIH LOAD FILE";
         int x = getXforCenteredText(text);
         int y = gamePanel.tileSize * 4 + 10;
         g2d.drawString(text, x, y);
-        
+
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 40f));
         text = "LOAD FILE 1";
         x = getXforCenteredText(text);
@@ -651,37 +651,35 @@ public class UI {
         }
     }
 
-
     // // fungsi thread buat beli barang
     // public void setIsCanBuyToTrue() {
-    //     Thread t = new Thread(new Runnable() {
-    //         @Override
-    //         public void run() {
-    //                 remainingTimeUpgrade = 18 * 60 * 1000; // waktu mundur dalam detik
-    //                 while (remainingTimeUpgrade > 0) {
-    //                     System.out.println("Waktu tersisa: " + remainingTimeUpgrade + " detik");
-    //                     try {
-    //                         Thread.sleep(1000); // tunggu 1 detik
-    //                     } catch (InterruptedException e) {
-    //                         e.printStackTrace();
-    //                         gamePanel.getCurrentSim().isCanBuy = true; // atur isCanUpgrade menjadi true setelah 18 menit
-    //                         gamePanel.getCurrentSim().remainingTimeBuy = 0;
-    //                         System.out.println("Waktu diskip!");
-    //                         // tambahin fungsi buat beli
-    //                     }
-    //                     remainingTimeUpgrade--;
-    //                 }
-    //                 System.out.println("Waktu habis!");
-    //                 isCanUpgrade = true; // atur isCanUpgrade menjadi true setelah 18 menit
-    //                 // tambahin fungsi buat beli
-    //         }
-    //     });
-    //     t.start(); // mulai thread
+    // Thread t = new Thread(new Runnable() {
+    // @Override
+    // public void run() {
+    // remainingTimeUpgrade = 18 * 60 * 1000; // waktu mundur dalam detik
+    // while (remainingTimeUpgrade > 0) {
+    // System.out.println("Waktu tersisa: " + remainingTimeUpgrade + " detik");
+    // try {
+    // Thread.sleep(1000); // tunggu 1 detik
+    // } catch (InterruptedException e) {
+    // e.printStackTrace();
+    // gamePanel.getCurrentSim().isCanBuy = true; // atur isCanUpgrade menjadi true
+    // setelah 18 menit
+    // gamePanel.getCurrentSim().remainingTimeBuy = 0;
+    // System.out.println("Waktu diskip!");
+    // // tambahin fungsi buat beli
+    // }
+    // remainingTimeUpgrade--;
+    // }
+    // System.out.println("Waktu habis!");
+    // isCanUpgrade = true; // atur isCanUpgrade menjadi true setelah 18 menit
+    // // tambahin fungsi buat beli
+    // }
+    // });
+    // t.start(); // mulai thread
     // }
 
-
     // -------------------------------
-
 
     public void drawBeliBuy() {
         drawInventoryScreen(gamePanel.npc[0][4], npcSlotCol, npcSlotRow);
@@ -704,16 +702,45 @@ public class UI {
 
         // buy an item
         int itemIndex = getItemIndexOnSlot(npcSlotRow, npcSlotCol);
-        gamePanel.getCurrentSim().itemBuyTempIndex = itemIndex;
         if (itemIndex < gamePanel.npc[0][4].inventory.size()) {
             if (gamePanel.keyHandler.enterPressed) {
-                if (gamePanel.getCurrentSim().isCanBuy){
-                    gamePanel.getCurrentSim().isCanBuy = false;
-                    gamePanel.getCurrentSim().indexSimSaatBeli = gamePanel.indexCurrentSim;
-                    gamePanel.getCurrentSim().setIsCanBuyToTrue();
+                if (gamePanel.getCurrentSim().isCanBuy) {
+                    int harga = 0;
+                    if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof BahanMakanan) {
+                        BahanMakanan makanan = (BahanMakanan) gamePanel.npc[0][4].inventory.get(itemIndex);
+                        harga = makanan.harga;
+                    } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Furnitur) {
+                        Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].inventory.get(itemIndex);
+                        harga = furnitur.harga;
+                    } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Lampu) {
+                        Lampu lampu = (Lampu) gamePanel.npc[0][4].inventory.get(itemIndex);
+                        harga = lampu.harga;
+                        if (gamePanel.getCurrentSim().searchItemInInventory(lampu.name) != 999) {
+                            gamePanel.ui.subState = 0;
+                            gamePanel.ui.charIndex = 0;
+                            gamePanel.ui.combinedText = "";
+                            gamePanel.gameState = gamePanel.dialogState;
+                            gamePanel.ui.currentDialog = "Anda sudah memiliki lampu!";
+                        }
+                    }
+                    if (gamePanel.getCurrentSim().uang < harga) {
+                        gamePanel.ui.subState = 0;
+                        gamePanel.ui.charIndex = 0;
+                        gamePanel.ui.combinedText = "";
+                        gamePanel.gameState = gamePanel.dialogState;
+                        gamePanel.ui.currentDialog = "Uang tidak cukup";
+                    } else {
+                        gamePanel.getCurrentSim().isCanBuy = false;
+                        gamePanel.getCurrentSim().indexSimSaatBeli = gamePanel.indexCurrentSim;
+                        gamePanel.getCurrentSim().itemBuyTempIndex = itemIndex;
+                        Random rand = new Random();
+                        gamePanel.getCurrentSim().remainingTimeBuy = (rand.nextInt(5) + 1) * 30;
+                        // gamePanel.getCurrentSim().setIsCanBuyToTrue();
+                    }
                     // TODO: THREAD BELI BARANG -> BUAT THREAD
-                    
+
                 } else {
+                    gamePanel.ui.subState = 0;
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
@@ -722,76 +749,81 @@ public class UI {
 
                 // TODO : Masukin ke dalam thread, tapi indexcurrentsim simpan
                 // if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof BahanMakanan) {
-                //     BahanMakanan makanan = (BahanMakanan) gamePanel.npc[0][4].inventory.get(itemIndex);
-                //     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= makanan.harga) {
-                //         if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(makanan)) {
-                //             gamePanel.listSim.get(gamePanel.indexCurrentSim).uang -= makanan.harga;
-                //         } else {
-                //             subState = 0;
-                //             charIndex = 0;
-                //             combinedText = "";
-                //             gamePanel.gameState = gamePanel.dialogState;
-                //             currentDialog = "Inventory penuh";
-                //         }
-                //     } else {
-                //         subState = 0;
-                //         charIndex = 0;
-                //         combinedText = "";
-                //         gamePanel.gameState = gamePanel.dialogState;
-                //         currentDialog = "Uang tidak cukup";
-                //         // drawDialogScreen(); // ini ga perlu karena sudah ada di atas
-                //     }
-                // } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Furnitur) {
-                //     Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].inventory.get(itemIndex);
-                //     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= furnitur.harga) {
-                //         if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(furnitur)) {
-                //             gamePanel.listSim.get(gamePanel.indexCurrentSim).uang -= furnitur.harga;
-                //         } else {
-                //             subState = 0;
-                //             charIndex = 0;
-                //             combinedText = "";
-                //             gamePanel.gameState = gamePanel.dialogState;
-                //             currentDialog = "Inventory penuh";
-                //         }
-                //     } else {
-                //         subState = 0;
-                //         charIndex = 0;
-                //         combinedText = "";
-                //         gamePanel.gameState = gamePanel.dialogState;
-                //         currentDialog = "Uang tidak cukup";
-                //         // drawDialogScreen(); // ini ga perlu karena sudah ada di atas
-                //     }
-                // } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Lampu) {
-                //     Lampu lampu = (Lampu) gamePanel.npc[0][4].inventory.get(itemIndex);
-                //     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= lampu.harga) {
-                //         if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(lampu)) {
-                //             gamePanel.listSim.get(gamePanel.indexCurrentSim).uang -= lampu.harga;
-                //         } else {
-                //             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory
-                //                     .size() >= gamePanel.listSim.get(gamePanel.indexCurrentSim).maxInventorySize) {
-                //                 subState = 0;
-                //                 charIndex = 0;
-                //                 combinedText = "";
-                //                 gamePanel.gameState = gamePanel.dialogState;
-                //                 currentDialog = "Inventory penuh";
-                //             } else {
-                //                 subState = 0;
-                //                 charIndex = 0;
-                //                 combinedText = "";
-                //                 gamePanel.gameState = gamePanel.dialogState;
-                //                 currentDialog = "Anda sudah memiliki lampu!";
-                //             }
-                //         }
-                //     } else {
-                //         subState = 0;
-                //         charIndex = 0;
-                //         combinedText = "";
-                //         gamePanel.gameState = gamePanel.dialogState;
-                //         currentDialog = "Uang tidak cukup";
-                //         // drawDialogScreen(); nggk perlu ini karena sudah ada di atas
-                //     }
+                // BahanMakanan makanan = (BahanMakanan)
+                // gamePanel.npc[0][4].inventory.get(itemIndex);
+                // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= makanan.harga) {
+                // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(makanan))
+                // {
+                // gamePanel.listSim.get(gamePanel.indexCurrentSim).uang -= makanan.harga;
+                // } else {
+                // subState = 0;
+                // charIndex = 0;
+                // combinedText = "";
+                // gamePanel.gameState = gamePanel.dialogState;
+                // currentDialog = "Inventory penuh";
                 // }
-
+                // } else {
+                // subState = 0;
+                // charIndex = 0;
+                // combinedText = "";
+                // gamePanel.gameState = gamePanel.dialogState;
+                // currentDialog = "Uang tidak cukup";
+                // // drawDialogScreen(); // ini ga perlu karena sudah ada di atas
+                // }
+                // } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Furnitur)
+                // {
+                // Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].inventory.get(itemIndex);
+                // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= furnitur.harga)
+                // {
+                // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(furnitur))
+                // {
+                // gamePanel.listSim.get(gamePanel.indexCurrentSim).uang -= furnitur.harga;
+                // } else {
+                // subState = 0;
+                // charIndex = 0;
+                // combinedText = "";
+                // gamePanel.gameState = gamePanel.dialogState;
+                // currentDialog = "Inventory penuh";
+                // }
+                // } else {
+                // subState = 0;
+                // charIndex = 0;
+                // combinedText = "";
+                // gamePanel.gameState = gamePanel.dialogState;
+                // currentDialog = "Uang tidak cukup";
+                // // drawDialogScreen(); // ini ga perlu karena sudah ada di atas
+                // }
+                // } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Lampu) {
+                // Lampu lampu = (Lampu) gamePanel.npc[0][4].inventory.get(itemIndex);
+                // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= lampu.harga) {
+                // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(lampu)) {
+                // gamePanel.listSim.get(gamePanel.indexCurrentSim).uang -= lampu.harga;
+                // } else {
+                // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory
+                // .size() >= gamePanel.listSim.get(gamePanel.indexCurrentSim).maxInventorySize)
+                // {
+                // subState = 0;
+                // charIndex = 0;
+                // combinedText = "";
+                // gamePanel.gameState = gamePanel.dialogState;
+                // currentDialog = "Inventory penuh";
+                // } else {
+                // subState = 0;
+                // charIndex = 0;
+                // combinedText = "";
+                // gamePanel.gameState = gamePanel.dialogState;
+                // currentDialog = "Anda sudah memiliki lampu!";
+                // }
+                // }
+                // } else {
+                // subState = 0;
+                // charIndex = 0;
+                // combinedText = "";
+                // gamePanel.gameState = gamePanel.dialogState;
+                // currentDialog = "Uang tidak cukup";
+                // // drawDialogScreen(); nggk perlu ini karena sudah ada di atas
+                // }
+                // }
 
             }
         }
@@ -1289,7 +1321,7 @@ public class UI {
         int y = gamePanel.tileSize * 4;
         g2d.setColor(Color.WHITE);
         g2d.drawString(text, x, y);
-        
+
         // texts
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 32f));
         text = "SAVE FILE 1";
@@ -2186,7 +2218,6 @@ public class UI {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    durasiTimer = 0;
                     gamePanel.stopMusic();
                     gamePanel.playMusic(1);
                     gamePanel.gameState = gamePanel.playState;
@@ -2197,6 +2228,22 @@ public class UI {
                         currentDialog = "Selesai melakukan " + currentAksiCadangan;
                     } else {
                         currentDialog = "Selesai melakukan " + currentAksi;
+                    }
+                    for (int i = 0; i < gamePanel.listSim.size(); i++) {
+                        if (gamePanel.listSim.get(i).rumah.isCanUpgrade == false) {
+                            gamePanel.listSim.get(i).rumah.isLockUpgrade = false;
+                            gamePanel.listSim.get(i).rumah.remainingTimeUpgrade -= duration;
+                            gamePanel.listSim.get(i).rumah.setIsCanUpgradeToTrueAfter18Minutes();
+                            gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+                        }
+                    }
+                    for (int i = 0; i < gamePanel.listSim.size(); i++) {
+                        if (gamePanel.listSim.get(i).isCanBuy == false) {
+                            gamePanel.listSim.get(i).isLockBuy = false;
+                            gamePanel.listSim.get(i).remainingTimeBuy -= duration;
+                            gamePanel.listSim.get(i).setIsCanBuyToTrue();
+                            gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+                        }
                     }
 
                     durasiTimer = 0;
@@ -2212,6 +2259,22 @@ public class UI {
             combinedText = "";
             gamePanel.gameState = gamePanel.dialogState;
             currentDialog = "Selesai melakukan " + currentAksi;
+            for (int i = 0; i < gamePanel.listSim.size(); i++) {
+                if (gamePanel.listSim.get(i).rumah.isCanUpgrade == false) {
+                    gamePanel.listSim.get(i).rumah.isLockUpgrade = false;
+                    gamePanel.listSim.get(i).rumah.remainingTimeUpgrade -= duration;
+                    gamePanel.listSim.get(i).rumah.setIsCanUpgradeToTrueAfter18Minutes();
+                    gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+                }
+            }
+            for (int i = 0; i < gamePanel.listSim.size(); i++) {
+                if (gamePanel.listSim.get(i).isCanBuy == false) {
+                    gamePanel.listSim.get(i).isLockBuy = false;
+                    gamePanel.listSim.get(i).remainingTimeBuy -= duration;
+                    gamePanel.listSim.get(i).setIsCanBuyToTrue();
+                    gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+                }
+            }
 
             durasiTimer = 0;
             currentAksi = "";
