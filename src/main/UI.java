@@ -244,13 +244,14 @@ public class UI {
     public void loadScreen() {
         // first sim name input
         g2d.setColor(Color.WHITE);
-        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 42f));
-
+        g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 42f));
+        
         String text = "PILIH LOAD FILE";
         int x = getXforCenteredText(text);
         int y = gamePanel.tileSize * 4 + 10;
         g2d.drawString(text, x, y);
-
+        
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 40f));
         text = "LOAD FILE 1";
         x = getXforCenteredText(text);
         y += gamePanel.tileSize * 3;
@@ -1233,15 +1234,15 @@ public class UI {
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         // title
-        g2d.setFont(g2d.getFont().deriveFont(32f));
-        String text = "PILIH LOAD";
+        g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 35f));
+        String text = "PILIH SAVE FILE";
         int x = getXforCenteredText(text);
         int y = gamePanel.tileSize * 4;
         g2d.setColor(Color.WHITE);
         g2d.drawString(text, x, y);
-
+        
         // texts
-        g2d.setFont(g2d.getFont().deriveFont(32f));
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 32f));
         text = "SAVE FILE 1";
         x = getXforCenteredText(text);
         y += gamePanel.tileSize * 2;

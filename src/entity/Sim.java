@@ -13,7 +13,7 @@ public class Sim extends Entity {
     // SIM INFO
     public String nama = "Sim";
     public Pekerjaan pekerjaan = new Pekerjaan();
-    public int uang = 100;
+    public int uang = 99999999;
     public int kesehatan = 80;
     public final int maxKesehatan = 100;
     public int kekenyangan = 80;

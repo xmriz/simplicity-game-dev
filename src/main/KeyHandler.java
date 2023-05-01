@@ -2283,13 +2283,13 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
-                gamePanel.getCurrentSim().mood += (durasi / 240) * 40;
-                gamePanel.getCurrentSim().kesehatan += (durasi / 240) * 15;
+                gamePanel.getCurrentSim().mood += (durasi / 10) * 10;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi / 30) * 1;
                 if (gamePanel.getCurrentSim().mood > 100) {
                     gamePanel.getCurrentSim().mood = 100;
                 }
-                if (gamePanel.getCurrentSim().kesehatan > 100) {
-                    gamePanel.getCurrentSim().kesehatan = 100;
+                if (gamePanel.getCurrentSim().kekenyangan > 100) {
+                    gamePanel.getCurrentSim().kekenyangan = 100;
                 }
 
                 // nambah WorldTimeCounter
@@ -2561,9 +2561,9 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
-                gamePanel.getCurrentSim().mood += (durasi / 30) * 30;
-                gamePanel.getCurrentSim().kesehatan -= (durasi / 30) * 5;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi / 30) * 10;
+                gamePanel.getCurrentSim().mood += (durasi / 20) * 10;
+                gamePanel.getCurrentSim().kesehatan += (durasi / 20) * 5;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi / 20) * 5;
                 if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
                     gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
                 }
