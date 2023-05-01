@@ -7,7 +7,7 @@ import main.GamePanel;
 public class Rumah extends Benda {
     public int colRumah;
     public int rowRumah;
-    public int jumlahRuangan;
+    public int jumlahRuangan = 0;
 
     // darr yang gua tambah
     public boolean isCanUpgrade = true;
