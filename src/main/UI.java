@@ -678,6 +678,7 @@ public class UI {
                     BahanMakanan makanan = (BahanMakanan) gamePanel.npc[0][4].inventory.get(itemIndex);
                     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).uang >= makanan.harga) {
                         if (gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(makanan)) {
+                            // TODO: THREAD BELI BARANG
                             gamePanel.listSim.get(gamePanel.indexCurrentSim).uang -= makanan.harga;
                         } else {
                             subState = 0;
