@@ -40,6 +40,10 @@ public class Sim extends Entity {
     public int tempInt = -1;
     public Benda tempBenda;
 
+    // darr yang gua tambah
+    public boolean isCanBuy = true;
+    public int remainingTimeBuy = 0;
+
     public Sim(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
 

@@ -2696,7 +2696,6 @@ public class KeyHandler implements KeyListener {
     }
 
     public void gantiPekerjaanState(int keyCode) {
-        // TODO GANTI PEKERJAAN
         if (keyCode == KeyEvent.VK_ENTER) {
             gamePanel.gameState = gamePanel.playState;
             gamePanel.ui.charIndex = 0;
