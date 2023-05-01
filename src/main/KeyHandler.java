@@ -482,7 +482,9 @@ public class KeyHandler implements KeyListener {
             }
         } else if (keyCode == KeyEvent.VK_K) {
             gamePanel.gameState = gamePanel.kerjaState;
-        }
+        } else if (keyCode == KeyEvent.VK_O){
+            gamePanel.gameState = gamePanel.inputDurasiOlahragaState;
+        } 
     }
 
     public void pauseState(int keyCode) {

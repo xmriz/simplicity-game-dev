@@ -37,6 +37,8 @@ public class Sound {
         soundURL[18] = getClass().getResource("/sound/siramtanaman.wav");
         soundURL[19] = getClass().getResource("/sound/maingame.wav");
         soundURL[20] = getClass().getResource("/sound/kerja.wav");
+        soundURL[21] = getClass().getResource("/sound/masak.wav");
+        soundURL[22] = getClass().getResource("/sound/olahraga.wav");
     }
 
     public void setFile(int i) {

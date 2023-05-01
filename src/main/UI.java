@@ -134,6 +134,8 @@ public class UI {
             drawGantiPekerjaanScreen("Pilih Pekerjaan");
         } else if (gamePanel.gameState == gamePanel.saveState) {
             drawSaveScreen();
+        } else if (gamePanel.gameState == gamePanel.inputDurasiOlahragaState){
+            drawInputDurasiOlahragaScreen("Input Durasi Olahraga:");
         }
     }
 
@@ -1160,16 +1162,20 @@ public class UI {
                         // simpan makanan yang udah jadi ke inventory
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(makanan);
 
+                        durasiTimer = (int) (3*makanan.kekenyangan/2) ;
+                        currentAksi = "Masak";
+                        currentAksiCadangan = makanan.name + " berhasil dibuat dan\ndimasukkan ke inventory!";
                         // mulai masak : draw dialog
-                        charIndex = 0;
-                        combinedText = "";
-                        gamePanel.gameState = gamePanel.dialogState;
-                        currentDialog = makanan.name + " berhasil dibuat dan\ndimasukkan ke inventory!";
+                        gamePanel.gameState = gamePanel.timerState;
+                        currentAksiDone = false;
+                        gamePanel.keyHandler.threadTemp = startTimerThread((int) (3*makanan.kekenyangan/2));
+                        
                     } else {
                         charIndex = 0;
                         combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
                         currentDialog = "Bahan tidak cukup untuk memasak\n" + makanan.name + "!";
+                        // TODO MASAK
                     }
                 }
             }
@@ -1997,6 +2003,44 @@ public class UI {
 
     }
 
+
+    public void drawInputDurasiOlahragaScreen(String judul) {
+        // draw window
+        int x = getXforCenteredText(judul);
+        x -= 4 * gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
+        x = getXforCenteredText(judul);
+        y += gamePanel.tileSize + 5;
+        g2d.drawString(judul, x, y);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        String text = "(dalam detik)";
+        String textTemp = "(maks. 15 karakter)";
+        x = getXforCenteredText(text);
+        y += gamePanel.tileSize - 10;
+        g2d.drawString(text, x, y);
+
+        // draw input text
+        x = getXforCenteredText(textTemp);
+        y += gamePanel.tileSize * 2;
+        width = gamePanel.screenWidth - 2 * x;
+        height = gamePanel.tileSize;
+        g2d.fillRect(x, y, width, height);
+
+        // draw text
+        Graphics2D g2d2 = (Graphics2D) g2d.create();
+        g2d2.setColor(Color.BLACK);
+        g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+    }
+
+
     public void drawKerjaScreen(String judul) {
         // draw window
         int x = getXforCenteredText(judul);
@@ -2127,11 +2171,6 @@ public class UI {
     public Thread startTimerThread(int duration) {
         TimerThread timer = new TimerThread(duration);
         Thread thread = new Thread(timer);
-        for (int i = 0; i < gamePanel.listSim.size(); i++ ){
-            if (gamePanel.listSim.get(i).rumah.isCanUpgrade == false){
-                gamePanel.listSim.get(i).rumah.isLockUpgrade = false;
-            }
-        }
         thread.start();
         return thread;
     }
@@ -2182,6 +2221,12 @@ public class UI {
             } else if (currentAksi == "Kerja") {
                 gamePanel.stopMusic();
                 gamePanel.playMusic(20);
+            } else if (currentAksi == "Masak") {
+                gamePanel.stopMusic();
+                gamePanel.playMusic(21);
+            } else if (currentAksi == "Olahraga"){
+                gamePanel.stopMusic();
+                gamePanel.playMusic(22);
             }
 
             while (remaining > 0) {
@@ -2200,9 +2245,12 @@ public class UI {
                     gamePanel.gameState = gamePanel.dialogState;
                     if (currentAksi == "Makan") {
                         currentDialog = "Selesai melakukan " + currentAksiCadangan;
+                    } else if (currentAksi == "Masak"){
+                        currentDialog = "Selesai melakukan " + currentAksi + "\n" + currentAksiCadangan;
                     } else {
                         currentDialog = "Selesai melakukan " + currentAksi;
                     }
+                    
 
                     durasiTimer = 0;
                     currentAksiDone = true;
@@ -2216,7 +2264,13 @@ public class UI {
             charIndex = 0;
             combinedText = "";
             gamePanel.gameState = gamePanel.dialogState;
-            currentDialog = "Selesai melakukan " + currentAksi;
+            if (currentAksi == "Makan") {
+                currentDialog = "Selesai melakukan " + currentAksiCadangan;
+            } else if (currentAksi == "Masak"){
+                currentDialog = "Selesai melakukan " + currentAksi + "\n" + currentAksiCadangan;
+            } else {
+                currentDialog = "Selesai melakukan " + currentAksi;
+            }
 
             durasiTimer = 0;
             currentAksi = "";
