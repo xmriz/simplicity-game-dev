@@ -2,6 +2,7 @@ package entity;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -28,6 +29,11 @@ public class Sim extends Entity {
     public int indexRumahYangDimasuki = 999;
     public int currentMap = 0;
     public static String keteranganMati = "";
+    public boolean isMati = false;
+    public boolean isUpgradeDone = false;
+    public boolean isBarangSampai = false;
+    public String tempDialogUpgrade = "";
+    public String tempDialogBarang = "";
 
     KeyHandler keyHandler;
 
@@ -200,35 +206,40 @@ public class Sim extends Entity {
                 }
             }
         }
+        System.out.println(kekenyangan);
 
         if (mood <= 0) {
             // berlaku hanya jika sim yang mati adalah sim index 0
-            if (gamePanel.listSim.size() > 1) {
-                gamePanel.listSim.remove(gamePanel.indexCurrentSim);
-                gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
-                for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                    if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999) {
-                        if (gamePanel.listSim.get(i).indexRumahYangDimasuki > gamePanel.indexCurrentSim) {
-                            gamePanel.listSim.get(i).indexRumahYangDimasuki--;
-                        } else if (gamePanel.listSim.get(i).indexRumahYangDimasuki == gamePanel.indexCurrentSim) {
-                            gamePanel.listSim.get(i).indexRumahYangDimasuki = i;
-                            gamePanel.listSim.get(i).setDefaultValues();
-                        }
-                    }
-                }
-                gamePanel.indexCurrentSim = 0;
+            // if (gamePanel.listSim.size() > 1) {
+            // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
+            // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
+            // for (int i = 0; i < gamePanel.listSim.size(); i++) {
+            // if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999) {
+            // if (gamePanel.listSim.get(i).indexRumahYangDimasuki >
+            // gamePanel.indexCurrentSim) {
+            // gamePanel.listSim.get(i).indexRumahYangDimasuki--;
+            // } else if (gamePanel.listSim.get(i).indexRumahYangDimasuki ==
+            // gamePanel.indexCurrentSim) {
+            // gamePanel.listSim.get(i).indexRumahYangDimasuki = i;
+            // gamePanel.listSim.get(i).setDefaultValues();
+            // }
+            // }
+            // }
+            // gamePanel.indexCurrentSim = 0;
 
-                // for (int i = gamePanel.indexCurrentSim; i < gamePanel.listSim.size(); i++){
-                // if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999){
-                // gamePanel.listSim.get(i).indexRumahYangDimasuki--;
-                // }
-                // }
-            } else if (gamePanel.listSim.size() == 1) {
+            // // for (int i = gamePanel.indexCurrentSim; i < gamePanel.listSim.size();
+            // i++){
+            // // if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999){
+            // // gamePanel.listSim.get(i).indexRumahYangDimasuki--;
+            // // }
+            // // }
+            // } else
+            if (gamePanel.listSim.size() == 1) {
                 gamePanel.isOneSim = true;
             }
 
             keteranganMati = "Depresi";
-            gamePanel.gameState = gamePanel.gameOverState;
+            isMati = true;
             // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
             // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
             // if (gamePanel.indexCurrentSim == 0){
@@ -243,27 +254,32 @@ public class Sim extends Entity {
             // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki--;
             // }
         } else if (kekenyangan <= 0) {
-            if (gamePanel.listSim.size() > 1) {
-                gamePanel.listSim.remove(gamePanel.indexCurrentSim);
-                gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
-                for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                    if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999) {
-                        if (gamePanel.listSim.get(i).indexRumahYangDimasuki > gamePanel.indexCurrentSim) {
-                            gamePanel.listSim.get(i).indexRumahYangDimasuki--;
-                        } else if (gamePanel.listSim.get(i).indexRumahYangDimasuki == gamePanel.indexCurrentSim) {
-                            gamePanel.listSim.get(i).indexRumahYangDimasuki = i;
-                            gamePanel.listSim.get(i).setDefaultValues();
-                        }
-                    }
-                }
-                gamePanel.indexCurrentSim = 0;
-            } else if (gamePanel.listSim.size() == 1) {
+            System.out.println(0);
+            // if (gamePanel.listSim.size() > 1) {
+            // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
+            // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
+            // for (int i = 0; i < gamePanel.listSim.size(); i++) {
+            // if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999) {
+            // if (gamePanel.listSim.get(i).indexRumahYangDimasuki >
+            // gamePanel.indexCurrentSim) {
+            // gamePanel.listSim.get(i).indexRumahYangDimasuki--;
+            // } else if (gamePanel.listSim.get(i).indexRumahYangDimasuki ==
+            // gamePanel.indexCurrentSim) {
+            // gamePanel.listSim.get(i).indexRumahYangDimasuki = i;
+            // gamePanel.listSim.get(i).setDefaultValues();
+            // }
+            // }
+            // }
+            // gamePanel.indexCurrentSim = 0;
+            // } else
+            if (gamePanel.listSim.size() == 1) {
                 gamePanel.isOneSim = true;
                 gamePanel.worldTimeCounter = 0;
                 gamePanel.worldTimeSatuHariCounter = 0;
             }
             keteranganMati = "Kelaparan";
-            gamePanel.gameState = gamePanel.gameOverState;
+            isMati = true;
+            System.out.println(isMati);
             // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
             // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
             // if (gamePanel.indexCurrentSim == 0){
@@ -278,25 +294,28 @@ public class Sim extends Entity {
             // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki--;
             // }
         } else if (kesehatan <= 0) {
-            if (gamePanel.listSim.size() > 1) {
-                gamePanel.listSim.remove(gamePanel.indexCurrentSim);
-                gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
-                for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                    if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999) {
-                        if (gamePanel.listSim.get(i).indexRumahYangDimasuki > gamePanel.indexCurrentSim) {
-                            gamePanel.listSim.get(i).indexRumahYangDimasuki--;
-                        } else if (gamePanel.listSim.get(i).indexRumahYangDimasuki == gamePanel.indexCurrentSim) {
-                            gamePanel.listSim.get(i).indexRumahYangDimasuki = i;
-                            gamePanel.listSim.get(i).setDefaultValues();
-                        }
-                    }
-                }
-                gamePanel.indexCurrentSim = 0;
-            } else if (gamePanel.listSim.size() == 1) {
+            // if (gamePanel.listSim.size() > 1) {
+            // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
+            // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
+            // for (int i = 0; i < gamePanel.listSim.size(); i++) {
+            // if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999) {
+            // if (gamePanel.listSim.get(i).indexRumahYangDimasuki >
+            // gamePanel.indexCurrentSim) {
+            // gamePanel.listSim.get(i).indexRumahYangDimasuki--;
+            // } else if (gamePanel.listSim.get(i).indexRumahYangDimasuki ==
+            // gamePanel.indexCurrentSim) {
+            // gamePanel.listSim.get(i).indexRumahYangDimasuki = i;
+            // gamePanel.listSim.get(i).setDefaultValues();
+            // }
+            // }
+            // }
+            // gamePanel.indexCurrentSim = 0;
+            // } else
+            if (gamePanel.listSim.size() == 1) {
                 gamePanel.isOneSim = true;
             }
             keteranganMati = "Sakit";
-            gamePanel.gameState = gamePanel.gameOverState;
+            isMati = true;
             // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
             // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
             // if (gamePanel.indexCurrentSim == 0){
@@ -311,6 +330,7 @@ public class Sim extends Entity {
             // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki--;
             // }
         }
+
     }
 
     public void pickUpObject(int index) {
@@ -426,7 +446,9 @@ public class Sim extends Entity {
                             gamePanel.gameState = gamePanel.timerState;
                             gamePanel.ui.currentAksiDone = false;
                             isUdahMakanDalamSatuHari = true;
+                            gamePanel.ui.tempDurasi = 30;
                             gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(30);
+                            // gamePanel.ui.setelahAksi(30);
 
                         } else {
                             gamePanel.ui.charIndex = 0;
@@ -471,7 +493,9 @@ public class Sim extends Entity {
                             gamePanel.gameState = gamePanel.timerState;
                             gamePanel.ui.currentAksiDone = false;
                             isUdahMakanDalamSatuHari = true;
+                            gamePanel.ui.tempDurasi = 30;
                             gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(30);
+                            // gamePanel.ui.setelahAksi(30);
                         } else {
                             gamePanel.ui.charIndex = 0;
                             gamePanel.ui.combinedText = "";
@@ -619,10 +643,13 @@ public class Sim extends Entity {
                 if (gamePanel.npc[0][4].inventory.get(itemBuyTempIndex) instanceof BahanMakanan) {
                     BahanMakanan makanan = (BahanMakanan) gamePanel.npc[0][4].inventory.get(itemBuyTempIndex);
                     if (gamePanel.listSim.get(indexSimSaatBeli).canObtainItem(makanan)) {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
-                        gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Pembelian barang oleh "
+                        // gamePanel.ui.charIndex = 0;
+                        // gamePanel.ui.combinedText = "";
+                        // gamePanel.gameState = gamePanel.dialogState;
+                        // gamePanel.ui.currentDialog = "Pembelian barang oleh "
+                        // + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
+                        isBarangSampai = true;
+                        tempDialogBarang = "Pembelian barang oleh "
                                 + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
                     } else {
                         gamePanel.listSim.get(indexSimSaatBeli).uang += makanan.harga;
@@ -635,10 +662,13 @@ public class Sim extends Entity {
                 } else if (gamePanel.npc[0][4].inventory.get(itemBuyTempIndex) instanceof Furnitur) {
                     Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].inventory.get(itemBuyTempIndex);
                     if (gamePanel.listSim.get(indexSimSaatBeli).canObtainItem(furnitur)) {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
-                        gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Pembelian barang oleh "
+                        // gamePanel.ui.charIndex = 0;
+                        // gamePanel.ui.combinedText = "";
+                        // gamePanel.gameState = gamePanel.dialogState;
+                        // gamePanel.ui.currentDialog = "Pembelian barang oleh "
+                        // + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
+                        isBarangSampai = true;
+                        tempDialogBarang = "Pembelian barang oleh "
                                 + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
                     } else {
                         gamePanel.listSim.get(indexSimSaatBeli).uang += furnitur.harga;
@@ -651,10 +681,13 @@ public class Sim extends Entity {
                 } else if (gamePanel.npc[0][4].inventory.get(itemBuyTempIndex) instanceof Lampu) {
                     Lampu lampu = (Lampu) gamePanel.npc[0][4].inventory.get(itemBuyTempIndex);
                     if (gamePanel.listSim.get(indexSimSaatBeli).canObtainItem(lampu)) {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
-                        gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Pembelian barang oleh "
+                        // gamePanel.ui.charIndex = 0;
+                        // gamePanel.ui.combinedText = "";
+                        // gamePanel.gameState = gamePanel.dialogState;
+                        // gamePanel.ui.currentDialog = "Pembelian barang oleh "
+                        // + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
+                        isBarangSampai = true;
+                        tempDialogBarang = "Pembelian barang oleh "
                                 + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
                     } else {
                         gamePanel.listSim.get(indexSimSaatBeli).uang += lampu.harga;

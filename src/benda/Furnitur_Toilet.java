@@ -4,8 +4,8 @@ import java.awt.Rectangle;
 
 import main.GamePanel;
 
-public class Furnitur_Toilet extends Furnitur{
-    public Furnitur_Toilet(GamePanel gamePanel){
+public class Furnitur_Toilet extends Furnitur {
+    public Furnitur_Toilet(GamePanel gamePanel) {
         name = "Toilet";
         image = setupImage("benda/furnitur/toilet");
         collision = false;
@@ -13,20 +13,20 @@ public class Furnitur_Toilet extends Furnitur{
         dimensiY = 1;
         harga = 50;
         aksi = "Boker";
-        solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
+        solidArea = new Rectangle(0, 0, 48 * dimensiX, 48 * dimensiY);
         this.gamePanel = gamePanel;
     }
 
     @Override
-    public void action(){
+    public void action() {
         // aksi boker
         gamePanel.ui.currentAksi = "Boker";
         gamePanel.gameState = gamePanel.timerState;
         gamePanel.ui.currentAksiDone = false;
-        gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);
+        // gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);
         gamePanel.worldTimeCounter += 10;
         gamePanel.worldTimeSatuHariCounter += 10;
-        for (int i = 0; i < gamePanel.listSim.size(); i++){
+        for (int i = 0; i < gamePanel.listSim.size(); i++) {
             gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += 10;
         }
         gamePanel.getCurrentSim().kekenyangan -= 20;
@@ -41,5 +41,8 @@ public class Furnitur_Toilet extends Furnitur{
         if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
             gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
         }
+        gamePanel.ui.tempDurasi = 10;
+        gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);
+        // gamePanel.ui.setelahAksi(10);
     }
 }

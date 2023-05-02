@@ -27,6 +27,7 @@ public class UI {
     boolean inputTextDone = false;
 
     public int durasiTimer = 0;
+    public int tempDurasi = 0;
 
     public String currentAksi = "";
     public String currentAksiCadangan = "";
@@ -744,7 +745,7 @@ public class UI {
                         gamePanel.gameState = gamePanel.dialogState;
                         gamePanel.ui.currentDialog = "Anda berhasil membeli "
                                 + gamePanel.npc[0][4].inventory.get(itemIndex).name + ".\nSilahkan tunggu "
-                                + gamePanel.getCurrentSim().remainingTimeBuy + "detik.";
+                                + gamePanel.getCurrentSim().remainingTimeBuy + " detik.";
                         // gamePanel.getCurrentSim().setIsCanBuyToTrue();
                     }
                     // TODO: THREAD BELI BARANG -> BUAT THREAD
@@ -1208,6 +1209,7 @@ public class UI {
                         // mulai masak : draw dialog
                         gamePanel.gameState = gamePanel.timerState;
                         currentAksiDone = false;
+                        gamePanel.ui.tempDurasi = (int) (3 * makanan.kekenyangan / 2);
                         gamePanel.keyHandler.threadTemp = startTimerThread((int) (3 * makanan.kekenyangan / 2));
 
                     } else {
@@ -2276,69 +2278,111 @@ public class UI {
                 } catch (InterruptedException e) {
                     gamePanel.stopMusic();
                     gamePanel.playMusic(1);
-                    gamePanel.gameState = gamePanel.playState;
-                    charIndex = 0;
-                    combinedText = "";
-                    gamePanel.gameState = gamePanel.dialogState;
-                    if (currentAksi == "Makan") {
-                        currentDialog = "Selesai melakukan " + currentAksiCadangan;
-                    } else if (currentAksi == "Masak") {
-                        currentDialog = "Selesai melakukan " + currentAksi + "\n" + currentAksiCadangan;
-                    } else {
-                        currentDialog = "Selesai melakukan " + currentAksi;
-                    }
-                    for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                        if (gamePanel.listSim.get(i).rumah.isCanUpgrade == false) {
-                            gamePanel.listSim.get(i).rumah.isLockUpgrade = false;
-                            gamePanel.listSim.get(i).rumah.remainingTimeUpgrade -= duration;
-                            gamePanel.listSim.get(i).rumah.setIsCanUpgradeToTrueAfter18Minutes();
-                            gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
-                        }
-                    }
-                    for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                        if (gamePanel.listSim.get(i).isCanBuy == false) {
-                            gamePanel.listSim.get(i).isLockBuy = false;
-                            gamePanel.listSim.get(i).remainingTimeBuy -= duration;
-                            gamePanel.listSim.get(i).setIsCanBuyToTrue();
-                            gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
-                        }
-                    }
+                    setelahAksi(duration);
+                    // gamePanel.stopMusic();
+                    // gamePanel.playMusic(1);
+                    // gamePanel.gameState = gamePanel.playState;
+                    // if (gamePanel.getCurrentSim().isMati == false) {
+                    // charIndex = 0;
+                    // combinedText = "";
+                    // gamePanel.gameState = gamePanel.dialogState;
+                    // if (currentAksi == "Makan") {
+                    // currentDialog = "Selesai melakukan " + currentAksiCadangan;
+                    // } else if (currentAksi == "Masak") {
+                    // currentDialog = "Selesai melakukan " + currentAksi + "\n" +
+                    // currentAksiCadangan;
+                    // } else {
+                    // currentDialog = "Selesai melakukan " + currentAksi;
+                    // }
+                    // } else {
+                    // gamePanel.getCurrentSim().isCanBuy = true;
+                    // gamePanel.getCurrentSim().rumah.isCanUpgrade = true;
+                    // }
+                    // charIndex = 0;
+                    // combinedText = "";
+                    // gamePanel.gameState = gamePanel.dialogState;
+                    // if (currentAksi == "Makan") {
+                    // currentDialog = "Selesai melakukan " + currentAksiCadangan;
+                    // } else if (currentAksi == "Masak") {
+                    // currentDialog = "Selesai melakukan " + currentAksi + "\n" +
+                    // currentAksiCadangan;
+                    // } else {
+                    // currentDialog = "Selesai melakukan " + currentAksi;
+                    // }
 
+                    // for (int i = 0; i < gamePanel.listSim.size(); i++) {
+                    // if (gamePanel.listSim.get(i).rumah.isCanUpgrade == false) {
+                    // gamePanel.listSim.get(i).rumah.isLockUpgrade = false;
+                    // gamePanel.listSim.get(i).rumah.remainingTimeUpgrade -= duration;
+                    // gamePanel.listSim.get(i).rumah.setIsCanUpgradeToTrueAfter18Minutes();
+                    // gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+                    // }
+                    // }
+                    // for (int i = 0; i < gamePanel.listSim.size(); i++) {
+                    // if (gamePanel.listSim.get(i).isCanBuy == false) {
+                    // gamePanel.listSim.get(i).isLockBuy = false;
+                    // gamePanel.listSim.get(i).remainingTimeBuy -= duration;
+                    // gamePanel.listSim.get(i).setIsCanBuyToTrue();
+                    // gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+                    // }
+                    // }
+
+                    currentAksi = "";
                     durasiTimer = 0;
                     currentAksiDone = true;
                     return;
                 }
             }
-
-            gamePanel.gameState = gamePanel.playState;
             gamePanel.stopMusic();
             gamePanel.playMusic(1);
-            charIndex = 0;
-            combinedText = "";
-            gamePanel.gameState = gamePanel.dialogState;
-            if (currentAksi == "Makan") {
-                currentDialog = "Selesai melakukan " + currentAksiCadangan;
-            } else if (currentAksi == "Masak") {
-                currentDialog = "Selesai melakukan " + currentAksi + "\n" + currentAksiCadangan;
-            } else {
-                currentDialog = "Selesai melakukan " + currentAksi;
-            }
-            for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                if (gamePanel.listSim.get(i).rumah.isCanUpgrade == false) {
-                    gamePanel.listSim.get(i).rumah.isLockUpgrade = false;
-                    gamePanel.listSim.get(i).rumah.remainingTimeUpgrade -= duration;
-                    gamePanel.listSim.get(i).rumah.setIsCanUpgradeToTrueAfter18Minutes();
-                    gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
-                }
-            }
-            for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                if (gamePanel.listSim.get(i).isCanBuy == false) {
-                    gamePanel.listSim.get(i).isLockBuy = false;
-                    gamePanel.listSim.get(i).remainingTimeBuy -= duration;
-                    gamePanel.listSim.get(i).setIsCanBuyToTrue();
-                    gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
-                }
-            }
+            setelahAksi(duration);
+
+            // gamePanel.gameState = gamePanel.playState;
+            // gamePanel.stopMusic();
+            // gamePanel.playMusic(1);
+            // if (gamePanel.getCurrentSim().isMati == false) {
+            // charIndex = 0;
+            // combinedText = "";
+            // gamePanel.gameState = gamePanel.dialogState;
+            // if (currentAksi == "Makan") {
+            // currentDialog = "Selesai melakukan " + currentAksiCadangan;
+            // } else if (currentAksi == "Masak") {
+            // currentDialog = "Selesai melakukan " + currentAksi + "\n" +
+            // currentAksiCadangan;
+            // } else {
+            // currentDialog = "Selesai melakukan " + currentAksi;
+            // }
+            // } else {
+            // gamePanel.getCurrentSim().isCanBuy = true;
+            // gamePanel.getCurrentSim().rumah.isCanUpgrade = true;
+            // }
+            // charIndex = 0;
+            // combinedText = "";
+            // gamePanel.gameState = gamePanel.dialogState;
+            // if (currentAksi == "Makan") {
+            // currentDialog = "Selesai melakukan " + currentAksiCadangan;
+            // } else if (currentAksi == "Masak") {
+            // currentDialog = "Selesai melakukan " + currentAksi + "\n" +
+            // currentAksiCadangan;
+            // } else {
+            // currentDialog = "Selesai melakukan " + currentAksi;
+            // }
+            // for (int i = 0; i < gamePanel.listSim.size(); i++) {
+            // if (gamePanel.listSim.get(i).rumah.isCanUpgrade == false) {
+            // gamePanel.listSim.get(i).rumah.isLockUpgrade = false;
+            // gamePanel.listSim.get(i).rumah.remainingTimeUpgrade -= duration;
+            // gamePanel.listSim.get(i).rumah.setIsCanUpgradeToTrueAfter18Minutes();
+            // gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+            // }
+            // }
+            // for (int i = 0; i < gamePanel.listSim.size(); i++) {
+            // if (gamePanel.listSim.get(i).isCanBuy == false) {
+            // gamePanel.listSim.get(i).isLockBuy = false;
+            // gamePanel.listSim.get(i).remainingTimeBuy -= duration;
+            // gamePanel.listSim.get(i).setIsCanBuyToTrue();
+            // gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+            // }
+            // }
 
             durasiTimer = 0;
             currentAksi = "";
@@ -2376,5 +2420,97 @@ public class UI {
         int x = tailX - length;
 
         return x;
+    }
+
+    public void setelahAksi(int duration) {
+        gamePanel.stopMusic();
+        gamePanel.playMusic(1);
+        charIndex = 0;
+        combinedText = "";
+        gamePanel.gameState = gamePanel.dialogState;
+        if (currentAksi == "Makan") {
+            currentDialog = "Selesai melakukan " + currentAksiCadangan;
+        } else if (currentAksi == "Masak") {
+            currentDialog = "Selesai melakukan " + currentAksi + "\n" + currentAksiCadangan;
+        } else {
+            currentDialog = "Selesai melakukan " + currentAksi;
+        }
+        if (gamePanel.getCurrentSim().isMati == false) {
+            // charIndex = 0;
+            // combinedText = "";
+            // gamePanel.gameState = gamePanel.dialogState;
+            // if (currentAksi == "Makan") {
+            // currentDialog = "Selesai melakukan " + currentAksiCadangan;
+            // } else if (currentAksi == "Masak") {
+            // currentDialog = "Selesai melakukan " + currentAksi + "\n" +
+            // currentAksiCadangan;
+            // } else {
+            // currentDialog = "Selesai melakukan " + currentAksi;
+            // }
+            for (int i = 0; i < gamePanel.listSim.size(); i++) {
+                if (gamePanel.listSim.get(i).rumah.isCanUpgrade == false) {
+                    gamePanel.listSim.get(i).rumah.isLockUpgrade = false;
+                    gamePanel.listSim.get(i).rumah.remainingTimeUpgrade -= duration;
+                    gamePanel.listSim.get(i).rumah.setIsCanUpgradeToTrueAfter18Minutes();
+                    gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+                }
+            }
+            for (int i = 0; i < gamePanel.listSim.size(); i++) {
+                if (gamePanel.listSim.get(i).isCanBuy == false) {
+                    gamePanel.listSim.get(i).isLockBuy = false;
+                    gamePanel.listSim.get(i).remainingTimeBuy -= duration;
+                    gamePanel.listSim.get(i).setIsCanBuyToTrue();
+                    gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+                }
+            }
+
+        } else {
+            gamePanel.getCurrentSim().isCanBuy = true;
+            gamePanel.getCurrentSim().rumah.isCanUpgrade = true;
+        }
+
+        // if (gamePanel.getCurrentSim().isBarangSampai = true) {
+        // charIndex = 0;
+        // combinedText = "";
+        // gamePanel.gameState = gamePanel.dialogState;
+        // currentDialog = gamePanel.getCurrentSim().tempDialogBarang;
+        // } else if (gamePanel.getCurrentSim().isUpgradeDone = true) {
+        // charIndex = 0;
+        // combinedText = "";
+        // gamePanel.gameState = gamePanel.dialogState;
+        // currentDialog = gamePanel.getCurrentSim().tempDialogUpgrade;
+        // }
+        // charIndex = 0;
+        // combinedText = "";
+        // gamePanel.gameState = gamePanel.dialogState;
+        // if (currentAksi == "Makan") {
+        // currentDialog = "Selesai melakukan " + currentAksiCadangan;
+        // } else if (currentAksi == "Masak") {
+        // currentDialog = "Selesai melakukan " + currentAksi + "\n" +
+        // currentAksiCadangan;
+        // } else {
+        // currentDialog = "Selesai melakukan " + currentAksi;
+        // }
+
+        // for (int i = 0; i < gamePanel.listSim.size(); i++) {
+        // if (gamePanel.listSim.get(i).rumah.isCanUpgrade == false) {
+        // gamePanel.listSim.get(i).rumah.isLockUpgrade = false;
+        // gamePanel.listSim.get(i).rumah.remainingTimeUpgrade -= duration;
+        // gamePanel.listSim.get(i).rumah.setIsCanUpgradeToTrueAfter18Minutes();
+        // gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+        // }
+        // }
+        // for (int i = 0; i < gamePanel.listSim.size(); i++) {
+        // if (gamePanel.listSim.get(i).isCanBuy == false) {
+        // gamePanel.listSim.get(i).isLockBuy = false;
+        // gamePanel.listSim.get(i).remainingTimeBuy -= duration;
+        // gamePanel.listSim.get(i).setIsCanBuyToTrue();
+        // gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+        // }
+        // }
+
+        durasiTimer = 0;
+        currentAksi = "";
+        currentAksiDone = true;
     }
 }
