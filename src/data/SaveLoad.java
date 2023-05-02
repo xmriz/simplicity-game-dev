@@ -133,6 +133,8 @@ public class SaveLoad {
                     ds.infoSimStrings.add("");
                 }
                 ds.infoSimStrings.add(gamePanel.listSim.get(k).currentLocation);
+                ds.infoSimStrings.add(gamePanel.listSim.get(k).tempDialogUpgrade);
+                ds.infoSimStrings.add(gamePanel.listSim.get(k).tempDialogBarang);
                 System.out.println(3123);
                 // ds.infoSimStrings.add(gamePanel.listSim.get(k).currentLocation);
                 ds.infoSimIntegers.add(gamePanel.listSim.get(k).uang);
@@ -167,6 +169,8 @@ public class SaveLoad {
                 ds.infoSimBooleans.add(gamePanel.listSim.get(k).rumah.isCanUpgrade);
                 ds.infoSimBooleans.add(gamePanel.listSim.get(k).isCanBuy);
                 ds.infoSimBooleans.add(gamePanel.listSim.get(k).isUdahMakanDalamSatuHari);
+                ds.infoSimBooleans.add(gamePanel.listSim.get(k).isUpgradeDone);
+                ds.infoSimBooleans.add(gamePanel.listSim.get(k).isBarangSampai);
                 ds.infoSimIntegers.add(gamePanel.listSim.get(k).rumah.jumlahRuangan);
                 // ds.infoSimIntegers.add(gamePanel.listSim.get(k).solidArea.x);
                 // ds.infoSimIntegers.add(gamePanel.listSim.get(k).solidArea.y);
@@ -375,7 +379,10 @@ public class SaveLoad {
                 gamePanel.listSim.get(j).rumah.ruanganUpgrade = ruangan;
                 gamePanel.listSim.get(j).rumah.ruanganUpgrade.name = ds.infoSimStrings.get(sumStrings + 2);
                 gamePanel.listSim.get(j).currentLocation = ds.infoSimStrings.get(sumStrings + 3);
-                sumStrings += 4;
+                gamePanel.listSim.get(j).tempDialogUpgrade = ds.infoSimStrings.get(sumStrings + 4);
+                gamePanel.listSim.get(j).tempDialogBarang = ds.infoSimStrings.get(sumStrings + 5);
+
+                sumStrings += 6;
                 System.out.println(20);
 
                 gamePanel.listSim.get(j).pekerjaan.isCanChangePekerjaan = ds.infoSimBooleans.get(sumBooleans);
@@ -383,8 +390,10 @@ public class SaveLoad {
                 gamePanel.listSim.get(j).rumah.isCanUpgrade = ds.infoSimBooleans.get(sumBooleans + 2);
                 gamePanel.listSim.get(j).isCanBuy = ds.infoSimBooleans.get(sumBooleans + 3);
                 gamePanel.listSim.get(j).isUdahMakanDalamSatuHari = ds.infoSimBooleans.get(sumBooleans + 4);
+                gamePanel.listSim.get(j).isUpgradeDone = ds.infoSimBooleans.get(sumBooleans + 5);
+                gamePanel.listSim.get(j).isBarangSampai = ds.infoSimBooleans.get(sumBooleans + 6);
 
-                sumBooleans += 5;
+                sumBooleans += 7;
                 System.out.println(33);
 
                 gamePanel.listSim.get(j).uang = ds.infoSimIntegers.get(sumIntegers);
