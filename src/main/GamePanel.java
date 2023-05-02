@@ -163,6 +163,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
 
+        
+
         for (int i = 0; i < listSim.size(); i++) {
             if (listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob >= 720) {
                 listSim.get(i).pekerjaan.isCanStartPekerjaan = true;

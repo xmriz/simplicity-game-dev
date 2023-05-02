@@ -1192,17 +1192,21 @@ public class UI {
                         if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
                             gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
                         }
-                        if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
-                            gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
-                        }
-                        if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
-                            gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
-                        }
 
                         // simpan makanan yang udah jadi ke inventory
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(makanan);
 
                         durasiTimer = (int) (3 * makanan.kekenyangan / 2);
+                        int durasi = durasiTimer;
+
+                        // nambah world time
+                        for (int i = 0; i < gamePanel.listSim.size(); i++) {
+                            gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                            gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                            if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                                gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                            }
+                        }
                         currentAksi = "Masak";
                         currentAksiCadangan = makanan.name + " berhasil dibuat dan\ndimasukkan ke inventory!";
                         // mulai masak : draw dialog
