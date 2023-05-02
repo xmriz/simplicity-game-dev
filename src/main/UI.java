@@ -735,8 +735,16 @@ public class UI {
                         gamePanel.getCurrentSim().isCanBuy = false;
                         gamePanel.getCurrentSim().indexSimSaatBeli = gamePanel.indexCurrentSim;
                         gamePanel.getCurrentSim().itemBuyTempIndex = itemIndex;
+                        gamePanel.getCurrentSim().uang -= harga;
                         Random rand = new Random();
                         gamePanel.getCurrentSim().remainingTimeBuy = (rand.nextInt(5) + 1) * 30;
+                        gamePanel.ui.subState = 0;
+                        gamePanel.ui.charIndex = 0;
+                        gamePanel.ui.combinedText = "";
+                        gamePanel.gameState = gamePanel.dialogState;
+                        gamePanel.ui.currentDialog = "Anda berhasil membeli "
+                                + gamePanel.npc[0][4].inventory.get(itemIndex).name + ".\nSilahkan tunggu "
+                                + gamePanel.getCurrentSim().remainingTimeBuy + "detik.";
                         // gamePanel.getCurrentSim().setIsCanBuyToTrue();
                     }
                     // TODO: THREAD BELI BARANG -> BUAT THREAD
