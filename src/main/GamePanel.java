@@ -34,6 +34,9 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldHeight = maxWorldRow * tileSize; // 3168 pixels
     public int worldTimeCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
 
+    // darr ini gua tambah lagi
+    public int worldTimeSatuHariCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
+
     // MAP SETTINGS
     public final int maxMap = 2; // Ruangan and world
     // public int listSim.get(indexCurrentSim).currentMap = 0;
@@ -163,16 +166,43 @@ public class GamePanel extends JPanel implements Runnable {
         for (int i = 0; i < listSim.size(); i++) {
             if (listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob >= 720) {
                 listSim.get(i).pekerjaan.isCanStartPekerjaan = true;
+                listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob = 0;
+                
             }
-        }
 
-        for (int i = 0; i < listSim.size(); i++) {
+            if (worldTimeCounter >= 720) {
+                worldTimeCounter = 0;
+                listSim.get(i).efekWaktuTidakTidurCounter = 0;
+                listSim.get(i).efekWaktuTidakBuangAirCounter = 0;
+                listSim.get(i).isUdahMakanDalamSatuHari = false;
+            }
+
             if (listSim.get(i).pekerjaan.totalDurasiKerjaPerPekerjaan >= 720) {
                 listSim.get(i).pekerjaan.isCanChangePekerjaan = true;
             } else {
-                listSim.get(i).pekerjaan.isCanChangePekerjaan = false;
+                listSim.get(i).pekerjaan.isCanChangePekerjaan = false;   
+            }
+
+            if (listSim.get(i).efekWaktuTidakTidurCounter >= 600){
+                // kurangin kesejahteraan
+                listSim.get(i).efekWaktuTidakTidurCounter = 0;
+                listSim.get(i).mood -= 5;
+                listSim.get(i).kesehatan -= 5;
+            }
+
+            if (listSim.get(i).efekWaktuTidakBuangAirCounter >= 240){
+                // kurangin kesejahteraan
+                if (listSim.get(i).isUdahMakanDalamSatuHari){
+                    listSim.get(i).efekWaktuTidakBuangAirCounter = 0;
+                    listSim.get(i).mood -= 5;
+                    listSim.get(i).kesehatan -= 5;
+                }
             }
         }
+
+        // for (int i = 0; i < listSim.size(); i++) {
+            
+        // }
 
         if (gameState == playState) {
             listSim.get(indexCurrentSim).update();

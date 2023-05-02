@@ -40,12 +40,16 @@ public class Sim extends Entity {
     public int tempInt = -1;
     public Benda tempBenda;
 
-    // darr yang gua tambah
     public boolean isCanBuy = true;
     public int remainingTimeBuy = 0;
     public int indexSimSaatBeli = 0;
     public int itemBuyTempIndex = 0;
     public boolean isLockBuy = true;
+
+    // gw nambah lagi darr, buat waktu efek tidak tidur, dan efek tidak buang air
+    public int efekWaktuTidakTidurCounter = 0;
+    public int efekWaktuTidakBuangAirCounter = 0;
+    public boolean isUdahMakanDalamSatuHari = false;
 
     public Sim(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
@@ -405,6 +409,7 @@ public class Sim extends Entity {
                             BahanMakanan bahanMakanan = (BahanMakanan) selectedBenda;
                             bahanMakanan.eat(this);
                             gamePanel.worldTimeCounter += 30;
+                            gamePanel.worldTimeSatuHariCounter += 30;
                             for (int i = 0; i < gamePanel.listSim.size(); i++) {
                                 gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += 30;
                             }
@@ -418,6 +423,7 @@ public class Sim extends Entity {
                             gamePanel.ui.currentAksi = "Makan";
                             gamePanel.gameState = gamePanel.timerState;
                             gamePanel.ui.currentAksiDone = false;
+                            isUdahMakanDalamSatuHari = true;
                             gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(30);
 
                         } else {
@@ -448,6 +454,7 @@ public class Sim extends Entity {
                             Makanan makanan = (Makanan) selectedBenda;
                             makanan.eat(this);
                             gamePanel.worldTimeCounter += 30;
+                            gamePanel.worldTimeSatuHariCounter += 30;
                             for (int i = 0; i < gamePanel.listSim.size(); i++) {
                                 gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += 30;
                             }
@@ -461,6 +468,7 @@ public class Sim extends Entity {
                             gamePanel.ui.currentAksi = "Makan";
                             gamePanel.gameState = gamePanel.timerState;
                             gamePanel.ui.currentAksiDone = false;
+                            isUdahMakanDalamSatuHari = true;
                             gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(30);
                         } else {
                             gamePanel.ui.charIndex = 0;

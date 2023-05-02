@@ -182,6 +182,7 @@ public class EventHandler {
                         int y1 = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.rowRumah;
                         int durasi = UtilityTool.pythagoras(x1, y1, x2, y2);
                         gamePanel.worldTimeCounter += durasi;
+                        gamePanel.worldTimeSatuHariCounter += durasi;
                         for (int i = 0; i < gamePanel.listSim.size(); i++){
                                 gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
                             }

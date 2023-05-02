@@ -1838,9 +1838,13 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
                 }
+
+                // reset efek waktu tidak tidur
+                gamePanel.getCurrentSim().efekWaktuTidakTidurCounter = 0;
 
                 gamePanel.ui.inputText = "";
                 gamePanel.ui.commandNumber = 0;
@@ -1932,6 +1936,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
                 }
@@ -2026,6 +2031,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
                 }
@@ -2116,6 +2122,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
                 }
@@ -2206,6 +2213,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
                 }
@@ -2296,6 +2304,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
                 }
@@ -2390,6 +2399,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
                 }
@@ -2484,6 +2494,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
                 }
@@ -2578,6 +2589,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
                 }
@@ -2657,8 +2669,8 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
-                gamePanel.getCurrentSim().mood -= (durasi/30)*10;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
+                // gamePanel.getCurrentSim().mood -= (durasi/30)*10;
+                // gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
                 gamePanel.getCurrentSim().pekerjaan.totalDurasiKerjaPerPekerjaan += durasi;
                 gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji += durasi;
                 if (gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji >= 240) {
@@ -2679,6 +2691,7 @@ public class KeyHandler implements KeyListener {
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
+                gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
                 }
@@ -2723,7 +2736,6 @@ public class KeyHandler implements KeyListener {
                     gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji = 0;
                     gamePanel.getCurrentSim().pekerjaan.totalDurasiKerjaPerPekerjaan = 0;
                     gamePanel.getCurrentSim().pekerjaan.isCanStartPekerjaan = false;
-                    gamePanel.getCurrentSim().pekerjaan.worldTimeCounterForStartJobAfterChangeJob = 0;
                 } else {
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
