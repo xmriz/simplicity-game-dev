@@ -218,30 +218,14 @@ public class Sim extends Entity {
                 }
                 gamePanel.indexCurrentSim = 0;
 
-                // for (int i = gamePanel.indexCurrentSim; i < gamePanel.listSim.size(); i++){
-                // if (gamePanel.listSim.get(i).indexRumahYangDimasuki != 999){
-                // gamePanel.listSim.get(i).indexRumahYangDimasuki--;
-                // }
-                // }
             } else if (gamePanel.listSim.size() == 1) {
                 gamePanel.isOneSim = true;
+                gamePanel.worldTimeCounter = 0;
+                gamePanel.worldTimeSatuHariCounter = 0;
             }
 
             keteranganMati = "Depresi";
             gamePanel.gameState = gamePanel.gameOverState;
-            // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
-            // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
-            // if (gamePanel.indexCurrentSim == 0){
-            // gamePanel.indexCurrentSim++;
-            // } else {
-            // gamePanel.indexCurrentSim--;
-            // }
-            // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki
-            // == 0){
-            // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki++;
-            // } else {
-            // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki--;
-            // }
         } else if (kekenyangan <= 0) {
             if (gamePanel.listSim.size() > 1) {
                 gamePanel.listSim.remove(gamePanel.indexCurrentSim);
@@ -264,19 +248,6 @@ public class Sim extends Entity {
             }
             keteranganMati = "Kelaparan";
             gamePanel.gameState = gamePanel.gameOverState;
-            // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
-            // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
-            // if (gamePanel.indexCurrentSim == 0){
-            // gamePanel.indexCurrentSim++;
-            // } else {
-            // gamePanel.indexCurrentSim--;
-            // }
-            // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki
-            // == 0){
-            // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki++;
-            // } else {
-            // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki--;
-            // }
         } else if (kesehatan <= 0) {
             if (gamePanel.listSim.size() > 1) {
                 gamePanel.listSim.remove(gamePanel.indexCurrentSim);
@@ -294,22 +265,11 @@ public class Sim extends Entity {
                 gamePanel.indexCurrentSim = 0;
             } else if (gamePanel.listSim.size() == 1) {
                 gamePanel.isOneSim = true;
+                gamePanel.worldTimeCounter = 0;
+                gamePanel.worldTimeSatuHariCounter = 0;
             }
             keteranganMati = "Sakit";
             gamePanel.gameState = gamePanel.gameOverState;
-            // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
-            // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
-            // if (gamePanel.indexCurrentSim == 0){
-            // gamePanel.indexCurrentSim++;
-            // } else {
-            // gamePanel.indexCurrentSim--;
-            // }
-            // if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki
-            // == 0){
-            // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki++;
-            // } else {
-            // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki--;
-            // }
         }
     }
 

@@ -421,7 +421,6 @@ public class KeyHandler implements KeyListener {
         } else if (keyCode == KeyEvent.VK_ENTER) {
             enterPressed = true;
         } else if (keyCode == KeyEvent.VK_T) {
-            System.out.println(gamePanel.worldTimeCounter);
             if (checkWorldTime == false) {
                 checkWorldTime = true;
             } else {
