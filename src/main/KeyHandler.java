@@ -236,6 +236,7 @@ public class KeyHandler implements KeyListener {
                         gamePanel.ui.titleScreenState = 0;
                     }
                     gamePanel.ui.commandNumber = 0;
+                    keyCode = KeyEvent.VK_0;
                 } else if (keyCode == KeyEvent.VK_ESCAPE) {
                     gamePanel.ui.titleScreenState = 0;
                     gamePanel.ui.commandNumber = 0;
@@ -482,9 +483,9 @@ public class KeyHandler implements KeyListener {
             }
         } else if (keyCode == KeyEvent.VK_K) {
             gamePanel.gameState = gamePanel.kerjaState;
-        } else if (keyCode == KeyEvent.VK_O){
+        } else if (keyCode == KeyEvent.VK_O) {
             gamePanel.gameState = gamePanel.inputDurasiOlahragaState;
-        } 
+        }
     }
 
     public void pauseState(int keyCode) {
