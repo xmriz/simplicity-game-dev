@@ -111,6 +111,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int gantiPekerjaanState = 29;
     public final int inputDurasiOlahragaState = 30;
     public final int saveState = 31;
+    public final int melihatWaktuState = 32;
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {

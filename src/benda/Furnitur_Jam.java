@@ -21,5 +21,6 @@ public class Furnitur_Jam extends Furnitur{
     public void action(){
         // aksi masak
         // TODO : KERJA AKSI MELIHAT WAKTU
+        gamePanel.gameState = gamePanel.melihatWaktuState;
     }
 }

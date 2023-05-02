@@ -397,6 +397,10 @@ public class KeyHandler implements KeyListener {
             saveState(keyCode);
         }
 
+        // MELIHAT WAKTU
+        else if (gamePanel.gameState == gamePanel.melihatWaktuState){
+            melihatWaktuState(keyCode);
+        }
     }
 
     public void playState(int keyCode) {
@@ -2707,8 +2711,8 @@ public class KeyHandler implements KeyListener {
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
                 // efek
-                // gamePanel.getCurrentSim().mood -= (durasi/30)*10;
-                // gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
+                gamePanel.getCurrentSim().mood -= (durasi/30)*10;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
                 gamePanel.getCurrentSim().pekerjaan.totalDurasiKerjaPerPekerjaan += durasi;
                 gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji += durasi;
                 if (gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji >= 240) {
@@ -2872,6 +2876,14 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.inputText = "";
             gamePanel.ui.inputTextDone = false;
             gamePanel.ui.commandNumber = 0;
+            gamePanel.gameState = gamePanel.playState;
+            cursorSound();
+        }
+    }
+
+
+    public void melihatWaktuState(int keyCode) {
+        if (keyCode == KeyEvent.VK_ESCAPE){
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
         }
