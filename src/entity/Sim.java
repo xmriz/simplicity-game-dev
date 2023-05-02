@@ -259,6 +259,8 @@ public class Sim extends Entity {
                 gamePanel.indexCurrentSim = 0;
             } else if (gamePanel.listSim.size() == 1) {
                 gamePanel.isOneSim = true;
+                gamePanel.worldTimeCounter = 0;
+                gamePanel.worldTimeSatuHariCounter = 0;
             }
             keteranganMati = "Kelaparan";
             gamePanel.gameState = gamePanel.gameOverState;

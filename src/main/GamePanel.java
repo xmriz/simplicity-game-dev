@@ -170,8 +170,8 @@ public class GamePanel extends JPanel implements Runnable {
                 
             }
 
-            if (worldTimeCounter >= 720) {
-                worldTimeCounter = 0;
+            if (worldTimeSatuHariCounter >= 720) {
+                worldTimeSatuHariCounter = 0;
                 listSim.get(i).efekWaktuTidakTidurCounter = 0;
                 listSim.get(i).efekWaktuTidakBuangAirCounter = 0;
                 listSim.get(i).isUdahMakanDalamSatuHari = false;
