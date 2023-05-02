@@ -236,6 +236,8 @@ public class Sim extends Entity {
             // } else
             if (gamePanel.listSim.size() == 1) {
                 gamePanel.isOneSim = true;
+                gamePanel.worldTimeCounter = 0;
+                gamePanel.worldTimeSatuHariCounter = 0;
             }
 
             keteranganMati = "Depresi";
@@ -313,6 +315,8 @@ public class Sim extends Entity {
             // } else
             if (gamePanel.listSim.size() == 1) {
                 gamePanel.isOneSim = true;
+                gamePanel.worldTimeCounter = 0;
+                gamePanel.worldTimeSatuHariCounter = 0;
             }
             keteranganMati = "Sakit";
             isMati = true;
@@ -432,9 +436,15 @@ public class Sim extends Entity {
                             bahanMakanan.eat(this);
                             gamePanel.worldTimeCounter += 30;
                             gamePanel.worldTimeSatuHariCounter += 30;
+
                             for (int i = 0; i < gamePanel.listSim.size(); i++) {
                                 gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += 30;
+                                gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += 30;
+                                if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
+                                    gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += 30;
+                                }
                             }
+
                             if (bahanMakanan.quantity > 1) {
                                 bahanMakanan.quantity--;
                             } else {
@@ -481,6 +491,10 @@ public class Sim extends Entity {
                             gamePanel.worldTimeSatuHariCounter += 30;
                             for (int i = 0; i < gamePanel.listSim.size(); i++) {
                                 gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += 30;
+                                gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += 30;
+                                if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
+                                    gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += 30;
+                                }
                             }
                             if (makanan.quantity > 1) {
                                 makanan.quantity--;

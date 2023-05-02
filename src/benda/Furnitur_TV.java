@@ -20,7 +20,6 @@ public class Furnitur_TV extends Furnitur{
     @Override
     public void action(){
         // aksi nonton
-        System.out.println("Aksi Nonton");
         gamePanel.gameState = gamePanel.inputDurasiNontonState;
     }
 }

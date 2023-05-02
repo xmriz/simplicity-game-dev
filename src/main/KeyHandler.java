@@ -402,6 +402,10 @@ public class KeyHandler implements KeyListener {
             saveState(keyCode);
         }
 
+        // MELIHAT WAKTU
+        else if (gamePanel.gameState == gamePanel.melihatWaktuState){
+            melihatWaktuState(keyCode);
+        }
     }
 
     public void playState(int keyCode) {
@@ -426,7 +430,7 @@ public class KeyHandler implements KeyListener {
         } else if (keyCode == KeyEvent.VK_ENTER) {
             enterPressed = true;
         } else if (keyCode == KeyEvent.VK_T) {
-            System.out.println(gamePanel.worldTimeCounter);
+            System.out.println(gamePanel.getCurrentSim().efekWaktuTidakTidurCounter);
             if (checkWorldTime == false) {
                 checkWorldTime = true;
             } else {
@@ -1911,6 +1915,10 @@ public class KeyHandler implements KeyListener {
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    }
                 }
                 gamePanel.ui.setelahAksi(durasi);
 
@@ -2039,6 +2047,10 @@ public class KeyHandler implements KeyListener {
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
@@ -2157,6 +2169,10 @@ public class KeyHandler implements KeyListener {
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
@@ -2271,6 +2287,10 @@ public class KeyHandler implements KeyListener {
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
@@ -2381,6 +2401,10 @@ public class KeyHandler implements KeyListener {
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
@@ -2488,6 +2512,10 @@ public class KeyHandler implements KeyListener {
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
@@ -2602,6 +2630,10 @@ public class KeyHandler implements KeyListener {
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
@@ -2723,6 +2755,10 @@ public class KeyHandler implements KeyListener {
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
@@ -2841,6 +2877,10 @@ public class KeyHandler implements KeyListener {
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
 
@@ -2945,8 +2985,8 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.currentAksiDone = false;
 
                 // efek
-                // gamePanel.getCurrentSim().mood -= (durasi/30)*10;
-                // gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
+                gamePanel.getCurrentSim().mood -= (durasi/30)*10;
+                gamePanel.getCurrentSim().kekenyangan -= (durasi/30)*10;
                 gamePanel.getCurrentSim().pekerjaan.totalDurasiKerjaPerPekerjaan += durasi;
                 gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji += durasi;
                 if (gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji >= 240) {
@@ -2970,6 +3010,10 @@ public class KeyHandler implements KeyListener {
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
                     gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    }
                 }
 
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
@@ -3143,6 +3187,14 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.inputText = "";
             gamePanel.ui.inputTextDone = false;
             gamePanel.ui.commandNumber = 0;
+            gamePanel.gameState = gamePanel.playState;
+            cursorSound();
+        }
+    }
+
+
+    public void melihatWaktuState(int keyCode) {
+        if (keyCode == KeyEvent.VK_ESCAPE){
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
         }

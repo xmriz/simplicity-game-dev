@@ -183,9 +183,15 @@ public class EventHandler {
                         int durasi = UtilityTool.pythagoras(x1, y1, x2, y2);
                         gamePanel.worldTimeCounter += durasi;
                         gamePanel.worldTimeSatuHariCounter += durasi;
-                        for (int i = 0; i < gamePanel.listSim.size(); i++){
+
+                        // efek waktu
+                        for (int i = 0; i < gamePanel.listSim.size(); i++) {
                                 gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
-                            }
+                                gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                                if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                                }
+                        }
 
                         // efek
                         gamePanel.getCurrentSim().mood += (durasi/30)*10;

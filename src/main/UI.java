@@ -137,6 +137,8 @@ public class UI {
             drawSaveScreen();
         } else if (gamePanel.gameState == gamePanel.inputDurasiOlahragaState) {
             drawInputDurasiOlahragaScreen("Input Durasi Olahraga:");
+        } else if (gamePanel.gameState == gamePanel.melihatWaktuState){
+            drawMelihatWaktuScreen();
         }
     }
 
@@ -748,7 +750,6 @@ public class UI {
                                 + gamePanel.getCurrentSim().remainingTimeBuy + " detik.";
                         // gamePanel.getCurrentSim().setIsCanBuyToTrue();
                     }
-                    // TODO: THREAD BELI BARANG -> BUAT THREAD
 
                 } else {
                     gamePanel.ui.subState = 0;
@@ -758,7 +759,6 @@ public class UI {
                     gamePanel.ui.currentDialog = "Tidak dapat membeli barang.\nMasih dalam proses pembelian barang\nsebelumnya.";
                 }
 
-                // TODO : Masukin ke dalam thread, tapi indexcurrentsim simpan
                 // if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof BahanMakanan) {
                 // BahanMakanan makanan = (BahanMakanan)
                 // gamePanel.npc[0][4].inventory.get(itemIndex);
@@ -1193,17 +1193,21 @@ public class UI {
                         if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
                             gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
                         }
-                        if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
-                            gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
-                        }
-                        if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
-                            gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
-                        }
 
                         // simpan makanan yang udah jadi ke inventory
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(makanan);
 
                         durasiTimer = (int) (3 * makanan.kekenyangan / 2);
+                        int durasi = durasiTimer;
+
+                        // nambah world time
+                        for (int i = 0; i < gamePanel.listSim.size(); i++) {
+                            gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
+                            gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
+                            if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
+                                gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                            }
+                        }
                         currentAksi = "Masak";
                         currentAksiCadangan = makanan.name + " berhasil dibuat dan\ndimasukkan ke inventory!";
                         // mulai masak : draw dialog
@@ -1217,7 +1221,6 @@ public class UI {
                         combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
                         currentDialog = "Bahan tidak cukup untuk memasak\n" + makanan.name + "!";
-                        // TODO MASAK
                     }
                 }
             }
@@ -1610,6 +1613,7 @@ public class UI {
     }
 
     public void drawGameOverScreen() {
+        System.out.println("masuk game over");
         g2d.setColor(new Color(0, 0, 0, 150));
         g2d.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
 
@@ -2206,6 +2210,97 @@ public class UI {
     }
 
     // ------------------------------ BATAS SUCI ------------------------------
+
+    public void drawMelihatWaktuScreen(){
+        // draw window
+        int x = getXforCenteredText("Waktu");
+        x -= 4 * gamePanel.tileSize;
+        int y = gamePanel.tileSize * 4;
+        int width = gamePanel.screenWidth - 2 * x;
+        int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
+        drawSubWindow(x, y, width, height);
+
+        // draw judul text
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 35f));
+        x = getXforCenteredText("Waktu");
+        y += gamePanel.tileSize + 5;
+        g2d.drawString("Waktu", x, y);
+
+        // draw text
+        // TODO MELIHAT WAKTU
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        x = getXforCenteredText("Waktu") - 3 * gamePanel.tileSize;
+        y += gamePanel.tileSize + 20;
+        g2d.drawString("Time", x, y);
+        y += 35;
+        g2d.drawString("Day", x, y);
+        y += gamePanel.tileSize+15;
+        g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 30f));
+        g2d.drawString("Sisa Waktu", x, y);
+        y += 35;
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("Upgrade Rumah", x, y);
+        y += 35;
+        g2d.drawString("Beli Barang", x, y);
+
+        // value 
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        x = getXforCenteredText("Waktu") + 2 *gamePanel.tileSize -30;
+        y = gamePanel.tileSize * 4 + gamePanel.tileSize + 15 + 20 + gamePanel.tileSize;
+        g2d.drawString(": " + gamePanel.worldTimeCounter%720, x, y);
+        y += 35;
+        g2d.drawString(": " + gamePanel.worldTimeCounter/720, x, y);
+        y += gamePanel.tileSize+5 + 35;
+        g2d.drawString(": " + gamePanel.getCurrentSim().rumah.remainingTimeUpgrade, x, y);
+        y += 35;
+        g2d.drawString(": " + gamePanel.getCurrentSim().remainingTimeBuy, x, y);
+
+
+        // g2d.setFont(g2d.getFont().deriveFont(32f));
+        // int textX = frameX + 20;
+        // int textY = textYSIMINFO + lineHeight + 20;
+        // g2d.drawString("Nama", textX, textY);
+        // textY += lineHeight;
+        // g2d.drawString("Pekerjaan", textX, textY);
+        // textY += lineHeight;
+        // g2d.drawString("Uang", textX, textY);
+        // textY += lineHeight;
+        // g2d.drawString("Kesehatan", textX, textY);
+        // textY += lineHeight;
+        // g2d.drawString("Kekenyangan", textX, textY);
+        // textY += lineHeight;
+        // g2d.drawString("Mood", textX, textY);
+
+        // // SIM INFO VALUE
+        // int tailX = frameX + frameWidth / 3;
+        // textY = textYSIMINFO + lineHeight + 20;
+        // String value;
+        // g2d.drawString(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).nama, tailX, textY);
+        // textY += lineHeight;
+        // g2d.drawString(" : "
+        //         + gamePanel.getCurrentSim().pekerjaan.listPekerjaan[gamePanel.getCurrentSim().pekerjaan.indexPekerjaan],
+        //         tailX, textY);
+        // textY += lineHeight;
+        // value = String.valueOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).uang);
+        // g2d.drawString(" : " + value, tailX, textY);
+        // textY += lineHeight;
+        // value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).kesehatan + "/"
+        //         + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxKesehatan);
+        // g2d.drawString(value, tailX, textY);
+        // textY += lineHeight;
+        // value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).kekenyangan + "/"
+        //         + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxKekenyangan);
+        // g2d.drawString(value, tailX, textY);
+        // textY += lineHeight;
+        // value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).mood + "/"
+        //         + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxMood);
+        // g2d.drawString(value, tailX, textY);
+
+        
+    }
+
 
     // start timer thread
     public Thread startTimerThread(int duration) {

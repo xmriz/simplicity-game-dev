@@ -26,8 +26,14 @@ public class Furnitur_Toilet extends Furnitur {
         // gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);
         gamePanel.worldTimeCounter += 10;
         gamePanel.worldTimeSatuHariCounter += 10;
+        gamePanel.getCurrentSim().isUdahMakanDalamSatuHari = false;
+
         for (int i = 0; i < gamePanel.listSim.size(); i++) {
             gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += 10;
+            gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += 10;
+            if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
+                gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += 10;
+            }
         }
         gamePanel.getCurrentSim().kekenyangan -= 20;
         gamePanel.getCurrentSim().mood += 10;
