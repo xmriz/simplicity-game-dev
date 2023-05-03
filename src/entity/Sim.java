@@ -339,18 +339,18 @@ public class Sim extends Entity {
 
     public void pickUpObject(int index) {
         if (index != 999) {
-            if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah.get(indexLocationRuangan).bendaRuangan
+            if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah().get(indexLocationRuangan).getBendaRuangan()
                     .get(index) instanceof Furnitur) {
-                if (canObtainItem(gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah
-                        .get(indexLocationRuangan).bendaRuangan.get(index))) {
-                    Furnitur furniturTemp = (Furnitur) gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(indexLocationRuangan).bendaRuangan.get(index);
-                    gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(indexLocationRuangan).bendaRuangan.remove(index);
+                if (canObtainItem(gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
+                        .get(indexLocationRuangan).getBendaRuangan().get(index))) {
+                    Furnitur furniturTemp = (Furnitur) gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
+                            .get(indexLocationRuangan).getBendaRuangan().get(index);
+                    gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
+                            .get(indexLocationRuangan).getBendaRuangan().remove(index);
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Berhasil mengambil " + furniturTemp.name;
+                    gamePanel.ui.currentDialog = "Berhasil mengambil " + furniturTemp.getName();
                 }
             }
         }
@@ -388,8 +388,8 @@ public class Sim extends Entity {
                     int indexRumahYangDimasuki = gamePanel.listSim
                             .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki;
                     int indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan;
-                    Furnitur furniturTemp = (Furnitur) gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(indexLocationRuangan).bendaRuangan.get(indexBendayangDisentuh);
+                    Furnitur furniturTemp = (Furnitur) gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
+                            .get(indexLocationRuangan).getBendaRuangan().get(indexBendayangDisentuh);
                     furniturTemp.action();
                 }
             }
@@ -429,7 +429,7 @@ public class Sim extends Entity {
                     gamePanel.ui.currentDialog = "Anda tidak bisa makan di luar rumah.";
                 } else {
                     if (indexBendaYangDisentuh != 999) {
-                        if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah
+                        if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
                                 .get(indexLocationRuangan).bendaRuangan
                                 .get(indexBendaYangDisentuh) instanceof Furnitur_MejaKursi) {
                             BahanMakanan bahanMakanan = (BahanMakanan) selectedBenda;
@@ -445,8 +445,8 @@ public class Sim extends Entity {
                                 }
                             }
 
-                            if (bahanMakanan.quantity > 1) {
-                                bahanMakanan.quantity--;
+                            if (bahanMakanan.getQuantity() > 1) {
+                                bahanMakanan.decQuantity(1);
                             } else {
                                 inventory.remove(itemIndex);
                             }
@@ -482,8 +482,8 @@ public class Sim extends Entity {
                     gamePanel.ui.currentDialog = "Anda tidak bisa makan di luar rumah.";
                 } else {
                     if (indexBendaYangDisentuh != 999) {
-                        if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.ruanganRumah
-                                .get(indexLocationRuangan).bendaRuangan
+                        if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
+                                .get(indexLocationRuangan).getBendaRuangan()
                                 .get(indexBendaYangDisentuh) instanceof Furnitur_MejaKursi) {
                             Makanan makanan = (Makanan) selectedBenda;
                             makanan.eat(this);
@@ -497,12 +497,12 @@ public class Sim extends Entity {
                                 }
                             }
                             if (makanan.quantity > 1) {
-                                makanan.quantity--;
+                                makanan.decQuantity(1);
                             } else {
                                 inventory.remove(itemIndex);
                             }
-                            gamePanel.ui.currentAksiCadangan = "Makan " + makanan.name + "\nKekenyangan bertambah "
-                                    + makanan.kekenyangan;
+                            gamePanel.ui.currentAksiCadangan = "Makan " + makanan.getName() + "\nKekenyangan bertambah "
+                                    + makanan.getKekenyangan();
                             gamePanel.ui.currentAksi = "Makan";
                             gamePanel.gameState = gamePanel.timerState;
                             gamePanel.ui.currentAksiDone = false;
@@ -558,7 +558,7 @@ public class Sim extends Entity {
         int itemIndex = 999;
 
         for (Benda benda : inventory) {
-            if (benda.name.equals(itemName)) {
+            if (benda.getName().equals(itemName)) {
                 itemIndex = inventory.indexOf(benda);
                 break;
             }
@@ -571,35 +571,35 @@ public class Sim extends Entity {
 
         // lampu pada inventory hanya boleh ada 1
         if (item instanceof Lampu) {
-            int index = searchItemInInventory(item.name);
+            int index = searchItemInInventory(item.getName());
             if (index != 999) { // item terdapat di inventory
 
             } else {
                 if (inventory.size() < maxInventorySize) {
                     inventory.add(item);
-                    inventory.get(inventory.size() - 1).quantity = 1;
+                    inventory.get(inventory.size() - 1).setQuantity(1);
                     canObtain = true;
                 }
             }
         }
 
         // check if item is stackable
-        else if (item.stackable) {
-            int index = searchItemInInventory(item.name);
+        else if (item.getStackable()) {
+            int index = searchItemInInventory(item.getName());
             if (index != 999) {
-                inventory.get(index).quantity++;
+                inventory.get(index).incQuantity(1);
                 canObtain = true;
             } else {
                 if (inventory.size() < maxInventorySize) {
                     inventory.add(item);
-                    inventory.get(inventory.size() - 1).quantity = 1;
+                    inventory.get(inventory.size() - 1).setQuantity(1);
                     canObtain = true;
                 }
             }
         } else { // not stackable
             if (inventory.size() < maxInventorySize) {
                 inventory.add(item);
-                inventory.get(inventory.size() - 1).quantity = 1;
+                inventory.get(inventory.size() - 1).setQuantity(1);
                 canObtain = true;
             }
         }
