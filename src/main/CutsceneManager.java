@@ -67,7 +67,7 @@ public class CutsceneManager {
                 "Tester:\n" +
                 "Abraham Megantoro (18221123)\n" +
                 "Kevin Sebastian (1822143)\n" +
-                "Ahmad Rizki (18221071)" +
+                "Ahmad Rizki (18221071)\n" +
                 "Iskandar Muda R. Parlambang (18221109)\n"
                 + "\n\n\n" + 
                 "Asisten:\n" +
@@ -113,7 +113,7 @@ public class CutsceneManager {
 
     public void scene_ending(){
         if (scenePhase == 0){ // fade in black background
-            alpha += 0.005f;
+            alpha += 0.008f;
             if (alpha >= 1.0f){
                 alpha = 1.0f;
             }
@@ -156,7 +156,7 @@ public class CutsceneManager {
             }
 
 
-            if (counterReached(480)){
+            if (counterReached(300)){
                 scenePhase++;
             }
         } 
@@ -166,7 +166,7 @@ public class CutsceneManager {
             y = gamePanel.screenHeight/2;
             drawString(1f, 38f, y, credit, 40);
 
-            if (counterReached(480)){
+            if (counterReached(300)){
                 scenePhase++;
             }
         }
@@ -177,17 +177,17 @@ public class CutsceneManager {
             drawString(1f, 38f, y, credit, 40);
         }
 
-        if (scenePhase == 4){ // fade out black background
-            alpha += 0.005f;
-            if (alpha >= 1.0f){
-                alpha = 1.0f;
-            }
-            drawBlackBackground(alpha);
-            if (alpha == 1.0f){
-                alpha = 0.0f;
-                gamePanel.gameState = gamePanel.menuState;
-            }
-        }
+        // if (scenePhase == 4){ // fade out black background
+        //     alpha += 0.005f;
+        //     if (alpha >= 1.0f){
+        //         alpha = 1.0f;
+        //     }
+        //     drawBlackBackground(alpha);
+        //     if (alpha == 1.0f){
+        //         alpha = 0.0f;
+        //         gamePanel.gameState = gamePanel.menuState;
+        //     }
+        // }
     }
 
     public boolean counterReached(int target){
