@@ -42,7 +42,7 @@ public class CutsceneManager {
                 "\n\n\n" +
                 "PJ Buklet:\n" +
                 "Silvester Kresna (18221049)\n" +
-                "Nadine Aliya (18221081)" + 
+                "Nadine Aliya (18221081)\n" + 
                 "\n\n\n" +
                 "PJ Class Diagram:\n" +
                 "Luthfi Hanif (18221071)\n" 
@@ -63,6 +63,12 @@ public class CutsceneManager {
                 "Nadine Aliya (18221081)\n" +
                 "Iskandar Muda R. Parlambang (18221109)\n" +
                 "Luthfi Hanif (18221071)\n"
+                + "\n\n\n" + 
+                "Tester:\n" +
+                "Abraham Megantoro (18221123)\n" +
+                "Kevin Sebastian (1822143)\n" +
+                "Ahmad Rizki (18221071)" +
+                "Iskandar Muda R. Parlambang (18221109)\n"
                 + "\n\n\n" + 
                 "Asisten:\n" +
                 "Afif Fahreza (18219058)\n" +
