@@ -120,6 +120,7 @@ public class SaveLoad {
             ds.jumlahSim = gamePanel.listSim.size();
             ds.isOneSim = gamePanel.isOneSim;
             ds.worldTimeCounter = gamePanel.worldTimeCounter;
+            ds.worldTimeSatuHariCounter = gamePanel.worldTimeSatuHariCounter;
 
             ds.indexCurrentSim = gamePanel.indexCurrentSim;
 
@@ -157,7 +158,6 @@ public class SaveLoad {
                 ds.infoSimIntegers.add(gamePanel.listSim.get(k).currentMap);
                 ds.infoSimIntegers.add(gamePanel.listSim.get(k).worldX);
                 ds.infoSimIntegers.add(gamePanel.listSim.get(k).worldY);
-
 
                 ds.infoSimBooleans.add(gamePanel.listSim.get(k).pekerjaan.isCanChangePekerjaan);
                 ds.infoSimBooleans.add(gamePanel.listSim.get(k).pekerjaan.isCanStartPekerjaan);
@@ -330,8 +330,10 @@ public class SaveLoad {
             gamePanel.indexCurrentSim = 0;
             gamePanel.isOneSim = ds.isOneSim;
             gamePanel.worldTimeCounter = ds.worldTimeCounter;
+            gamePanel.worldTimeSatuHariCounter = ds.worldTimeSatuHariCounter;
 
-            for (int i = 1; i < gamePanel.listSim.size(); i++) {
+            int tempSize = gamePanel.listSim.size();
+            for (int i = 1; i < tempSize; i++) {
                 gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
                 gamePanel.listRumah[0].remove(gamePanel.listSim.size() - 1);
             }
@@ -443,7 +445,6 @@ public class SaveLoad {
                     gamePanel.listSim.get(j).rumah.ruanganRumah.add(ruangan1);
                 }
 
-
                 for (int i = 0; i < ds.rumah.get(sumRumah + 1); i++) {
 
                     if (ds.ruangan.get(num + 1) != null) {
@@ -495,7 +496,6 @@ public class SaveLoad {
 
             }
             gamePanel.indexCurrentSim = ds.indexCurrentSim;
-
 
         } catch (
 

@@ -81,8 +81,13 @@ public class KeyHandler implements KeyListener {
                 } else if (keyCode == KeyEvent.VK_ENTER) {
                     if (gamePanel.ui.commandNumber == 0) { // start game
                         Sim sim1 = new Sim(gamePanel, gamePanel.keyHandler);
-                        for (int i = 1; i < gamePanel.listSim.size(); i++) {
+                        System.out.println(gamePanel.listSim.size());
+                        int tempSize = gamePanel.listSim.size();
+                        for (int i = 1; i < tempSize; i++) {
+                            System.out.println(gamePanel.listSim.size());
+                            System.out.println(200);
                             gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
+                            System.out.println(2033);
                             gamePanel.listRumah[0].remove(gamePanel.listSim.size() - 1);
                         }
                         gamePanel.listSim.set(0, sim1);
@@ -91,6 +96,11 @@ public class KeyHandler implements KeyListener {
                                 * gamePanel.tileSize;
                         gamePanel.listRumah[0].get(0).worldY = gamePanel.listSim.get(0).rumah.rowRumah
                                 * gamePanel.tileSize;
+
+                        gamePanel.indexCurrentSim = 0;
+                        gamePanel.worldTimeCounter = 0;
+                        gamePanel.isOneSim = true;
+                        gamePanel.worldTimeSatuHariCounter = 0;
 
                         gamePanel.listSim.get(0).nama = gamePanel.ui.inputFirstSimName;
                         if (gamePanel.listSim.get(0).nama.length() == 0) {
