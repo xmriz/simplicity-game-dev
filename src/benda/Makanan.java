@@ -5,11 +5,27 @@ import java.util.*;
 import entity.Sim;
 
 public abstract class Makanan extends Benda {
-    public List<String> bahan = new ArrayList<>();
-    public int kekenyangan;
+    private List<String> bahan = new ArrayList<>();
+    private int kekenyangan;
     public Makanan(){
-        category = "Makanan";
-        stackable = true;
+        setCategory("Makanan");
+        setStackable(true);
+    }
+
+    public List<String> getBahan(){
+        return bahan;
+    }
+
+    public void setBahan(List<String> bahan){
+        this.bahan=bahan;
+    }
+
+    public int getKekenyangan(){
+        return kekenyangan;
+    }
+
+    public void setKekenyangan(int kekenyangan){
+        this.kekenyangan=kekenyangan;
     }
 
     public void eat(Sim sim){
