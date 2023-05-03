@@ -148,6 +148,9 @@ public class UI {
             drawInputDurasiOlahragaScreen("Input Durasi Olahraga:");
         } else if (gamePanel.gameState == gamePanel.melihatWaktuState){
             drawMelihatWaktuScreen();
+        } else if (gamePanel.gameState == gamePanel.cutsceneState){
+            // CUTSCENE
+            gamePanel.cutsceneManager.draw(g2d);
         }
     }
 
@@ -1281,7 +1284,7 @@ public class UI {
         g2d.setFont(g2d.getFont().deriveFont(32f));
         x = gamePanel.tileSize * 5;
         text = "Music";
-        y += gamePanel.tileSize * 2;
+        y += gamePanel.tileSize * 2 - 24;
         g2d.drawString(text, x, y);
         if (commandNumber == 0) {
             int xRect = x + gamePanel.tileSize * 4;
@@ -1345,10 +1348,21 @@ public class UI {
             }
         }
 
-        text = "Back";
-        y += gamePanel.tileSize * 2;
+        text = "Credits";
+        y += gamePanel.tileSize;
         g2d.drawString(text, x, y);
         if (commandNumber == 5) {
+            g2d.drawString(">", x - gamePanel.tileSize / 2, y);
+            if (gamePanel.keyHandler.enterPressed) {
+                commandNumber = 0;
+                gamePanel.gameState = gamePanel.cutsceneState;
+            }
+        }
+
+        text = "Back";
+        y += gamePanel.tileSize * 2 - 24;
+        g2d.drawString(text, x, y);
+        if (commandNumber == 6) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
             if (gamePanel.keyHandler.enterPressed) {
                 commandNumber = 0;

@@ -58,6 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
     EnvironmentManager environmentManager = new EnvironmentManager(this); // create a new EnvironmentManager object
     Map map = new Map(this);
     SaveLoad saveLoad = new SaveLoad(this);
+    public CutsceneManager cutsceneManager = new CutsceneManager(this);
     Thread gameThread; // thread for the game
 
     // Multisim

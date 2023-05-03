@@ -415,7 +415,20 @@ public class KeyHandler implements KeyListener {
         else if (gamePanel.gameState == gamePanel.melihatWaktuState) {
             melihatWaktuState(keyCode);
         }
+
+        // CUTSCENE
+        else if (gamePanel.gameState == gamePanel.cutsceneState) {
+            cutsceneState(keyCode);
+        }
     }
+
+    public void cutsceneState(int keyCode) {
+        if (keyCode == KeyEvent.VK_ENTER) {
+            gamePanel.gameState = gamePanel.menuState;
+            gamePanel.cutsceneManager.scenePhase = 0;
+        }
+    }
+
 
     public void playState(int keyCode) {
         if (keyCode == KeyEvent.VK_UP) {
@@ -658,7 +671,7 @@ public class KeyHandler implements KeyListener {
                 cursorSound();
                 inputDurasiTidurState(keyCode);
             } else if (keyCode == KeyEvent.VK_UP) {
-                gamePanel.ui.commandNumber = 5;
+                gamePanel.ui.commandNumber = 6;
                 cursorSound();
             } else if (keyCode == KeyEvent.VK_LEFT) {
                 if (gamePanel.music.volumeScale > 0) {
@@ -688,7 +701,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.playMusic(0);
                 cursorSound();
             }
-        } else if (gamePanel.ui.commandNumber == 5) {
+        } else if (gamePanel.ui.commandNumber == 6) {
             if (keyCode == KeyEvent.VK_UP) {
                 gamePanel.ui.commandNumber--;
                 cursorSound();
@@ -740,6 +753,19 @@ public class KeyHandler implements KeyListener {
             }
             if (keyCode == KeyEvent.VK_ENTER) {
                 gamePanel.gameState = gamePanel.saveState;
+                gamePanel.ui.commandNumber = 0;
+                cursorSound();
+            }
+        } else if (gamePanel.ui.commandNumber == 5) {
+            if (keyCode == KeyEvent.VK_UP) {
+                gamePanel.ui.commandNumber--;
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_DOWN) {
+                gamePanel.ui.commandNumber++;
+                cursorSound();
+            } else if (keyCode == KeyEvent.VK_ENTER) {
+                gamePanel.gameState = gamePanel.cutsceneState;
+                gamePanel.cutsceneManager.sceneNum = gamePanel.cutsceneManager.ending;
                 gamePanel.ui.commandNumber = 0;
                 cursorSound();
             }
