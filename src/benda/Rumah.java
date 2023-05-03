@@ -226,16 +226,13 @@ public class Rumah extends Benda {
         // remainingTimeUpgrade = 18 * 60; // waktu mundur dalam detik
         // }
         if (isLockUpgrade == false) {
-            System.out.println("Waktu tersisa: " + remainingTimeUpgrade + " detik");
             if (remainingTimeUpgrade < 0) {
                 remainingTimeUpgrade = 0;
             }
             if (remainingTimeUpgrade == 0) {
                 isCanUpgrade = true; // atur isCanUpgrade menjadi true setelah 18 menit
                 ruanganUpgrade.index = jumlahRuangan;
-                System.out.println(ruanganUpgrade.index);
                 if (posisiUpgrade.equals("up")) {
-                    System.out.println(0);
                     ruanganRumah
                             .get(gamePanel.listSim
                                     .get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade).up = ruanganUpgrade;
@@ -301,11 +298,6 @@ public class Rumah extends Benda {
                         + gamePanel.listSim.get(indexSimSaatUpgrade).nama
                         + " telah selesai.";
                 gamePanel.listSim.get(indexSimSaatUpgrade).isUpgradeDone = true;
-                System.out.println(ruanganUpgrade.index);
-                System.out.println(ruanganUpgrade.up);
-                System.out.println(ruanganUpgrade.left);
-                System.out.println(ruanganUpgrade.right);
-
             }
         }
     }

@@ -2,7 +2,6 @@ package entity;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -97,27 +96,31 @@ public class Sim extends Entity {
     }
 
     public void setItems() {
-        // barang yang bisa dimiliki
-        // BAHAN MAKANAN
-        inventory.add(new BahanMakanan_Ayam());
-        inventory.add(new BahanMakanan_Bayam());
-        inventory.add(new BahanMakanan_Kacang());
-        inventory.add(new BahanMakanan_Kentang());
-        inventory.add(new BahanMakanan_Nasi());
-        inventory.add(new BahanMakanan_Sapi());
-        inventory.add(new BahanMakanan_Susu());
-        inventory.add(new BahanMakanan_Wortel());
+        // // barang yang bisa dimiliki
+        // // BAHAN MAKANAN
+        // inventory.add(new BahanMakanan_Ayam());
+        // inventory.add(new BahanMakanan_Bayam());
+        // inventory.add(new BahanMakanan_Kacang());
+        // inventory.add(new BahanMakanan_Kentang());
+        // inventory.add(new BahanMakanan_Nasi());
+        // inventory.add(new BahanMakanan_Sapi());
+        // inventory.add(new BahanMakanan_Susu());
+        // inventory.add(new BahanMakanan_Wortel());
 
-        // MAKANAN
-        inventory.add(new Makanan_Bistik());
-        inventory.add(new Makanan_NasiAyam());
-        inventory.add(new Makanan_NasiKari());
-        inventory.add(new Makanan_SusuKacang());
-        inventory.add(new Makanan_TumisSayur());
+        // // MAKANAN
+        // inventory.add(new Makanan_Bistik());
+        // inventory.add(new Makanan_NasiAyam());
+        // inventory.add(new Makanan_NasiKari());
+        // inventory.add(new Makanan_SusuKacang());
+        // inventory.add(new Makanan_TumisSayur());
 
         // FURNITUR
-        inventory.add(new Furnitur_Jam(gamePanel));
+        // OBJEK BASIC
+        inventory.add(new Furnitur_KasurSingle(gamePanel));
+        inventory.add(new Furnitur_Toilet(gamePanel));
         inventory.add(new Furnitur_KomporGas(gamePanel));
+        inventory.add(new Furnitur_MejaKursi(gamePanel));
+        inventory.add(new Furnitur_Jam(gamePanel));
         inventory.add(new Furnitur_Radio(gamePanel));
         // to be continuedd
     }
@@ -206,7 +209,6 @@ public class Sim extends Entity {
                 }
             }
         }
-        System.out.println(kekenyangan);
 
         if (mood <= 0) {
             // berlaku hanya jika sim yang mati adalah sim index 0
@@ -256,7 +258,6 @@ public class Sim extends Entity {
             // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki--;
             // }
         } else if (kekenyangan <= 0) {
-            System.out.println(0);
             // if (gamePanel.listSim.size() > 1) {
             // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
             // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
@@ -281,7 +282,6 @@ public class Sim extends Entity {
             }
             keteranganMati = "Kelaparan";
             isMati = true;
-            System.out.println(isMati);
             // gamePanel.listSim.remove(gamePanel.indexCurrentSim);
             // gamePanel.listRumah[0].remove(gamePanel.indexCurrentSim);
             // if (gamePanel.indexCurrentSim == 0){
@@ -464,14 +464,14 @@ public class Sim extends Entity {
                             gamePanel.ui.charIndex = 0;
                             gamePanel.ui.combinedText = "";
                             gamePanel.gameState = gamePanel.dialogState;
-                            gamePanel.ui.currentDialog = "Anda harus makan di meja makan!.";
+                            gamePanel.ui.currentDialog = "Anda harus makan di meja makan!";
                         }
                         indexBendaYangDisentuh = 999;
                     } else {
                         gamePanel.ui.charIndex = 0;
                         gamePanel.ui.combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Anda harus makan di meja makan!.";
+                        gamePanel.ui.currentDialog = "Anda harus makan di meja makan!";
                     }
                 }
             } else if (selectedBenda instanceof Makanan) {
@@ -514,13 +514,13 @@ public class Sim extends Entity {
                             gamePanel.ui.charIndex = 0;
                             gamePanel.ui.combinedText = "";
                             gamePanel.gameState = gamePanel.dialogState;
-                            gamePanel.ui.currentDialog = "Anda harus makan di meja makan!.";
+                            gamePanel.ui.currentDialog = "Anda harus makan di meja makan!";
                         }
                     } else {
                         gamePanel.ui.charIndex = 0;
                         gamePanel.ui.combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Anda harus makan di meja makan!.";
+                        gamePanel.ui.currentDialog = "Anda harus makan di meja makan!";
                     }
                 }
 
@@ -648,7 +648,6 @@ public class Sim extends Entity {
 
     public void setIsCanBuyToTrue() {
         if (isLockBuy == false) {
-            System.out.println("Waktu tersisa: " + remainingTimeBuy + " detik");
             if (remainingTimeBuy < 0) {
                 remainingTimeBuy = 0;
             }
@@ -664,7 +663,7 @@ public class Sim extends Entity {
                         // + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
                         isBarangSampai = true;
                         tempDialogBarang = "Pembelian barang oleh "
-                                + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
+                                + gamePanel.listSim.get(indexSimSaatBeli).nama + "\nberhasil";
                     } else {
                         gamePanel.listSim.get(indexSimSaatBeli).uang += makanan.harga;
                         gamePanel.ui.subState = 0;
@@ -683,7 +682,7 @@ public class Sim extends Entity {
                         // + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
                         isBarangSampai = true;
                         tempDialogBarang = "Pembelian barang oleh "
-                                + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
+                                + gamePanel.listSim.get(indexSimSaatBeli).nama + "\nberhasil";
                     } else {
                         gamePanel.listSim.get(indexSimSaatBeli).uang += furnitur.harga;
                         gamePanel.ui.subState = 0;
@@ -702,7 +701,7 @@ public class Sim extends Entity {
                         // + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
                         isBarangSampai = true;
                         tempDialogBarang = "Pembelian barang oleh "
-                                + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
+                                + gamePanel.listSim.get(indexSimSaatBeli).nama + "\nberhasil";
                     } else {
                         gamePanel.listSim.get(indexSimSaatBeli).uang += lampu.harga;
                         gamePanel.ui.subState = 0;

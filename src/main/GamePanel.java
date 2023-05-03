@@ -34,6 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldHeight = maxWorldRow * tileSize; // 3168 pixels
     public int worldTimeCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
 
+
     // darr ini gua tambah lagi
     public int worldTimeSatuHariCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
 
@@ -307,7 +308,6 @@ public class GamePanel extends JPanel implements Runnable {
 
             // world time
             if (keyHandler.checkWorldTime) {
-                keyHandler.checkCurrentLocation = false;
                 g2d.setColor(Color.white);
                 g2d.setFont(g2d.getFont().deriveFont(40f));
                 g2d.drawString("World Time: " + worldTimeCounter % 720, 10, 700);
@@ -316,7 +316,6 @@ public class GamePanel extends JPanel implements Runnable {
 
             // current location
             if (keyHandler.checkCurrentLocation) {
-                keyHandler.checkWorldTime = false;
                 g2d.setColor(Color.white);
                 g2d.setFont(g2d.getFont().deriveFont(40f));
                 g2d.drawString("Current Location: " + listSim.get(indexCurrentSim).currentLocation, 10, 700);

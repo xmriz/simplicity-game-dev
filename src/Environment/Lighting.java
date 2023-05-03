@@ -31,15 +31,15 @@ public class Lighting {
         Graphics2D g2d = (Graphics2D) darknessFilter.getGraphics();
 
         if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLight == null) {
-            g2d.setColor(new Color(0, 0, 0, 0.7f));
+            g2d.setColor(new Color(0, 0, 0, 0.8f));
         } else {
             // get the center x and y of the light circle
             int centerX = gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX + gamePanel.tileSize / 2;
             int centerY = gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY + gamePanel.tileSize / 2;
 
             // create a gradation effect within the light circle
-            Color color[] = new Color[8];
-            float fraction[] = new float[8];
+            Color color[] = new Color[10];
+            float fraction[] = new float[10];
 
             color[0] = new Color(0, 0, 0, 0.0f);
             color[1] = new Color(0, 0, 0, 0.1f);
@@ -49,6 +49,8 @@ public class Lighting {
             color[5] = new Color(0, 0, 0, 0.5f);
             color[6] = new Color(0, 0, 0, 0.6f);
             color[7] = new Color(0, 0, 0, 0.7f);
+            color[8] = new Color(0, 0, 0, 0.8f);
+            color[9] = new Color(0, 0, 0, 0.9f);
 
             fraction[0] = 0.0f;
             fraction[1] = 0.1f;
@@ -58,6 +60,8 @@ public class Lighting {
             fraction[5] = 0.5f;
             fraction[6] = 0.6f;
             fraction[7] = 0.7f;
+            fraction[8] = 0.8f;
+            fraction[9] = 0.9f;
 
             // create a gradation paint settings for the light circle
             RadialGradientPaint gPaint = new RadialGradientPaint(centerX, centerY, 500 / 2, fraction, color);
@@ -83,14 +87,14 @@ public class Lighting {
                 filterAlpha = 0.0f;
             } else {
                 dayState = night;
-                filterAlpha = 0.7f;
+                filterAlpha = 0.9f;
             }
         }
 
         if (dayState == dusk) {
             filterAlpha += 0.01f;
-            if (filterAlpha > 0.7f) {
-                filterAlpha = 0.7f;
+            if (filterAlpha > 0.9f) {
+                filterAlpha = 0.9f;
                 dayState = night;
             }
         }
@@ -100,7 +104,7 @@ public class Lighting {
                 dayState = dawn;
             } else if (time < 720 && time >= 360) {
                 dayState = night;
-                filterAlpha = 0.7f;
+                filterAlpha = 0.9f;
             } else {
                 dayState = day;
                 filterAlpha = 0.0f;
@@ -123,9 +127,11 @@ public class Lighting {
     }
 
     public void draw(Graphics2D g2d) {
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha));
-        g2d.drawImage(darknessFilter, 0, 0, null);
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        if (gamePanel.getCurrentSim().currentMap == 0){
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha)); // set the alpha value of the filter
+            g2d.drawImage(darknessFilter, 0, 0, null); // draw the filter
+        }
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); // reset the alpha value
 
         String situation = "";
         switch (dayState) {

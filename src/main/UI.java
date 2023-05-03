@@ -733,7 +733,7 @@ public class UI {
                         gamePanel.ui.charIndex = 0;
                         gamePanel.ui.combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Uang tidak cukup";
+                        gamePanel.ui.currentDialog = "Uang tidak cukup!";
                     } else {
                         gamePanel.getCurrentSim().isCanBuy = false;
                         gamePanel.getCurrentSim().indexSimSaatBeli = gamePanel.indexCurrentSim;
@@ -1613,7 +1613,6 @@ public class UI {
     }
 
     public void drawGameOverScreen() {
-        System.out.println("masuk game over");
         g2d.setColor(new Color(0, 0, 0, 150));
         g2d.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
 
@@ -2214,7 +2213,7 @@ public class UI {
     public void drawMelihatWaktuScreen(){
         // draw window
         int x = getXforCenteredText("Waktu");
-        x -= 4 * gamePanel.tileSize;
+        x -= 5 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -2233,9 +2232,9 @@ public class UI {
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
         x = getXforCenteredText("Waktu") - 3 * gamePanel.tileSize;
         y += gamePanel.tileSize + 20;
-        g2d.drawString("Time", x, y);
+        g2d.drawString("World Time", x, y);
         y += 35;
-        g2d.drawString("Day", x, y);
+        g2d.drawString("World Day", x, y);
         y += gamePanel.tileSize+15;
         g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 30f));
         g2d.drawString("Sisa Waktu", x, y);
@@ -2248,14 +2247,14 @@ public class UI {
         // value 
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
         x = getXforCenteredText("Waktu") + 2 *gamePanel.tileSize -30;
-        y = gamePanel.tileSize * 4 + gamePanel.tileSize + 15 + 20 + gamePanel.tileSize;
+        y = gamePanel.tileSize * 6 + 25;
         g2d.drawString(": " + gamePanel.worldTimeCounter%720, x, y);
         y += 35;
         g2d.drawString(": " + gamePanel.worldTimeCounter/720, x, y);
-        y += gamePanel.tileSize+5 + 35;
-        g2d.drawString(": " + gamePanel.getCurrentSim().rumah.remainingTimeUpgrade, x, y);
+        y += gamePanel.tileSize + 15 + 35;
+        g2d.drawString(": " + gamePanel.getCurrentSim().rumah.remainingTimeUpgrade + " detik", x, y);
         y += 35;
-        g2d.drawString(": " + gamePanel.getCurrentSim().remainingTimeBuy, x, y);
+        g2d.drawString(": " + gamePanel.getCurrentSim().remainingTimeBuy + " detik", x, y);
 
 
         // g2d.setFont(g2d.getFont().deriveFont(32f));

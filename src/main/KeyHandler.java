@@ -85,7 +85,6 @@ public class KeyHandler implements KeyListener {
                             gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
                             gamePanel.listRumah[0].remove(gamePanel.listSim.size() - 1);
                         }
-                        System.out.println(0);
                         gamePanel.listSim.set(0, sim1);
                         gamePanel.listRumah[0].set(0, gamePanel.listSim.get(0).rumah);
                         gamePanel.listRumah[0].get(0).worldX = gamePanel.listSim.get(0).rumah.colRumah
@@ -419,26 +418,35 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
         } else if (keyCode == KeyEvent.VK_P) {
             gamePanel.gameState = gamePanel.pauseState;
+            checkWorldTime = false;
+            checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_C) {
             gamePanel.gameState = gamePanel.simInfoState;
+            checkWorldTime = false;
+            checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_I) {
             gamePanel.gameState = gamePanel.inventoryState;
+            checkWorldTime = false;
+            checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_B) {
             gamePanel.ui.charIndex = 0;
             gamePanel.ui.combinedText = "";
             gamePanel.npc[0][4].speak();
+            checkWorldTime = false;
+            checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_ENTER) {
             enterPressed = true;
         } else if (keyCode == KeyEvent.VK_T) {
-            System.out.println(gamePanel.getCurrentSim().efekWaktuTidakTidurCounter);
             if (checkWorldTime == false) {
                 checkWorldTime = true;
+                checkCurrentLocation = false;
             } else {
                 checkWorldTime = false;
             }
         } else if (keyCode == KeyEvent.VK_L) {
             if (checkCurrentLocation == false) {
                 checkCurrentLocation = true;
+                checkWorldTime = false;
             } else {
                 checkCurrentLocation = false;
             }
@@ -458,13 +466,20 @@ public class KeyHandler implements KeyListener {
             } else {
                 gamePanel.gameState = gamePanel.upgradeRumahState;
             }
-
+            checkWorldTime = false;
+            checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_N) {
             gamePanel.gameState = gamePanel.addSimState;
+            checkWorldTime = false;
+            checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.menuState;
+            checkWorldTime = false;
+            checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_G) {
             gamePanel.gameState = gamePanel.changeSimState;
+            checkWorldTime = false;
+            checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_M) {
             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0) {
                 gamePanel.gameState = gamePanel.mapState;
@@ -474,6 +489,8 @@ public class KeyHandler implements KeyListener {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.ui.currentDialog = "Tidak dapat membuka peta di rumah!";
             }
+            checkWorldTime = false;
+            checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_X) {
             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0) {
                 if (gamePanel.map.mapOn == false) {
@@ -493,26 +510,29 @@ public class KeyHandler implements KeyListener {
             }
         } else if (keyCode == KeyEvent.VK_K) {
             gamePanel.gameState = gamePanel.kerjaState;
+            checkWorldTime = false;
+            checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_O) {
             gamePanel.gameState = gamePanel.inputDurasiOlahragaState;
+            checkWorldTime = false;
+            checkCurrentLocation = false;
         }
     }
 
     public void pauseState(int keyCode) {
-        if (keyCode == KeyEvent.VK_P) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
-        }
+        } 
     }
 
     public void simInfoState(int keyCode) {
-        if (keyCode == KeyEvent.VK_C) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
         }
     }
 
     public void dialogState(int keyCode) {
         if (keyCode == KeyEvent.VK_ENTER) {
-            System.out.println(gamePanel.getCurrentSim().isMati);
             // gamePanel.stopMusic();
             // gamePanel.playMusic(1);
             gamePanel.getCurrentSim().update();
@@ -553,7 +573,7 @@ public class KeyHandler implements KeyListener {
 
     public void inventoryState(int keyCode) {
         int index;
-        if (keyCode == KeyEvent.VK_I) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
             gamePanel.ui.simSlotRow = 0;
             gamePanel.ui.simSlotCol = 0;
@@ -783,12 +803,18 @@ public class KeyHandler implements KeyListener {
     }
 
     public void mapState(int keyCode) {
-        if (keyCode == KeyEvent.VK_M) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
         }
     }
 
     public void beliState(int keyCode) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
+            gamePanel.gameState = gamePanel.playState;
+            gamePanel.ui.subState = 0;
+            gamePanel.ui.commandNumber = 0;
+            cursorSound();
+        }
         if (keyCode == KeyEvent.VK_ENTER) {
             enterPressed = true;
             cursorSound();
@@ -821,7 +847,7 @@ public class KeyHandler implements KeyListener {
 
     public void beliInventory(int keyCode) {
         int index = 0;
-        if (keyCode == KeyEvent.VK_B) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
             gamePanel.ui.subState = 0;
             gamePanel.ui.npcSlotCol = 0;
@@ -882,7 +908,7 @@ public class KeyHandler implements KeyListener {
     }
 
     public void upgradeRumahState(int keyCode) {
-        if (keyCode == KeyEvent.VK_U) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
             gamePanel.ui.commandNumber = 0;
         }
@@ -1600,7 +1626,7 @@ public class KeyHandler implements KeyListener {
 
     public void changeSimState(int keyCode) {
         int index = 0;
-        if (keyCode == KeyEvent.VK_G) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.gameState = gamePanel.playState;
             gamePanel.ui.listSimSlotCol = 0;
             gamePanel.ui.listSimSlotRow = 0;
@@ -1808,9 +1834,7 @@ public class KeyHandler implements KeyListener {
                             }
                         }
                         for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                            System.out.println(700);
                             if (gamePanel.listSim.get(i).isCanBuy == false) {
-                                System.out.println(000);
                                 gamePanel.listSim.get(i).isLockBuy = false;
                                 gamePanel.listSim.get(i).remainingTimeBuy -= gamePanel.ui.tempDurasi;
                                 gamePanel.listSim.get(i).setIsCanBuyToTrue();
@@ -3183,7 +3207,7 @@ public class KeyHandler implements KeyListener {
             }
         }
 
-        if (keyCode == KeyEvent.VK_K) {
+        if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.inputText = "";
             gamePanel.ui.inputTextDone = false;
             gamePanel.ui.commandNumber = 0;
