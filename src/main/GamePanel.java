@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.*;
@@ -113,6 +114,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int inputDurasiOlahragaState = 30;
     public final int saveState = 31;
     public final int melihatWaktuState = 32;
+    public final int cutsceneState = 33;
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {
@@ -192,6 +194,7 @@ public class GamePanel extends JPanel implements Runnable {
                 listSim.get(i).efekWaktuTidakTidurCounter = 0;
                 listSim.get(i).mood -= 5;
                 listSim.get(i).kesehatan -= 5;
+                ui.addMessage("-5 mood, -5 kesehatan");
             }
 
             if (listSim.get(i).efekWaktuTidakBuangAirCounter >= 240){
@@ -200,6 +203,7 @@ public class GamePanel extends JPanel implements Runnable {
                     listSim.get(i).efekWaktuTidakBuangAirCounter = 0;
                     listSim.get(i).mood -= 5;
                     listSim.get(i).kesehatan -= 5;
+                    ui.addMessage("-5 mood, -5 kesehatan");
                 }
             }
         }
@@ -309,7 +313,7 @@ public class GamePanel extends JPanel implements Runnable {
             // world time
             if (keyHandler.checkWorldTime) {
                 g2d.setColor(Color.white);
-                g2d.setFont(g2d.getFont().deriveFont(40f));
+                g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN,40f));
                 g2d.drawString("World Time: " + worldTimeCounter % 720, 10, 700);
                 g2d.drawString("World Day: " + worldTimeCounter / 720, 10, 748);
             }
@@ -317,7 +321,7 @@ public class GamePanel extends JPanel implements Runnable {
             // current location
             if (keyHandler.checkCurrentLocation) {
                 g2d.setColor(Color.white);
-                g2d.setFont(g2d.getFont().deriveFont(40f));
+                g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN,40f));
                 g2d.drawString("Current Location: " + listSim.get(indexCurrentSim).currentLocation, 10, 700);
             }
 

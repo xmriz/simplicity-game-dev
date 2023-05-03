@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -34,8 +35,11 @@ public class UI {
     public boolean currentAksiDone = false;
 
     public boolean messageOn = false;
-    public String message = "";
-    int messageCounter = 0;
+    // public String message = "";
+    // int messageCounter = 0;
+    ArrayList <String> message = new ArrayList<> ();
+    ArrayList <Integer> messageCounter = new ArrayList<> ();
+
     public boolean gameFinished = false;
     public String currentDialog = "";
     public int commandNumber = 0;
@@ -61,9 +65,9 @@ public class UI {
         }
     }
 
-    public void showMessage(String message) {
-        this.message = message;
-        messageOn = true;
+    public void addMessage(String message) {
+        this.message.add(message);
+        messageCounter.add(0);
     }
 
     public void draw(Graphics2D g2d) {
@@ -72,11 +76,16 @@ public class UI {
         g2d.setFont(maruMonica);
         g2d.setColor(Color.WHITE);
 
+        // if (messageOn == true) {
+            
+        // }
+
         if (gamePanel.gameState == gamePanel.titleState) { // if game is in title
             drawTitleScreen();
         } else if (gamePanel.gameState == gamePanel.playState) { // if game is playing
             // later
             drawMiniMap(g2d);
+            // drawMessage();
         } else if (gamePanel.gameState == gamePanel.pauseState) { // if game is paused
             drawPauseScreen();
         } else if (gamePanel.gameState == gamePanel.dialogState) { // if game is in dialog
@@ -140,6 +149,29 @@ public class UI {
         } else if (gamePanel.gameState == gamePanel.melihatWaktuState){
             drawMelihatWaktuScreen();
         }
+    }
+
+    // MESSAGE
+    public void drawMessage(){
+        int messageX = gamePanel.tileSize;
+        int messageY = gamePanel.tileSize * 10;
+        g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 25f));
+
+        for (int i = 0; i < message.size(); i++){
+            g2d.setColor(Color.WHITE);
+            g2d.drawString(message.get(i), messageX, messageY);
+
+            int counter = messageCounter.get(i) + 1;
+            messageCounter.set(i, counter);
+            messageY += 40;
+
+            if (messageCounter.get(i) > 180 ){
+                message.remove(i);
+                messageCounter.remove(i);
+            }
+
+        }
+
     }
 
     // TITLE SCREEN
