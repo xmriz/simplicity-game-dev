@@ -8,6 +8,7 @@ public class DataStorage implements Serializable {
     int jumlahSim;
     int indexCurrentSim;
     int worldTimeCounter;
+    int worldTimeSatuHariCounter;
     boolean isOneSim;
 
     // SIM
