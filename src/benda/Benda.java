@@ -13,16 +13,114 @@ import main.GamePanel;
 
 public abstract class Benda {
 
-    public BufferedImage image;
-    public String name;
-    public String category = "";
-    public boolean collision = false;
-    public int worldX, worldY;
-    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
-    public int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
-    public boolean stackable = false;
-    public int quantity = 1;
+    private BufferedImage image;
+    private String name;
+    private String category = "";
+    private boolean collision = false;
+    private int worldX, worldY;
+    private Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    private int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
+    private boolean stackable = false;
+    private int quantity = 1;
     GamePanel gamePanel;
+
+    public boolean isPlaced = false;
+
+    public BufferedImage getImage(){
+        return image;
+    }
+
+    public void setImage(BufferedImage image){
+        this.image=image;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name=name;
+    }
+
+    public String getCategory(){
+        return category;
+    }
+
+    public void setCategory(String category){
+        this.category=category;
+    }
+
+    public boolean getCollision(){
+        return collision;
+    }
+
+    public void setCollision(boolean collision){
+        this.collision=collision;
+    }
+
+    public int getWorldX(){
+        return worldX;
+    }
+
+    public void setWorldX(int worldX){
+        this.worldX=worldX;
+    }
+
+    public int getWorldY(){
+        return worldY;
+    }
+
+    public void setWorldY(int worldY){
+        this.worldY=worldY;
+    }
+
+    public Rectangle getSolidArea(){
+        return solidArea;
+    } 
+
+    public void setSolidArea(Rectangle solidArea){
+        this.solidArea=solidArea;
+    }
+
+    public int getSolidAreaDefaultX(){
+        return solidAreaDefaultX;
+    }
+
+    public void setsolidAreaDefaultX(int solidAreaDefaultX){
+        this.solidAreaDefaultX=solidAreaDefaultX;
+    }
+
+    public int getSolidAreaDefaultY(){
+        return solidAreaDefaultY;
+    }
+
+    public void setsolidAreaDefaultY(int solidAreaDefaultY){
+        this.solidAreaDefaultY=solidAreaDefaultY;
+    }
+
+    public boolean getStackable(){
+        return stackable;
+    }
+
+    public void setStackable(boolean stackable){
+        this.stackable=stackable;
+    }
+
+    public int getQuantity(){
+        return quantity;
+    }
+
+    public void setQuantity(int quantity){
+        this.quantity=quantity;
+    }
+
+    public void incQuantity(int jumlah){
+        this.quantity+=jumlah;
+    }
+
+    public void decQuantity(int jumlah){
+        this.quantity-=jumlah;
+    }
 
     public BufferedImage setupImage(String imagePath) {
         // UtilityTool uTool = new UtilityTool();
@@ -30,8 +128,7 @@ public abstract class Benda {
 
         try {
             scaledImage = ImageIO.read(new FileInputStream(new File("assets/" + imagePath + ".png")));
-            // scaledImage = uTool.scaleImage(scaledImage, gamePanel.tileSize,
-            // gamePanel.tileSize);
+            // scaledImage = uTool.scaleImage(scaledImage, gamePanel.tileSize, gamePanel.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,19 +136,13 @@ public abstract class Benda {
     }
 
     public void draw(Graphics2D g2d, GamePanel gamePanel) {
-        int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX; // position of the tile in the screen
-        int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY;
+        int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX; // position of the tile in the screen
+        int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY;
 
-        if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
-                && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
-                        - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
-                && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
-                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY
-                && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
-                        - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY) {
+        if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
+                && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
+                && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY
+                && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY) {
             g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
         }
     }

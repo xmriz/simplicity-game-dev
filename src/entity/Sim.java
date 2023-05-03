@@ -430,7 +430,7 @@ public class Sim extends Entity {
                 } else {
                     if (indexBendaYangDisentuh != 999) {
                         if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
-                                .get(indexLocationRuangan).bendaRuangan
+                                .get(indexLocationRuangan).getBendaRuangan()
                                 .get(indexBendaYangDisentuh) instanceof Furnitur_MejaKursi) {
                             BahanMakanan bahanMakanan = (BahanMakanan) selectedBenda;
                             bahanMakanan.eat(this);
@@ -450,8 +450,8 @@ public class Sim extends Entity {
                             } else {
                                 inventory.remove(itemIndex);
                             }
-                            gamePanel.ui.currentAksiCadangan = "Makan " + bahanMakanan.name + "\nKekenyangan bertambah "
-                                    + bahanMakanan.kekenyangan;
+                            gamePanel.ui.currentAksiCadangan = "Makan " + bahanMakanan.getName() + "\nKekenyangan bertambah "
+                                    + bahanMakanan.getKekenyangan();
                             gamePanel.ui.currentAksi = "Makan";
                             gamePanel.gameState = gamePanel.timerState;
                             gamePanel.ui.currentAksiDone = false;
@@ -496,7 +496,7 @@ public class Sim extends Entity {
                                     gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += 30;
                                 }
                             }
-                            if (makanan.quantity > 1) {
+                            if (makanan.getQuantity() > 1) {
                                 makanan.decQuantity(1);
                             } else {
                                 inventory.remove(itemIndex);
@@ -533,8 +533,8 @@ public class Sim extends Entity {
                 } else {
                     tempInt = itemIndex;
                     Furnitur furnitur = (Furnitur) selectedBenda;
-                    if (furnitur.quantity > 1) {
-                        furnitur.quantity--;
+                    if (furnitur.getQuantity()> 1) {
+                        furnitur.decQuantity(1);
                     } else {
                         inventory.remove(itemIndex);
                     }
@@ -665,7 +665,7 @@ public class Sim extends Entity {
                         tempDialogBarang = "Pembelian barang oleh "
                                 + gamePanel.listSim.get(indexSimSaatBeli).nama + "\nberhasil";
                     } else {
-                        gamePanel.listSim.get(indexSimSaatBeli).uang += makanan.harga;
+                        gamePanel.listSim.get(indexSimSaatBeli).uang += makanan.getHarga();
                         gamePanel.ui.subState = 0;
                         gamePanel.ui.charIndex = 0;
                         gamePanel.ui.combinedText = "";
@@ -684,7 +684,7 @@ public class Sim extends Entity {
                         tempDialogBarang = "Pembelian barang oleh "
                                 + gamePanel.listSim.get(indexSimSaatBeli).nama + "\nberhasil";
                     } else {
-                        gamePanel.listSim.get(indexSimSaatBeli).uang += furnitur.harga;
+                        gamePanel.listSim.get(indexSimSaatBeli).uang += furnitur.getHarga();
                         gamePanel.ui.subState = 0;
                         gamePanel.ui.charIndex = 0;
                         gamePanel.ui.combinedText = "";
@@ -703,7 +703,7 @@ public class Sim extends Entity {
                         tempDialogBarang = "Pembelian barang oleh "
                                 + gamePanel.listSim.get(indexSimSaatBeli).nama + "\nberhasil";
                     } else {
-                        gamePanel.listSim.get(indexSimSaatBeli).uang += lampu.harga;
+                        gamePanel.listSim.get(indexSimSaatBeli).uang += lampu.getHarga();
                         gamePanel.ui.subState = 0;
                         gamePanel.ui.charIndex = 0;
                         gamePanel.ui.combinedText = "";

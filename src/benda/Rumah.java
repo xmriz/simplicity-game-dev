@@ -5,27 +5,121 @@ import java.util.*;
 import main.GamePanel;
 
 public class Rumah extends Benda {
-    public int colRumah;
-    public int rowRumah;
-    public int jumlahRuangan = 0;
+    private int colRumah;
+    private int rowRumah;
+    private int jumlahRuangan = 0;
 
     // darr yang gua tambah
-    public boolean isCanUpgrade = true;
-    public String posisiUpgrade = "";
-    public int remainingTimeUpgrade = 0;
-    public Ruangan ruanganUpgrade;
-    public int indexLocationSaatUpgrade = 0;
-    public int indexSimSaatUpgrade = 0;
-    public boolean isLockUpgrade = true;
+    private boolean isCanUpgrade = true;
+    private String posisiUpgrade = "";
+    private int remainingTimeUpgrade = 0;
+    private Ruangan ruanganUpgrade;
+    private int indexLocationSaatUpgrade = 0;
+    private int indexSimSaatUpgrade = 0;
+    private boolean isLockUpgrade = true;
+
+
     // ----------------------------
 
     // public int indexRuangan = 0;
-    public List<Ruangan> ruanganRumah = new ArrayList<>();
+    private List<Ruangan> ruanganRumah = new ArrayList<>();
+
+    public List<Ruangan> getRuanganRumah(){
+        return ruanganRumah;
+    }
+
+    public void setRuanganRumah(List<Ruangan> ruanganRumah){
+        this.ruanganRumah=ruanganRumah;
+    }
+
+    public int getColRumah(){
+        return colRumah;
+    }
+
+    public void setColRumah(int colRumah){
+        this.colRumah=colRumah;
+    }
+
+    public int getRowRumah(){
+        return rowRumah;
+    }
+
+    public void setRowRumah(int rowRumah){
+        this.rowRumah=rowRumah;
+    }
+    public int getJumlahRuangan(){
+        return jumlahRuangan;
+    }
+
+    public void setJumlahRuangan(int jumlahRuangan){
+        this.jumlahRuangan=jumlahRuangan;
+    }
+
+    public boolean getIsCanUpgrade(){
+        return isCanUpgrade;
+    }
+
+    public void setIsCanUpgrade(boolean isCanUpgrade){
+        this.isCanUpgrade=isCanUpgrade;
+    }
+
+    public String getPosisiUpgrade(){
+        return posisiUpgrade;
+    }
+
+    public void setPosisiUpgrade(String posisiUpgrade){
+        this.posisiUpgrade=posisiUpgrade;
+    }
+
+    public int getRemainingTimeUpgrade(){
+        return remainingTimeUpgrade;
+    }
+
+    public void setRemainingTimeUpgrade(int remainingTimeUpgrade){
+        this.remainingTimeUpgrade=remainingTimeUpgrade;
+    }
+
+    public void decRemainingTimeUpgrade(int remainingTimeUpgrade){
+        this.remainingTimeUpgrade-=remainingTimeUpgrade;
+    }
+
+    public Ruangan getRuanganUpgrade(){
+        return ruanganUpgrade;
+    }
+
+    public void setRuanganUpgrade(Ruangan ruanganUpgrade){
+        this.ruanganUpgrade=ruanganUpgrade;
+    }
+
+    public int getIndexLocationSaatUpgrade(){
+        return indexLocationSaatUpgrade;
+    }
+
+    public void setIndexLocationSaatUpgrade(int indexLocationSaatUpgrade){
+        this.indexLocationSaatUpgrade=indexLocationSaatUpgrade;
+    }
+
+    public int getIndexSimSaatUpgrade(){
+        return indexSimSaatUpgrade;
+    }
+
+    public void setIndexSimSaatUpgrade(int indexSimSaatUpgrade){
+        this.indexSimSaatUpgrade=indexSimSaatUpgrade;
+    }
+
+    public boolean getIsLockUpgrade(){
+        return isLockUpgrade;
+    }
+
+    public void setIsLockUpgrade(boolean isLockUpgrade){
+        this.isLockUpgrade=isLockUpgrade;
+    }
+
 
     public Rumah(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        name = "Rumah";
-        image = setupImage("benda/rumah");
+        setName("Rumah");
+        setImage(setupImage("benda/rumah"));
         // random posisi rumah
         Random rand = new Random();
         colRumah = rand.nextInt(64) + 1;
@@ -34,7 +128,7 @@ public class Rumah extends Benda {
         // saat rumah dibuat Ruangan utama otomatis dibuat
         Ruangan ruanganUtama = new Ruangan(gamePanel);
         jumlahRuangan = 1;
-        ruanganUtama.name = "Ruangan Utama";
+        ruanganUtama.setName("Ruangan Utama");
         ruanganRumah.add(ruanganUtama);
 
         // // tambah ruangan ke dua
@@ -43,9 +137,9 @@ public class Rumah extends Benda {
 
     public void upgradeRumah(String posisi, String nama) {
         Ruangan ruangan = new Ruangan(gamePanel);
-        ruangan.name = nama;
+        ruangan.setName(nama);
         if (posisi == "up") {
-            if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up != null) {
+            if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getUp() != null) {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
@@ -94,7 +188,7 @@ public class Rumah extends Benda {
                 return;
             } else {
                 if (ruanganRumah
-                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down != null) {
+                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getDown() != null) {
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
@@ -137,7 +231,7 @@ public class Rumah extends Benda {
             }
 
         } else if (posisi == "left") {
-            if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left != null) {
+            if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getLeft() != null) {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
@@ -178,7 +272,7 @@ public class Rumah extends Benda {
                 }
             }
         } else if (posisi == "right") {
-            if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right != null) {
+            if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getRight() != null) {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
@@ -231,13 +325,13 @@ public class Rumah extends Benda {
             }
             if (remainingTimeUpgrade == 0) {
                 isCanUpgrade = true; // atur isCanUpgrade menjadi true setelah 18 menit
-                ruanganUpgrade.index = jumlahRuangan;
+                ruanganUpgrade.setIndex(jumlahRuangan);
                 if (posisiUpgrade.equals("up")) {
                     ruanganRumah
                             .get(gamePanel.listSim
-                                    .get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade).up = ruanganUpgrade;
-                    ruanganUpgrade.down = ruanganRumah
-                            .get(gamePanel.listSim.get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade);
+                                    .get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade).setUp(ruanganUpgrade);
+                    ruanganUpgrade.setDown(ruanganRumah
+                            .get(gamePanel.listSim.get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade));
                     ruanganRumah.add(ruanganUpgrade);
                     // gamePanel.ui.charIndex = 0;
                     // gamePanel.ui.combinedText = "";
@@ -249,9 +343,9 @@ public class Rumah extends Benda {
                 } else if (posisiUpgrade.equals("down")) {
                     ruanganRumah
                             .get(gamePanel.listSim
-                                    .get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade).down = ruanganUpgrade;
-                    ruanganUpgrade.up = ruanganRumah
-                            .get(gamePanel.listSim.get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade);
+                                    .get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade).setDown(ruanganUpgrade);
+                    ruanganUpgrade.setUp(ruanganRumah
+                            .get(gamePanel.listSim.get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade));
                     ruanganRumah.add(ruanganUpgrade);
                     // gamePanel.ui.charIndex = 0;
                     // gamePanel.ui.combinedText = "";
@@ -263,9 +357,9 @@ public class Rumah extends Benda {
                 } else if (posisiUpgrade.equals("left")) {
                     ruanganRumah
                             .get(gamePanel.listSim
-                                    .get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade).left = ruanganUpgrade;
-                    ruanganUpgrade.right = ruanganRumah
-                            .get(gamePanel.listSim.get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade);
+                                    .get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade).setLeft(ruanganUpgrade);
+                    ruanganUpgrade.setRight(ruanganRumah
+                            .get(gamePanel.listSim.get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade));
                     ruanganRumah.add(ruanganUpgrade);
                     // gamePanel.ui.charIndex = 0;
                     // gamePanel.ui.combinedText = "";
@@ -277,9 +371,9 @@ public class Rumah extends Benda {
                 } else if (posisiUpgrade.equals("right")) {
                     ruanganRumah
                             .get(gamePanel.listSim
-                                    .get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade).right = ruanganUpgrade;
-                    ruanganUpgrade.left = ruanganRumah
-                            .get(gamePanel.listSim.get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade);
+                                    .get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade).setRight(ruanganUpgrade);
+                    ruanganUpgrade.setLeft(ruanganRumah
+                            .get(gamePanel.listSim.get(indexSimSaatUpgrade).rumah.indexLocationSaatUpgrade));
                     ruanganRumah.add(ruanganUpgrade);
                     // gamePanel.ui.charIndex = 0;
                     // gamePanel.ui.combinedText = "";

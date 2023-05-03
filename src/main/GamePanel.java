@@ -116,6 +116,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int saveState = 31;
     public final int melihatWaktuState = 32;
     public final int cutsceneState = 33;
+    public Object cutsceneManager;
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {
@@ -280,12 +281,12 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             } else {
-                for (int i = 0; i < listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                        .get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.size(); i++) {
-                    if (listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i) != null) {
-                        listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                                .get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i)
+                for (int i = 0; i < listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                        .get(listSim.get(indexCurrentSim).indexLocationRuangan).getBendaRuangan().size(); i++) {
+                    if (listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                            .get(listSim.get(indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i) != null) {
+                        listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                                .get(listSim.get(indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i)
                                 .draw(g2d, this);
                     }
                 }

@@ -162,24 +162,24 @@ public class EventHandler {
             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0) {
 
                 if (indexRumahWorldTemp != 999) {
-                    if (hit(0, gamePanel.listSim.get(indexRumahWorldTemp).rumah.colRumah,
-                            gamePanel.listSim.get(indexRumahWorldTemp).rumah.rowRumah, "any")) { // pindah dari world ke
+                    if (hit(0, gamePanel.listSim.get(indexRumahWorldTemp).rumah.getColRumah(),
+                            gamePanel.listSim.get(indexRumahWorldTemp).rumah.getRowRumah(), "any")) { // pindah dari world ke
                                                                                                  // ruang utama
                         teleport(1, 5, 8, 0);
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah "
                                 + gamePanel.listSim.get(indexRumahWorldTemp).nama + " ("
                                 + UtilityTool.capitalizeFirstLetter(
-                                        gamePanel.listSim.get(indexRumahWorldTemp).rumah.ruanganRumah
+                                        gamePanel.listSim.get(indexRumahWorldTemp).rumah.getRuanganRumah()
                                                 .get(gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).name)
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getName())
                                 + ")";
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki = indexRumahWorldTemp;
 
                         // nambah worldtimecounter
-                        int x1 = gamePanel.listSim.get(indexRumahWorldTemp).rumah.colRumah;
-                        int y2 = gamePanel.listSim.get(indexRumahWorldTemp).rumah.rowRumah;
-                        int x2 = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.colRumah;
-                        int y1 = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.rowRumah;
+                        int x1 = gamePanel.listSim.get(indexRumahWorldTemp).rumah.getColRumah();
+                        int y2 = gamePanel.listSim.get(indexRumahWorldTemp).rumah.getRowRumah();
+                        int x2 = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.getColRumah();
+                        int y1 = gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.getRowRumah();
                         int durasi = UtilityTool.pythagoras(x1, y1, x2, y2);
                         gamePanel.worldTimeCounter += durasi;
                         gamePanel.worldTimeSatuHariCounter += durasi;
@@ -222,34 +222,34 @@ public class EventHandler {
                 if (hit(1, 5, 8, "any")) { // pindah dari ruang utama ke world
                     teleport(0,
                             gamePanel.listSim.get(gamePanel.listSim
-                                    .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.colRumah,
+                                    .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getColRumah(),
                             gamePanel.listSim.get(gamePanel.listSim
-                                    .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.rowRumah,
+                                    .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRowRumah(),
                             999);
                     gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "World";
                     gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki = 999;
                 } else if (hit(1, 4, 1, "any")) { // atas
                     if (gamePanel.listSim.get(
-                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up != null) {
+                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getUp() != null) {
                         teleport(1, 5, 8, gamePanel.listSim
                                 .get(gamePanel.listSim
-                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                 .indexOf(gamePanel.listSim
                                         .get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                         .get(
                                                 gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).up));
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getUp()));
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah "
                                 + gamePanel.listSim.get(
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).nama
                                 + " ("
                                 + UtilityTool.capitalizeFirstLetter(
                                         gamePanel.listSim.get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                                 .get(gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).name)
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getName())
                                 + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up);
@@ -280,26 +280,26 @@ public class EventHandler {
                     // }
                 } else if (hit(1, 1, 5, "any")) { // kiri
                     if (gamePanel.listSim.get(
-                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left != null) {
+                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getLeft() != null) {
                         teleport(1, 8, 4, gamePanel.listSim
                                 .get(gamePanel.listSim
-                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                 .indexOf(gamePanel.listSim
                                         .get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                         .get(
                                                 gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).left));
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getLeft()));
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah "
                                 + gamePanel.listSim.get(
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).nama
                                 + " ("
                                 + UtilityTool.capitalizeFirstLetter(
                                         gamePanel.listSim.get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                                 .get(gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).name)
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getName())
                                 + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left);
@@ -312,26 +312,26 @@ public class EventHandler {
                     }
                 } else if (hit(1, 8, 4, "any")) { // kanan
                     if (gamePanel.listSim.get(
-                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right != null) {
+                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getRight() != null) {
                         teleport(1, 1, 5, gamePanel.listSim
                                 .get(gamePanel.listSim
-                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                 .indexOf(gamePanel.listSim
                                         .get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                         .get(
                                                 gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).right));
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getRight()));
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah "
                                 + gamePanel.listSim.get(
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).nama
                                 + " ("
                                 + UtilityTool.capitalizeFirstLetter(
                                         gamePanel.listSim.get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                                 .get(gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).name)
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getName())
                                 + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right);
@@ -346,26 +346,26 @@ public class EventHandler {
             } else { // SELAIN DI RUANGAN UTAMA DAN WORLD
                 if (hit(1, 4, 1, "any")) { // atas
                     if (gamePanel.listSim.get(
-                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up != null) {
+                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getUp() != null) {
                         teleport(1, 5, 8, gamePanel.listSim
                                 .get(gamePanel.listSim
-                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                 .indexOf(gamePanel.listSim
                                         .get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                         .get(
                                                 gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).up));
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getUp()));
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah "
                                 + gamePanel.listSim.get(
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).nama
                                 + " ("
                                 + UtilityTool.capitalizeFirstLetter(
                                         gamePanel.listSim.get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                                 .get(gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).name)
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getName())
                                 + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up);
@@ -378,26 +378,26 @@ public class EventHandler {
                     }
                 } else if (hit(1, 5, 8, "any")) { // bawah
                     if (gamePanel.listSim.get(
-                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down != null) {
+                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getDown() != null) {
                         teleport(1, 4, 1, gamePanel.listSim
                                 .get(gamePanel.listSim
-                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                 .indexOf(gamePanel.listSim
                                         .get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                         .get(
                                                 gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).down));
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getDown()));
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah "
                                 + gamePanel.listSim.get(
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).nama
                                 + " ("
                                 + UtilityTool.capitalizeFirstLetter(
                                         gamePanel.listSim.get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                                 .get(gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).name)
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getName())
                                 + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down);
@@ -410,26 +410,26 @@ public class EventHandler {
                     }
                 } else if (hit(1, 1, 5, "any")) { // kiri
                     if (gamePanel.listSim.get(
-                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left != null) {
+                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getLeft() != null) {
                         teleport(1, 8, 4, gamePanel.listSim
                                 .get(gamePanel.listSim
-                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                 .indexOf(gamePanel.listSim
                                         .get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                         .get(
                                                 gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).left));
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getLeft()));
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah "
                                 + gamePanel.listSim.get(
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).nama
                                 + " ("
                                 + UtilityTool.capitalizeFirstLetter(
                                         gamePanel.listSim.get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                                 .get(gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).name)
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getName())
                                 + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left);
@@ -442,26 +442,26 @@ public class EventHandler {
                     }
                 } else if (hit(1, 8, 4, "any")) { // kanan
                     if (gamePanel.listSim.get(
-                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right != null) {
+                            gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getRight()!= null) {
                         teleport(1, 1, 5, gamePanel.listSim
                                 .get(gamePanel.listSim
-                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                 .indexOf(gamePanel.listSim
                                         .get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                         .get(
                                                 gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).right));
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getRight()));
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLocation = "Rumah "
                                 + gamePanel.listSim.get(
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).nama
                                 + " ("
                                 + UtilityTool.capitalizeFirstLetter(
                                         gamePanel.listSim.get(gamePanel.listSim.get(
-                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                                 .get(gamePanel.listSim
-                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).name)
+                                                        .get(gamePanel.indexCurrentSim).indexLocationRuangan).getName())
                                 + ")";
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right);

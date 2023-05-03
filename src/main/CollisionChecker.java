@@ -177,16 +177,16 @@ public class CollisionChecker {
                     entity.solidArea.y = entity.worldY + entity.solidArea.y;
     
                     // get benda's solid area position
-                    gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).solidArea.x = gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).worldX
-                            + gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).solidArea.x;
-                    gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).solidArea.y = gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).worldY
-                            + gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).solidArea.y;
+                    gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getSolidArea().x = gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getWorldX()
+                            + gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getSolidArea().x;
+                    gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getSolidArea().y = gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getWorldY()
+                            + gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getSolidArea().y;
     
                     switch (entity.direction) {
                         case "up":
                             entity.solidArea.y -= entity.speed;
-                            if (entity.solidArea.intersects(gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).solidArea)) {
-                                if (gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).collision == true) {
+                            if (entity.solidArea.intersects(gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getSolidArea())) {
+                                if (gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getCollision() == true) {
                                     entity.collisionOn = true;
                                 }
                                 if (sim){ // jika sim yang menabrak
@@ -196,8 +196,8 @@ public class CollisionChecker {
                             break;
                         case "down":
                             entity.solidArea.y += entity.speed;
-                            if (entity.solidArea.intersects(gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).solidArea)) {
-                                if (gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).collision == true) {
+                            if (entity.solidArea.intersects(gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getSolidArea())) {
+                                if (gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getCollision() == true) {
                                     entity.collisionOn = true;
                                 }
                                 if (sim){ // jika sim yang menabrak
@@ -207,8 +207,8 @@ public class CollisionChecker {
                             break;
                         case "left":
                             entity.solidArea.x -= entity.speed;
-                            if (entity.solidArea.intersects(gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).solidArea)) {
-                                if (gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).collision == true) {
+                            if (entity.solidArea.intersects(gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getSolidArea())) {
+                                if (gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getCollision() == true) {
                                     entity.collisionOn = true;
                                 }
                                 if (sim){ // jika sim yang menabrak
@@ -218,8 +218,8 @@ public class CollisionChecker {
                             break;
                         case "right":
                             entity.solidArea.x += entity.speed;
-                            if (entity.solidArea.intersects(gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).solidArea)) {
-                                if (gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).collision == true) {
+                            if (entity.solidArea.intersects(gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getSolidArea())) {
+                                if (gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getCollision() == true) {
                                     entity.collisionOn = true;
                                 }
                                 if (sim){ // jika sim yang menabrak
@@ -230,13 +230,13 @@ public class CollisionChecker {
                     }
                     entity.solidArea.x = entity.solidAreaDefaultX;
                     entity.solidArea.y = entity.solidAreaDefaultY;
-                    gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).solidArea.x = gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).solidAreaDefaultX;
-                    gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).solidArea.y = gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).solidAreaDefaultY;
+                    gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getSolidArea().x = gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getSolidAreaDefaultX();
+                    gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getSolidArea().y = gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap].get(i).getSolidAreaDefaultY();
                 }
             }
         } else {
-            for (int i = 0; i < gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.size(); i++) {
-                if (gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i) != null) {
+            for (int i = 0; i < gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah().get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan().size(); i++) {
+                if (gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah().get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i) != null) {
                     // get entity's solid area position
                     entity.solidArea.x = entity.worldX + entity.solidArea.x;
                     entity.solidArea.y = entity.worldY + entity.solidArea.y;
@@ -250,8 +250,8 @@ public class CollisionChecker {
                     switch (entity.direction) {
                         case "up":
                             entity.solidArea.y -= entity.speed;
-                            if (entity.solidArea.intersects(gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).solidArea)) {
-                                if (gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).collision == true) {
+                            if (entity.solidArea.intersects(gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah().get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i).getSolidArea())) {
+                                if (gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah().get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i).getCollision() == true) {
                                     entity.collisionOn = true;
                                 }
                                 if (sim){ // jika sim yang menabrak
@@ -261,8 +261,8 @@ public class CollisionChecker {
                             break;
                         case "down":
                             entity.solidArea.y += entity.speed;
-                            if (entity.solidArea.intersects(gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).solidArea)) {
-                                if (gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).collision == true) {
+                            if (entity.solidArea.intersects(gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah().get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i).getSolidArea())) {
+                                if (gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah().get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i).getCollision() == true) {
                                     entity.collisionOn = true;
                                 }
                                 if (sim){ // jika sim yang menabrak
@@ -272,8 +272,8 @@ public class CollisionChecker {
                             break;
                         case "left":
                             entity.solidArea.x -= entity.speed;
-                            if (entity.solidArea.intersects(gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).solidArea)) {
-                                if (gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).collision == true) {
+                            if (entity.solidArea.intersects(gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah().get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i).getSolidArea())) {
+                                if (gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah().get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i).getCollision() == true) {
                                     entity.collisionOn = true;
                                 }
                                 if (sim){ // jika sim yang menabrak
@@ -283,8 +283,8 @@ public class CollisionChecker {
                             break;
                         case "right":
                             entity.solidArea.x += entity.speed;
-                            if (entity.solidArea.intersects(gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).solidArea)) {
-                                if (gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i).collision == true) {
+                            if (entity.solidArea.intersects(gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah().get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i).getSolidArea())) {
+                                if (gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah().get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i).getCollision() == true) {
                                     entity.collisionOn = true;
                                 }
                                 if (sim){ // jika sim yang menabrak

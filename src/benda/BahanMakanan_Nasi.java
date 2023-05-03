@@ -2,9 +2,9 @@ package benda;
 
 public class BahanMakanan_Nasi extends BahanMakanan{
     public BahanMakanan_Nasi(){
-        name = "Nasi";
-        image = setupImage("benda/bahan_makanan/nasi");
-        harga = 5;
-        kekenyangan = 5;
+        setName("Nasi");
+        setImage(setupImage("benda/bahan_makanan/nasi"));
+       setHarga(5);
+        setKekenyangan(5);
     }
 }

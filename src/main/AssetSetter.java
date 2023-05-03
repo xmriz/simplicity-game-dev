@@ -15,8 +15,8 @@ public class AssetSetter {
         int mapNumber = 0;
         for (int x = 0; x < gamePanel.listSim.size(); x++){
             gamePanel.listRumah[mapNumber].add(gamePanel.listSim.get(x).rumah);
-            gamePanel.listRumah[mapNumber].get(x).worldX = gamePanel.listSim.get(x).rumah.colRumah * gamePanel.tileSize;
-            gamePanel.listRumah[mapNumber].get(x).worldY = gamePanel.listSim.get(x).rumah.rowRumah * gamePanel.tileSize;
+            gamePanel.listRumah[mapNumber].get(x).setWorldX(gamePanel.listSim.get(x).rumah.getColRumah() * gamePanel.tileSize);
+            gamePanel.listRumah[mapNumber].get(x).setWorldY(gamePanel.listSim.get(x).rumah.getRowRumah() * gamePanel.tileSize);
             // gamePanel.listRumah[mapNumber][x] = gamePanel.listSim.get(x).rumah;
             // gamePanel.rumah[mapNumber][x].worldX = gamePanel.currentSim.rumah.dimensiX * gamePanel.tileSize;
             // gamePanel.rumah[mapNumber][x].worldY = gamePanel.currentSim.rumah.dimensiY * gamePanel.tileSize;

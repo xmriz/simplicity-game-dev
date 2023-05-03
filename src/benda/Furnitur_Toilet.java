@@ -6,14 +6,14 @@ import main.GamePanel;
 
 public class Furnitur_Toilet extends Furnitur {
     public Furnitur_Toilet(GamePanel gamePanel) {
-        name = "Toilet";
-        image = setupImage("benda/furnitur/toilet");
-        collision = false;
-        dimensiX = 1;
-        dimensiY = 1;
-        harga = 50;
-        aksi = "Boker";
-        solidArea = new Rectangle(0, 0, 48 * dimensiX, 48 * dimensiY);
+        setName("Toilet");
+        setImage(setupImage("benda/furnitur/toilet"));
+        setCollision(false);
+        setDimensiX(1);
+        setDimensiY(1);
+        setHarga(50);
+        setAksi("Boker");
+        setSolidArea(new Rectangle(0, 0, 48*getDimensiX(), 48*getDimensiY()));
         this.gamePanel = gamePanel;
     }
 

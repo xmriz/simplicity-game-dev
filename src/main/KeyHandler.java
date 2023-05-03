@@ -92,10 +92,10 @@ public class KeyHandler implements KeyListener {
                         }
                         gamePanel.listSim.set(0, sim1);
                         gamePanel.listRumah[0].set(0, gamePanel.listSim.get(0).rumah);
-                        gamePanel.listRumah[0].get(0).worldX = gamePanel.listSim.get(0).rumah.colRumah
-                                * gamePanel.tileSize;
-                        gamePanel.listRumah[0].get(0).worldY = gamePanel.listSim.get(0).rumah.rowRumah
-                                * gamePanel.tileSize;
+                        gamePanel.listRumah[0].get(0).setWorldX(gamePanel.listSim.get(0).rumah.getColRumah()
+                                * gamePanel.tileSize);
+                        gamePanel.listRumah[0].get(0).setWorldY(gamePanel.listSim.get(0).rumah.getRowRumah()
+                                * gamePanel.tileSize);
 
                         gamePanel.indexCurrentSim = 0;
                         gamePanel.worldTimeCounter = 0;
@@ -114,7 +114,7 @@ public class KeyHandler implements KeyListener {
                         gamePanel.listSim.get(0).currentLocation = "Rumah "
                                 + gamePanel.listSim.get(0).nama + " ("
                                 + UtilityTool.capitalizeFirstLetter(
-                                        gamePanel.listSim.get(0).rumah.ruanganRumah.get(0).name)
+                                        gamePanel.listSim.get(0).rumah.getRuanganRumah().get(0).getName())
                                 + ")";
                         // set game state to play state
                         gamePanel.gameState = gamePanel.playState;
@@ -425,7 +425,7 @@ public class KeyHandler implements KeyListener {
     public void cutsceneState(int keyCode) {
         if (keyCode == KeyEvent.VK_ENTER) {
             gamePanel.gameState = gamePanel.menuState;
-            gamePanel.cutsceneManager.scenePhase = 0;
+            gamePanel.cutsceneManager.scenePhase=0;
         }
     }
 
@@ -1049,13 +1049,13 @@ public class KeyHandler implements KeyListener {
                         } else {
                             // check apakah dalam ruangan sudah terdapat furnitur yang sama
                             boolean isSame = false;
-                            for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(
-                                    gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                            for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.getRuanganRumah().get(
+                                    gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
                                     .size(); i++) {
-                                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.getRuanganRumah()
                                         .get(gamePanel.listSim
-                                                .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                        .get(i).name.equals(tempFurnitur.name)) {
+                                                .get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
+                                        .get(i).getName().equals(tempFurnitur.getName())) {
                                     isSame = true;
                                 }
                             }
@@ -1063,14 +1063,14 @@ public class KeyHandler implements KeyListener {
                                 gamePanel.ui.charIndex = 0;
                                 gamePanel.ui.combinedText = "";
                                 gamePanel.gameState = gamePanel.dialogState;
-                                gamePanel.ui.currentDialog = "Sudah terdapat " + tempFurnitur.name + " di ruangan ini!";
+                                gamePanel.ui.currentDialog = "Sudah terdapat " + tempFurnitur.getName() + " di ruangan ini!";
                                 gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
                                 gamePanel.ui.commandNumber = 0;
                                 gamePanel.ui.inputText = "";
                             } else {
                                 // check nabrak dinding
-                                int horizontalCollision = (x + 1) * gamePanel.tileSize + tempFurnitur.solidArea.width;
-                                int verticalCollision = (y + 1) * gamePanel.tileSize + tempFurnitur.solidArea.height;
+                                int horizontalCollision = (x + 1) * gamePanel.tileSize + tempFurnitur.getSolidArea().width;
+                                int verticalCollision = (y + 1) * gamePanel.tileSize + tempFurnitur.getSolidArea().height;
                                 if (horizontalCollision >= 9 * gamePanel.tileSize
                                         || verticalCollision >= 9 * gamePanel.tileSize) {
                                     gamePanel.ui.charIndex = 0;
@@ -1082,19 +1082,19 @@ public class KeyHandler implements KeyListener {
                                     gamePanel.ui.inputText = "";
                                 } else {
                                     // check intersect dengan furnitur lain
-                                    tempFurnitur.solidArea.x = (x + 1) * gamePanel.tileSize;
-                                    tempFurnitur.solidArea.y = (y + 1) * gamePanel.tileSize;
+                                    tempFurnitur.getSolidArea().x = (x + 1) * gamePanel.tileSize;
+                                    tempFurnitur.getSolidArea().y = (y + 1) * gamePanel.tileSize;
                                     boolean intersect = false;
                                     for (int i = 0; i < gamePanel.listSim
-                                            .get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                            .get(gamePanel.indexCurrentSim).rumah.getRuanganRumah()
                                             .get(gamePanel.listSim
-                                                    .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                                    .get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
                                             .size(); i++) {
-                                        if (tempFurnitur.solidArea.intersects(gamePanel.listSim
-                                                .get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                        if (tempFurnitur.getSolidArea().intersects(gamePanel.listSim
+                                                .get(gamePanel.indexCurrentSim).rumah.getRuanganRumah()
                                                 .get(gamePanel.listSim.get(
-                                                        gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                                .get(i).solidArea)) {
+                                                        gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
+                                                .get(i).getSolidArea())) {
                                             intersect = true;
                                             break;
                                         }
@@ -1108,24 +1108,24 @@ public class KeyHandler implements KeyListener {
                                         gamePanel.ui.commandNumber = 0;
                                         gamePanel.ui.inputText = "";
                                     } else {
-                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.getRuanganRumah()
                                                 .get(gamePanel.listSim.get(
-                                                        gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                                        gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
                                                 .add(tempFurnitur);
-                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.getRuanganRumah()
                                                 .get(gamePanel.listSim.get(
-                                                        gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                                        gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
+                                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.getRuanganRumah()
                                                         .get(gamePanel.listSim.get(
-                                                                gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                                        .size() - 1).worldX = (x + 1) * gamePanel.tileSize;
-                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                                                gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
+                                                        .size() - 1).setWorldX((x + 1) * gamePanel.tileSize);
+                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.getRuanganRumah()
                                                 .get(gamePanel.listSim.get(
-                                                        gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah
+                                                        gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
+                                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.getRuanganRumah()
                                                         .get(gamePanel.listSim.get(
-                                                                gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                                        .size() - 1).worldY = (y + 1) * gamePanel.tileSize;
+                                                                gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
+                                                        .size() - 1).setWorldY((y + 1) * gamePanel.tileSize);
                                     }
                                 }
                             }
@@ -1319,10 +1319,10 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.inputText.length() > 0) {
                 // nama tidak boleh sama
                 boolean isRuanganNameExist = false;
-                for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.size(); i++) {
+                for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.getRuanganRumah().size(); i++) {
                     if (UtilityTool
                             .capitalizeFirstLetter(
-                                    gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(i).name)
+                                    gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.getRuanganRumah().get(i).getName())
                             .equals(UtilityTool.capitalizeFirstLetter(gamePanel.ui.inputText))) {
                         isRuanganNameExist = true;
                     }
@@ -1459,8 +1459,8 @@ public class KeyHandler implements KeyListener {
                         // check apakah koordinat sudah ada rumah
                         boolean isExist = false;
                         for (int i = 0; i < gamePanel.listRumah[0].size(); i++) {
-                            if (gamePanel.listRumah[0].get(i).worldX == x * gamePanel.tileSize
-                                    && gamePanel.listRumah[0].get(i).worldY == y * gamePanel.tileSize) {
+                            if (gamePanel.listRumah[0].get(i).getWorldX() == x * gamePanel.tileSize
+                                    && gamePanel.listRumah[0].get(i).getWorldY() == y * gamePanel.tileSize) {
                                 isExist = true;
                                 break;
                             }
@@ -1474,10 +1474,10 @@ public class KeyHandler implements KeyListener {
                             gamePanel.ui.commandNumber = 0;
                             gamePanel.ui.inputText = "";
                         } else {
-                            gamePanel.listSim.get(gamePanel.listSim.size() - 1).rumah.colRumah = x;
-                            gamePanel.listSim.get(gamePanel.listSim.size() - 1).rumah.worldX = x * gamePanel.tileSize;
-                            gamePanel.listSim.get(gamePanel.listSim.size() - 1).rumah.rowRumah = y;
-                            gamePanel.listSim.get(gamePanel.listSim.size() - 1).rumah.worldY = y * gamePanel.tileSize;
+                            gamePanel.listSim.get(gamePanel.listSim.size() - 1).rumah.setColRumah(x);
+                            gamePanel.listSim.get(gamePanel.listSim.size() - 1).rumah.setWorldX(x * gamePanel.tileSize);
+                            gamePanel.listSim.get(gamePanel.listSim.size() - 1).rumah.setRowRumah(y);
+                            gamePanel.listSim.get(gamePanel.listSim.size() - 1).rumah.setWorldY(y * gamePanel.tileSize);
                             gamePanel.listRumah[0].add(gamePanel.listSim.get(gamePanel.listSim.size() - 1).rumah);
                             // set sim to own rumah
                             gamePanel.listSim.get(gamePanel.listSim.size() - 1).currentMap = 1;
@@ -1488,8 +1488,8 @@ public class KeyHandler implements KeyListener {
                             gamePanel.listSim.get(gamePanel.listSim.size() - 1).currentLocation = "Rumah "
                                     + gamePanel.listSim.get(gamePanel.listSim.size() - 1).nama + " ("
                                     + UtilityTool.capitalizeFirstLetter(
-                                            gamePanel.listSim.get(gamePanel.listSim.size() - 1).rumah.ruanganRumah
-                                                    .get(0).name)
+                                            gamePanel.listSim.get(gamePanel.listSim.size() - 1).rumah.getRuanganRumah()
+                                                    .get(0).getName())
                                     + ")";
                             gamePanel.ui.charIndex = 0;
                             gamePanel.ui.combinedText = "";
@@ -1862,11 +1862,11 @@ public class KeyHandler implements KeyListener {
                         }
                         gamePanel.indexCurrentSim = 0;
                         for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                            if (gamePanel.listSim.get(i).rumah.isCanUpgrade == false) {
-                                gamePanel.listSim.get(i).rumah.isLockUpgrade = false;
-                                gamePanel.listSim.get(i).rumah.remainingTimeUpgrade -= gamePanel.ui.tempDurasi;
+                            if (gamePanel.listSim.get(i).rumah.getIsCanUpgrade() == false) {
+                                gamePanel.listSim.get(i).rumah.setIsLockUpgrade(false);
+                                gamePanel.listSim.get(i).rumah.decRemainingTimeUpgrade(gamePanel.ui.tempDurasi);
                                 gamePanel.listSim.get(i).rumah.setIsCanUpgradeToTrueAfter18Minutes();
-                                gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+                                gamePanel.listSim.get(i).rumah.setIsLockUpgrade(true);
                             }
                         }
                         for (int i = 0; i < gamePanel.listSim.size(); i++) {
@@ -1874,7 +1874,7 @@ public class KeyHandler implements KeyListener {
                                 gamePanel.listSim.get(i).isLockBuy = false;
                                 gamePanel.listSim.get(i).remainingTimeBuy -= gamePanel.ui.tempDurasi;
                                 gamePanel.listSim.get(i).setIsCanBuyToTrue();
-                                gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+                                gamePanel.listSim.get(i).rumah.setIsLockUpgrade(true);
                             }
                         }
 

@@ -472,15 +472,15 @@ public class UI {
                 g2d.fillRoundRect(slotX, slotY, gamePanel.tileSize, gamePanel.tileSize, 10, 10);
             }
 
-            g2d.drawImage(entity.inventory.get(i).image, slotX, slotY, gamePanel.tileSize, gamePanel.tileSize,
+            g2d.drawImage(entity.inventory.get(i).getImage(), slotX, slotY, gamePanel.tileSize, gamePanel.tileSize,
                     null);
 
             // display amount
-            if (entity == gamePanel.listSim.get(gamePanel.indexCurrentSim) && entity.inventory.get(i).quantity > 1) {
+            if (entity == gamePanel.listSim.get(gamePanel.indexCurrentSim) && entity.inventory.get(i).getQuantity() > 1) {
                 g2d.setFont(g2d.getFont().deriveFont(32f));
                 int amountX, amountY;
 
-                String s = "" + entity.inventory.get(i).quantity;
+                String s = "" + entity.inventory.get(i).getQuantity();
                 amountX = getXforAlignToRightText(s, slotX + 44);
                 amountY = slotY + gamePanel.tileSize;
 
@@ -552,14 +552,14 @@ public class UI {
                     textY = textYITEMINFO + lineHeight + 20;
                     String iValue;
                     BahanMakanan bahanMakanan = (BahanMakanan) entity.inventory.get(itemIndex);
-                    g2d.drawString(" : " + bahanMakanan.name, iTailX, textY);
+                    g2d.drawString(" : " + bahanMakanan.getName(), iTailX, textY);
                     textY += lineHeight;
-                    g2d.drawString(" : " + bahanMakanan.category, iTailX, textY);
+                    g2d.drawString(" : " + bahanMakanan.getCategory(), iTailX, textY);
                     textY += lineHeight;
-                    iValue = String.valueOf(" : " + bahanMakanan.harga);
+                    iValue = String.valueOf(" : " + bahanMakanan.getHarga());
                     g2d.drawString(iValue, iTailX, textY);
                     textY += lineHeight;
-                    iValue = String.valueOf(" : " + bahanMakanan.kekenyangan);
+                    iValue = String.valueOf(" : " + bahanMakanan.getKekenyangan());
                     g2d.drawString(iValue, iTailX, textY);
 
                     textY = textYITEMINFO + lineHeight + 20;
@@ -577,14 +577,14 @@ public class UI {
                     textY = textYITEMINFO + lineHeight + 20;
                     String iValue;
                     Makanan makanan = (Makanan) entity.inventory.get(itemIndex);
-                    g2d.drawString(" : " + makanan.name, iTailX, textY);
+                    g2d.drawString(" : " + makanan.getName(), iTailX, textY);
                     textY += lineHeight;
-                    g2d.drawString(" : " + makanan.category, iTailX, textY);
+                    g2d.drawString(" : " + makanan.getCategory(), iTailX, textY);
                     textY += lineHeight;
-                    iValue = String.valueOf(" : " + makanan.bahan);
+                    iValue = String.valueOf(" : " + makanan.getBahan());
                     g2d.drawString(iValue, iTailX, textY);
                     textY += lineHeight;
-                    iValue = String.valueOf(" : " + makanan.kekenyangan);
+                    iValue = String.valueOf(" : " + makanan.getKekenyangan());
                     g2d.drawString(iValue, iTailX, textY);
 
                     textY = textYITEMINFO + lineHeight + 20;
@@ -604,17 +604,17 @@ public class UI {
                     textY = textYITEMINFO + lineHeight + 20;
                     String iValue;
                     Furnitur furnitur = (Furnitur) entity.inventory.get(itemIndex);
-                    g2d.drawString(" : " + furnitur.name, iTailX, textY);
+                    g2d.drawString(" : " + furnitur.getName(), iTailX, textY);
                     textY += lineHeight;
-                    g2d.drawString(" : " + furnitur.category, iTailX, textY);
+                    g2d.drawString(" : " + furnitur.getCategory(), iTailX, textY);
                     textY += lineHeight;
-                    iValue = String.valueOf(" : " + furnitur.dimensiX + "x" + furnitur.dimensiY);
+                    iValue = String.valueOf(" : " + furnitur.getDimensiX() + "x" + furnitur.getDimensiY());
                     g2d.drawString(iValue, iTailX, textY);
                     textY += lineHeight;
-                    iValue = String.valueOf(" : " + furnitur.harga);
+                    iValue = String.valueOf(" : " + furnitur.getHarga());
                     g2d.drawString(iValue, iTailX, textY);
                     textY += lineHeight;
-                    iValue = String.valueOf(" : " + furnitur.aksi);
+                    iValue = String.valueOf(" : " + furnitur.getAksi());
                     g2d.drawString(iValue, iTailX, textY);
 
                     textY = textYITEMINFO + lineHeight + 20;
@@ -632,14 +632,14 @@ public class UI {
                     textY = textYITEMINFO + lineHeight + 20;
                     String iValue;
                     Lampu lampu = (Lampu) entity.inventory.get(itemIndex);
-                    g2d.drawString(" : " + lampu.name, iTailX, textY);
+                    g2d.drawString(" : " + lampu.getName(), iTailX, textY);
                     textY += lineHeight;
-                    g2d.drawString(" : " + lampu.category, iTailX, textY);
+                    g2d.drawString(" : " + lampu.getCategory(), iTailX, textY);
                     textY += lineHeight;
-                    iValue = String.valueOf(" : " + lampu.harga);
+                    iValue = String.valueOf(" : " + lampu.getHarga());
                     g2d.drawString(iValue, iTailX, textY);
                     textY += lineHeight;
-                    iValue = String.valueOf(" : " + lampu.aksi);
+                    iValue = String.valueOf(" : " + lampu.getAksi());
                     g2d.drawString(iValue, iTailX, textY);
 
                     textY = textYITEMINFO + lineHeight + 20;
@@ -748,14 +748,14 @@ public class UI {
                     int harga = 0;
                     if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof BahanMakanan) {
                         BahanMakanan makanan = (BahanMakanan) gamePanel.npc[0][4].inventory.get(itemIndex);
-                        harga = makanan.harga;
+                        harga = makanan.getHarga();
                     } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Furnitur) {
                         Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].inventory.get(itemIndex);
-                        harga = furnitur.harga;
+                        harga = furnitur.getHarga();
                     } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Lampu) {
                         Lampu lampu = (Lampu) gamePanel.npc[0][4].inventory.get(itemIndex);
-                        harga = lampu.harga;
-                        if (gamePanel.getCurrentSim().searchItemInInventory(lampu.name) != 999) {
+                        harga = lampu.getHarga();
+                        if (gamePanel.getCurrentSim().searchItemInInventory(lampu.getName()) != 999) {
                             gamePanel.ui.subState = 0;
                             gamePanel.ui.charIndex = 0;
                             gamePanel.ui.combinedText = "";
@@ -781,7 +781,7 @@ public class UI {
                         gamePanel.ui.combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
                         gamePanel.ui.currentDialog = "Anda berhasil membeli "
-                                + gamePanel.npc[0][4].inventory.get(itemIndex).name + ".\nSilahkan tunggu "
+                                + gamePanel.npc[0][4].inventory.get(itemIndex).getName() + ".\nSilahkan tunggu "
                                 + gamePanel.getCurrentSim().remainingTimeBuy + " detik.";
                         // gamePanel.getCurrentSim().setIsCanBuyToTrue();
                     }
@@ -970,7 +970,7 @@ public class UI {
                 textY += lineHeight;
                 g2d.drawString(" : " + sim.pekerjaan.listPekerjaan[sim.pekerjaan.indexPekerjaan], iTailX, textY);
                 textY += lineHeight;
-                iValue = String.valueOf(" : " + sim.rumah.colRumah + ", " + sim.rumah.rowRumah);
+                iValue = String.valueOf(" : " + sim.rumah.getColRumah() + ", " + sim.rumah.getRowRumah());
                 g2d.drawString(iValue, iTailX, textY);
 
                 textY = textYITEMINFO + lineHeight + 20;
@@ -1203,19 +1203,19 @@ public class UI {
                         if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i) instanceof BahanMakanan) {
                             BahanMakanan bahan = (BahanMakanan) gamePanel.listSim
                                     .get(gamePanel.indexCurrentSim).inventory.get(i);
-                            bahanInInventory.add(bahan.name);
+                            bahanInInventory.add(bahan.getName());
                         }
                     }
                     // ini bisa jadi penerapan generics
-                    if (bahanInInventory.containsAll(makanan.bahan)) {
+                    if (bahanInInventory.containsAll(makanan.getBahan())) {
                         for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size(); i++) {
                             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory
                                     .get(i) instanceof BahanMakanan) {
                                 BahanMakanan bahanInv = (BahanMakanan) gamePanel.listSim
                                         .get(gamePanel.indexCurrentSim).inventory.get(i);
-                                if (makanan.bahan.contains(bahanInv.name)) {
-                                    if (bahanInv.quantity > 1) {
-                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i).quantity--;
+                                if (makanan.getBahan().contains(bahanInv.getName())) {
+                                    if (bahanInv.getQuantity() > 1) {
+                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i).decQuantity(1);
                                     } else {
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.remove(i);
                                     }
@@ -1232,7 +1232,7 @@ public class UI {
                         // simpan makanan yang udah jadi ke inventory
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(makanan);
 
-                        durasiTimer = (int) (3 * makanan.kekenyangan / 2);
+                        durasiTimer = (int) (3 * makanan.getKekenyangan()/ 2);
                         int durasi = durasiTimer;
 
                         // nambah world time
@@ -1244,18 +1244,18 @@ public class UI {
                             }
                         }
                         currentAksi = "Masak";
-                        currentAksiCadangan = makanan.name + " berhasil dibuat dan\ndimasukkan ke inventory!";
+                        currentAksiCadangan = makanan.getName()+ " berhasil dibuat dan\ndimasukkan ke inventory!";
                         // mulai masak : draw dialog
                         gamePanel.gameState = gamePanel.timerState;
                         currentAksiDone = false;
-                        gamePanel.ui.tempDurasi = (int) (3 * makanan.kekenyangan / 2);
-                        gamePanel.keyHandler.threadTemp = startTimerThread((int) (3 * makanan.kekenyangan / 2));
+                        gamePanel.ui.tempDurasi = (int) (3 * makanan.getKekenyangan()/ 2);
+                        gamePanel.keyHandler.threadTemp = startTimerThread((int) (3 * makanan.getKekenyangan()/ 2));
 
                     } else {
                         charIndex = 0;
                         combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
-                        currentDialog = "Bahan tidak cukup untuk memasak\n" + makanan.name + "!";
+                        currentDialog = "Bahan tidak cukup untuk memasak\n" + makanan.getName()+ "!";
                     }
                 }
             }
@@ -1531,43 +1531,43 @@ public class UI {
             for (int i = 0; i < gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap]
                     .size(); i++) {
                 int bendaX = (int) (x
-                        + gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i).worldX / scale);
+                        + gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i).getWorldX() / scale);
                 int bendaY = (int) (y
-                        + gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i).worldY / scale);
+                        + gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i).getWorldY() / scale);
                 if (gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i) != null) {
-                    g2d.drawImage(gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i).image, bendaX,
+                    g2d.drawImage(gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i).getImage(), bendaX,
                             bendaY, bendaSize, bendaSize, null);
                 }
             }
         } else {
 
             for (int i = 0; i < gamePanel.listSim
-                    .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                    .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                    .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                    .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
                     .size(); i++) {
                 int bendaX = (int) (x +
                         gamePanel.listSim
                                 .get(gamePanel.listSim
-                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                .get(i).worldX / scale);
+                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
+                                .get(i).getWorldX() / scale);
                 int bendaY = (int) (y +
                         gamePanel.listSim
                                 .get(gamePanel.listSim
-                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                .get(i).worldY / scale);
+                                        .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                                .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
+                                .get(i).getWorldY()/ scale);
                 if (gamePanel.listSim
-                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
                         .get(i) != null) {
                     g2d.drawImage(
                             gamePanel.listSim
                                     .get(gamePanel.listSim
-                                            .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                            .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                     .get(gamePanel.listSim
-                                            .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                    .get(i).image,
+                                            .get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
+                                    .get(i).getImage(),
                             bendaX,
                             bendaY, bendaSize, bendaSize, null);
                 }
@@ -1596,46 +1596,46 @@ public class UI {
                 for (int i = 0; i < gamePanel.listRumah[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap]
                         .size(); i++) {
                     int bendaX = (int) (x
-                            + gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i).worldX / scale);
+                            + gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i).getWorldX()/ scale);
                     int bendaY = (int) (y
-                            + gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i).worldY / scale);
+                            + gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i).getWorldY() / scale);
                     if (gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i) != null) {
-                        g2d.drawImage(gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i).image, bendaX,
+                        g2d.drawImage(gamePanel.listRumah[gamePanel.getCurrentSim().currentMap].get(i).getImage(), bendaX,
                                 bendaY, bendaSize, bendaSize, null);
                     }
                 }
             } else {
 
                 for (int i = 0; i < gamePanel.listSim
-                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                        .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
                         .size(); i++) {
                     int bendaX = (int) (x +
                             gamePanel.listSim
                                     .get(gamePanel.listSim
-                                            .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                            .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                     .get(gamePanel.listSim
-                                            .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                    .get(i).worldX / scale);
+                                            .get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
+                                    .get(i).getWorldX()/ scale);
                     int bendaY = (int) (y +
                             gamePanel.listSim
                                     .get(gamePanel.listSim
-                                            .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                            .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                     .get(gamePanel.listSim
-                                            .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                    .get(i).worldY / scale);
+                                            .get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
+                                    .get(i).getWorldY() / scale);
                     if (gamePanel.listSim
                             .get(gamePanel.listSim
-                                    .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
+                                    .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
+                            .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
                             .get(i) != null) {
                         g2d.drawImage(
                                 gamePanel.listSim
                                         .get(gamePanel.listSim
-                                                .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
+                                                .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
                                         .get(gamePanel.listSim
-                                                .get(gamePanel.indexCurrentSim).indexLocationRuangan).bendaRuangan
-                                        .get(i).image,
+                                                .get(gamePanel.indexCurrentSim).indexLocationRuangan).getBendaRuangan()
+                                        .get(i).getImage(),
                                 bendaX,
                                 bendaY, bendaSize, bendaSize, null);
                     }
@@ -2298,7 +2298,7 @@ public class UI {
         y += 35;
         g2d.drawString(": " + gamePanel.worldTimeCounter/720, x, y);
         y += gamePanel.tileSize + 15 + 35;
-        g2d.drawString(": " + gamePanel.getCurrentSim().rumah.remainingTimeUpgrade + " detik", x, y);
+        g2d.drawString(": " + gamePanel.getCurrentSim().rumah.getRemainingTimeUpgrade() + " detik", x, y);
         y += 35;
         g2d.drawString(": " + gamePanel.getCurrentSim().remainingTimeBuy + " detik", x, y);
 
@@ -2588,11 +2588,11 @@ public class UI {
             // currentDialog = "Selesai melakukan " + currentAksi;
             // }
             for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                if (gamePanel.listSim.get(i).rumah.isCanUpgrade == false) {
-                    gamePanel.listSim.get(i).rumah.isLockUpgrade = false;
-                    gamePanel.listSim.get(i).rumah.remainingTimeUpgrade -= duration;
+                if (gamePanel.listSim.get(i).rumah.getIsCanUpgrade() == false) {
+                    gamePanel.listSim.get(i).rumah.setIsLockUpgrade(false);
+                    gamePanel.listSim.get(i).rumah.decRemainingTimeUpgrade(duration);
                     gamePanel.listSim.get(i).rumah.setIsCanUpgradeToTrueAfter18Minutes();
-                    gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+                    gamePanel.listSim.get(i).rumah.setIsLockUpgrade(true);
                 }
             }
             for (int i = 0; i < gamePanel.listSim.size(); i++) {
@@ -2600,13 +2600,13 @@ public class UI {
                     gamePanel.listSim.get(i).isLockBuy = false;
                     gamePanel.listSim.get(i).remainingTimeBuy -= duration;
                     gamePanel.listSim.get(i).setIsCanBuyToTrue();
-                    gamePanel.listSim.get(i).rumah.isLockUpgrade = true;
+                    gamePanel.listSim.get(i).rumah.setIsLockUpgrade(true);
                 }
             }
 
         } else {
             gamePanel.getCurrentSim().isCanBuy = true;
-            gamePanel.getCurrentSim().rumah.isCanUpgrade = true;
+            gamePanel.getCurrentSim().rumah.setIsCanUpgrade(true);
         }
 
         // if (gamePanel.getCurrentSim().isBarangSampai = true) {

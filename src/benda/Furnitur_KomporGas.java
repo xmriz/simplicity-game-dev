@@ -6,14 +6,14 @@ import main.GamePanel;
 
 public class Furnitur_KomporGas extends Furnitur{
     public Furnitur_KomporGas(GamePanel gamePanel){
-        name = "Kompor Gas";
-        image = setupImage("benda/furnitur/kompor_gas");
-        collision = false;
-        dimensiX = 2;
-        dimensiY = 1;
-        harga = 100;
-        aksi = "Memasak";
-        solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
+        setName("Kompor Gas");
+        setImage(setupImage("benda/furnitur/kompor_gas"));
+        setCollision(false);
+        setDimensiX(2);
+        setDimensiY(1);
+        setHarga(100);
+        setAksi("Memasak");
+        setSolidArea(new Rectangle(0, 0, 48*getDimensiX(), 48*getDimensiY()));
         this.gamePanel = gamePanel;
     }
 
