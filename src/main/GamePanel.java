@@ -162,12 +162,20 @@ public class GamePanel extends JPanel implements Runnable {
         this.worldTimeCounter = worldTimeCounter;
     }
 
+    public void incWorldTimeCounter(int inc){
+        this.worldTimeCounter += inc;
+    }
+
     public int getWorldTimeSatuHariCounter() {
         return worldTimeSatuHariCounter;
     }
 
     public void setWorldTimeSatuHariCounter(int worldTimeSatuHariCounter) {
         this.worldTimeSatuHariCounter = worldTimeSatuHariCounter;
+    }
+
+    public void incWorldTimeSatuHariCounter(int inc){
+        this.worldTimeSatuHariCounter += inc;
     }
 
     public int getMaxMap() {
