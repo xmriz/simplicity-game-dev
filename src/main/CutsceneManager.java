@@ -34,7 +34,7 @@ public class CutsceneManager {
                 "Ahmad Rizki (18221071)\n" +
                 "Nadine Aliya (18221081)\n" + 
                 "Iskandar Muda R. Parlambang (18221109)\n" +
-                "Luthfi Hanif (18221071)\n"
+                "Luthfi Hanif (18221151)\n"
                 + "\n\n\n"
                 + "PJ Source Code:\n"
                 + "Ahmad Rizki (18221071)\n" +
@@ -45,13 +45,13 @@ public class CutsceneManager {
                 "Nadine Aliya (18221081)\n" + 
                 "\n\n\n" +
                 "PJ Class Diagram:\n" +
-                "Luthfi Hanif (18221071)\n" 
+                "Luthfi Hanif (18221151)\n" 
                 + "\n\n\n"
                 + "Music:\n" +
                 "Ahmad Rizki (18221071)\n" +
                 "Nadine Aliya (18221081)\n" + 
                 "Iskandar Muda R. Parlambang (18221109)\n" +
-                "Luthfi Hanif (18221071)\n" +
+                "Luthfi Hanif (18221151)\n" +
                 "\n\n\n" +
                 "Art:\n" 
                 + "Silvester Kresna (18221049)\n" +
@@ -62,7 +62,7 @@ public class CutsceneManager {
                 "Ahmad Rizki (18221071)\n" +
                 "Nadine Aliya (18221081)\n" +
                 "Iskandar Muda R. Parlambang (18221109)\n" +
-                "Luthfi Hanif (18221071)\n"
+                "Luthfi Hanif (18221151)\n"
                 + "\n\n\n" + 
                 "Tester:\n" +
                 "Abraham Megantoro (18221123)\n" +
