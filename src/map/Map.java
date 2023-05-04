@@ -31,10 +31,10 @@ public class Map extends TileManager {
             int row = 0;
 
             while (col < gamePanel.maxWorldCol && row < gamePanel.maxWorldRow) {
-                int tileNum = mapTileNum[i][col][row];
+                int tileNum = getMapTileNum()[i][col][row];
                 int x = gamePanel.tileSize * col;
                 int y = gamePanel.tileSize * row;
-                g2d.drawImage(tile[tileNum].image, x, y, null);
+                g2d.drawImage(getTile()[tileNum].getImage(), x, y, null);
 
                 // if (gamePanel.listRumah[gamePanel.currentMap].get(i) != null) {
                 // g2d.drawImage(gamePanel.listRumah[gamePanel.currentMap].get(i).image, x, y,

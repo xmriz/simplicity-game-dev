@@ -9,16 +9,16 @@ import java.awt.image.BufferedImage;
 import main.GamePanel;
 
 public class Lighting {
-    GamePanel gamePanel;
-    BufferedImage darknessFilter;
-    float filterAlpha = 0.0f;
+    private GamePanel gamePanel;
+    private BufferedImage darknessFilter;
+    private float filterAlpha = 0.0f;
 
     // DAY STATE
-    final int day = 0;
-    final int night = 1;
-    final int dusk = 2;
-    final int dawn = 3;
-    int dayState = day;
+    private final int day = 0;
+    private final int night = 1;
+    private final int dusk = 2;
+    private final int dawn = 3;
+    private int dayState = day;
 
     public Lighting(GamePanel gamePanel) {
         this.gamePanel = gamePanel;

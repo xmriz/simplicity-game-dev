@@ -43,9 +43,9 @@ public class TileManager {
     public void setupImage(int index, String imagePath, boolean collision){
         try {
             tile[index] = new Tile();
-            tile[index].image = ImageIO.read(new FileInputStream(new File("assets/tiles/" + imagePath +".png")));
-            tile[index].image = UtilityTool.scaleImage(tile[index].image, gamePanel.tileSize, gamePanel.tileSize);
-            tile[index].collision = collision;
+            tile[index].setImage(ImageIO.read(new FileInputStream(new File("assets/tiles/" + imagePath +".png"))));
+            tile[index].setImage(UtilityTool.scaleImage(tile[index].getImage(), gamePanel.tileSize, gamePanel.tileSize));
+            tile[index].setCollision(collision);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,7 +100,7 @@ public class TileManager {
 
             if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX() && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX() - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX()
                 && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY() && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY() - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY()){
-                    g2d.drawImage(tile[tileNum].image, screenX, screenY, null);
+                    g2d.drawImage(tile[tileNum].getImage(), screenX, screenY, null);
             }
 
             worldCol++;
