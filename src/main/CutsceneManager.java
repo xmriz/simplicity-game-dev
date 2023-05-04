@@ -185,8 +185,8 @@ public class CutsceneManager {
 
         if (scenePhase == 3){ // scrolling up the credit
             drawBlackBackground(1f);
-            y--;
             drawString(1f, 38f, y, credit, 40);
+            y--;
         }
         // if (scenePhase == 4){ // fade out black background
         //     alpha += 0.005f;
