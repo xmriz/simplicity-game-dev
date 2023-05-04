@@ -4,7 +4,7 @@ import entity.*;
 
 public class AssetSetter {
 
-    GamePanel gamePanel;
+    private GamePanel gamePanel;
 
     public AssetSetter(GamePanel gamePanel) {
         this.gamePanel = gamePanel;

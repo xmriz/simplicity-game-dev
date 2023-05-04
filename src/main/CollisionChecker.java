@@ -4,7 +4,7 @@ import entity.Entity;
 
 public class CollisionChecker {
 
-    GamePanel gamePanel;
+    private GamePanel gamePanel;
 
     public CollisionChecker(GamePanel gamePanel) {
         this.gamePanel = gamePanel;

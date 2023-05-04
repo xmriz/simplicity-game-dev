@@ -425,7 +425,7 @@ public class KeyHandler implements KeyListener {
     public void cutsceneState(int keyCode) {
         if (keyCode == KeyEvent.VK_ENTER) {
             gamePanel.gameState = gamePanel.menuState;
-            gamePanel.cutsceneManager.scenePhase=0;
+            gamePanel.cutsceneManager.setScenePhase(0);
         }
     }
 
@@ -765,7 +765,7 @@ public class KeyHandler implements KeyListener {
                 cursorSound();
             } else if (keyCode == KeyEvent.VK_ENTER) {
                 gamePanel.gameState = gamePanel.cutsceneState;
-                gamePanel.cutsceneManager.sceneNum = gamePanel.cutsceneManager.ending;
+                gamePanel.cutsceneManager.setSceneNum(gamePanel.cutsceneManager.getEnding());
                 gamePanel.ui.commandNumber = 0;
                 cursorSound();
             }

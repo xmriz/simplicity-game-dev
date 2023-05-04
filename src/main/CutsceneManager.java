@@ -11,17 +11,37 @@ import java.io.FileInputStream;
 import javax.imageio.ImageIO;
 
 public class CutsceneManager {
-    GamePanel gamePanel;
-    Graphics2D g2d;
-    public int sceneNum;
-    public int scenePhase;
-    int counter = 0;
-    float alpha = 0.0f;
-    int y;
-    String credit;
+    private GamePanel gamePanel;
+    private Graphics2D g2d;
+    private int sceneNum;
+    private int scenePhase;
+    private int counter = 0;
+    private float alpha = 0.0f;
+    private int y;
+    private String credit;
 
     // scene number
-    public final int ending = 0;
+    private final int ending = 0;
+
+    public int getScenePhase(){
+        return scenePhase;
+    }
+
+    public void setScenePhase(int scenePhase){
+        this.scenePhase = scenePhase;
+    }
+
+    public int getSceneNum(){
+        return sceneNum;
+    }
+
+    public void setSceneNum(int sceneNum){
+        this.sceneNum = sceneNum;
+    }
+
+    public int getEnding(){
+        return ending;
+    }
 
     public CutsceneManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -40,7 +60,7 @@ public class CutsceneManager {
                 + "Ahmad Rizki (18221071)\n" +
                 "Iskandar Muda R. Parlambang (18221109)\n" + 
                 "\n\n\n" +
-                "PJ Buklet:\n" +
+                "PJ Booklet:\n" +
                 "Silvester Kresna (18221049)\n" +
                 "Nadine Aliya (18221081)\n" + 
                 "\n\n\n" +
