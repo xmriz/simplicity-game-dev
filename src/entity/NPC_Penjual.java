@@ -8,7 +8,7 @@ public class NPC_Penjual extends Entity{
     public NPC_Penjual(GamePanel gamePanel) {
         super(gamePanel);
 
-        direction = "down";
+        setDirection("down");
 
         getImage();
         setDialog();
@@ -16,14 +16,14 @@ public class NPC_Penjual extends Entity{
     }
 
     public void getImage(){
-        up1 = setupImage("npc/penjual");
-        up2 = setupImage("npc/penjual");
-        down1 = setupImage("npc/penjual");
-        down2 = setupImage("npc/penjual");
-        left1 = setupImage("npc/penjual");
-        left2 = setupImage("npc/penjual");
-        right1 = setupImage("npc/penjual");
-        right2 = setupImage("npc/penjual");
+        setUp1(setupImage("npc/penjual"));
+        setUp2(setupImage("npc/penjual"));
+        setDown1(setupImage("npc/penjual"));
+        setDown2(setupImage("npc/penjual"));
+        setLeft1(setupImage("npc/penjual"));
+        setLeft2(setupImage("npc/penjual"));
+       setRight1(setupImage("npc/penjual"));
+        setRight2(setupImage("npc/penjual"));
     }
 
     public void setDialog(){
