@@ -65,6 +65,7 @@ public class CutsceneManager {
                 "Luthfi Hanif (18221071)\n"
                 + "\n\n\n" + 
                 "Tester:\n" +
+                "Muhammad Naufal (1822089)\n" +
                 "Abraham Megantoro (18221123)\n" +
                 "Kevin Sebastian (1822143)\n" +
                 "Ahmad Rizki (18221071)\n" +
