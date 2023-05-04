@@ -400,15 +400,15 @@ public class Sim extends Entity {
     }
 
     public void update() { // update the position of the player
-        if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed
-                || keyHandler.enterPressed) {
-            if (keyHandler.upPressed) {
+        if (keyHandler.isUpPressed() || keyHandler.isDownPressed() || keyHandler.isLeftPressed() || keyHandler.isRightPressed()
+                || keyHandler.isEnterPressed()) {
+            if (keyHandler.isUpPressed()) {
                 setDirection("up");
-            } else if (keyHandler.downPressed) {
+            } else if (keyHandler.isDownPressed()) {
                 setDirection("down");
-            } else if (keyHandler.leftPressed) {
+            } else if (keyHandler.isLeftPressed()) {
                 setDirection("left");
-            } else if (keyHandler.rightPressed) {
+            } else if (keyHandler.isRightPressed()) {
                 setDirection("right");
             }
 
@@ -442,10 +442,10 @@ public class Sim extends Entity {
             gamePanel.eventHandler.checkEvent();
 
             // after checking all turn of enterPressed
-            gamePanel.keyHandler.enterPressed = false;
+            gamePanel.keyHandler.setEnterPressed(false);
 
             // if there is a collision, sim can't move
-            if (!getCollisionOn() && !keyHandler.enterPressed) {
+            if (!getCollisionOn() && !keyHandler.isEnterPressed()) {
                 switch (getDirection()) {
                     case "up":
                         decWorldY(getSpeed());
@@ -636,7 +636,7 @@ public class Sim extends Entity {
         if (i != 999) {
             gamePanel.ui.setCombinedText("");
             gamePanel.ui.setCharIndex(0);
-            if (gamePanel.keyHandler.enterPressed) {
+            if (gamePanel.keyHandler.isEnterPressed()) {
                 gamePanel.gameState = gamePanel.dialogState;
                 gamePanel.npc[currentMap][i].speak();
             }
@@ -647,7 +647,7 @@ public class Sim extends Entity {
         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki
         if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki != 999) {
             if (indexBendayangDisentuh != 999) {
-                if (gamePanel.keyHandler.enterPressed) {
+                if (gamePanel.keyHandler.isEnterPressed()) {
                     int indexRumahYangDimasuki = gamePanel.listSim
                             .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki;
                     int indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan;

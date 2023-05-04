@@ -8,17 +8,72 @@ import entity.Sim;
 
 public class KeyHandler implements KeyListener {
 
-    GamePanel gamePanel;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
+    private GamePanel gamePanel;
+    private boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
+    private Thread threadTemp;
+    private boolean isFirst = true;
 
-    public Thread threadTemp;
-    boolean isFirst = true;
-
-    boolean checkWorldTime = false;
-    boolean checkCurrentLocation = false;
+    private boolean checkWorldTime = false;
+    private boolean checkCurrentLocation = false;
 
     public KeyHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+    }
+
+    public boolean isUpPressed() {
+        return upPressed;
+    }
+
+    public void setUpPressed(boolean upPressed) {
+        this.upPressed = upPressed;
+    }
+
+    public boolean isDownPressed() {
+        return downPressed;
+    }
+
+    public void setDownPressed(boolean downPressed) {
+        this.downPressed = downPressed;
+    }
+
+    public boolean isLeftPressed() {
+        return leftPressed;
+    }
+
+    public void setLeftPressed(boolean leftPressed) {
+        this.leftPressed = leftPressed;
+    }
+
+    public boolean isRightPressed() {
+        return rightPressed;
+    }
+
+    public void setRightPressed(boolean rightPressed) {
+        this.rightPressed = rightPressed;
+    }
+
+    public boolean isEnterPressed() {
+        return enterPressed;
+    }
+
+    public void setEnterPressed(boolean enterPressed) {
+        this.enterPressed = enterPressed;
+    }
+
+    public Thread getThreadTemp() {
+        return threadTemp;
+    }
+
+    public void setThreadTemp(Thread threadTemp) {
+        this.threadTemp = threadTemp;
+    }
+    
+    public boolean isCheckWorldTime() {
+        return checkWorldTime;
+    }
+
+    public boolean isCheckCurrentLocation() {
+        return checkCurrentLocation;
     }
 
     @Override

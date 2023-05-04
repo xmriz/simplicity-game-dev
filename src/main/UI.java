@@ -857,7 +857,7 @@ public class UI {
                 drawBeliBuy();
                 break;
         }
-        gamePanel.keyHandler.enterPressed = false;
+        gamePanel.keyHandler.setEnterPressed(false);
     }
 
     public void drawBeliSelect() {
@@ -876,7 +876,7 @@ public class UI {
         g2d.drawString("Buy", x, y);
         if (commandNumber == 0) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
-            if (gamePanel.keyHandler.enterPressed) {
+            if (gamePanel.keyHandler.isEnterPressed()) {
                 subState = 1;
             }
         }
@@ -884,7 +884,7 @@ public class UI {
         g2d.drawString("Leave", x, y);
         if (commandNumber == 1) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
-            if (gamePanel.keyHandler.enterPressed) {
+            if (gamePanel.keyHandler.isEnterPressed()) {
                 commandNumber = 0;
                 gamePanel.gameState = gamePanel.playState;
             }
@@ -943,7 +943,7 @@ public class UI {
         // buy an item
         int itemIndex = getItemIndexOnSlot(npcSlotRow, npcSlotCol);
         if (itemIndex < gamePanel.npc[0][4].getInventory().size()) {
-            if (gamePanel.keyHandler.enterPressed) {
+            if (gamePanel.keyHandler.isEnterPressed()) {
                 if (gamePanel.getCurrentSim().getIsCanBuy()) {
                     int harga = 0;
                     if (gamePanel.npc[0][4].getInventory().get(itemIndex) instanceof BahanMakanan) {
@@ -1394,7 +1394,7 @@ public class UI {
         // cook makanan
         int itemIndex = getItemIndexOnSlot(kokiSlotRow, kokiSlotCol);
         if (itemIndex < gamePanel.kokiTemp.getInventory().size()) {
-            if (gamePanel.keyHandler.enterPressed) {
+            if (gamePanel.keyHandler.isEnterPressed()) {
                 if (gamePanel.kokiTemp.getInventory().get(itemIndex) instanceof Makanan) {
                     Makanan makanan = (Makanan) gamePanel.kokiTemp.getInventory().get(itemIndex);
                     // check inventory containsAll makanan.bahan
@@ -1450,7 +1450,7 @@ public class UI {
                         gamePanel.gameState = gamePanel.timerState;
                         currentAksiDone = false;
                         gamePanel.ui.tempDurasi = (int) (3 * makanan.getKekenyangan()/ 2);
-                        gamePanel.keyHandler.threadTemp = startTimerThread((int) (3 * makanan.getKekenyangan()/ 2));
+                        gamePanel.keyHandler.setThreadTemp(startTimerThread((int) (3 * makanan.getKekenyangan()/ 2)));
 
                     } else {
                         charIndex = 0;
@@ -1461,7 +1461,7 @@ public class UI {
                 }
             }
         }
-        gamePanel.keyHandler.enterPressed = false;
+        gamePanel.keyHandler.setEnterPressed(false);
     }
 
     // Menu SCREEN
@@ -1494,7 +1494,7 @@ public class UI {
             g2d.drawRect(xRect, yRect, 120, 24);
             int volumeWidth = 24 * gamePanel.music.volumeScale;
             g2d.fillRect(xRect, yRect, volumeWidth, 24);
-            if (gamePanel.keyHandler.enterPressed) {
+            if (gamePanel.keyHandler.isEnterPressed()) {
                 commandNumber = 0;
                 gamePanel.gameState = gamePanel.playState;
             }
@@ -1510,7 +1510,7 @@ public class UI {
             g2d.drawRect(xRect, yRect, 120, 24);
             int volumeWidth = 24 * gamePanel.soundEffect.volumeScale;
             g2d.fillRect(xRect, yRect, volumeWidth, 24);
-            if (gamePanel.keyHandler.enterPressed) {
+            if (gamePanel.keyHandler.isEnterPressed()) {
                 commandNumber = 0;
                 gamePanel.gameState = gamePanel.playState;
             }
@@ -1521,7 +1521,7 @@ public class UI {
         g2d.drawString(text, x, y);
         if (commandNumber == 2) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
-            if (gamePanel.keyHandler.enterPressed) {
+            if (gamePanel.keyHandler.isEnterPressed()) {
                 commandNumber = 0;
                 gamePanel.gameState = gamePanel.playState;
             }
@@ -1532,7 +1532,7 @@ public class UI {
         g2d.drawString(text, x, y);
         if (commandNumber == 3) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
-            if (gamePanel.keyHandler.enterPressed) {
+            if (gamePanel.keyHandler.isEnterPressed()) {
                 commandNumber = 0;
                 gamePanel.gameState = gamePanel.playState;
             }
@@ -1543,7 +1543,7 @@ public class UI {
         g2d.drawString(text, x, y);
         if (commandNumber == 4) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
-            if (gamePanel.keyHandler.enterPressed) {
+            if (gamePanel.keyHandler.isEnterPressed()) {
                 commandNumber = 0;
                 gamePanel.gameState = gamePanel.playState;
             }
@@ -1554,7 +1554,7 @@ public class UI {
         g2d.drawString(text, x, y);
         if (commandNumber == 5) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
-            if (gamePanel.keyHandler.enterPressed) {
+            if (gamePanel.keyHandler.isEnterPressed()) {
                 commandNumber = 0;
                 gamePanel.gameState = gamePanel.cutsceneState;
             }
@@ -1565,7 +1565,7 @@ public class UI {
         g2d.drawString(text, x, y);
         if (commandNumber == 6) {
             g2d.drawString(">", x - gamePanel.tileSize / 2, y);
-            if (gamePanel.keyHandler.enterPressed) {
+            if (gamePanel.keyHandler.isEnterPressed()) {
                 commandNumber = 0;
                 gamePanel.gameState = gamePanel.playState;
             }
