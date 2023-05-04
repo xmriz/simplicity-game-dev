@@ -603,52 +603,52 @@ public class KeyHandler implements KeyListener {
         } else if (keyCode == KeyEvent.VK_UP) {
             if (gamePanel.ui.simSlotRow > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow - 1, gamePanel.ui.simSlotCol);
-                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().size() - 1) {
                     gamePanel.ui.simSlotRow--;
                     cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(2, gamePanel.ui.simSlotCol);
-                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().size() - 1) {
                     gamePanel.ui.simSlotRow = 2;
                 }
             }
         } else if (keyCode == KeyEvent.VK_DOWN) {
             if (gamePanel.ui.simSlotRow < 2) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow + 1, gamePanel.ui.simSlotCol);
-                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().size() - 1) {
                     gamePanel.ui.simSlotRow++;
                     cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(0, gamePanel.ui.simSlotCol);
-                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().size() - 1) {
                     gamePanel.ui.simSlotRow = 0;
                 }
             }
         } else if (keyCode == KeyEvent.VK_LEFT) {
             if (gamePanel.ui.simSlotCol > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, gamePanel.ui.simSlotCol - 1);
-                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().size() - 1) {
                     gamePanel.ui.simSlotCol--;
                     cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, 10);
-                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().size() - 1) {
                     gamePanel.ui.simSlotCol = 10;
                 }
             }
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             if (gamePanel.ui.simSlotCol < 10) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, gamePanel.ui.simSlotCol + 1);
-                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().size() - 1) {
                     gamePanel.ui.simSlotCol++;
                     cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, 0);
-                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size() - 1) {
+                if (index <= gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().size() - 1) {
                     gamePanel.ui.simSlotCol = 0;
                 }
             }
@@ -891,52 +891,52 @@ public class KeyHandler implements KeyListener {
         } else if (keyCode == KeyEvent.VK_UP) {
             if (gamePanel.ui.npcSlotRow > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.npcSlotRow - 1, gamePanel.ui.npcSlotCol);
-                if (index <= gamePanel.npc[0][4].inventory.size() - 1) {
+                if (index <= gamePanel.npc[0][4].getInventory().size() - 1) {
                     gamePanel.ui.npcSlotRow--;
                     cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(2, gamePanel.ui.npcSlotCol);
-                if (index <= gamePanel.npc[0][4].inventory.size() - 1) {
+                if (index <= gamePanel.npc[0][4].getInventory().size() - 1) {
                     gamePanel.ui.npcSlotRow = 2;
                 }
             }
         } else if (keyCode == KeyEvent.VK_DOWN) {
             if (gamePanel.ui.npcSlotRow < 2) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.npcSlotRow + 1, gamePanel.ui.npcSlotCol);
-                if (index <= gamePanel.npc[0][4].inventory.size() - 1) {
+                if (index <= gamePanel.npc[0][4].getInventory().size() - 1) {
                     gamePanel.ui.npcSlotRow++;
                     cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(0, gamePanel.ui.npcSlotCol);
-                if (index <= gamePanel.npc[0][4].inventory.size() - 1) {
+                if (index <= gamePanel.npc[0][4].getInventory().size() - 1) {
                     gamePanel.ui.npcSlotRow = 0;
                 }
             }
         } else if (keyCode == KeyEvent.VK_LEFT) {
             if (gamePanel.ui.npcSlotCol > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.npcSlotRow, gamePanel.ui.npcSlotCol - 1);
-                if (index <= gamePanel.npc[0][4].inventory.size() - 1) {
+                if (index <= gamePanel.npc[0][4].getInventory().size() - 1) {
                     gamePanel.ui.npcSlotCol--;
                     cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.npcSlotRow, 10);
-                if (index <= gamePanel.npc[0][4].inventory.size() - 1) {
+                if (index <= gamePanel.npc[0][4].getInventory().size() - 1) {
                     gamePanel.ui.npcSlotCol = 10;
                 }
             }
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             if (gamePanel.ui.npcSlotCol < 10) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.npcSlotRow, gamePanel.ui.npcSlotCol + 1);
-                if (index <= gamePanel.npc[0][4].inventory.size() - 1) {
+                if (index <= gamePanel.npc[0][4].getInventory().size() - 1) {
                     gamePanel.ui.npcSlotCol++;
                     cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.npcSlotRow, 0);
-                if (index <= gamePanel.npc[0][4].inventory.size() - 1) {
+                if (index <= gamePanel.npc[0][4].getInventory().size() - 1) {
                     gamePanel.ui.npcSlotCol = 0;
                 }
             }
@@ -1747,52 +1747,52 @@ public class KeyHandler implements KeyListener {
         } else if (keyCode == KeyEvent.VK_UP) {
             if (gamePanel.ui.kokiSlotRow > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.kokiSlotRow - 1, gamePanel.ui.kokiSlotCol);
-                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                if (index <= gamePanel.kokiTemp.getInventory().size() - 1) {
                     gamePanel.ui.kokiSlotRow--;
                     cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(2, gamePanel.ui.kokiSlotCol);
-                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                if (index <= gamePanel.kokiTemp.getInventory().size() - 1) {
                     gamePanel.ui.kokiSlotRow = 2;
                 }
             }
         } else if (keyCode == KeyEvent.VK_DOWN) {
             if (gamePanel.ui.kokiSlotRow < 2) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.kokiSlotRow + 1, gamePanel.ui.kokiSlotCol);
-                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                if (index <= gamePanel.kokiTemp.getInventory().size() - 1) {
                     gamePanel.ui.kokiSlotRow++;
                     cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(0, gamePanel.ui.kokiSlotCol);
-                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                if (index <= gamePanel.kokiTemp.getInventory().size() - 1) {
                     gamePanel.ui.kokiSlotRow = 0;
                 }
             }
         } else if (keyCode == KeyEvent.VK_LEFT) {
             if (gamePanel.ui.kokiSlotCol > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.kokiSlotRow, gamePanel.ui.kokiSlotCol - 1);
-                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                if (index <= gamePanel.kokiTemp.getInventory().size() - 1) {
                     gamePanel.ui.kokiSlotCol--;
                     cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.kokiSlotRow, 10);
-                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                if (index <= gamePanel.kokiTemp.getInventory().size() - 1) {
                     gamePanel.ui.kokiSlotCol = 10;
                 }
             }
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             if (gamePanel.ui.kokiSlotCol < 10) {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.kokiSlotRow, gamePanel.ui.kokiSlotCol + 1);
-                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                if (index <= gamePanel.kokiTemp.getInventory().size() - 1) {
                     gamePanel.ui.kokiSlotCol++;
                     cursorSound();
                 }
             } else {
                 index = UI.getItemIndexOnSlot(gamePanel.ui.kokiSlotRow, 0);
-                if (index <= gamePanel.kokiTemp.inventory.size() - 1) {
+                if (index <= gamePanel.kokiTemp.getInventory().size() - 1) {
                     gamePanel.ui.kokiSlotCol = 0;
                 }
             }

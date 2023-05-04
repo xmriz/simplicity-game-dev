@@ -9,48 +9,48 @@ public class NPC_Kakek extends Entity {
     public NPC_Kakek(GamePanel gamePanel) {
         super(gamePanel);
 
-        direction = "down";
-        speed = 1;
+        setDirection("down");
+        setSpeed(1);
 
         getImage();
         setDialog();
     }
 
     public void getImage(){
-        up1 = setupImage("npc/kakek_up_1");
-        up2 = setupImage("npc/kakek_up_2");
-        down1 = setupImage("npc/kakek_down_1");
-        down2 = setupImage("npc/kakek_down_2");
-        left1 = setupImage("npc/kakek_left_1");
-        left2 = setupImage("npc/kakek_left_2");
-        right1 = setupImage("npc/kakek_right_1");
-        right2 = setupImage("npc/kakek_right_2");
+        setUp1(setupImage("npc/kakek_up_1"));
+        setUp2(setupImage("npc/kakek_up_2"));
+       setDown1(setupImage("npc/kakek_down_1"));
+        setDown2(setupImage("npc/kakek_down_2"));
+       setLeft1(setupImage("npc/kakek_left_1"));
+        setLeft2(setupImage("npc/kakek_left_2"));
+        setRight1(setupImage("npc/kakek_right_1"));
+        setRight2(setupImage("npc/kakek_right_2"));
     }
 
     public void setDialog(){
-        dialogs.add("Hai, Nak.");
-        dialogs.add("Apakah kamu pernah melihatku \nsebelumnya?");
-        dialogs.add("Berhati-hatilah!");
-        dialogs.add("...");
+        getDialogs().add("Hai, Nak.");
+        getDialogs().add("Apakah kamu pernah melihatku \nsebelumnya?");
+        getDialogs().add("Berhati-hatilah!");
+        getDialogs().add("...");
     }
 
     @Override
     public void setAction(){
-        actionLockCounter++;
+        incActionLoctCounter(1);
 
-        if (actionLockCounter > 120){
-            actionLockCounter = 0;
+        if (getActionLoctCounter() > 120){
+            setActionLoctCounter(0);
             Random random = new Random();
             int i = random.nextInt(100)+1;
     
             if (i <= 25){
-                direction = "up";
+                setDirection("up");
             } else if (i <= 50){
-                direction = "down";
+                setDirection("down");
             } else if (i <= 75){
-                direction = "left";
+                setDirection("left");
             } else {
-                direction = "right";
+                setDirection("right");
             }
         }
     }

@@ -43,8 +43,8 @@ public class EventHandler {
 
     public void checkEvent() {
         // check if the sim is more than 1 tile away from the event
-        int xDistance = Math.abs(gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX - previousEventX);
-        int yDistance = Math.abs(gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY - previousEventY);
+        int xDistance = Math.abs(gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX() - previousEventX);
+        int yDistance = Math.abs(gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY() - previousEventY);
         int distance = Math.max(xDistance, yDistance);
         if (distance > gamePanel.tileSize) {
             canTouchEvent = true;
@@ -481,61 +481,61 @@ public class EventHandler {
         boolean hit = false;
         if (map == 0) {
             if (map == gamePanel.listSim.get(gamePanel.indexCurrentSim).getCurrentMap()) {
-                gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.x = gamePanel.listSim
-                        .get(gamePanel.indexCurrentSim).worldX
-                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.x;
-                gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.y = gamePanel.listSim
-                        .get(gamePanel.indexCurrentSim).worldY
-                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.y;
+                gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().x = gamePanel.listSim
+                        .get(gamePanel.indexCurrentSim).getWorldX()
+                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().x;
+                gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().y = gamePanel.listSim
+                        .get(gamePanel.indexCurrentSim).getWorldY()
+                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().y;
 
                 eventRect[map][col][row].x = col * gamePanel.tileSize + eventRect[map][col][row].x;
                 eventRect[map][col][row].y = row * gamePanel.tileSize + eventRect[map][col][row].y;
 
-                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.intersects(eventRect[map][col][row])
+                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().intersects(eventRect[map][col][row])
                         && !eventRect[map][col][row].eventDone) {
-                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).direction.contentEquals(reqDirection)
+                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getDirection().contentEquals(reqDirection)
                             || reqDirection.contentEquals("any")) {
                         hit = true;
 
-                        previousEventX = gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX;
-                        previousEventY = gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY;
+                        previousEventX = gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX();
+                        previousEventY = gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY();
                     }
                 }
 
-                gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.x = gamePanel.listSim
-                        .get(gamePanel.indexCurrentSim).solidAreaDefaultX;
-                gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.y = gamePanel.listSim
-                        .get(gamePanel.indexCurrentSim).solidAreaDefaultY;
+                gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().x = gamePanel.listSim
+                        .get(gamePanel.indexCurrentSim).getSolidAreaDefaultX();
+                gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().y = gamePanel.listSim
+                        .get(gamePanel.indexCurrentSim).getSolidAreaDefaultY();
                 eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
                 eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
             }
         } else {
             if (map == gamePanel.listSim.get(gamePanel.indexCurrentSim).getCurrentMap()) {
-                gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.x = gamePanel.listSim
-                        .get(gamePanel.indexCurrentSim).worldX
-                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.x;
-                gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.y = gamePanel.listSim
-                        .get(gamePanel.indexCurrentSim).worldY
-                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.y;
+                gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().x = gamePanel.listSim
+                        .get(gamePanel.indexCurrentSim).getWorldX()
+                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().x;
+                gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().y = gamePanel.listSim
+                        .get(gamePanel.indexCurrentSim).getWorldY()
+                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().y;
 
                 eventRect[map][col][row].x = col * gamePanel.tileSize + eventRect[map][col][row].x;
                 eventRect[map][col][row].y = row * gamePanel.tileSize + eventRect[map][col][row].y;
 
-                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.intersects(eventRect[map][col][row])
+                if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().intersects(eventRect[map][col][row])
                         && !eventRect[map][col][row].eventDone) {
-                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).direction.contentEquals(reqDirection)
+                    if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getDirection().contentEquals(reqDirection)
                             || reqDirection.contentEquals("any")) {
                         hit = true;
 
-                        previousEventX = gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX;
-                        previousEventY = gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY;
+                        previousEventX = gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX();
+                        previousEventY = gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY();
                     }
                 }
 
-                gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.x = gamePanel.listSim
-                        .get(gamePanel.indexCurrentSim).solidAreaDefaultX;
-                gamePanel.listSim.get(gamePanel.indexCurrentSim).solidArea.y = gamePanel.listSim
-                        .get(gamePanel.indexCurrentSim).solidAreaDefaultY;
+                gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().x = gamePanel.listSim
+                        .get(gamePanel.indexCurrentSim).getSolidAreaDefaultX();
+                gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().y = gamePanel.listSim
+                        .get(gamePanel.indexCurrentSim).getSolidAreaDefaultY();
                 eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
                 eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
             }
@@ -547,10 +547,10 @@ public class EventHandler {
     public void teleport(int map, int col, int row, int indexRuangan) {
         // if (map == 0)
         gamePanel.listSim.get(gamePanel.indexCurrentSim).setCurrentMap(map); // pindahin sim ke map 1
-        gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX = col * gamePanel.tileSize; // pindahin sim ke kolom 1
-        gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY = row * gamePanel.tileSize;
-        previousEventX = gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX;
-        previousEventY = gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY;
+        gamePanel.listSim.get(gamePanel.indexCurrentSim).setWorldX(col * gamePanel.tileSize); // pindahin sim ke kolom 1
+        gamePanel.listSim.get(gamePanel.indexCurrentSim).setWorldY(row * gamePanel.tileSize);
+        previousEventX = gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX();
+        previousEventY = gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY();
         canTouchEvent = false;
         gamePanel.listSim.get(gamePanel.indexCurrentSim).setIndexLocationRuangan(indexRuangan);
         gamePanel.playSoundEffect(2);

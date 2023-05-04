@@ -7,7 +7,7 @@ public class NPC_Koki extends Entity{
     public NPC_Koki(GamePanel gamePanel) {
         super(gamePanel);
 
-        direction = "down";
+        setDirection("down");
 
         getImage();
         setDialog();
@@ -15,28 +15,28 @@ public class NPC_Koki extends Entity{
     }
 
     public void getImage(){
-        up1 = setupImage("npc/koki");
-        up2 = setupImage("npc/koki");
-        down1 = setupImage("npc/koki");
-        down2 = setupImage("npc/koki");
-        left1 = setupImage("npc/koki");
-        left2 = setupImage("npc/koki");
-        right1 = setupImage("npc/koki");
-        right2 = setupImage("npc/koki");
+        setUp1(setupImage("npc/koki"));
+        setUp2(setupImage("npc/koki"));
+        setDown1(setupImage("npc/koki"));
+        setDown2(setupImage("npc/koki"));
+        setLeft1(setupImage("npc/koki"));
+        setLeft2(setupImage("npc/koki"));
+        setRight1(setupImage("npc/koki"));
+        setRight2(setupImage("npc/koki"));
     }
 
     public void setDialog(){
-        dialogs.add("Hahaha... Haloo, \nAnda ingin memakan apa?");
+        getDialogs().add("Hahaha... Haloo, \nAnda ingin memakan apa?");
     }
 
     public void setItems(){
         // BARANG YANG BISA DIMASAK
         // MAKANAN
-        inventory.add(new Makanan_Bistik());
-        inventory.add(new Makanan_NasiAyam());
-        inventory.add(new Makanan_NasiKari());
-        inventory.add(new Makanan_SusuKacang());
-        inventory.add(new Makanan_TumisSayur());
+        getInventory().add(new Makanan_Bistik());
+        getInventory().add(new Makanan_NasiAyam());
+        getInventory().add(new Makanan_NasiKari());
+        getInventory().add(new Makanan_SusuKacang());
+        getInventory().add(new Makanan_TumisSayur());
 
     }
 

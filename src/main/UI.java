@@ -465,22 +465,22 @@ public class UI {
         int slotSize = gamePanel.tileSize + 1;
 
         // draw entity items
-        for (int i = 0; i < entity.inventory.size(); i++) {
+        for (int i = 0; i < entity.getInventory().size(); i++) {
             // equip cursor
-            if (entity.inventory.get(i) == gamePanel.listSim.get(gamePanel.indexCurrentSim).getCurrentLight()) {
+            if (entity.getInventory().get(i) == gamePanel.listSim.get(gamePanel.indexCurrentSim).getCurrentLight()) {
                 g2d.setColor(new Color(240, 190, 90));
                 g2d.fillRoundRect(slotX, slotY, gamePanel.tileSize, gamePanel.tileSize, 10, 10);
             }
 
-            g2d.drawImage(entity.inventory.get(i).getImage(), slotX, slotY, gamePanel.tileSize, gamePanel.tileSize,
+            g2d.drawImage(entity.getInventory().get(i).getImage(), slotX, slotY, gamePanel.tileSize, gamePanel.tileSize,
                     null);
 
             // display amount
-            if (entity == gamePanel.listSim.get(gamePanel.indexCurrentSim) && entity.inventory.get(i).getQuantity() > 1) {
+            if (entity == gamePanel.listSim.get(gamePanel.indexCurrentSim) && entity.getInventory().get(i).getQuantity() > 1) {
                 g2d.setFont(g2d.getFont().deriveFont(32f));
                 int amountX, amountY;
 
-                String s = "" + entity.inventory.get(i).getQuantity();
+                String s = "" + entity.getInventory().get(i).getQuantity();
                 amountX = getXforAlignToRightText(s, slotX + 44);
                 amountY = slotY + gamePanel.tileSize;
 
@@ -536,9 +536,9 @@ public class UI {
         g2d.setFont(g2d.getFont().deriveFont(32f));
 
         int itemIndex = getItemIndexOnSlot(slotRow, slotCol);
-        if (itemIndex < entity.inventory.size()) {
-            if (entity.inventory.get(itemIndex) != null) {
-                if (entity.inventory.get(itemIndex) instanceof BahanMakanan) {
+        if (itemIndex < entity.getInventory().size()) {
+            if (entity.getInventory().get(itemIndex) != null) {
+                if (entity.getInventory().get(itemIndex) instanceof BahanMakanan) {
                     // write item info
                     g2d.drawString("Nama", textX, textY);
                     textY += lineHeight;
@@ -551,7 +551,7 @@ public class UI {
                     int iTailX = iFrameX + iFrameWidth / 3;
                     textY = textYITEMINFO + lineHeight + 20;
                     String iValue;
-                    BahanMakanan bahanMakanan = (BahanMakanan) entity.inventory.get(itemIndex);
+                    BahanMakanan bahanMakanan = (BahanMakanan) entity.getInventory().get(itemIndex);
                     g2d.drawString(" : " + bahanMakanan.getName(), iTailX, textY);
                     textY += lineHeight;
                     g2d.drawString(" : " + bahanMakanan.getCategory(), iTailX, textY);
@@ -563,7 +563,7 @@ public class UI {
                     g2d.drawString(iValue, iTailX, textY);
 
                     textY = textYITEMINFO + lineHeight + 20;
-                } else if (entity.inventory.get(itemIndex) instanceof Makanan) {
+                } else if (entity.getInventory().get(itemIndex) instanceof Makanan) {
                     // write item info
                     g2d.drawString("Nama", textX, textY);
                     textY += lineHeight;
@@ -576,7 +576,7 @@ public class UI {
                     int iTailX = iFrameX + iFrameWidth / 3;
                     textY = textYITEMINFO + lineHeight + 20;
                     String iValue;
-                    Makanan makanan = (Makanan) entity.inventory.get(itemIndex);
+                    Makanan makanan = (Makanan) entity.getInventory().get(itemIndex);
                     g2d.drawString(" : " + makanan.getName(), iTailX, textY);
                     textY += lineHeight;
                     g2d.drawString(" : " + makanan.getCategory(), iTailX, textY);
@@ -588,7 +588,7 @@ public class UI {
                     g2d.drawString(iValue, iTailX, textY);
 
                     textY = textYITEMINFO + lineHeight + 20;
-                } else if (entity.inventory.get(itemIndex) instanceof Furnitur) {
+                } else if (entity.getInventory().get(itemIndex) instanceof Furnitur) {
                     // write item info
                     g2d.drawString("Nama", textX, textY);
                     textY += lineHeight;
@@ -603,7 +603,7 @@ public class UI {
                     int iTailX = iFrameX + iFrameWidth / 3;
                     textY = textYITEMINFO + lineHeight + 20;
                     String iValue;
-                    Furnitur furnitur = (Furnitur) entity.inventory.get(itemIndex);
+                    Furnitur furnitur = (Furnitur) entity.getInventory().get(itemIndex);
                     g2d.drawString(" : " + furnitur.getName(), iTailX, textY);
                     textY += lineHeight;
                     g2d.drawString(" : " + furnitur.getCategory(), iTailX, textY);
@@ -618,7 +618,7 @@ public class UI {
                     g2d.drawString(iValue, iTailX, textY);
 
                     textY = textYITEMINFO + lineHeight + 20;
-                } else if (entity.inventory.get(itemIndex) instanceof Lampu) {
+                } else if (entity.getInventory().get(itemIndex) instanceof Lampu) {
                     // write item info
                     g2d.drawString("Nama", textX, textY);
                     textY += lineHeight;
@@ -631,7 +631,7 @@ public class UI {
                     int iTailX = iFrameX + iFrameWidth / 3;
                     textY = textYITEMINFO + lineHeight + 20;
                     String iValue;
-                    Lampu lampu = (Lampu) entity.inventory.get(itemIndex);
+                    Lampu lampu = (Lampu) entity.getInventory().get(itemIndex);
                     g2d.drawString(" : " + lampu.getName(), iTailX, textY);
                     textY += lineHeight;
                     g2d.drawString(" : " + lampu.getCategory(), iTailX, textY);
@@ -742,18 +742,18 @@ public class UI {
 
         // buy an item
         int itemIndex = getItemIndexOnSlot(npcSlotRow, npcSlotCol);
-        if (itemIndex < gamePanel.npc[0][4].inventory.size()) {
+        if (itemIndex < gamePanel.npc[0][4].getInventory().size()) {
             if (gamePanel.keyHandler.enterPressed) {
                 if (gamePanel.getCurrentSim().getIsCanBuy()) {
                     int harga = 0;
-                    if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof BahanMakanan) {
-                        BahanMakanan makanan = (BahanMakanan) gamePanel.npc[0][4].inventory.get(itemIndex);
+                    if (gamePanel.npc[0][4].getInventory().get(itemIndex) instanceof BahanMakanan) {
+                        BahanMakanan makanan = (BahanMakanan) gamePanel.npc[0][4].getInventory().get(itemIndex);
                         harga = makanan.getHarga();
-                    } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Furnitur) {
-                        Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].inventory.get(itemIndex);
+                    } else if (gamePanel.npc[0][4].getInventory().get(itemIndex) instanceof Furnitur) {
+                        Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].getInventory().get(itemIndex);
                         harga = furnitur.getHarga();
-                    } else if (gamePanel.npc[0][4].inventory.get(itemIndex) instanceof Lampu) {
-                        Lampu lampu = (Lampu) gamePanel.npc[0][4].inventory.get(itemIndex);
+                    } else if (gamePanel.npc[0][4].getInventory().get(itemIndex) instanceof Lampu) {
+                        Lampu lampu = (Lampu) gamePanel.npc[0][4].getInventory().get(itemIndex);
                         harga = lampu.getHarga();
                         if (gamePanel.getCurrentSim().searchItemInInventory(lampu.getName()) != 999) {
                             gamePanel.ui.subState = 0;
@@ -781,7 +781,7 @@ public class UI {
                         gamePanel.ui.combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
                         gamePanel.ui.currentDialog = "Anda berhasil membeli "
-                                + gamePanel.npc[0][4].inventory.get(itemIndex).getName() + ".\nSilahkan tunggu "
+                                + gamePanel.npc[0][4].getInventory().get(itemIndex).getName() + ".\nSilahkan tunggu "
                                 + gamePanel.getCurrentSim().getRemainingTimeBuy() + " detik.";
                         // gamePanel.getCurrentSim().setIsCanBuyToTrue();
                     }
@@ -911,7 +911,7 @@ public class UI {
                 g2d.fillRoundRect(slotX, slotY, gamePanel.tileSize, gamePanel.tileSize, 10, 10);
             }
 
-            g2d.drawImage(gamePanel.listSim.get(i).down1, slotX, slotY, gamePanel.tileSize, gamePanel.tileSize, null);
+            g2d.drawImage(gamePanel.listSim.get(i).getDown1(), slotX, slotY, gamePanel.tileSize, gamePanel.tileSize, null);
 
             slotX += slotSize;
             // jika kelipatan 11 maka pindah ke baris bawah
@@ -1193,31 +1193,31 @@ public class UI {
 
         // cook makanan
         int itemIndex = getItemIndexOnSlot(kokiSlotRow, kokiSlotCol);
-        if (itemIndex < gamePanel.kokiTemp.inventory.size()) {
+        if (itemIndex < gamePanel.kokiTemp.getInventory().size()) {
             if (gamePanel.keyHandler.enterPressed) {
-                if (gamePanel.kokiTemp.inventory.get(itemIndex) instanceof Makanan) {
-                    Makanan makanan = (Makanan) gamePanel.kokiTemp.inventory.get(itemIndex);
+                if (gamePanel.kokiTemp.getInventory().get(itemIndex) instanceof Makanan) {
+                    Makanan makanan = (Makanan) gamePanel.kokiTemp.getInventory().get(itemIndex);
                     // check inventory containsAll makanan.bahan
                     java.util.List<String> bahanInInventory = new java.util.ArrayList<>();
-                    for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size(); i++) {
-                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i) instanceof BahanMakanan) {
+                    for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().size(); i++) {
+                        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().get(i) instanceof BahanMakanan) {
                             BahanMakanan bahan = (BahanMakanan) gamePanel.listSim
-                                    .get(gamePanel.indexCurrentSim).inventory.get(i);
+                                    .get(gamePanel.indexCurrentSim).getInventory().get(i);
                             bahanInInventory.add(bahan.getName());
                         }
                     }
                     // ini bisa jadi penerapan generics
                     if (bahanInInventory.containsAll(makanan.getBahan())) {
-                        for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.size(); i++) {
-                            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory
+                        for (int i = 0; i < gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().size(); i++) {
+                            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory()
                                     .get(i) instanceof BahanMakanan) {
                                 BahanMakanan bahanInv = (BahanMakanan) gamePanel.listSim
-                                        .get(gamePanel.indexCurrentSim).inventory.get(i);
+                                        .get(gamePanel.indexCurrentSim).getInventory().get(i);
                                 if (makanan.getBahan().contains(bahanInv.getName())) {
                                     if (bahanInv.getQuantity() > 1) {
-                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.get(i).decQuantity(1);
+                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().get(i).decQuantity(1);
                                     } else {
-                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).inventory.remove(i);
+                                        gamePanel.listSim.get(gamePanel.indexCurrentSim).getInventory().remove(i);
                                     }
                                 }
                             }
@@ -1522,7 +1522,7 @@ public class UI {
         int playerX = (int) (x + gamePanel.getCurrentSim().getWorldX() / scale);
         int playerY = (int) (y + gamePanel.getCurrentSim().getWorldY() / scale);
         int playerSize = (int) (gamePanel.tileSize / scale) * 2;
-        g2d.drawImage(gamePanel.getCurrentSim().down1, playerX, playerY, playerSize,
+        g2d.drawImage(gamePanel.getCurrentSim().getDown1(), playerX, playerY, playerSize,
                 playerSize, null);
 
         // draw benda
@@ -1649,7 +1649,7 @@ public class UI {
             int playerX = (int) (x + gamePanel.getCurrentSim().getWorldX() / scale);
             int playerY = (int) (y + gamePanel.getCurrentSim().getWorldY() / scale);
             int playerSize = (int) (gamePanel.tileSize / 6);
-            g2d.drawImage(gamePanel.getCurrentSim().down1, playerX - 3, playerY - 3,
+            g2d.drawImage(gamePanel.getCurrentSim().getDown1(), playerX - 3, playerY - 3,
                     playerSize,
                     playerSize, null);
 

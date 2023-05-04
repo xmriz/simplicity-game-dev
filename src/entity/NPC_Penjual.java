@@ -27,40 +27,40 @@ public class NPC_Penjual extends Entity{
     }
 
     public void setDialog(){
-        dialogs.add("Hahaha... Haloo, \nada yang bisa saya bantu?");
+        getDialogs().add("Hahaha... Haloo, \nada yang bisa saya bantu?");
     }
 
     public void setItems(){
         // BARANG YANG BISA DIJUAL
         // BAHAN MAKANAN
-        inventory.add(new BahanMakanan_Ayam());
-        inventory.add(new BahanMakanan_Bayam());
-        inventory.add(new BahanMakanan_Kacang());
-        inventory.add(new BahanMakanan_Kentang());
-        inventory.add(new BahanMakanan_Nasi());
-        inventory.add(new BahanMakanan_Sapi());
-        inventory.add(new BahanMakanan_Susu());
-        inventory.add(new BahanMakanan_Wortel());
+        getInventory().add(new BahanMakanan_Ayam());
+        getInventory().add(new BahanMakanan_Bayam());
+        getInventory().add(new BahanMakanan_Kacang());
+        getInventory().add(new BahanMakanan_Kentang());
+        getInventory().add(new BahanMakanan_Nasi());
+        getInventory().add(new BahanMakanan_Sapi());
+        getInventory().add(new BahanMakanan_Susu());
+        getInventory().add(new BahanMakanan_Wortel());
 
         // FURNITUR
-        inventory.add(new Furnitur_KasurSingle(gamePanel));
-        inventory.add(new Furnitur_KasurQueenSize(gamePanel));
-        inventory.add(new Furnitur_KasurKingSize(gamePanel));
-        inventory.add(new Furnitur_Toilet(gamePanel));
-        inventory.add(new Furnitur_KomporGas(gamePanel));
-        inventory.add(new Furnitur_KomporListrik(gamePanel));
-        inventory.add(new Furnitur_MejaKursi(gamePanel));
-        inventory.add(new Furnitur_Jam(gamePanel));
-        inventory.add(new Furnitur_TV(gamePanel));
-        inventory.add(new Furnitur_Shower(gamePanel));
-        inventory.add(new Furnitur_Sajadah(gamePanel));
-        inventory.add(new Furnitur_RakBuku(gamePanel));
-        inventory.add(new Furnitur_Radio(gamePanel));
-        inventory.add(new Furnitur_PotBunga(gamePanel));
-        inventory.add(new Furnitur_MejaPC(gamePanel));
+        getInventory().add(new Furnitur_KasurSingle(gamePanel));
+        getInventory().add(new Furnitur_KasurQueenSize(gamePanel));
+        getInventory().add(new Furnitur_KasurKingSize(gamePanel));
+        getInventory().add(new Furnitur_Toilet(gamePanel));
+        getInventory().add(new Furnitur_KomporGas(gamePanel));
+        getInventory().add(new Furnitur_KomporListrik(gamePanel));
+        getInventory().add(new Furnitur_MejaKursi(gamePanel));
+        getInventory().add(new Furnitur_Jam(gamePanel));
+        getInventory().add(new Furnitur_TV(gamePanel));
+        getInventory().add(new Furnitur_Shower(gamePanel));
+        getInventory().add(new Furnitur_Sajadah(gamePanel));
+        getInventory().add(new Furnitur_RakBuku(gamePanel));
+        getInventory().add(new Furnitur_Radio(gamePanel));
+        getInventory().add(new Furnitur_PotBunga(gamePanel));
+        getInventory().add(new Furnitur_MejaPC(gamePanel));
 
         // LAMPU
-        inventory.add(new Lampu(gamePanel));
+        getInventory().add(new Lampu(gamePanel));
     }
 
     public void speak(){

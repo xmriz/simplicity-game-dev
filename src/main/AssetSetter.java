@@ -39,28 +39,28 @@ public class AssetSetter {
         // MAP 1
         int mapNumber = 0;
         gamePanel.npc[mapNumber][i] = new NPC_Kakek(gamePanel);
-        gamePanel.npc[mapNumber][i].worldX = 2 * gamePanel.tileSize;
-        gamePanel.npc[mapNumber][i].worldY = 2 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i].setWorldX(2 * gamePanel.tileSize);
+        gamePanel.npc[mapNumber][i].setWorldY(2 * gamePanel.tileSize);
         i++;
 
         gamePanel.npc[mapNumber][i] = new NPC_Kakek(gamePanel);
-        gamePanel.npc[mapNumber][i].worldX = 63 * gamePanel.tileSize;
-        gamePanel.npc[mapNumber][i].worldY = 63 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i].setWorldX(63 * gamePanel.tileSize);
+        gamePanel.npc[mapNumber][i].setWorldY(63 * gamePanel.tileSize);
         i++;
 
         gamePanel.npc[mapNumber][i] = new NPC_Kakek(gamePanel);
-        gamePanel.npc[mapNumber][i].worldX = 2 * gamePanel.tileSize;
-        gamePanel.npc[mapNumber][i].worldY = 63 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i].setWorldX(2 * gamePanel.tileSize);
+        gamePanel.npc[mapNumber][i].setWorldY( 63 * gamePanel.tileSize);
         i++;
 
         gamePanel.npc[mapNumber][i] = new NPC_Kakek(gamePanel);
-        gamePanel.npc[mapNumber][i].worldX = 63 * gamePanel.tileSize;
-        gamePanel.npc[mapNumber][i].worldY = 2 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i].setWorldX(63 * gamePanel.tileSize);
+        gamePanel.npc[mapNumber][i].setWorldY(2 * gamePanel.tileSize);
         i++;
 
         gamePanel.npc[mapNumber][i] = new NPC_Penjual(gamePanel);
-        gamePanel.npc[mapNumber][i].worldX = 6 * gamePanel.tileSize;
-        gamePanel.npc[mapNumber][i].worldY = 6 * gamePanel.tileSize;
+        gamePanel.npc[mapNumber][i].setWorldX(6 * gamePanel.tileSize);
+        gamePanel.npc[mapNumber][i].setWorldY(6 * gamePanel.tileSize);
         i++;
         
         // MAP 2

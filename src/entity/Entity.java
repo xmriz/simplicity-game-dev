@@ -65,6 +65,10 @@ public abstract class Entity {
         return actionLockCounter;
     }
 
+    public void incActionLoctCounter(int num){
+        this.actionLockCounter+=num;
+    }
+
     public void setActionLoctCounter(int actionLockCounter){
         this.actionLockCounter=actionLockCounter;
     }
@@ -110,6 +114,10 @@ public abstract class Entity {
         return spriteCounter;
     }
 
+    public void incSpriteCounter(int a){
+        this.spriteCounter+=a;
+    }
+    
     public void setSpriteCounter(int spriteCounter){
         this.spriteCounter=spriteCounter;
     }
@@ -126,6 +134,14 @@ public abstract class Entity {
         return worldX;
     }
 
+    public void incWorldX(int a){
+        this.worldX+=a;
+    }
+
+    public void decWorldX(int a){
+        this.worldX-=a;
+    }
+
     public void setWorldX(int worldX){
         this.worldX=worldX;
     }
@@ -136,6 +152,14 @@ public abstract class Entity {
 
     public void setWorldY(int worldY){
         this.worldY=worldY;
+    }
+
+    public void incWorldY(int a){
+        this.worldY+=a;
+    }
+
+    public void decWorldY(int a){
+        this.worldY-=a;
     }
 
     public int getSpeed(){
@@ -282,18 +306,18 @@ public abstract class Entity {
 
     public void draw(Graphics2D g2d) {
         BufferedImage image = null;
-        int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
+        int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX()
                 + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX(); // position of the tile in the screen
-        int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
+        int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY()
                 + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY();
 
-        if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
+        if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX()
                 + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX()
-                && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
+                && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX()
                         - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX()
-                && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
+                && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY()
                         + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY()
-                && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
+                && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY()
                         - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY()) {
 
             switch (direction) {

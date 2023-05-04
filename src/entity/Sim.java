@@ -853,7 +853,7 @@ public class Sim extends Entity {
                 getInventory().get(index).incQuantity(1);
                 canObtain = true;
             } else {
-                if (getInventory().size() < maxInventorySize) {
+                if (getInventory().size() < getMaxInventorySize()) {
                     getInventory().add(item);
                     getInventory().get(getInventory().size() - 1).setQuantity(1);
                     canObtain = true;
@@ -873,33 +873,33 @@ public class Sim extends Entity {
     public void draw(Graphics2D g2d) {
         BufferedImage image = null;
 
-        switch (direction) {
+        switch (getDirection()) {
             case "up":
-                if (spriteNumber == 1) {
-                    image = up1;
+                if (getSpriteNumber() == 1) {
+                    image = getUp1();
                 } else {
-                    image = up2;
+                    image = getUp2();
                 }
                 break;
             case "down":
-                if (spriteNumber == 1) {
-                    image = down1;
+                if (getSpriteNumber() == 1) {
+                    image = getDown1();
                 } else {
-                    image = down2;
+                    image = getDown2();
                 }
                 break;
             case "left":
-                if (spriteNumber == 1) {
-                    image = left1;
+                if (getSpriteNumber() == 1) {
+                    image = getLeft1();
                 } else {
-                    image = left2;
+                    image = getLeft2();
                 }
                 break;
             case "right":
-                if (spriteNumber == 1) {
-                    image = right1;
+                if (getSpriteNumber() == 1) {
+                    image = getRight1();
                 } else {
-                    image = right2;
+                    image = getRight2();
                 }
                 break;
         }
@@ -916,8 +916,8 @@ public class Sim extends Entity {
             }
             if (remainingTimeBuy == 0) {
                 isCanBuy = true; // atur isCanUpgrade menjadi true setelah 18 menit
-                if (gamePanel.npc[0][4].inventory.get(itemBuyTempIndex) instanceof BahanMakanan) {
-                    BahanMakanan makanan = (BahanMakanan) gamePanel.npc[0][4].inventory.get(itemBuyTempIndex);
+                if (gamePanel.npc[0][4].getInventory().get(itemBuyTempIndex) instanceof BahanMakanan) {
+                    BahanMakanan makanan = (BahanMakanan) gamePanel.npc[0][4].getInventory().get(itemBuyTempIndex);
                     if (gamePanel.listSim.get(indexSimSaatBeli).canObtainItem(makanan)) {
                         // gamePanel.ui.charIndex = 0;
                         // gamePanel.ui.combinedText = "";
@@ -935,8 +935,8 @@ public class Sim extends Entity {
                         gamePanel.gameState = gamePanel.dialogState;
                         gamePanel.ui.currentDialog = "Inventory penuh";
                     }
-                } else if (gamePanel.npc[0][4].inventory.get(itemBuyTempIndex) instanceof Furnitur) {
-                    Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].inventory.get(itemBuyTempIndex);
+                } else if (gamePanel.npc[0][4].getInventory().get(itemBuyTempIndex) instanceof Furnitur) {
+                    Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].getInventory().get(itemBuyTempIndex);
                     if (gamePanel.listSim.get(indexSimSaatBeli).canObtainItem(furnitur)) {
                         // gamePanel.ui.charIndex = 0;
                         // gamePanel.ui.combinedText = "";
@@ -954,8 +954,8 @@ public class Sim extends Entity {
                         gamePanel.gameState = gamePanel.dialogState;
                         gamePanel.ui.currentDialog = "Inventory penuh";
                     }
-                } else if (gamePanel.npc[0][4].inventory.get(itemBuyTempIndex) instanceof Lampu) {
-                    Lampu lampu = (Lampu) gamePanel.npc[0][4].inventory.get(itemBuyTempIndex);
+                } else if (gamePanel.npc[0][4].getInventory().get(itemBuyTempIndex) instanceof Lampu) {
+                    Lampu lampu = (Lampu) gamePanel.npc[0][4].getInventory().get(itemBuyTempIndex);
                     if (gamePanel.listSim.get(indexSimSaatBeli).canObtainItem(lampu)) {
                         // gamePanel.ui.charIndex = 0;
                         // gamePanel.ui.combinedText = "";
