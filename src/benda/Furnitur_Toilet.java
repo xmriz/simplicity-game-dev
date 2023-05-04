@@ -49,7 +49,7 @@ public class Furnitur_Toilet extends Furnitur {
             gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getMaxKekenyangan());
         }
         gamePanel.ui.setTempDurasi(10);
-        gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);
+        gamePanel.keyHandler.setThreadTemp(gamePanel.ui.startTimerThread(10));
         // gamePanel.ui.setelahAksi(10);
     }
 }

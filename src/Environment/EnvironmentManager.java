@@ -7,8 +7,8 @@ import main.GamePanel;
 // environment filter : dark, light, rain, snow, fog, etc
 
 public class EnvironmentManager {
-    GamePanel gamePanel;
-    Lighting lighting;
+    private GamePanel gamePanel;
+    private Lighting lighting;
 
     public EnvironmentManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;

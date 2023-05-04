@@ -721,7 +721,7 @@ public class Sim extends Entity {
                             gamePanel.ui.setCurrentAksiDone(false);
                             isUdahMakanDalamSatuHari = true;
                             gamePanel.ui.setTempDurasi(30);
-                            gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(30);
+                            gamePanel.keyHandler.setThreadTemp(gamePanel.ui.startTimerThread(30));
                             // gamePanel.ui.setelahAksi(30);
 
                         } else {
@@ -773,7 +773,7 @@ public class Sim extends Entity {
                             gamePanel.ui.setCurrentAksiDone(false);
                             isUdahMakanDalamSatuHari = true;
                             gamePanel.ui.setTempDurasi(30);
-                            gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(30);
+                            gamePanel.keyHandler.setThreadTemp(gamePanel.ui.startTimerThread(30));
                             // gamePanel.ui.setelahAksi(30);
                         } else {
                             gamePanel.ui.setCharIndex(0);

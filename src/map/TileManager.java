@@ -10,8 +10,8 @@ import main.UtilityTool;
 
 public class TileManager {
     GamePanel gamePanel;
-    public Tile[] tile;
-    public int[][][] mapTileNum;
+    private Tile[] tile;
+    private int[][][] mapTileNum;
 
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -20,6 +20,25 @@ public class TileManager {
         getTileImage();
         loadMap("data/maps/world.txt", 0);
         loadMap("data/maps/ruangan.txt", 1);
+    }
+    
+    public Tile[] getTile() {
+        return tile;
+    }
+
+
+    public void setTile(Tile[] tile) {
+        this.tile = tile;
+    }
+
+
+    public int[][][] getMapTileNum() {
+        return mapTileNum;
+    }
+
+
+    public void setMapTileNum(int[][][] mapTileNum) {
+        this.mapTileNum = mapTileNum;
     }
 
     public void getTileImage(){
