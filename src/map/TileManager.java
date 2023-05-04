@@ -16,7 +16,7 @@ public class TileManager {
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         tile = new Tile[15]; // jumlah tile yang ada
-        mapTileNum = new int[gamePanel.maxMap][gamePanel.maxWorldCol][gamePanel.maxWorldRow];
+        mapTileNum = new int[gamePanel.getMaxMap()][gamePanel.getMaxWorldCol()][gamePanel.getMaxWorldRow()];
         getTileImage();
         loadMap("data/maps/world.txt", 0);
         loadMap("data/maps/ruangan.txt", 1);
@@ -63,7 +63,7 @@ public class TileManager {
         try {
             tile[index] = new Tile();
             tile[index].setImage(ImageIO.read(new FileInputStream(new File("assets/tiles/" + imagePath +".png"))));
-            tile[index].setImage(UtilityTool.scaleImage(tile[index].getImage(), gamePanel.tileSize, gamePanel.tileSize));
+            tile[index].setImage(UtilityTool.scaleImage(tile[index].getImage(), gamePanel.getTileSize(), gamePanel.getTileSize()));
             tile[index].setCollision(collision);
         } catch (IOException e) {
             e.printStackTrace();
@@ -78,9 +78,9 @@ public class TileManager {
             int row = 0;
             int col = 0;
 
-            while (row < gamePanel.maxWorldRow && col < gamePanel.maxWorldCol){
+            while (row < gamePanel.getMaxWorldRow() && col < gamePanel.getMaxWorldCol()){
                 String line = br.readLine();
-                while (col < gamePanel.maxWorldCol){
+                while (col < gamePanel.getMaxWorldCol()){
                     String numbers[] = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
@@ -88,7 +88,7 @@ public class TileManager {
                     mapTileNum[map][col][row] = num;
                     col++;
                 }
-                if (col == gamePanel.maxWorldCol){
+                if (col == gamePanel.getMaxWorldCol()){
                     col = 0;
                     row++;
                 }
@@ -105,26 +105,26 @@ public class TileManager {
         int worldRow = 0;
         int tileNum;
 
-        while (worldCol < gamePanel.maxWorldCol && worldRow < gamePanel.maxWorldRow){
-            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getCurrentMap() == 0){
-                tileNum = mapTileNum[gamePanel.listSim.get(gamePanel.indexCurrentSim).getCurrentMap()][worldCol][worldRow];
+        while (worldCol < gamePanel.getMaxWorldCol() && worldRow < gamePanel.getMaxWorldRow()){
+            if (gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getCurrentMap() == 0){
+                tileNum = mapTileNum[gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getCurrentMap()][worldCol][worldRow];
             } else{
-                tileNum = gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).getIndexRumahYangDimasuki()).getRumah().getRuanganRumah().get(indexRuangan).getMapRuangan()[worldCol][worldRow];
+                tileNum = gamePanel.getListSim().get(gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getIndexRumahYangDimasuki()).getRumah().getRuanganRumah().get(indexRuangan).getMapRuangan()[worldCol][worldRow];
             }
 
-            int worldX = worldCol * gamePanel.tileSize; // position of the tile in the world 
-            int worldY = worldRow * gamePanel.tileSize;
-            int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX(); // position of the tile in the screen
-            int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY();
+            int worldX = worldCol * gamePanel.getTileSize(); // position of the tile in the world 
+            int worldY = worldRow * gamePanel.getTileSize();
+            int screenX = worldX - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX() + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX(); // position of the tile in the screen
+            int screenY = worldY - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY() + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY();
 
-            if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX() && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX() - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX()
-                && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY() && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY() - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY()){
+            if (worldX - gamePanel.getTileSize() < gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX() + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX() && worldX + gamePanel.getTileSize() > gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX() - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX()
+                && worldY - gamePanel.getTileSize() < gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY() + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY() && worldY + gamePanel.getTileSize() > gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY() - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY()){
                     g2d.drawImage(tile[tileNum].getImage(), screenX, screenY, null);
             }
 
             worldCol++;
 
-            if (worldCol == gamePanel.maxWorldCol){
+            if (worldCol == gamePanel.getMaxWorldCol()){
                 worldCol = 0;
                 worldRow++;
             }

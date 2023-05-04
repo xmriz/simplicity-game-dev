@@ -335,9 +335,9 @@ public class Sim extends Entity {
         Random rand = new Random();
         pekerjaan.setIndexPekerjaan(rand.nextInt(5));
 
-        screenX = gamePanel.screenWidth / 2 - (gamePanel.tileSize / 2); // set the player's position on the screen
+        screenX = gamePanel.getScreenWidth() / 2 - (gamePanel.getTileSize() / 2); // set the player's position on the screen
                                                                         // (always center)
-        screenY = gamePanel.screenHeight / 2 - (gamePanel.tileSize / 2);
+        screenY = gamePanel.getScreenHeight() / 2 - (gamePanel.getTileSize() / 2);
 
         setSolidArea(new Rectangle(8, 16, 32, 32));
 
@@ -350,8 +350,8 @@ public class Sim extends Entity {
     }
 
     public void setDefaultValues() { // set the default values of the player
-        setWorldX(2 * gamePanel.tileSize); // set the player's position in his own rumah
-        setWorldY(2 * gamePanel.tileSize);
+        setWorldX(2 * gamePanel.getTileSize()); // set the player's position in his own rumah
+        setWorldY(2 * gamePanel.getTileSize());
         // indexRumahYangDimasuki = gamePanel.listSim.size();
         indexLocationRuangan = 0;
         setSpeed(4);
@@ -414,10 +414,10 @@ public class Sim extends Entity {
 
             // check for collision
             setCollisionOn(false);
-            gamePanel.collisionChecker.checkTile(this);
+            gamePanel.getCollisionChecker().checkTile(this);
 
             // check for benda collision
-            indexBendaYangDisentuh = gamePanel.collisionChecker.checkBenda(this, true); // return the index of the benda
+            indexBendaYangDisentuh = gamePanel.getCollisionChecker().checkBenda(this, true); // return the index of the benda
                                                                                         // that theplayer is colliding
                                                                                         // with
             usingBenda(indexBendaYangDisentuh);
@@ -435,14 +435,14 @@ public class Sim extends Entity {
             // System.out.println(rumah.ruanganRumah.get(0).bendaRuangan.get(0).solidArea.x);
 
             // check npc collision
-            int npcIndex = gamePanel.collisionChecker.checkEntity(this, gamePanel.npc);
+            int npcIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getNpc());
             interactNPC(npcIndex);
 
             // check event
-            gamePanel.eventHandler.checkEvent();
+            gamePanel.getEventHandler().checkEvent();
 
             // after checking all turn of enterPressed
-            gamePanel.keyHandler.setEnterPressed(false);
+            gamePanel.getKeyHandler().setEnterPressed(false);
 
             // if there is a collision, sim can't move
             if (!getCollisionOn() && !keyHandler.isEnterPressed()) {
@@ -499,10 +499,10 @@ public class Sim extends Entity {
             // // }
             // // }
             // } else
-            if (gamePanel.listSim.size() == 1) {
-                gamePanel.isOneSim = true;
-                gamePanel.worldTimeCounter = 0;
-                gamePanel.worldTimeSatuHariCounter = 0;
+            if (gamePanel.getListSim().size() == 1) {
+                gamePanel.setIsOneSim(true);
+                gamePanel.setWorldTimeCounter(0);
+                gamePanel.setWorldTimeSatuHariCounter(0);
             }
 
             keteranganMati = "Depresi";
@@ -538,10 +538,10 @@ public class Sim extends Entity {
             // }
             // gamePanel.indexCurrentSim = 0;
             // } else
-            if (gamePanel.listSim.size() == 1) {
-                gamePanel.isOneSim = true;
-                gamePanel.worldTimeCounter = 0;
-                gamePanel.worldTimeSatuHariCounter = 0;
+            if (gamePanel.getListSim().size() == 1) {
+                gamePanel.setIsOneSim(true);
+                gamePanel.setWorldTimeCounter(0);
+                gamePanel.setWorldTimeSatuHariCounter(0);
             }
             keteranganMati = "Kelaparan";
             isMati = true;
@@ -576,10 +576,10 @@ public class Sim extends Entity {
             // }
             // gamePanel.indexCurrentSim = 0;
             // } else
-            if (gamePanel.listSim.size() == 1) {
-                gamePanel.isOneSim = true;
-                gamePanel.worldTimeCounter = 0;
-                gamePanel.worldTimeSatuHariCounter = 0;
+            if (gamePanel.getListSim().size() == 1) {
+                gamePanel.setIsOneSim(true);
+                gamePanel.setWorldTimeCounter(0);
+                gamePanel.setWorldTimeSatuHariCounter(0);
             }
             keteranganMati = "Sakit";
             isMati = true;
@@ -602,18 +602,18 @@ public class Sim extends Entity {
 
     public void pickUpObject(int index) {
         if (index != 999) {
-            if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah().get(indexLocationRuangan).getBendaRuangan()
+            if (gamePanel.getListSim().get(indexRumahYangDimasuki).rumah.getRuanganRumah().get(indexLocationRuangan).getBendaRuangan()
                     .get(index) instanceof Furnitur) {
-                if (canObtainItem(gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
+                if (canObtainItem(gamePanel.getListSim().get(indexRumahYangDimasuki).rumah.getRuanganRumah()
                         .get(indexLocationRuangan).getBendaRuangan().get(index))) {
-                    Furnitur furniturTemp = (Furnitur) gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
+                    Furnitur furniturTemp = (Furnitur) gamePanel.getListSim().get(indexRumahYangDimasuki).rumah.getRuanganRumah()
                             .get(indexLocationRuangan).getBendaRuangan().get(index);
-                    gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
+                    gamePanel.getListSim().get(indexRumahYangDimasuki).rumah.getRuanganRumah()
                             .get(indexLocationRuangan).getBendaRuangan().remove(index);
-                    gamePanel.ui.setCharIndex(0);
-                    gamePanel.ui.setCombinedText("");
-                    gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.setCurrentDialog("Berhasil mengambil " + furniturTemp.getName());
+                    gamePanel.getUi().setCharIndex(0);
+                    gamePanel.getUi().setCombinedText("");
+                    gamePanel.setGameState(gamePanel.getDialogState());
+                    gamePanel.getUi().setCurrentDialog("Berhasil mengambil " + furniturTemp.getName());
                 }
             }
         }
@@ -634,24 +634,24 @@ public class Sim extends Entity {
 
     public void interactNPC(int i) {
         if (i != 999) {
-            gamePanel.ui.setCombinedText("");
-            gamePanel.ui.setCharIndex(0);
-            if (gamePanel.keyHandler.isEnterPressed()) {
-                gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.npc[currentMap][i].speak();
+            gamePanel.getUi().setCombinedText("");
+            gamePanel.getUi().setCharIndex(0);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.setGameState(gamePanel.getDialogState());
+                gamePanel.getNpc()[currentMap][i].speak();
             }
         }
     }
 
     public void usingBenda(int indexBendayangDisentuh) {
         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki
-        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki != 999) {
+        if (gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).indexRumahYangDimasuki != 999) {
             if (indexBendayangDisentuh != 999) {
-                if (gamePanel.keyHandler.isEnterPressed()) {
-                    int indexRumahYangDimasuki = gamePanel.listSim
-                            .get(gamePanel.indexCurrentSim).indexRumahYangDimasuki;
-                    int indexLocationRuangan = gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan;
-                    Furnitur furniturTemp = (Furnitur) gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
+                if (gamePanel.getKeyHandler().isEnterPressed()) {
+                    int indexRumahYangDimasuki = gamePanel.getListSim()
+                            .get(gamePanel.getIndexCurrentSim()).indexRumahYangDimasuki;
+                    int indexLocationRuangan = gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).indexLocationRuangan;
+                    Furnitur furniturTemp = (Furnitur) gamePanel.getListSim().get(indexRumahYangDimasuki).rumah.getRuanganRumah()
                             .get(indexLocationRuangan).getBendaRuangan().get(indexBendayangDisentuh);
                     furniturTemp.action();
                 }
@@ -679,33 +679,33 @@ public class Sim extends Entity {
     }*/
 
     public void selectItem() {
-        int itemIndex = UI.getItemIndexOnSlot(gamePanel.ui.getSimSlotRow(), gamePanel.ui.getSimSlotCol());
+        int itemIndex = UI.getItemIndexOnSlot(gamePanel.getUi().getSimSlotRow(), gamePanel.getUi().getSimSlotCol());
 
         if (itemIndex < getInventory().size()) {
             Benda selectedBenda = getInventory().get(itemIndex);
 
             if (selectedBenda instanceof BahanMakanan) {
                 if (currentMap == 0) {
-                    gamePanel.ui.setCharIndex(0);
-                    gamePanel.ui.setCombinedText("");
-                    gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.setCurrentDialog(("Anda tidak bisa makan di luar rumah."));
+                    gamePanel.getUi().setCharIndex(0);
+                    gamePanel.getUi().setCombinedText("");
+                    gamePanel.setGameState(gamePanel.getDialogState());
+                    gamePanel.getUi().setCurrentDialog(("Anda tidak bisa makan di luar rumah."));
                 } else {
                     if (indexBendaYangDisentuh != 999) {
-                        if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
+                        if (gamePanel.getListSim().get(indexRumahYangDimasuki).rumah.getRuanganRumah()
                                 .get(indexLocationRuangan).getBendaRuangan()
                                 .get(indexBendaYangDisentuh) instanceof Furnitur_MejaKursi) {
                             BahanMakanan bahanMakanan = (BahanMakanan) selectedBenda;
                             bahanMakanan.eat(this);
-                            gamePanel.worldTimeCounter += 30;
-                            gamePanel.worldTimeSatuHariCounter += 30;
+                            gamePanel.incWorldTimeCounter(30);
+                            gamePanel.incWorldTimeSatuHariCounter(30);
 
-                            for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                                gamePanel.listSim.get(i).pekerjaan.setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.listSim
+                            for (int i = 0; i < gamePanel.getListSim().size(); i++) {
+                                gamePanel.getListSim().get(i).pekerjaan.setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.getListSim()
                                     .get(i).pekerjaan.getWorldTimeCounterForStartJobAfterChangeJob() + 30);
-                                gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += 30;
-                                if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
-                                    gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += 30;
+                                gamePanel.getListSim().get(i).efekWaktuTidakTidurCounter += 30;
+                                if (gamePanel.getListSim().get(i).isUdahMakanDalamSatuHari) {
+                                    gamePanel.getListSim().get(i).efekWaktuTidakBuangAirCounter += 30;
                                 }
                             }
 
@@ -714,51 +714,51 @@ public class Sim extends Entity {
                             } else {
                                 getInventory().remove(itemIndex);
                             }
-                            gamePanel.ui.setCurrentAksiCadangan("Makan " + bahanMakanan.getName() + "\nKekenyangan bertambah "
+                            gamePanel.getUi().setCurrentAksiCadangan("Makan " + bahanMakanan.getName() + "\nKekenyangan bertambah "
                                     + bahanMakanan.getKekenyangan());
-                            gamePanel.ui.setCurrentAksi("Makan");
-                            gamePanel.gameState = gamePanel.timerState;
-                            gamePanel.ui.setCurrentAksiDone(false);
+                            gamePanel.getUi().setCurrentAksi("Makan");
+                            gamePanel.setGameState(gamePanel.getTimerState());
+                            gamePanel.getUi().setCurrentAksiDone(false);
                             isUdahMakanDalamSatuHari = true;
-                            gamePanel.ui.setTempDurasi(30);
-                            gamePanel.keyHandler.setThreadTemp(gamePanel.ui.startTimerThread(30));
+                            gamePanel.getUi().setTempDurasi(30);
+                            gamePanel.getKeyHandler().setThreadTemp(gamePanel.getUi().startTimerThread(30));
                             // gamePanel.ui.setelahAksi(30);
 
                         } else {
-                            gamePanel.ui.setCharIndex(0);
-                            gamePanel.ui.setCombinedText("");
-                            gamePanel.gameState = gamePanel.dialogState;
-                            gamePanel.ui.setCurrentDialog("Anda harus makan di meja makan!");
+                            gamePanel.getUi().setCharIndex(0);
+                            gamePanel.getUi().setCombinedText("");
+                            gamePanel.setGameState(gamePanel.getDialogState());
+                            gamePanel.getUi().setCurrentDialog("Anda harus makan di meja makan!");
                         }
                         indexBendaYangDisentuh = 999;
                     } else {
-                        gamePanel.ui.setCharIndex(0);
-                        gamePanel.ui.setCombinedText("");
-                        gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.setCurrentDialog("Anda harus makan di meja makan!");
+                        gamePanel.getUi().setCharIndex(0);
+                        gamePanel.getUi().setCombinedText("");
+                        gamePanel.setGameState(gamePanel.getDialogState());
+                        gamePanel.getUi().setCurrentDialog("Anda harus makan di meja makan!");
                     }
                 }
             } else if (selectedBenda instanceof Makanan) {
                 if (currentMap == 0) {
-                    gamePanel.ui.setCharIndex(0);
-                    gamePanel.ui.setCombinedText("");
-                    gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.setCurrentDialog("Anda tidak bisa makan di luar rumah.");
+                    gamePanel.getUi().setCharIndex(0);
+                    gamePanel.getUi().setCombinedText("");
+                    gamePanel.setGameState(gamePanel.getDialogState());
+                    gamePanel.getUi().setCurrentDialog("Anda tidak bisa makan di luar rumah.");
                 } else {
                     if (indexBendaYangDisentuh != 999) {
-                        if (gamePanel.listSim.get(indexRumahYangDimasuki).rumah.getRuanganRumah()
+                        if (gamePanel.getListSim().get(indexRumahYangDimasuki).rumah.getRuanganRumah()
                                 .get(indexLocationRuangan).getBendaRuangan()
                                 .get(indexBendaYangDisentuh) instanceof Furnitur_MejaKursi) {
                             Makanan makanan = (Makanan) selectedBenda;
                             makanan.eat(this);
-                            gamePanel.worldTimeCounter += 30;
-                            gamePanel.worldTimeSatuHariCounter += 30;
-                            for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                                gamePanel.listSim.get(i).pekerjaan.setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.listSim
+                            gamePanel.incWorldTimeCounter(30);
+                            gamePanel.incWorldTimeSatuHariCounter(30);
+                            for (int i = 0; i < gamePanel.getListSim().size(); i++) {
+                                gamePanel.getListSim().get(i).pekerjaan.setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.getListSim()
                                     .get(i).pekerjaan.getWorldTimeCounterForStartJobAfterChangeJob() + 30);
-                                gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += 30;
-                                if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
-                                    gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += 30;
+                                gamePanel.getListSim().get(i).efekWaktuTidakTidurCounter += 30;
+                                if (gamePanel.getListSim().get(i).isUdahMakanDalamSatuHari) {
+                                    gamePanel.getListSim().get(i).efekWaktuTidakBuangAirCounter += 30;
                                 }
                             }
                             if (makanan.getQuantity() > 1) {
@@ -766,35 +766,35 @@ public class Sim extends Entity {
                             } else {
                                 getInventory().remove(itemIndex);
                             }
-                            gamePanel.ui.setCurrentAksiCadangan("Makan " + makanan.getName() + "\nKekenyangan bertambah "
+                            gamePanel.getUi().setCurrentAksiCadangan("Makan " + makanan.getName() + "\nKekenyangan bertambah "
                                     + makanan.getKekenyangan());
-                            gamePanel.ui.setCurrentAksi("Makan");
-                            gamePanel.gameState = gamePanel.timerState;
-                            gamePanel.ui.setCurrentAksiDone(false);
+                            gamePanel.getUi().setCurrentAksi("Makan");
+                            gamePanel.setGameState(gamePanel.getTimerState());
+                            gamePanel.getUi().setCurrentAksiDone(false);
                             isUdahMakanDalamSatuHari = true;
-                            gamePanel.ui.setTempDurasi(30);
-                            gamePanel.keyHandler.setThreadTemp(gamePanel.ui.startTimerThread(30));
+                            gamePanel.getUi().setTempDurasi(30);
+                            gamePanel.getKeyHandler().setThreadTemp(gamePanel.getUi().startTimerThread(30));
                             // gamePanel.ui.setelahAksi(30);
                         } else {
-                            gamePanel.ui.setCharIndex(0);
-                            gamePanel.ui.setCombinedText("");
-                            gamePanel.gameState = gamePanel.dialogState;
-                            gamePanel.ui.setCurrentDialog("Anda harus makan di meja makan!");
+                            gamePanel.getUi().setCharIndex(0);
+                            gamePanel.getUi().setCombinedText("");
+                            gamePanel.setGameState(gamePanel.getDialogState());
+                            gamePanel.getUi().setCurrentDialog("Anda harus makan di meja makan!");
                         }
                     } else {
-                        gamePanel.ui.setCharIndex(0);
-                        gamePanel.ui.setCombinedText("");
-                        gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.setCurrentDialog("Anda harus makan di meja makan!");
+                        gamePanel.getUi().setCharIndex(0);
+                        gamePanel.getUi().setCombinedText("");
+                        gamePanel.setGameState(gamePanel.getDialogState());
+                        gamePanel.getUi().setCurrentDialog("Anda harus makan di meja makan!");
                     }
                 }
 
             } else if (selectedBenda instanceof Furnitur) {
                 if (currentMap == 0) {
-                    gamePanel.ui.setCharIndex(0);
-                    gamePanel.ui.setCombinedText("");
-                    gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.setCurrentDialog("Tidak dapat memasang furnitur di luar\nrumah!");
+                    gamePanel.getUi().setCharIndex(0);
+                    gamePanel.getUi().setCombinedText("");
+                    gamePanel.setGameState(gamePanel.getDialogState());
+                    gamePanel.getUi().setCurrentDialog("Tidak dapat memasang furnitur di luar\nrumah!");
                 } else {
                     tempInt = itemIndex;
                     Furnitur furnitur = (Furnitur) selectedBenda;
@@ -804,7 +804,7 @@ public class Sim extends Entity {
                         getInventory().remove(itemIndex);
                     }
                     tempBenda = furnitur;
-                    gamePanel.gameState = gamePanel.inputKoordinatBendaState;
+                    gamePanel.setGameState(gamePanel.getInputKoordinatBendaState());
 
                 }
 
@@ -918,9 +918,9 @@ public class Sim extends Entity {
             }
             if (remainingTimeBuy == 0) {
                 isCanBuy = true; // atur isCanUpgrade menjadi true setelah 18 menit
-                if (gamePanel.npc[0][4].getInventory().get(itemBuyTempIndex) instanceof BahanMakanan) {
-                    BahanMakanan makanan = (BahanMakanan) gamePanel.npc[0][4].getInventory().get(itemBuyTempIndex);
-                    if (gamePanel.listSim.get(indexSimSaatBeli).canObtainItem(makanan)) {
+                if (gamePanel.getNpc()[0][4].getInventory().get(itemBuyTempIndex) instanceof BahanMakanan) {
+                    BahanMakanan makanan = (BahanMakanan) gamePanel.getNpc()[0][4].getInventory().get(itemBuyTempIndex);
+                    if (gamePanel.getListSim().get(indexSimSaatBeli).canObtainItem(makanan)) {
                         // gamePanel.ui.setCharIndex(0);
                         // gamePanel.ui.setCombinedText("");
                         // gamePanel.gameState = gamePanel.dialogState;
@@ -928,18 +928,18 @@ public class Sim extends Entity {
                         // + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
                         isBarangSampai = true;
                         tempDialogBarang = "Pembelian barang oleh "
-                                + gamePanel.listSim.get(indexSimSaatBeli).nama + "\nberhasil";
+                                + gamePanel.getListSim().get(indexSimSaatBeli).nama + "\nberhasil";
                     } else {
-                        gamePanel.listSim.get(indexSimSaatBeli).uang += makanan.getHarga();
-                        gamePanel.ui.setSubState(0);
-                        gamePanel.ui.setCharIndex(0);
-                        gamePanel.ui.setCombinedText("");
-                        gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.setCurrentDialog("Inventory penuh");
+                        gamePanel.getListSim().get(indexSimSaatBeli).uang += makanan.getHarga();
+                        gamePanel.getUi().setSubState(0);
+                        gamePanel.getUi().setCharIndex(0);
+                        gamePanel.getUi().setCombinedText("");
+                        gamePanel.setGameState(gamePanel.getDialogState());
+                        gamePanel.getUi().setCurrentDialog("Inventory penuh");
                     }
-                } else if (gamePanel.npc[0][4].getInventory().get(itemBuyTempIndex) instanceof Furnitur) {
-                    Furnitur furnitur = (Furnitur) gamePanel.npc[0][4].getInventory().get(itemBuyTempIndex);
-                    if (gamePanel.listSim.get(indexSimSaatBeli).canObtainItem(furnitur)) {
+                } else if (gamePanel.getNpc()[0][4].getInventory().get(itemBuyTempIndex) instanceof Furnitur) {
+                    Furnitur furnitur = (Furnitur) gamePanel.getNpc()[0][4].getInventory().get(itemBuyTempIndex);
+                    if (gamePanel.getListSim().get(indexSimSaatBeli).canObtainItem(furnitur)) {
                         // gamePanel.ui.setCharIndex(0);
                         // gamePanel.ui.setCombinedText("");
                         // gamePanel.gameState = gamePanel.dialogState;
@@ -947,18 +947,18 @@ public class Sim extends Entity {
                         // + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
                         isBarangSampai = true;
                         tempDialogBarang = "Pembelian barang oleh "
-                                + gamePanel.listSim.get(indexSimSaatBeli).nama + "\nberhasil";
+                                + gamePanel.getListSim().get(indexSimSaatBeli).nama + "\nberhasil";
                     } else {
-                        gamePanel.listSim.get(indexSimSaatBeli).uang += furnitur.getHarga();
-                        gamePanel.ui.setSubState(0);
-                        gamePanel.ui.setCharIndex(0);
-                        gamePanel.ui.setCombinedText("");
-                        gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.setCurrentDialog("Inventory penuh");
+                        gamePanel.getListSim().get(indexSimSaatBeli).uang += furnitur.getHarga();
+                        gamePanel.getUi().setSubState(0);
+                        gamePanel.getUi().setCharIndex(0);
+                        gamePanel.getUi().setCombinedText("");
+                        gamePanel.setGameState(gamePanel.getDialogState());
+                        gamePanel.getUi().setCurrentDialog("Inventory penuh");
                     }
-                } else if (gamePanel.npc[0][4].getInventory().get(itemBuyTempIndex) instanceof Lampu) {
-                    Lampu lampu = (Lampu) gamePanel.npc[0][4].getInventory().get(itemBuyTempIndex);
-                    if (gamePanel.listSim.get(indexSimSaatBeli).canObtainItem(lampu)) {
+                } else if (gamePanel.getNpc()[0][4].getInventory().get(itemBuyTempIndex) instanceof Lampu) {
+                    Lampu lampu = (Lampu) gamePanel.getNpc()[0][4].getInventory().get(itemBuyTempIndex);
+                    if (gamePanel.getListSim().get(indexSimSaatBeli).canObtainItem(lampu)) {
                         // gamePanel.ui.setCharIndex(0);
                         // gamePanel.ui.setCombinedText("");
                         // gamePanel.gameState = gamePanel.dialogState;
@@ -966,14 +966,14 @@ public class Sim extends Entity {
                         // + gamePanel.listSim.get(indexSimSaatBeli).nama + " berhasil";
                         isBarangSampai = true;
                         tempDialogBarang = "Pembelian barang oleh "
-                                + gamePanel.listSim.get(indexSimSaatBeli).nama + "\nberhasil";
+                                + gamePanel.getListSim().get(indexSimSaatBeli).nama + "\nberhasil";
                     } else {
-                        gamePanel.listSim.get(indexSimSaatBeli).uang += lampu.getHarga();
-                        gamePanel.ui.setSubState(0);
-                        gamePanel.ui.setCharIndex(0);
-                        gamePanel.ui.setCombinedText("");
-                        gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.setCurrentDialog("Inventory penuh");
+                        gamePanel.getListSim().get(indexSimSaatBeli).uang += lampu.getHarga();
+                        gamePanel.getUi().setSubState(0);
+                        gamePanel.getUi().setCharIndex(0);
+                        gamePanel.getUi().setCombinedText("");
+                        gamePanel.setGameState(gamePanel.getDialogState());
+                        gamePanel.getUi().setCurrentDialog("Inventory penuh");
 
                     }
 

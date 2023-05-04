@@ -19,21 +19,21 @@ public class Map extends TileManager {
     }
 
     public void createWorldMap() {
-        worldMap = new BufferedImage[gamePanel.maxMap];
-        int worldMapWidth = gamePanel.tileSize * gamePanel.maxWorldCol;
-        int worldMapHeight = gamePanel.tileSize * gamePanel.maxWorldRow;
+        worldMap = new BufferedImage[gamePanel.getMaxMap()];
+        int worldMapWidth = gamePanel.getTileSize() * gamePanel.getMaxWorldCol();
+        int worldMapHeight = gamePanel.getTileSize() * gamePanel.getMaxWorldRow();
 
-        for (int i = 0; i < gamePanel.maxMap; i++) {
+        for (int i = 0; i < gamePanel.getMaxMap(); i++) {
             worldMap[i] = new BufferedImage(worldMapWidth, worldMapHeight, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2d = (Graphics2D) worldMap[i].createGraphics();
 
             int col = 0;
             int row = 0;
 
-            while (col < gamePanel.maxWorldCol && row < gamePanel.maxWorldRow) {
+            while (col < gamePanel.getMaxWorldCol() && row < gamePanel.getMaxWorldRow()) {
                 int tileNum = getMapTileNum()[i][col][row];
-                int x = gamePanel.tileSize * col;
-                int y = gamePanel.tileSize * row;
+                int x = gamePanel.getTileSize() * col;
+                int y = gamePanel.getTileSize() * row;
                 g2d.drawImage(getTile()[tileNum].getImage(), x, y, null);
 
                 // if (gamePanel.listRumah[gamePanel.currentMap].get(i) != null) {
@@ -42,7 +42,7 @@ public class Map extends TileManager {
                 // }
 
                 col++;
-                if (col == gamePanel.maxWorldCol) {
+                if (col == gamePanel.getMaxWorldCol()) {
                     col = 0;
                     row++;
                 }

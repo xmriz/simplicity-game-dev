@@ -65,6 +65,6 @@ public class NPC_Penjual extends Entity{
 
     public void speak(){
         super.speak();
-        gamePanel.gameState = gamePanel.beliState;
+        gamePanel.setGameState(gamePanel.getBeliState());
     }
 }

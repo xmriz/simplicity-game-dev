@@ -242,8 +242,8 @@ public abstract class Entity {
     }
 
     public void speak() {
-        if (gamePanel.ui.getCurrentDialog() != null) {
-            gamePanel.ui.setCurrentDialog(dialogs.get(dialogCounter));
+        if (gamePanel.getUi().getCurrentDialog() != null) {
+            gamePanel.getUi().setCurrentDialog(dialogs.get(dialogCounter));
             dialogCounter++;
             if (dialogCounter > dialogs.size() - 1) {
                 dialogCounter = 0;
@@ -253,7 +253,7 @@ public abstract class Entity {
         }
 
         // ganti direction sim
-        switch (gamePanel.listSim.get(gamePanel.indexCurrentSim).getDirection()) {
+        switch (gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getDirection()) {
             case "up":
                 direction = "down";
                 break;
@@ -273,8 +273,8 @@ public abstract class Entity {
         setAction();
 
         collisionOn = false;
-        gamePanel.collisionChecker.checkTile(this);
-        gamePanel.collisionChecker.checkSim(this);
+        gamePanel.getCollisionChecker().checkTile(this);
+        gamePanel.getCollisionChecker().checkSim(this);
 
         if (!collisionOn) {
             switch (direction) {
@@ -306,19 +306,19 @@ public abstract class Entity {
 
     public void draw(Graphics2D g2d) {
         BufferedImage image = null;
-        int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX()
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX(); // position of the tile in the screen
-        int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY()
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY();
+        int screenX = worldX - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX()
+                + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX(); // position of the tile in the screen
+        int screenY = worldY - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY()
+                + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY();
 
-        if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX()
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX()
-                && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX()
-                        - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX()
-                && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY()
-                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY()
-                && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY()
-                        - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY()) {
+        if (worldX - gamePanel.getTileSize() < gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX()
+                + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX()
+                && worldX + gamePanel.getTileSize() > gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX()
+                        - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX()
+                && worldY - gamePanel.getTileSize() < gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY()
+                        + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY()
+                && worldY + gamePanel.getTileSize() > gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY()
+                        - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY()) {
 
             switch (direction) {
                 case "up":
@@ -351,7 +351,7 @@ public abstract class Entity {
                     break;
             }
 
-            g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+            g2d.drawImage(image, screenX, screenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
         }
     }
 
@@ -360,7 +360,7 @@ public abstract class Entity {
 
         try {
             scaledImage = ImageIO.read(new FileInputStream(new File("assets/" + imagePath + ".png")));
-            scaledImage = UtilityTool.scaleImage(scaledImage, gamePanel.tileSize, gamePanel.tileSize);
+            scaledImage = UtilityTool.scaleImage(scaledImage, gamePanel.getTileSize(), gamePanel.getTileSize());
         } catch (IOException e) {
             e.printStackTrace();
         }

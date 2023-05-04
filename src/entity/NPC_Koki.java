@@ -42,6 +42,6 @@ public class NPC_Koki extends Entity{
 
     public void speak(){
         super.speak();
-        gamePanel.gameState = gamePanel.resepState;
+        gamePanel.setGameState(gamePanel.getResepState());
     }
 }

@@ -27,15 +27,15 @@ public class Lighting {
 
     public void setLightSource() {
         // create bufferedImage
-        darknessFilter = new BufferedImage(gamePanel.screenWidth, gamePanel.screenHeight, BufferedImage.TYPE_INT_ARGB);
+        darknessFilter = new BufferedImage(gamePanel.getScreenWidth(), gamePanel.getScreenHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = (Graphics2D) darknessFilter.getGraphics();
 
-        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getCurrentLight() == null) {
+        if (gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getCurrentLight() == null) {
             g2d.setColor(new Color(0, 0, 0, 0.8f));
         } else {
             // get the center x and y of the light circle
-            int centerX = gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX() + gamePanel.tileSize / 2;
-            int centerY = gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY() + gamePanel.tileSize / 2;
+            int centerX = gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX() + gamePanel.getTileSize() / 2;
+            int centerY = gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY() + gamePanel.getTileSize() / 2;
 
             // create a gradation effect within the light circle
             Color color[] = new Color[10];
@@ -70,14 +70,14 @@ public class Lighting {
             g2d.setPaint(gPaint);
         }
 
-        g2d.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
+        g2d.fillRect(0, 0, gamePanel.getScreenWidth(), gamePanel.getScreenHeight());
 
         g2d.dispose();
     }
 
     public void update() {
         // check the state of the day
-        int time = gamePanel.worldTimeCounter%720;
+        int time = gamePanel.getWorldTimeCounter() % 720;
 
         if (dayState == day) {
             if (time == 360) { 
@@ -120,9 +120,9 @@ public class Lighting {
         }
 
         // update the light source
-        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getLightUpdated()) {
+        if (gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getLightUpdated()) {
             setLightSource();
-            gamePanel.listSim.get(gamePanel.indexCurrentSim).setLightUpdated(false);
+            gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).setLightUpdated(false);
         }
     }
 

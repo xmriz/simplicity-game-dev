@@ -246,11 +246,11 @@ public class GamePanel extends JPanel implements Runnable {
         this.indexCurrentSim = indexCurrentSim;
     }
 
-    public boolean isOneSim() {
+    public boolean getIsOneSim() {
         return isOneSim;
     }
 
-    public void setOneSim(boolean isOneSim) {
+    public void setIsOneSim(boolean isOneSim) {
         this.isOneSim = isOneSim;
     }
 
