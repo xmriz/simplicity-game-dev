@@ -21,7 +21,7 @@ public class Furnitur_RakBuku extends Furnitur{
     public void action(){
         // aksi masak
         System.out.println("Aksi Baca Buku");
-        gamePanel.gameState = gamePanel.inputDurasiBacaBukuState;
+        gamePanel.setGameState(gamePanel.getInputDurasiBacaBukuState());
     }
 
 }

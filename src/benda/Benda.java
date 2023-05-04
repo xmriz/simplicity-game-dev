@@ -136,14 +136,14 @@ public abstract class Benda {
     }
 
     public void draw(Graphics2D g2d, GamePanel gamePanel) {
-        int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX()+ gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX(); // position of the tile in the screen
-        int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY();
+        int screenX = worldX - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX()+ gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX(); // position of the tile in the screen
+        int screenY = worldY - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY() + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY();
 
-        if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX()
-                && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX() - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX()
-                && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY()
-                && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY()- gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY()) {
-            g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+        if (worldX - gamePanel.getTileSize() < gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX() + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX()
+                && worldX + gamePanel.getTileSize() > gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX() - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX()
+                && worldY - gamePanel.getTileSize() < gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY() + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY()
+                && worldY + gamePanel.getTileSize() > gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY()- gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY()) {
+            g2d.drawImage(image, screenX, screenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
         }
     }
 

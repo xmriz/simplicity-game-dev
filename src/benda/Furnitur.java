@@ -54,14 +54,14 @@ public abstract class Furnitur extends Benda{
 
     @Override
  public void draw(Graphics2D g2d, GamePanel gamePanel) {
-        int screenX = getWorldX() - gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX(); // position of the tile in the screen
-        int screenY = getWorldY() - gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY();
+        int screenX = getWorldX() - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX() + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX(); // position of the tile in the screen
+        int screenY = getWorldY() - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY() + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY();
 
-        if (getWorldX() - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX()
-                && getWorldX() + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldX() - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX()
-                && getWorldY() - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY() + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY()
-                && getWorldY() + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).getWorldY() - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY()) {
-            g2d.drawImage(getImage(), screenX, screenY, gamePanel.tileSize*dimensiX, gamePanel.tileSize*dimensiY, null);
+        if (getWorldX() - gamePanel.getTileSize() < gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX() + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX()
+                && getWorldX() + gamePanel.getTileSize() > gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX() - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX()
+                && getWorldY() - gamePanel.getTileSize() < gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY() + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY()
+                && getWorldY() + gamePanel.getTileSize() > gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY() - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY()) {
+            g2d.drawImage(getImage(), screenX, screenY, gamePanel.getTileSize()*dimensiX, gamePanel.getTileSize()*dimensiY, null);
         }
     }
 } 

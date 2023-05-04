@@ -20,6 +20,6 @@ public class Furnitur_PotBunga extends Furnitur{
     @Override
     public void action(){
         // aksi tidur
-        gamePanel.gameState = gamePanel.inputDurasiSiramTanamanState;
+        gamePanel.setGameState(gamePanel.getInputDurasiSiramTanamanState());
     }
 }

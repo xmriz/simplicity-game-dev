@@ -20,6 +20,6 @@ public class Furnitur_KasurSingle extends Furnitur{
     @Override
     public void action(){
         // aksi tidur
-        gamePanel.gameState = gamePanel.inputDurasiTidurState;
+        gamePanel.setGameState(gamePanel.getInputDurasiTidurState());
     }
 }

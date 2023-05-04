@@ -20,7 +20,7 @@ public class Furnitur_KomporGas extends Furnitur{
     @Override
     public void action(){
         // aksi masak
-        gamePanel.gameState = gamePanel.resepState;
+        gamePanel.setGameState(gamePanel.getResepState());
     }
 
 }

@@ -20,6 +20,6 @@ public class Furnitur_MejaPC extends Furnitur{
     @Override
     public void action(){
         // aksi tidur
-        gamePanel.gameState = gamePanel.inputDurasiMainGameState;
+        gamePanel.setGameState(gamePanel.getInputDurasiMainGameState());
     }
 }

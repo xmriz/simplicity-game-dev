@@ -89,7 +89,7 @@ public class Ruangan {
 
 
     public Ruangan(GamePanel gamePanel) {
-        tileManager = gamePanel.tileManager;
+        tileManager = gamePanel.getTileManager();
         mapRuangan = tileManager.getMapTileNum()[1];
     }
 

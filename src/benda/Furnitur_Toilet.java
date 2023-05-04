@@ -20,20 +20,20 @@ public class Furnitur_Toilet extends Furnitur {
     @Override
     public void action() {
         // aksi boker
-        gamePanel.ui.setCurrentAksi("Boker");
-        gamePanel.gameState = gamePanel.timerState;
-        gamePanel.ui.setCurrentAksiDone(false);
+        gamePanel.getUi().setCurrentAksi("Boker");
+        gamePanel.setGameState(gamePanel.getTimerState());
+        gamePanel.getUi().setCurrentAksiDone(false);
         // gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);
-        gamePanel.worldTimeCounter += 10;
-        gamePanel.worldTimeSatuHariCounter += 10;
+        gamePanel.incWorldTimeCounter(10);
+        gamePanel.incWorldTimeSatuHariCounter(10);
         gamePanel.getCurrentSim().setIsUdahMakanDalamSatuHari(false);
 
-        for (int i = 0; i < gamePanel.listSim.size(); i++) {
-            gamePanel.listSim.get(i).getPekerjaan().setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.listSim.get(i)
+        for (int i = 0; i < gamePanel.getListSim().size(); i++) {
+            gamePanel.getListSim().get(i).getPekerjaan().setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.getListSim().get(i)
                 .getPekerjaan().getWorldTimeCounterForStartJobAfterChangeJob() + 10);
-            gamePanel.listSim.get(i).setEfekWaktuTidakTidurCounter(gamePanel.listSim.get(i).getEfekWaktuTidakTidurCounter()+10);
-            if (gamePanel.listSim.get(i).getIsUdahMakanDalamSatuHari()) {
-                gamePanel.listSim.get(i).setEfekWaktuTidakBuangAirCounter(gamePanel.listSim.get(i).getEfekWaktuTidakBuangAirCounter()+10);
+            gamePanel.getListSim().get(i).setEfekWaktuTidakTidurCounter(gamePanel.getListSim().get(i).getEfekWaktuTidakTidurCounter()+10);
+            if (gamePanel.getListSim().get(i).getIsUdahMakanDalamSatuHari()) {
+                gamePanel.getListSim().get(i).setEfekWaktuTidakBuangAirCounter(gamePanel.getListSim().get(i).getEfekWaktuTidakBuangAirCounter()+10);
             }
         }
         gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan()-20);
@@ -48,8 +48,8 @@ public class Furnitur_Toilet extends Furnitur {
         if (gamePanel.getCurrentSim().getKekenyangan() > gamePanel.getCurrentSim().getMaxKekenyangan()) {
             gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getMaxKekenyangan());
         }
-        gamePanel.ui.setTempDurasi(10);
-        gamePanel.keyHandler.setThreadTemp(gamePanel.ui.startTimerThread(10));
+        gamePanel.getUi().setTempDurasi(10);
+        gamePanel.getKeyHandler().setThreadTemp(gamePanel.getUi().startTimerThread(10));
         // gamePanel.ui.setelahAksi(10);
     }
 }

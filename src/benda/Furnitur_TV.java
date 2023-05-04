@@ -21,6 +21,6 @@ public class Furnitur_TV extends Furnitur{
     public void action(){
         // aksi nonton
 
-        gamePanel.gameState = gamePanel.inputDurasiNontonState;
+        gamePanel.setGameState(gamePanel.getInputDurasiNontonState());
     }
 }

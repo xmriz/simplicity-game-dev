@@ -21,6 +21,6 @@ public class Furnitur_KomporListrik extends Furnitur{
     public void action(){
         // aksi masak
         System.out.println("Aksi Masak");
-        gamePanel.gameState = gamePanel.resepState;
+        gamePanel.setGameState(gamePanel.getResepState());
     }
 }

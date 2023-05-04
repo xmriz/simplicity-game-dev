@@ -21,7 +21,7 @@ public class Furnitur_Sajadah extends Furnitur{
     public void action(){
         // aksi masak
         System.out.println("Aksi Shalat");
-        gamePanel.gameState = gamePanel.inputDurasiShalatState;
+        gamePanel.setGameState(gamePanel.getInputDurasiShalatState());
     }
 
 }
