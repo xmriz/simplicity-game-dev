@@ -1,11 +1,11 @@
 package main;
 
 public class EventHandler {
-    GamePanel gamePanel;
-    EventRect eventRect[][][];
+    private GamePanel gamePanel;
+    private EventRect eventRect[][][];
 
-    int previousEventX, previousEventY;
-    boolean canTouchEvent = true;
+    private int previousEventX, previousEventY;
+    private boolean canTouchEvent = true;
 
     // public static int
     // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki =
@@ -25,8 +25,8 @@ public class EventHandler {
             eventRect[map][col][row].y = 23;
             eventRect[map][col][row].width = 2;
             eventRect[map][col][row].height = 2;
-            eventRect[map][col][row].eventRectDefaultX = eventRect[map][col][row].x;
-            eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
+            eventRect[map][col][row].setEventRectDefaultX(eventRect[map][col][row].x);
+            eventRect[map][col][row].setEventRectDefaultY(eventRect[map][col][row].y);
 
             col++;
             if (col == gamePanel.maxWorldCol) {
@@ -493,7 +493,7 @@ public class EventHandler {
                 eventRect[map][col][row].y = row * gamePanel.tileSize + eventRect[map][col][row].y;
 
                 if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().intersects(eventRect[map][col][row])
-                        && !eventRect[map][col][row].eventDone) {
+                        && !eventRect[map][col][row].getEventDone()) {
                     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getDirection().contentEquals(reqDirection)
                             || reqDirection.contentEquals("any")) {
                         hit = true;
@@ -507,8 +507,8 @@ public class EventHandler {
                         .get(gamePanel.indexCurrentSim).getSolidAreaDefaultX();
                 gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().y = gamePanel.listSim
                         .get(gamePanel.indexCurrentSim).getSolidAreaDefaultY();
-                eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
-                eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+                eventRect[map][col][row].x = eventRect[map][col][row].getEventRectDefaultX();
+                eventRect[map][col][row].y = eventRect[map][col][row].getEventRectDefaultY();
             }
         } else {
             if (map == gamePanel.listSim.get(gamePanel.indexCurrentSim).getCurrentMap()) {
@@ -523,7 +523,7 @@ public class EventHandler {
                 eventRect[map][col][row].y = row * gamePanel.tileSize + eventRect[map][col][row].y;
 
                 if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().intersects(eventRect[map][col][row])
-                        && !eventRect[map][col][row].eventDone) {
+                        && !eventRect[map][col][row].getEventDone()) {
                     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getDirection().contentEquals(reqDirection)
                             || reqDirection.contentEquals("any")) {
                         hit = true;
@@ -537,8 +537,8 @@ public class EventHandler {
                         .get(gamePanel.indexCurrentSim).getSolidAreaDefaultX();
                 gamePanel.listSim.get(gamePanel.indexCurrentSim).getSolidArea().y = gamePanel.listSim
                         .get(gamePanel.indexCurrentSim).getSolidAreaDefaultY();
-                eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
-                eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+                eventRect[map][col][row].x = eventRect[map][col][row].getEventRectDefaultX();
+                eventRect[map][col][row].y = eventRect[map][col][row].getEventRectDefaultY();
             }
         }
 
