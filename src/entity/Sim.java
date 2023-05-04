@@ -339,10 +339,10 @@ public class Sim extends Entity {
                                                                         // (always center)
         screenY = gamePanel.screenHeight / 2 - (gamePanel.tileSize / 2);
 
-        solidArea = new Rectangle(8, 16, 32, 32);
+        setSolidArea(new Rectangle(8, 16, 32, 32));
 
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
+        setSolidAreaDefaultX(getSolidArea().x);
+        setSolidAreaDefaultY(getSolidArea().y);
 
         setDefaultValues();
         getImage();
@@ -350,12 +350,12 @@ public class Sim extends Entity {
     }
 
     public void setDefaultValues() { // set the default values of the player
-        worldX = 2 * gamePanel.tileSize; // set the player's position in his own rumah
-        worldY = 2 * gamePanel.tileSize;
+        setWorldX(2 * gamePanel.tileSize); // set the player's position in his own rumah
+        setWorldY(2 * gamePanel.tileSize);
         // indexRumahYangDimasuki = gamePanel.listSim.size();
         indexLocationRuangan = 0;
-        speed = 4;
-        direction = "down";
+        setSpeed(4);
+        setDirection("down");
     }
 
     public void setItems() {
@@ -379,41 +379,41 @@ public class Sim extends Entity {
 
         // FURNITUR
         // OBJEK BASIC
-        inventory.add(new Furnitur_KasurSingle(gamePanel));
-        inventory.add(new Furnitur_Toilet(gamePanel));
-        inventory.add(new Furnitur_KomporGas(gamePanel));
-        inventory.add(new Furnitur_MejaKursi(gamePanel));
-        inventory.add(new Furnitur_Jam(gamePanel));
-        inventory.add(new Furnitur_Radio(gamePanel));
+        getInventory().add(new Furnitur_KasurSingle(gamePanel));
+        getInventory().add(new Furnitur_Toilet(gamePanel));
+        getInventory().add(new Furnitur_KomporGas(gamePanel));
+        getInventory().add(new Furnitur_MejaKursi(gamePanel));
+        getInventory().add(new Furnitur_Jam(gamePanel));
+        getInventory().add(new Furnitur_Radio(gamePanel));
         // to be continuedd
     }
 
     public void getImage() {
-        up1 = setupImage("sim/p2_up_1");
-        up2 = setupImage("sim/p2_up_2");
-        down1 = setupImage("sim/p2_down_1");
-        down2 = setupImage("sim/p2_down_2");
-        left1 = setupImage("sim/p2_left_1");
-        left2 = setupImage("sim/p2_left_2");
-        right1 = setupImage("sim/p2_right_1");
-        right2 = setupImage("sim/p2_right_2");
+        setUp1(setupImage("sim/p2_up_1"));
+        setUp2(setupImage("sim/p2_up_2"));
+        setDown1( setupImage("sim/p2_down_1"));
+        setDown2(setupImage("sim/p2_down_2"));
+        setLeft1(setupImage("sim/p2_left_1"));
+        setLeft2(setupImage("sim/p2_left_2"));
+        setRight1(setupImage("sim/p2_right_1"));
+        setRight2(setupImage("sim/p2_right_2"));
     }
 
     public void update() { // update the position of the player
         if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed
                 || keyHandler.enterPressed) {
             if (keyHandler.upPressed) {
-                direction = "up";
+                setDirection("up");
             } else if (keyHandler.downPressed) {
-                direction = "down";
+                setDirection("down");
             } else if (keyHandler.leftPressed) {
-                direction = "left";
+                setDirection("left");
             } else if (keyHandler.rightPressed) {
-                direction = "right";
+                setDirection("right");
             }
 
             // check for collision
-            collisionOn = false;
+            setCollisionOn(false);
             gamePanel.collisionChecker.checkTile(this);
 
             // check for benda collision
@@ -445,30 +445,30 @@ public class Sim extends Entity {
             gamePanel.keyHandler.enterPressed = false;
 
             // if there is a collision, sim can't move
-            if (!collisionOn && !keyHandler.enterPressed) {
-                switch (direction) {
+            if (!getCollisionOn() && !keyHandler.enterPressed) {
+                switch (getDirection()) {
                     case "up":
-                        worldY -= speed;
+                        decWorldY(getSpeed());
                         break;
                     case "down":
-                        worldY += speed;
+                        incWorldY(getSpeed());
                         break;
                     case "left":
-                        worldX -= speed;
+                        decWorldX(getSpeed());
                         break;
                     case "right":
-                        worldX += speed;
+                        incWorldX(getSpeed());
                         break;
                 }
             }
 
-            spriteCounter++;
-            if (spriteCounter > 12) {
-                spriteCounter = 0;
-                if (spriteNumber == 1) {
-                    spriteNumber = 2;
+            incSpriteCounter(1);
+            if (getSpriteCounter() > 12) {
+                setSpriteCounter(0);
+                if (getSpriteNumber() == 1) {
+                    setSpriteNumber(2);
                 } else {
-                    spriteNumber = 1;
+                    setSpriteNumber(1);
                 }
             }
         }
@@ -670,19 +670,19 @@ public class Sim extends Entity {
         }
     }
 
-    public int getWorldX() {
+   /*  public int getWorldX() {
         return worldX;
     }
 
     public int getWorldY() {
         return worldY;
-    }
+    }*/
 
     public void selectItem() {
         int itemIndex = UI.getItemIndexOnSlot(gamePanel.ui.simSlotRow, gamePanel.ui.simSlotCol);
 
-        if (itemIndex < inventory.size()) {
-            Benda selectedBenda = inventory.get(itemIndex);
+        if (itemIndex < getInventory().size()) {
+            Benda selectedBenda = getInventory().get(itemIndex);
 
             if (selectedBenda instanceof BahanMakanan) {
                 if (currentMap == 0) {
@@ -711,7 +711,7 @@ public class Sim extends Entity {
                             if (bahanMakanan.getQuantity() > 1) {
                                 bahanMakanan.decQuantity(1);
                             } else {
-                                inventory.remove(itemIndex);
+                                getInventory().remove(itemIndex);
                             }
                             gamePanel.ui.currentAksiCadangan = "Makan " + bahanMakanan.getName() + "\nKekenyangan bertambah "
                                     + bahanMakanan.getKekenyangan();
@@ -762,7 +762,7 @@ public class Sim extends Entity {
                             if (makanan.getQuantity() > 1) {
                                 makanan.decQuantity(1);
                             } else {
-                                inventory.remove(itemIndex);
+                                getInventory().remove(itemIndex);
                             }
                             gamePanel.ui.currentAksiCadangan = "Makan " + makanan.getName() + "\nKekenyangan bertambah "
                                     + makanan.getKekenyangan();
@@ -799,7 +799,7 @@ public class Sim extends Entity {
                     if (furnitur.getQuantity()> 1) {
                         furnitur.decQuantity(1);
                     } else {
-                        inventory.remove(itemIndex);
+                        getInventory().remove(itemIndex);
                     }
                     tempBenda = furnitur;
                     gamePanel.gameState = gamePanel.inputKoordinatBendaState;
@@ -820,9 +820,9 @@ public class Sim extends Entity {
     public int searchItemInInventory(String itemName) {
         int itemIndex = 999;
 
-        for (Benda benda : inventory) {
+        for (Benda benda : getInventory()) {
             if (benda.getName().equals(itemName)) {
-                itemIndex = inventory.indexOf(benda);
+                itemIndex = getInventory().indexOf(benda);
                 break;
             }
         }
@@ -838,9 +838,9 @@ public class Sim extends Entity {
             if (index != 999) { // item terdapat di inventory
 
             } else {
-                if (inventory.size() < maxInventorySize) {
-                    inventory.add(item);
-                    inventory.get(inventory.size() - 1).setQuantity(1);
+                if (getInventory().size() < getMaxInventorySize()) {
+                    getInventory().add(item);
+                    getInventory().get(getInventory().size() - 1).setQuantity(1);
                     canObtain = true;
                 }
             }
@@ -850,19 +850,19 @@ public class Sim extends Entity {
         else if (item.getStackable()) {
             int index = searchItemInInventory(item.getName());
             if (index != 999) {
-                inventory.get(index).incQuantity(1);
+                getInventory().get(index).incQuantity(1);
                 canObtain = true;
             } else {
-                if (inventory.size() < maxInventorySize) {
-                    inventory.add(item);
-                    inventory.get(inventory.size() - 1).setQuantity(1);
+                if (getInventory().size() < maxInventorySize) {
+                    getInventory().add(item);
+                    getInventory().get(getInventory().size() - 1).setQuantity(1);
                     canObtain = true;
                 }
             }
         } else { // not stackable
-            if (inventory.size() < maxInventorySize) {
-                inventory.add(item);
-                inventory.get(inventory.size() - 1).setQuantity(1);
+            if (getInventory().size()< getMaxInventorySize()) {
+                getInventory().add(item);
+                getInventory().get(getInventory().size() - 1).setQuantity(1);
                 canObtain = true;
             }
         }
