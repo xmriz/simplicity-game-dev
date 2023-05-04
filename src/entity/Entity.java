@@ -242,8 +242,8 @@ public abstract class Entity {
     }
 
     public void speak() {
-        if (gamePanel.ui.currentDialog != null) {
-            gamePanel.ui.currentDialog = dialogs.get(dialogCounter);
+        if (gamePanel.ui.getCurrentDialog() != null) {
+            gamePanel.ui.setCurrentDialog(dialogs.get(dialogCounter));
             dialogCounter++;
             if (dialogCounter > dialogs.size() - 1) {
                 dialogCounter = 0;

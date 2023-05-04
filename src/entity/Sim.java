@@ -714,13 +714,13 @@ public class Sim extends Entity {
                             } else {
                                 getInventory().remove(itemIndex);
                             }
-                            gamePanel.ui.currentAksiCadangan = "Makan " + bahanMakanan.getName() + "\nKekenyangan bertambah "
-                                    + bahanMakanan.getKekenyangan();
-                            gamePanel.ui.currentAksi = "Makan";
+                            gamePanel.ui.setCurrentAksiCadangan("Makan " + bahanMakanan.getName() + "\nKekenyangan bertambah "
+                                    + bahanMakanan.getKekenyangan());
+                            gamePanel.ui.setCurrentAksi("Makan");
                             gamePanel.gameState = gamePanel.timerState;
-                            gamePanel.ui.currentAksiDone = false;
+                            gamePanel.ui.setCurrentAksiDone(false);
                             isUdahMakanDalamSatuHari = true;
-                            gamePanel.ui.tempDurasi = 30;
+                            gamePanel.ui.setTempDurasi(30);
                             gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(30);
                             // gamePanel.ui.setelahAksi(30);
 
@@ -766,13 +766,13 @@ public class Sim extends Entity {
                             } else {
                                 getInventory().remove(itemIndex);
                             }
-                            gamePanel.ui.currentAksiCadangan = "Makan " + makanan.getName() + "\nKekenyangan bertambah "
-                                    + makanan.getKekenyangan();
-                            gamePanel.ui.currentAksi = "Makan";
+                            gamePanel.ui.setCurrentAksiCadangan("Makan " + makanan.getName() + "\nKekenyangan bertambah "
+                                    + makanan.getKekenyangan());
+                            gamePanel.ui.setCurrentAksi("Makan");
                             gamePanel.gameState = gamePanel.timerState;
-                            gamePanel.ui.currentAksiDone = false;
+                            gamePanel.ui.setCurrentAksiDone(false);
                             isUdahMakanDalamSatuHari = true;
-                            gamePanel.ui.tempDurasi = 30;
+                            gamePanel.ui.setTempDurasi(30);
                             gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(30);
                             // gamePanel.ui.setelahAksi(30);
                         } else {

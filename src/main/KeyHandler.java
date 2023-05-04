@@ -479,13 +479,13 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Anda sedang tidak berada di rumah.\nTidak dapat melakukan upgrade rumah!";
+                gamePanel.ui.setCurrentDialog("Anda sedang tidak berada di rumah.\nTidak dapat melakukan upgrade rumah!");
             } else if (gamePanel.listSim
                     .get(gamePanel.indexCurrentSim).getIndexRumahYangDimasuki() != gamePanel.indexCurrentSim) {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Anda harus berada di rumah sendiri.\nTidak dapat melakukan upgrade rumah!";
+                gamePanel.ui.setCurrentDialog("Anda harus berada di rumah sendiri.\nTidak dapat melakukan upgrade rumah!");
             } else {
                 gamePanel.gameState = gamePanel.upgradeRumahState;
             }
@@ -510,7 +510,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Tidak dapat membuka peta di rumah!";
+                gamePanel.ui.setCurrentDialog("Tidak dapat membuka peta di rumah!");
             }
             checkWorldTime = false;
             checkCurrentLocation = false;
@@ -525,7 +525,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Tidak dapat membuka mini peta\ndi rumah!";
+                gamePanel.ui.setCurrentDialog("Tidak dapat membuka mini peta\ndi rumah!");
             }
         } else if (keyCode == KeyEvent.VK_Z) {
             if (gamePanel.getCurrentSim().getCurrentMap() == 1) {
@@ -563,14 +563,14 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = gamePanel.getCurrentSim().getTempDialogBarang();
+                gamePanel.ui.setCurrentDialog(gamePanel.getCurrentSim().getTempDialogBarang());
                 gamePanel.getCurrentSim().setIsBarangSampai(false);
                 gamePanel.getCurrentSim().setTempDialogBarang("");
             } else if (gamePanel.getCurrentSim().getIsUpgradeDone() == true) {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = gamePanel.getCurrentSim().getTempDialogUpgrade();
+                gamePanel.ui.setCurrentDialog(gamePanel.getCurrentSim().getTempDialogUpgrade());
                 gamePanel.getCurrentSim().setIsUpgradeDone(false);
                 gamePanel.getCurrentSim().setTempDialogUpgrade("");
             } else if (gamePanel.getCurrentSim().getIsMati() == true) {
@@ -1020,7 +1020,7 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Koordinat tidak valid!";
+                    gamePanel.ui.setCurrentDialog("Koordinat tidak valid!");
                     gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
                     gamePanel.ui.commandNumber = 0;
                     gamePanel.ui.setInputText("");
@@ -1032,7 +1032,7 @@ public class KeyHandler implements KeyListener {
                         gamePanel.ui.charIndex = 0;
                         gamePanel.ui.combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Koordinat harus berada pada range 1-6!";
+                        gamePanel.ui.setCurrentDialog("Koordinat harus berada pada range 1-6!");
                         gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
                         gamePanel.ui.commandNumber = 0;
                         gamePanel.ui.setInputText("");
@@ -1042,7 +1042,7 @@ public class KeyHandler implements KeyListener {
                             gamePanel.ui.charIndex = 0;
                             gamePanel.ui.combinedText = "";
                             gamePanel.gameState = gamePanel.dialogState;
-                            gamePanel.ui.currentDialog = "Tidak dapat meletakkan furnitur di rumah\nsim lain!";
+                            gamePanel.ui.setCurrentDialog("Tidak dapat meletakkan furnitur di rumah\nsim lain!");
                             gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
                             gamePanel.ui.commandNumber = 0;
                             gamePanel.ui.setInputText("");
@@ -1063,7 +1063,7 @@ public class KeyHandler implements KeyListener {
                                 gamePanel.ui.charIndex = 0;
                                 gamePanel.ui.combinedText = "";
                                 gamePanel.gameState = gamePanel.dialogState;
-                                gamePanel.ui.currentDialog = "Sudah terdapat " + tempFurnitur.getName() + " di ruangan ini!";
+                                gamePanel.ui.setCurrentDialog("Sudah terdapat " + tempFurnitur.getName() + " di ruangan ini!");
                                 gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
                                 gamePanel.ui.commandNumber = 0;
                                 gamePanel.ui.setInputText("");
@@ -1076,7 +1076,7 @@ public class KeyHandler implements KeyListener {
                                     gamePanel.ui.charIndex = 0;
                                     gamePanel.ui.combinedText = "";
                                     gamePanel.gameState = gamePanel.dialogState;
-                                    gamePanel.ui.currentDialog = "Furnitur menabrak dinding!";
+                                    gamePanel.ui.setCurrentDialog("Furnitur menabrak dinding!");
                                     gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
                                     gamePanel.ui.commandNumber = 0;
                                     gamePanel.ui.setInputText("");
@@ -1103,7 +1103,7 @@ public class KeyHandler implements KeyListener {
                                         gamePanel.ui.charIndex = 0;
                                         gamePanel.ui.combinedText = "";
                                         gamePanel.gameState = gamePanel.dialogState;
-                                        gamePanel.ui.currentDialog = "Furnitur tidak boleh bersebrangan!";
+                                        gamePanel.ui.setCurrentDialog("Furnitur tidak boleh bersebrangan!");
                                         gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
                                         gamePanel.ui.commandNumber = 0;
                                         gamePanel.ui.setInputText("");
@@ -1162,7 +1162,7 @@ public class KeyHandler implements KeyListener {
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(bendaT); //
                         // INI JANGAN DIHAPUS
                         // gamePanel.gameState = gamePanel.dialogState;
-                        // gamePanel.ui.currentDialog = "Tempat tidak cukup untuk
+                        // gamePanel.ui.setCurrentDialog"Tempat tidak cukup untuk
                         // meletakkan\nfurnitur!";
                         // } else {
                         // // check intersection dengan furnitur lain
@@ -1182,7 +1182,7 @@ public class KeyHandler implements KeyListener {
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(bendaT); //
                         // INI JANGAN DIHAPUS
                         // gamePanel.gameState = gamePanel.dialogState;
-                        // gamePanel.ui.currentDialog = "Tempat tidak cukup untuk meletakkan\nfurnitur
+                        // gamePanel.ui.setCurrentDialog"Tempat tidak cukup untuk meletakkan\nfurnitur
                         // atau Anda sudah memiliki\nfurnitur ini di ruangan!\nBerhasil memindahkan
                         // furnitur.";
                         // }
@@ -1200,12 +1200,12 @@ public class KeyHandler implements KeyListener {
                     }
                 }
                 gamePanel.ui.setInputText("");
-                gamePanel.ui.inputTextDone = false;
+                gamePanel.ui.setInputTextDone(false);
             } else {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
+                gamePanel.ui.setCurrentDialog("Nama tidak boleh kosong");
                 gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur);
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.setInputText("");
@@ -1216,7 +1216,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.inventoryState;
             gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur); // INI JANGAN DIHAPUS
@@ -1331,9 +1331,9 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Nama ruangan di rumah sudah ada!";
+                    gamePanel.ui.setCurrentDialog("Nama ruangan di rumah sudah ada!");
                     gamePanel.ui.setInputText("");
-                    gamePanel.ui.inputTextDone = false;
+                    gamePanel.ui.setInputTextDone(false);
                     gamePanel.ui.commandNumber = 0;
 
                 } else {
@@ -1356,7 +1356,7 @@ public class KeyHandler implements KeyListener {
                         gamePanel.ui.commandNumber = 0;
                     }
                     gamePanel.ui.setInputText("");
-                    gamePanel.ui.inputTextDone = false;
+                    gamePanel.ui.setInputTextDone(false);
                     // CEK RUANGAN APA SAJA DALAM RUMAH SIM
                     // for (Ruangan s :
                     // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah){
@@ -1367,7 +1367,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
+                gamePanel.ui.setCurrentDialog("Nama tidak boleh kosong");
                 gamePanel.ui.commandNumber = 0;
             }
             cursorSound();
@@ -1375,7 +1375,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.upgradeRumahState;
             cursorSound();
@@ -1439,7 +1439,7 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Koordinat tidak valid!";
+                    gamePanel.ui.setCurrentDialog("Koordinat tidak valid!");
                     gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
                     gamePanel.ui.commandNumber = 0;
                     gamePanel.ui.setInputText("");
@@ -1451,7 +1451,7 @@ public class KeyHandler implements KeyListener {
                         gamePanel.ui.charIndex = 0;
                         gamePanel.ui.combinedText = "";
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Koordinat harus berada pada range 1-64!";
+                        gamePanel.ui.setCurrentDialog("Koordinat harus berada pada range 1-64!");
                         gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
                         gamePanel.ui.commandNumber = 0;
                         gamePanel.ui.setInputText("");
@@ -1469,7 +1469,7 @@ public class KeyHandler implements KeyListener {
                             gamePanel.ui.charIndex = 0;
                             gamePanel.ui.combinedText = "";
                             gamePanel.gameState = gamePanel.dialogState;
-                            gamePanel.ui.currentDialog = "Koordinat sudah ditempati sim lain!";
+                            gamePanel.ui.setCurrentDialog("Koordinat sudah ditempati sim lain!");
                             gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
                             gamePanel.ui.commandNumber = 0;
                             gamePanel.ui.setInputText("");
@@ -1494,18 +1494,18 @@ public class KeyHandler implements KeyListener {
                             gamePanel.ui.charIndex = 0;
                             gamePanel.ui.combinedText = "";
                             gamePanel.gameState = gamePanel.dialogState;
-                            gamePanel.ui.currentDialog = "Berhasil menambah sim.";
+                            gamePanel.ui.setCurrentDialog("Berhasil menambah sim.");
                             gamePanel.isOneSim = false;
                         }
                     }
                 }
                 gamePanel.ui.setInputText("");
-                gamePanel.ui.inputTextDone = false;
+                gamePanel.ui.setInputTextDone(false);
             } else {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
+                gamePanel.ui.setCurrentDialog("Nama tidak boleh kosong");
                 gamePanel.listSim.remove(gamePanel.listSim.size() - 1);
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.setInputText("");
@@ -1516,7 +1516,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.addSimState;
             gamePanel.listSim.remove(gamePanel.listSim.size() - 1); // INI JANGAN DIHAPUS
@@ -1630,22 +1630,22 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Nama sudah dimiliki sim lain!";
+                    gamePanel.ui.setCurrentDialog("Nama sudah dimiliki sim lain!");
                     gamePanel.ui.commandNumber = 0;
                     gamePanel.ui.setInputText("");
-                    gamePanel.ui.inputTextDone = false;
+                    gamePanel.ui.setInputTextDone(false);
                 } else {
                     gamePanel.listSim.add(new Sim(gamePanel, gamePanel.keyHandler));
                     gamePanel.listSim.get(gamePanel.listSim.size() - 1).setNama(input);
                     gamePanel.gameState = gamePanel.inputKoordinatRumahSimState;
                     gamePanel.ui.setInputText("");
-                    gamePanel.ui.inputTextDone = false;
+                    gamePanel.ui.setInputTextDone(false);
                 }
             } else {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Nama tidak boleh kosong";
+                gamePanel.ui.setCurrentDialog("Nama tidak boleh kosong");
                 gamePanel.ui.commandNumber = 0;
             }
             cursorSound();
@@ -1653,7 +1653,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
@@ -1725,8 +1725,8 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.charIndex = 0;
             gamePanel.ui.combinedText = "";
             gamePanel.gameState = gamePanel.dialogState;
-            gamePanel.ui.currentDialog = "Sim telah diganti menjadi "
-                    + gamePanel.listSim.get(gamePanel.indexCurrentSim).getNama() + "!";
+            gamePanel.ui.setCurrentDialog("Sim telah diganti menjadi "
+                    + gamePanel.listSim.get(gamePanel.indexCurrentSim).getNama() + "!");
             cursorSound();
             gamePanel.ui.listSimSlotCol = 0;
             gamePanel.ui.listSimSlotRow = 0;
@@ -1804,7 +1804,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
             gamePanel.keyHandler.threadTemp.interrupt();
-            gamePanel.ui.durasiTimer = 0;
+            gamePanel.ui.setDurasiTimer(0);
         }
     }
 
@@ -1864,7 +1864,7 @@ public class KeyHandler implements KeyListener {
                         for (int i = 0; i < gamePanel.listSim.size(); i++) {
                             if (gamePanel.listSim.get(i).getRumah().getIsCanUpgrade() == false) {
                                 gamePanel.listSim.get(i).getRumah().setIsLockUpgrade(false);
-                                gamePanel.listSim.get(i).getRumah().decRemainingTimeUpgrade(gamePanel.ui.tempDurasi);
+                                gamePanel.listSim.get(i).getRumah().decRemainingTimeUpgrade(gamePanel.ui.getTempDurasi());
                                 gamePanel.listSim.get(i).getRumah().setIsCanUpgradeToTrueAfter18Minutes();
                                 gamePanel.listSim.get(i).getRumah().setIsLockUpgrade(true);
                             }
@@ -1872,7 +1872,7 @@ public class KeyHandler implements KeyListener {
                         for (int i = 0; i < gamePanel.listSim.size(); i++) {
                             if (gamePanel.listSim.get(i).getIsCanBuy() == false) {
                                 gamePanel.listSim.get(i).setIsLockBuy(false);
-                                gamePanel.listSim.get(i).setRemainingTimeBuy(gamePanel.listSim.get(i).getRemainingTimeBuy() - gamePanel.ui.tempDurasi);
+                                gamePanel.listSim.get(i).setRemainingTimeBuy(gamePanel.listSim.get(i).getRemainingTimeBuy() - gamePanel.ui.getTempDurasi());
                                 gamePanel.listSim.get(i).setIsCanBuyToTrue();
                                 gamePanel.listSim.get(i).getRumah().setIsLockUpgrade(true);
                             }
@@ -1940,7 +1940,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
@@ -1950,13 +1950,13 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.getInputText().length() > 0) {
                 int durasi = Integer.parseInt(gamePanel.ui.getInputText());
                 gamePanel.gameState = gamePanel.playState;
-                gamePanel.ui.tempDurasi = durasi;
+                gamePanel.ui.setTempDurasi(durasi);
 
                 // timer state
-                gamePanel.ui.durasiTimer = durasi;
-                gamePanel.ui.currentAksi = "Tidur";
+                gamePanel.ui.setDurasiTimer(durasi);
+                gamePanel.ui.setCurrentAksi("Tidur");
                 gamePanel.gameState = gamePanel.timerState;
-                gamePanel.ui.currentAksiDone = false;
+                gamePanel.ui.setCurrentAksiDone(false);
                 // efek
                 gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 240) * 30);
                 gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getKesehatan() + (durasi / 240) * 20);
@@ -2022,7 +2022,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.setCurrentDialog("Input durasi tidak boleh kosong!");
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.setInputText("");
             }
@@ -2072,7 +2072,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
@@ -2082,13 +2082,13 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.getInputText().length() > 0) {
                 int durasi = Integer.parseInt(gamePanel.ui.getInputText());
                 gamePanel.gameState = gamePanel.playState;
-                gamePanel.ui.tempDurasi = durasi;
+                gamePanel.ui.setTempDurasi(durasi);
 
                 // timer state
-                gamePanel.ui.durasiTimer = durasi;
-                gamePanel.ui.currentAksi = "Nonton";
+                gamePanel.ui.setDurasiTimer(durasi);
+                gamePanel.ui.setCurrentAksi("Nonton");
                 gamePanel.gameState = gamePanel.timerState;
-                gamePanel.ui.currentAksiDone = false;
+                gamePanel.ui.setCurrentAksiDone(false);
                 // efek
                 gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 60) * 5);
                 gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 60) * 15);
@@ -2145,7 +2145,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.setCurrentDialog("Input durasi tidak boleh kosong!");
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.setInputText("");
             }
@@ -2195,7 +2195,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
@@ -2205,13 +2205,13 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.getInputText().length() > 0) {
                 int durasi = Integer.parseInt(gamePanel.ui.getInputText());
                 gamePanel.gameState = gamePanel.playState;
-                gamePanel.ui.tempDurasi = durasi;
+                gamePanel.ui.setTempDurasi(durasi);
 
                 // timer state
-                gamePanel.ui.durasiTimer = durasi;
-                gamePanel.ui.currentAksi = "Mandi";
+                gamePanel.ui.setDurasiTimer(durasi);
+                gamePanel.ui.setCurrentAksi("Mandi");
                 gamePanel.gameState = gamePanel.timerState;
-                gamePanel.ui.currentAksiDone = false;
+                gamePanel.ui.setCurrentAksiDone(false);
                 // efek
                 gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 30) * 5);
                 gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 30) * 10);
@@ -2268,7 +2268,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.setCurrentDialog("Input durasi tidak boleh kosong!");
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.setInputText("");
             }
@@ -2318,7 +2318,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
@@ -2328,13 +2328,13 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.getInputText().length() > 0) {
                 int durasi = Integer.parseInt(gamePanel.ui.getInputText());
                 gamePanel.gameState = gamePanel.playState;
-                gamePanel.ui.tempDurasi = durasi;
+                gamePanel.ui.setTempDurasi(durasi);
 
                 // timer state
-                gamePanel.ui.durasiTimer = durasi;
-                gamePanel.ui.currentAksi = "Shalat";
+                gamePanel.ui.setDurasiTimer(durasi);
+                gamePanel.ui.setCurrentAksi("Shalat");
                 gamePanel.gameState = gamePanel.timerState;
-                gamePanel.ui.currentAksiDone = false;
+                gamePanel.ui.setCurrentAksiDone(false);
                 // efek
                 gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 5) * 5);
                 gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 5) * 5);
@@ -2383,7 +2383,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.setCurrentDialog("Input durasi tidak boleh kosong!");
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.setInputText("");
             }
@@ -2433,7 +2433,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
@@ -2443,13 +2443,13 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.getInputText().length() > 0) {
                 int durasi = Integer.parseInt(gamePanel.ui.getInputText());
                 gamePanel.gameState = gamePanel.playState;
-                gamePanel.ui.tempDurasi = durasi;
+                gamePanel.ui.setTempDurasi(durasi);
 
                 // timer state
-                gamePanel.ui.durasiTimer = durasi;
-                gamePanel.ui.currentAksi = "Baca Buku";
+                gamePanel.ui.setDurasiTimer(durasi);
+                gamePanel.ui.setCurrentAksi("Baca Buku");
                 gamePanel.gameState = gamePanel.timerState;
-                gamePanel.ui.currentAksiDone = false;
+                gamePanel.ui.setCurrentAksiDone(false);
                 // efek
                 gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 10) * 10);
                 gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 10) * 3);
@@ -2498,7 +2498,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.setCurrentDialog("Input durasi tidak boleh kosong!");
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.setInputText("");
             }
@@ -2548,7 +2548,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
@@ -2558,13 +2558,13 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.getInputText().length() > 0) {
                 int durasi = Integer.parseInt(gamePanel.ui.getInputText());
                 gamePanel.gameState = gamePanel.playState;
-                gamePanel.ui.tempDurasi = durasi;
+                gamePanel.ui.setTempDurasi(durasi);
 
                 // timer state
-                gamePanel.ui.durasiTimer = durasi;
-                gamePanel.ui.currentAksi = "Setel Radio";
+                gamePanel.ui.setDurasiTimer(durasi);
+                gamePanel.ui.setCurrentAksi("Setel Radio");
                 gamePanel.gameState = gamePanel.timerState;
-                gamePanel.ui.currentAksiDone = false;
+                gamePanel.ui.setCurrentAksiDone(false);
                 gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 10) * 10);
                 gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 30) * 1);
                 if (gamePanel.getCurrentSim().getMood() > 100) {
@@ -2610,7 +2610,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.setCurrentDialog("Input durasi tidak boleh kosong!");
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.setInputText("");
             }
@@ -2660,7 +2660,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
@@ -2670,13 +2670,13 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.getInputText().length() > 0) {
                 int durasi = Integer.parseInt(gamePanel.ui.getInputText());
                 gamePanel.gameState = gamePanel.playState;
-                gamePanel.ui.tempDurasi = durasi;
+                gamePanel.ui.setTempDurasi(durasi);
 
                 // timer state
-                gamePanel.ui.durasiTimer = durasi;
-                gamePanel.ui.currentAksi = "Siram Tanaman";
+                gamePanel.ui.setDurasiTimer(durasi);
+                gamePanel.ui.setCurrentAksi("Siram Tanaman");
                 gamePanel.gameState = gamePanel.timerState;
-                gamePanel.ui.currentAksiDone = false;
+                gamePanel.ui.setCurrentAksiDone(false);
                 // efek
                 gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 10) * 10);
                 gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getKesehatan() + (durasi / 10) * 5);
@@ -2736,7 +2736,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.setCurrentDialog("Input durasi tidak boleh kosong!");
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.setInputText("");
             }
@@ -2786,7 +2786,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
@@ -2796,13 +2796,13 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.getInputText().length() > 0) {
                 int durasi = Integer.parseInt(gamePanel.ui.getInputText());
                 gamePanel.gameState = gamePanel.playState;
-                gamePanel.ui.tempDurasi = durasi;
+                gamePanel.ui.setTempDurasi(durasi);
 
                 // timer state
-                gamePanel.ui.durasiTimer = durasi;
-                gamePanel.ui.currentAksi = "Main Game";
+                gamePanel.ui.setDurasiTimer(durasi);
+                gamePanel.ui.setCurrentAksi("Main Game");
                 gamePanel.gameState = gamePanel.timerState;
-                gamePanel.ui.currentAksiDone = false;
+                gamePanel.ui.setCurrentAksiDone(false);
                 // efek
                 gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 30) * 30);
                 gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getKesehatan() - (durasi / 30) * 5);
@@ -2862,7 +2862,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.setCurrentDialog("Input durasi tidak boleh kosong!");
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.setInputText("");
             }
@@ -2912,7 +2912,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.playState;
             cursorSound();
@@ -2922,13 +2922,13 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.getInputText().length() > 0) {
                 int durasi = Integer.parseInt(gamePanel.ui.getInputText());
                 gamePanel.gameState = gamePanel.playState;
-                gamePanel.ui.tempDurasi = durasi;
+                gamePanel.ui.setTempDurasi(durasi);
 
                 // timer state
-                gamePanel.ui.durasiTimer = durasi;
-                gamePanel.ui.currentAksi = "Olahraga";
+                gamePanel.ui.setDurasiTimer(durasi);
+                gamePanel.ui.setCurrentAksi("Olahraga");
                 gamePanel.gameState = gamePanel.timerState;
-                gamePanel.ui.currentAksiDone = false;
+                gamePanel.ui.setCurrentAksiDone(false);
                 gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 20) * 10);
                 gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getKesehatan() + (durasi / 20) * 5);
                 gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 20) * 5);
@@ -2985,7 +2985,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.setCurrentDialog("Input durasi tidak boleh kosong!");
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.setInputText("");
             }
@@ -3035,7 +3035,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.kerjaState;
             cursorSound();
@@ -3045,13 +3045,13 @@ public class KeyHandler implements KeyListener {
             if (gamePanel.ui.getInputText().length() > 0) {
                 int durasi = Integer.parseInt(gamePanel.ui.getInputText());
                 gamePanel.gameState = gamePanel.playState;
-                gamePanel.ui.tempDurasi = durasi;
+                gamePanel.ui.setTempDurasi(durasi);
 
                 // timer state
-                gamePanel.ui.durasiTimer = durasi;
-                gamePanel.ui.currentAksi = "Kerja";
+                gamePanel.ui.setDurasiTimer(durasi);
+                gamePanel.ui.setCurrentAksi("Kerja");
                 gamePanel.gameState = gamePanel.timerState;
-                gamePanel.ui.currentAksiDone = false;
+                gamePanel.ui.setCurrentAksiDone(false);
 
                 // efek
                 gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() - (durasi / 30) * 10);
@@ -3131,7 +3131,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.charIndex = 0;
                 gamePanel.ui.combinedText = "";
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Input durasi tidak boleh kosong!";
+                gamePanel.ui.setCurrentDialog("Input durasi tidak boleh kosong!");
                 gamePanel.ui.commandNumber = 0;
                 gamePanel.ui.setInputText("");
             }
@@ -3147,7 +3147,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.gameState = gamePanel.dialogState;
             // cek pekerjaan sama seperti sebelumnya
             if (gamePanel.getCurrentSim().getPekerjaan().getIndexPekerjaan() == gamePanel.ui.commandNumber) {
-                gamePanel.ui.currentDialog = "Pekerjaan tidak berubah.";
+                gamePanel.ui.setCurrentDialog("Pekerjaan tidak berubah.");
                 cursorSound();
                 gamePanel.ui.commandNumber = 0;
                 return;
@@ -3157,9 +3157,9 @@ public class KeyHandler implements KeyListener {
                     gamePanel.getCurrentSim().getPekerjaan().setIndexPekerjaan(gamePanel.ui.commandNumber);
                     gamePanel.getCurrentSim().setUang(gamePanel.getCurrentSim().getUang() - (int) gamePanel
                             .getCurrentSim().getPekerjaan().getGaji()[gamePanel.ui.commandNumber] / 2);
-                    gamePanel.ui.currentDialog = "Pekerjaan berhasil diganti menjadi\n" + gamePanel
+                    gamePanel.ui.setCurrentDialog("Pekerjaan berhasil diganti menjadi\n" + gamePanel
                             .getCurrentSim().getPekerjaan().getListPekerjaan()[gamePanel.getCurrentSim().getPekerjaan().getIndexPekerjaan()]
-                            + ".";
+                            + ".");
                     cursorSound();
                     gamePanel.ui.commandNumber = 0;
                     gamePanel.getCurrentSim().getPekerjaan().setDurasiKerjaYangBelumDigaji(0);
@@ -3169,7 +3169,7 @@ public class KeyHandler implements KeyListener {
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Uang tidak cukup untuk melamar\npekerjaan!";
+                    gamePanel.ui.setCurrentDialog("Uang tidak cukup untuk melamar\npekerjaan!");
                 }
             }
 
@@ -3257,7 +3257,7 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.ui.setInputText("");
-            gamePanel.ui.inputTextDone = false;
+            gamePanel.ui.setInputTextDone(false);
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.playState;
             cursorSound();

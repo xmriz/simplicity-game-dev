@@ -20,9 +20,9 @@ public class Furnitur_Toilet extends Furnitur {
     @Override
     public void action() {
         // aksi boker
-        gamePanel.ui.currentAksi = "Boker";
+        gamePanel.ui.setCurrentAksi("Boker");
         gamePanel.gameState = gamePanel.timerState;
-        gamePanel.ui.currentAksiDone = false;
+        gamePanel.ui.setCurrentAksiDone(false);
         // gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);
         gamePanel.worldTimeCounter += 10;
         gamePanel.worldTimeSatuHariCounter += 10;
@@ -48,7 +48,7 @@ public class Furnitur_Toilet extends Furnitur {
         if (gamePanel.getCurrentSim().getKekenyangan() > gamePanel.getCurrentSim().getMaxKekenyangan()) {
             gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getMaxKekenyangan());
         }
-        gamePanel.ui.tempDurasi = 10;
+        gamePanel.ui.setTempDurasi(10);
         gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);
         // gamePanel.ui.setelahAksi(10);
     }

@@ -25,23 +25,23 @@ public class UI {
 
     private String inputText = "";
 
-    boolean inputTextDone = false;
+    private boolean inputTextDone = false;
 
-    public int durasiTimer = 0;
-    public int tempDurasi = 0;
+    private int durasiTimer = 0;
+    private int tempDurasi = 0;
 
-    public String currentAksi = "";
-    public String currentAksiCadangan = "";
-    public boolean currentAksiDone = false;
+    private String currentAksi = "";
+    private String currentAksiCadangan = "";
+    private boolean currentAksiDone = false;
 
-    public boolean messageOn = false;
+    // TODO sil ubah jadi comment: public boolean messageOn = false;
     // public String message = "";
     // int messageCounter = 0;
-    ArrayList <String> message = new ArrayList<> ();
-    ArrayList <Integer> messageCounter = new ArrayList<> ();
+    private ArrayList <String> message = new ArrayList<> ();
+    private ArrayList <Integer> messageCounter = new ArrayList<> ();
 
-    public boolean gameFinished = false;
-    public String currentDialog = "";
+    // TODO sil ubah jadi comment: private boolean gameFinished = false;
+    private String currentDialog = "";
     public int commandNumber = 0;
     public int titleScreenState = 0; // 0 = first screen, 1 = second screen, 2 = third screen
     public int simSlotCol = 0, simSlotRow = 0; // default slot position
@@ -95,6 +95,56 @@ public class UI {
         inputText += nextChar;
     }
 
+    public boolean getInputTextDone(){
+        return inputTextDone;
+    }
+    public void setInputTextDone(boolean inputTextDone){
+        this.inputTextDone = inputTextDone;
+    }
+
+    public void setDurasiTimer(int durasiTimer){
+        this.durasiTimer = durasiTimer;
+    }
+
+    public int getTempDurasi() {
+        return tempDurasi;
+    }
+    public void setTempDurasi(int tempDurasi) {
+        this.tempDurasi = tempDurasi;
+    }
+
+        public String getCurrentAksi() {
+        return currentAksi;
+    }
+
+    public void setCurrentAksi(String currentAksi) {
+        this.currentAksi = currentAksi;
+    }
+
+    public String getCurrentAksiCadangan() {
+        return currentAksiCadangan;
+    }
+
+    public void setCurrentAksiCadangan(String currentAksiCadangan) {
+        this.currentAksiCadangan = currentAksiCadangan;
+    }
+
+    public boolean isCurrentAksiDone() {
+        return currentAksiDone;
+    }
+
+    public void setCurrentAksiDone(boolean currentAksiDone) {
+        this.currentAksiDone = currentAksiDone;
+    }
+
+    public String getCurrentDialog() {
+        return currentDialog;
+    }
+
+    public void setCurrentDialog(String currentDialog) {
+        this.currentDialog = currentDialog;
+    }
+    
     public void addMessage(String message) {
         this.message.add(message);
         messageCounter.add(0);
