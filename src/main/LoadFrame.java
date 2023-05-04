@@ -4,18 +4,22 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class LoadFrame extends JFrame {
+    private ImageIcon bigLogo;
+    private ImageIcon smallLogo;
+    private Border borderWelcomingLabel;
+    private JLabel welcomingLabel;
+
     public LoadFrame(){
 
         // Create ImageIcon objects from image files
-        ImageIcon bigLogo = new ImageIcon("assets/logo/big-logo.png");
-        ImageIcon smallLogo = new ImageIcon("assets/logo/small-logo.png");
-
+        bigLogo = new ImageIcon("assets/logo/big-logo.png");
+        smallLogo = new ImageIcon("assets/logo/small-logo.png");
 
         // Create a border object
-        Border borderWelcomingLabel = BorderFactory.createLineBorder(Color.GREEN, 3);
+        borderWelcomingLabel = BorderFactory.createLineBorder(Color.GREEN, 3);
 
         // Create a new JLabel object and set its properties
-        JLabel welcomingLabel = new JLabel();
+        welcomingLabel = new JLabel();
         welcomingLabel.setText("Loading...");
         welcomingLabel.setIcon(bigLogo);
         welcomingLabel.setHorizontalTextPosition(JLabel.CENTER);
