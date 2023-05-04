@@ -426,6 +426,9 @@ public class KeyHandler implements KeyListener {
         if (keyCode == KeyEvent.VK_ENTER) {
             gamePanel.gameState = gamePanel.menuState;
             gamePanel.cutsceneManager.scenePhase = 0;
+            gamePanel.cutsceneManager.isSongPlay = false;
+            gamePanel.stopMusic();
+            gamePanel.playMusic(1);
         }
     }
 

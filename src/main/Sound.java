@@ -2,6 +2,7 @@ package main;
 
 import java.net.URL;
 
+import javax.print.attribute.standard.Media;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -39,6 +40,7 @@ public class Sound {
         soundURL[20] = getClass().getResource("/sound/kerja.wav");
         soundURL[21] = getClass().getResource("/sound/masak.wav");
         soundURL[22] = getClass().getResource("/sound/olahraga.wav");
+        soundURL[23] = getClass().getResource("/sound/credits.wav");
     }
 
     public void setFile(int i) {

@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-
 import javax.imageio.ImageIO;
 
 public class CutsceneManager {
@@ -19,6 +18,7 @@ public class CutsceneManager {
     float alpha = 0.0f;
     int y;
     String credit;
+    boolean isSongPlay = false;
 
     // scene number
     public final int ending = 0;
@@ -107,11 +107,19 @@ public class CutsceneManager {
         this.g2d = g2d;
 
         switch (sceneNum){
-            case ending : scene_ending(); break;
+            case ending : 
+            scene_ending(); 
+            break;
         }
     }
 
     public void scene_ending(){
+        if (!isSongPlay){
+            gamePanel.stopMusic();
+            gamePanel.playMusic(23);
+            isSongPlay = true;
+        }
+
         if (scenePhase == 0){ // fade in black background
             alpha += 0.008f;
             if (alpha >= 1.0f){
