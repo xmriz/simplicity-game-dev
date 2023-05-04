@@ -140,16 +140,16 @@ public class Rumah extends Benda {
         ruangan.setName(nama);
         if (posisi == "up") {
             if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).getIndexLocationRuangan()).getUp() != null) {
-                gamePanel.ui.charIndex = 0;
-                gamePanel.ui.combinedText = "";
+                gamePanel.ui.setCharIndex(0);
+                gamePanel.ui.setCombinedText("");
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Ruangan di atas sudah ada!";
+                gamePanel.ui.setCurrentDialog("Ruangan di atas sudah ada!");
             } else {
                 if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getUang() < 1500) {
-                    gamePanel.ui.charIndex = 0;
-                    gamePanel.ui.combinedText = "";
+                    gamePanel.ui.setCharIndex(0);
+                    gamePanel.ui.setCombinedText("");
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Uang tidak cukup untuk melakukan\nupgrade rumah!";
+                    gamePanel.ui.setCurrentDialog("Uang tidak cukup untuk melakukan\nupgrade rumah!");
                     return;
                 } else {
                     if (isCanUpgrade) {
@@ -166,39 +166,39 @@ public class Rumah extends Benda {
                         // ruangan.down = ruanganRumah
                         // .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                         // ruanganRumah.add(ruangan);
-                        // gamePanel.ui.charIndex = 0;
-                        // gamePanel.ui.combinedText = "";
+                        // gamePanel.ui.setCharIndex(0);
+                        // gamePanel.ui.setCombinedText("");
                         // gamePanel.gameState = gamePanel.dialogState;
-                        // gamePanel.ui.currentDialog = "Pembangunan ruangan telah\nselesai.";
+                        // gamePanel.ui.setCurrentDialog"Pembangunan ruangan telah\nselesai.";
                         // gamePanel.getCurrentSim().uang -= 1500;
                     } else {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
+                        gamePanel.ui.setCharIndex(0);
+                        gamePanel.ui.setCombinedText("");
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Terdapat ruangan yang sedang\ndibangun!";
+                        gamePanel.ui.setCurrentDialog("Terdapat ruangan yang sedang\ndibangun!");
                     }
                 }
             }
         } else if (posisi == "down") {
             if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getIndexLocationRuangan() == 0) {
-                gamePanel.ui.charIndex = 0;
-                gamePanel.ui.combinedText = "";
+                gamePanel.ui.setCharIndex(0);
+                gamePanel.ui.setCombinedText("");
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Tidak bisa membuat ruangan di bawah\nruangan utama!";
+                gamePanel.ui.setCurrentDialog("Tidak bisa membuat ruangan di bawah\nruangan utama!");
                 return;
             } else {
                 if (ruanganRumah
                         .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).getIndexLocationRuangan()).getDown() != null) {
-                    gamePanel.ui.charIndex = 0;
-                    gamePanel.ui.combinedText = "";
+                    gamePanel.ui.setCharIndex(0);
+                    gamePanel.ui.setCombinedText("");
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Ruangan di bawah sudah ada!";
+                    gamePanel.ui.setCurrentDialog("Ruangan di bawah sudah ada!");
                 } else {
                     if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getUang() < 1500) {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
+                        gamePanel.ui.setCharIndex(0);
+                        gamePanel.ui.setCombinedText("");
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Uang tidak cukup untuk melakukan\nupgrade rumah!";
+                        gamePanel.ui.setCurrentDialog("Uang tidak cukup untuk melakukan\nupgrade rumah!");
                         return;
                     } else {
                         if (isCanUpgrade) {
@@ -215,16 +215,16 @@ public class Rumah extends Benda {
                             // ruangan.up = ruanganRumah
                             // .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                             // ruanganRumah.add(ruangan);
-                            // gamePanel.ui.charIndex = 0;
-                            // gamePanel.ui.combinedText = "";
+                            // gamePanel.ui.setCharIndex(0);
+                            // gamePanel.ui.setCombinedText("");
                             // gamePanel.gameState = gamePanel.dialogState;
-                            // gamePanel.ui.currentDialog = "Pembangunan ruangan telah\nselesai.";
+                            // gamePanel.ui.setCurrentDialog"Pembangunan ruangan telah\nselesai.";
                             // gamePanel.getCurrentSim().uang -= 1500;
                         } else {
-                            gamePanel.ui.charIndex = 0;
-                            gamePanel.ui.combinedText = "";
+                            gamePanel.ui.setCharIndex(0);
+                            gamePanel.ui.setCombinedText("");
                             gamePanel.gameState = gamePanel.dialogState;
-                            gamePanel.ui.currentDialog = "Terdapat ruangan yang sedang\ndibangun!";
+                            gamePanel.ui.setCurrentDialog("Terdapat ruangan yang sedang\ndibangun!");
                         }
                     }
                 }
@@ -232,16 +232,16 @@ public class Rumah extends Benda {
 
         } else if (posisi == "left") {
             if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).getIndexLocationRuangan()).getLeft() != null) {
-                gamePanel.ui.charIndex = 0;
-                gamePanel.ui.combinedText = "";
+                gamePanel.ui.setCharIndex(0);
+                gamePanel.ui.setCombinedText("");
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Ruangan di kiri sudah ada!";
+                gamePanel.ui.setCurrentDialog("Ruangan di kiri sudah ada!");
             } else {
                 if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getUang() < 1500) {
-                    gamePanel.ui.charIndex = 0;
-                    gamePanel.ui.combinedText = "";
+                    gamePanel.ui.setCharIndex(0);
+                    gamePanel.ui.setCombinedText("");
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Uang tidak cukup untuk melakukan\nupgrade rumah!";
+                    gamePanel.ui.setCurrentDialog("Uang tidak cukup untuk melakukan\nupgrade rumah!");
                     return;
                 } else {
                     if (isCanUpgrade) {
@@ -258,31 +258,31 @@ public class Rumah extends Benda {
                         // ruangan.right = ruanganRumah
                         // .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                         // ruanganRumah.add(ruangan);
-                        // gamePanel.ui.charIndex = 0;
-                        // gamePanel.ui.combinedText = "";
+                        // gamePanel.ui.setCharIndex(0);
+                        // gamePanel.ui.setCombinedText("");
                         // gamePanel.gameState = gamePanel.dialogState;
-                        // gamePanel.ui.currentDialog = "Pembangunan ruangan telah\nselesai.";
+                        // gamePanel.ui.setCurrentDialog"Pembangunan ruangan telah\nselesai.";
                         // gamePanel.getCurrentSim().uang -= 1500;
                     } else {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
+                        gamePanel.ui.setCharIndex(0);
+                        gamePanel.ui.setCombinedText("");
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Terdapat ruangan yang sedang\ndibangun!";
+                        gamePanel.ui.setCurrentDialog("Terdapat ruangan yang sedang\ndibangun!");
                     }
                 }
             }
         } else if (posisi == "right") {
             if (ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).getIndexLocationRuangan()).getRight() != null) {
-                gamePanel.ui.charIndex = 0;
-                gamePanel.ui.combinedText = "";
+                gamePanel.ui.setCharIndex(0);
+                gamePanel.ui.setCombinedText("");
                 gamePanel.gameState = gamePanel.dialogState;
-                gamePanel.ui.currentDialog = "Ruangan di kanan sudah ada!";
+                gamePanel.ui.setCurrentDialog("Ruangan di kanan sudah ada!");
             } else {
                 if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getUang() < 1500) {
-                    gamePanel.ui.charIndex = 0;
-                    gamePanel.ui.combinedText = "";
+                    gamePanel.ui.setCharIndex(0);
+                    gamePanel.ui.setCombinedText("");
                     gamePanel.gameState = gamePanel.dialogState;
-                    gamePanel.ui.currentDialog = "Uang tidak cukup untuk melakukan\nupgrade rumah!";
+                    gamePanel.ui.setCurrentDialog("Uang tidak cukup untuk melakukan\nupgrade rumah!");
                     return;
                 } else {
                     if (isCanUpgrade) {
@@ -299,16 +299,16 @@ public class Rumah extends Benda {
                         // ruangan.left = ruanganRumah
                         // .get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan);
                         // ruanganRumah.add(ruangan);
-                        // gamePanel.ui.charIndex = 0;
-                        // gamePanel.ui.combinedText = "";
+                        // gamePanel.ui.setCharIndex(0);
+                        // gamePanel.ui.setCombinedText("");
                         // gamePanel.gameState = gamePanel.dialogState;
-                        // gamePanel.ui.currentDialog = "Pembangunan ruangan telah\nselesai.";
+                        // gamePanel.ui.setCurrentDialog"Pembangunan ruangan telah\nselesai.";
                         // gamePanel.getCurrentSim().uang -= 1500;
                     } else {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
+                        gamePanel.ui.setCharIndex(0);
+                        gamePanel.ui.setCombinedText("");
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Terdapat ruangan yang sedang\ndibangun!";
+                        gamePanel.ui.setCurrentDialog("Terdapat ruangan yang sedang\ndibangun!");
                     }
                 }
             }
@@ -333,10 +333,10 @@ public class Rumah extends Benda {
                     ruanganUpgrade.setDown(ruanganRumah
                             .get(gamePanel.listSim.get(indexSimSaatUpgrade).getRumah().indexLocationSaatUpgrade));
                     ruanganRumah.add(ruanganUpgrade);
-                    // gamePanel.ui.charIndex = 0;
-                    // gamePanel.ui.combinedText = "";
+                    // gamePanel.ui.setCharIndex(0);
+                    // gamePanel.ui.setCombinedText("");
                     // gamePanel.gameState = gamePanel.dialogState;
-                    // gamePanel.ui.currentDialog = "Pembangunan rumah " +
+                    // gamePanel.ui.setCurrentDialog"Pembangunan rumah " +
                     // gamePanel.listSim.get(indexSimSaatUpgrade).nama
                     // + " telah selesai.";
                     gamePanel.listSim.get(indexSimSaatUpgrade).setUang(gamePanel.listSim.get(indexSimSaatUpgrade).getUang()-1500);
@@ -347,10 +347,10 @@ public class Rumah extends Benda {
                     ruanganUpgrade.setUp(ruanganRumah
                             .get(gamePanel.listSim.get(indexSimSaatUpgrade).getRumah().indexLocationSaatUpgrade));
                     ruanganRumah.add(ruanganUpgrade);
-                    // gamePanel.ui.charIndex = 0;
-                    // gamePanel.ui.combinedText = "";
+                    // gamePanel.ui.setCharIndex(0);
+                    // gamePanel.ui.setCombinedText("");
                     // gamePanel.gameState = gamePanel.dialogState;
-                    // gamePanel.ui.currentDialog = "Pembangunan rumah " +
+                    // gamePanel.ui.setCurrentDialog"Pembangunan rumah " +
                     // gamePanel.listSim.get(indexSimSaatUpgrade).nama
                     // + " telah selesai.";
                     gamePanel.listSim.get(indexSimSaatUpgrade).setUang(gamePanel.listSim.get(indexSimSaatUpgrade).getUang()-1500);
@@ -361,10 +361,10 @@ public class Rumah extends Benda {
                     ruanganUpgrade.setRight(ruanganRumah
                             .get(gamePanel.listSim.get(indexSimSaatUpgrade).getRumah().indexLocationSaatUpgrade));
                     ruanganRumah.add(ruanganUpgrade);
-                    // gamePanel.ui.charIndex = 0;
-                    // gamePanel.ui.combinedText = "";
+                    // gamePanel.ui.setCharIndex(0);
+                    // gamePanel.ui.setCombinedText("");
                     // gamePanel.gameState = gamePanel.dialogState;
-                    // gamePanel.ui.currentDialog = "Pembangunan rumah " +
+                    // gamePanel.ui.setCurrentDialog"Pembangunan rumah " +
                     // gamePanel.listSim.get(indexSimSaatUpgrade).nama
                     // + " telah selesai.";
                     gamePanel.listSim.get(indexSimSaatUpgrade).setUang(gamePanel.listSim.get(indexSimSaatUpgrade).getUang()-1500);
@@ -375,10 +375,10 @@ public class Rumah extends Benda {
                     ruanganUpgrade.setLeft(ruanganRumah
                             .get(gamePanel.listSim.get(indexSimSaatUpgrade).getRumah().indexLocationSaatUpgrade));
                     ruanganRumah.add(ruanganUpgrade);
-                    // gamePanel.ui.charIndex = 0;
-                    // gamePanel.ui.combinedText = "";
+                    // gamePanel.ui.setCharIndex(0);
+                    // gamePanel.ui.setCombinedText("");
                     // gamePanel.gameState = gamePanel.dialogState;
-                    // gamePanel.ui.currentDialog = "Pembangunan rumah " +
+                    // gamePanel.ui.setCurrentDialog"Pembangunan rumah " +
                     // gamePanel.listSim.get(indexSimSaatUpgrade).nama
                     // + " telah selesai.";
                     // gamePanel.listSim.get(indexSimSaatUpgrade).tempDialogUpgrade = "Pembangunan

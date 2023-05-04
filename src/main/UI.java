@@ -42,17 +42,17 @@ public class UI {
 
     // TODO sil ubah jadi comment: private boolean gameFinished = false;
     private String currentDialog = "";
-    public int commandNumber = 0;
-    public int titleScreenState = 0; // 0 = first screen, 1 = second screen, 2 = third screen
-    public int simSlotCol = 0, simSlotRow = 0; // default slot position
-    public int npcSlotCol = 0, npcSlotRow = 0; // default slot position for npc
-    public int listSimSlotCol = 0, listSimSlotRow = 0; // default slot position for list sim
-    public int kokiSlotCol = 0, kokiSlotRow = 0; // default slot position for koki
-    public int subState = 0;
-    public int counter = 0;
-    public int charIndex = 0;
-    public String combinedText = "";
-    String currentDialog2 = "";
+    private int commandNumber = 0;
+    private int titleScreenState = 0; // 0 = first screen, 1 = second screen, 2 = third screen
+    private int simSlotCol = 0, simSlotRow = 0; // default slot position
+    private int npcSlotCol = 0, npcSlotRow = 0; // default slot position for npc
+    private int listSimSlotCol = 0, listSimSlotRow = 0; // default slot position for list sim
+    private int kokiSlotCol = 0, kokiSlotRow = 0; // default slot position for koki
+    private int subState = 0;
+    private int counter = 0;
+    private int charIndex = 0;
+    private String combinedText = "";
+    private String currentDialog2 = "";
 
     public UI(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -143,6 +143,126 @@ public class UI {
 
     public void setCurrentDialog(String currentDialog) {
         this.currentDialog = currentDialog;
+    }
+
+    public int getCommandNumber() {
+        return commandNumber;
+    }
+
+    public void setCommandNumber(int commandNumber) {
+        this.commandNumber = commandNumber;
+    }
+
+    public int getTitleScreenState() {
+        return titleScreenState;
+    }
+
+    public void setTitleScreenState(int titleScreenState) {
+        this.titleScreenState = titleScreenState;
+    }
+
+    public int getSimSlotCol() {
+        return simSlotCol;
+    }
+
+    public void setSimSlotCol(int simSlotCol) {
+        this.simSlotCol = simSlotCol;
+    }
+
+    public int getSimSlotRow() {
+        return simSlotRow;
+    }
+
+    public void setSimSlotRow(int simSlotRow) {
+        this.simSlotRow = simSlotRow;
+    }
+
+    public int getNpcSlotCol() {
+        return npcSlotCol;
+    }
+
+    public void setNpcSlotCol(int npcSlotCol) {
+        this.npcSlotCol = npcSlotCol;
+    }
+
+    public int getNpcSlotRow() {
+        return npcSlotRow;
+    }
+
+    public void setNpcSlotRow(int npcSlotRow) {
+        this.npcSlotRow = npcSlotRow;
+    }
+
+    public int getListSimSlotCol() {
+        return listSimSlotCol;
+    }
+
+    public void setListSimSlotCol(int listSimSlotCol) {
+        this.listSimSlotCol = listSimSlotCol;
+    }
+
+    public int getListSimSlotRow() {
+        return listSimSlotRow;
+    }
+
+    public void setListSimSlotRow(int listSimSlotRow) {
+        this.listSimSlotRow = listSimSlotRow;
+    }
+
+    public int getKokiSlotCol() {
+        return kokiSlotCol;
+    }
+
+    public void setKokiSlotCol(int kokiSlotCol) {
+        this.kokiSlotCol = kokiSlotCol;
+    }
+
+    public int getKokiSlotRow() {
+        return kokiSlotRow;
+    }
+
+    public void setKokiSlotRow(int kokiSlotRow) {
+        this.kokiSlotRow = kokiSlotRow;
+    }
+
+    public int getSubState() {
+        return subState;
+    }
+
+    public void setSubState(int subState) {
+        this.subState = subState;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public int getCharIndex() {
+        return charIndex;
+    }
+
+    public void setCharIndex(int charIndex) {
+        this.charIndex = charIndex;
+    }
+
+    public String getCombinedText() {
+        return combinedText;
+    }
+
+    public void setCombinedText(String combinedText) {
+        this.combinedText = combinedText;
+    }
+
+    public String getCurrentDialog2() {
+        return currentDialog2;
+    }
+
+    public void setCurrentDialog2(String currentDialog2) {
+        this.currentDialog2 = currentDialog2;
     }
     
     public void addMessage(String message) {

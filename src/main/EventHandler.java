@@ -95,7 +95,7 @@ public class EventHandler {
             // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up);
             // } else {
             // gamePanel.gameState = gamePanel.dialogState;
-            // gamePanel.ui.currentDialog = "Tidak ada ruangan di atas!";
+            // gamePanel.ui.setCurrentDialog"Tidak ada ruangan di atas!";
             // canTouchEvent = false;
             // }
             // // UNTUK RUANGAN UTAMA BAWAH UNTUK TELEPORT KE WORLD
@@ -113,7 +113,7 @@ public class EventHandler {
             // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down);
             // // } else {
             // // gamePanel.gameState = gamePanel.dialogState;
-            // // gamePanel.ui.currentDialog = "Tidak ada ruangan di bawah!";
+            // // gamePanel.ui.setCurrentDialog"Tidak ada ruangan di bawah!";
             // // canTouchEvent = false;
             // // }
             // } else if
@@ -132,7 +132,7 @@ public class EventHandler {
             // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left);
             // } else {
             // gamePanel.gameState = gamePanel.dialogState;
-            // gamePanel.ui.currentDialog = "Tidak ada ruangan di kiri!";
+            // gamePanel.ui.setCurrentDialog"Tidak ada ruangan di kiri!";
             // canTouchEvent = false;
             // }
             // } else if
@@ -151,7 +151,7 @@ public class EventHandler {
             // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right);
             // } else {
             // gamePanel.gameState = gamePanel.dialogState;
-            // gamePanel.ui.currentDialog = "Tidak ada ruangan di kanan!";
+            // gamePanel.ui.setCurrentDialog"Tidak ada ruangan di kanan!";
             // canTouchEvent = false;
             // }
             // }
@@ -255,10 +255,10 @@ public class EventHandler {
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up);
                     } else {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
+                        gamePanel.ui.setCharIndex(0);
+                        gamePanel.ui.setCombinedText("");
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Tidak ada ruangan di atas!";
+                        gamePanel.ui.setCurrentDialog("Tidak ada ruangan di atas!");
                         canTouchEvent = false;
                     }
                     // UNTUK RUANGAN UTAMA BAWAH UNTUK TELEPORT KE WORLD
@@ -276,7 +276,7 @@ public class EventHandler {
                     // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down);
                     // } else {
                     // gamePanel.gameState = gamePanel.dialogState;
-                    // gamePanel.ui.currentDialog = "Tidak ada ruangan di bawah!";
+                    // gamePanel.ui.setCurrentDialog"Tidak ada ruangan di bawah!";
                     // canTouchEvent = false;
                     // }
                 } else if (hit(1, 1, 5, "any")) { // kiri
@@ -305,10 +305,10 @@ public class EventHandler {
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left);
                     } else {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
+                        gamePanel.ui.setCharIndex(0);
+                        gamePanel.ui.setCombinedText("");
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Tidak ada ruangan di kiri!";
+                        gamePanel.ui.setCurrentDialog("Tidak ada ruangan di kiri!");
                         canTouchEvent = false;
                     }
                 } else if (hit(1, 8, 4, "any")) { // kanan
@@ -337,10 +337,10 @@ public class EventHandler {
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right);
                     } else {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
+                        gamePanel.ui.setCharIndex(0);
+                        gamePanel.ui.setCombinedText("");
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Tidak ada ruangan di kanan!";
+                        gamePanel.ui.setCurrentDialog("Tidak ada ruangan di kanan!");
                         canTouchEvent = false;
                     }
                 }
@@ -371,10 +371,10 @@ public class EventHandler {
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).up);
                     } else {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
+                        gamePanel.ui.setCharIndex(0);
+                        gamePanel.ui.setCombinedText("");
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Tidak ada ruangan di atas!";
+                        gamePanel.ui.setCurrentDialog("Tidak ada ruangan di atas!");
                         canTouchEvent = false;
                     }
                 } else if (hit(1, 5, 8, "any")) { // bawah
@@ -403,10 +403,10 @@ public class EventHandler {
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).down);
                     } else {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
+                        gamePanel.ui.setCharIndex(0);
+                        gamePanel.ui.setCombinedText("");
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Tidak ada ruangan di bawah!";
+                        gamePanel.ui.setCurrentDialog("Tidak ada ruangan di bawah!");
                         canTouchEvent = false;
                     }
                 } else if (hit(1, 1, 5, "any")) { // kiri
@@ -435,10 +435,10 @@ public class EventHandler {
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).left);
                     } else {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
+                        gamePanel.ui.setCharIndex(0);
+                        gamePanel.ui.setCombinedText("");
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Tidak ada ruangan di kiri!";
+                        gamePanel.ui.setCurrentDialog("Tidak ada ruangan di kiri!");
                         canTouchEvent = false;
                     }
                 } else if (hit(1, 8, 4, "any")) { // kanan
@@ -467,10 +467,10 @@ public class EventHandler {
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan =
                         // gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.indexOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.ruanganRumah.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexLocationRuangan).right);
                     } else {
-                        gamePanel.ui.charIndex = 0;
-                        gamePanel.ui.combinedText = "";
+                        gamePanel.ui.setCharIndex(0);
+                        gamePanel.ui.setCombinedText("");
                         gamePanel.gameState = gamePanel.dialogState;
-                        gamePanel.ui.currentDialog = "Tidak ada ruangan di kanan!";
+                        gamePanel.ui.setCurrentDialog("Tidak ada ruangan di kanan!");
                         canTouchEvent = false;
                     }
                 }
