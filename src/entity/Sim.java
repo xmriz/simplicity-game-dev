@@ -11,50 +11,293 @@ import main.*;
 public class Sim extends Entity {
 
     // SIM INFO
-    public String nama = "Sim";
-    public Pekerjaan pekerjaan = new Pekerjaan();
-    public int uang = 99999999;
-    public int kesehatan = 80;
+    private String nama = "Sim";
+    private Pekerjaan pekerjaan = new Pekerjaan();
+    private int uang = 99999999;
+    private int kesehatan = 80;
     public final int maxKesehatan = 100;
-    public int kekenyangan = 80;
+    private int kekenyangan = 80;
     public final int maxKekenyangan = 100;
-    public int mood = 80;
+    private int mood = 80;
     public final int maxMood = 100;
-    public boolean lightUpdated = false;
-    public Benda currentLight;
-    public String currentLocation;
-    public int indexLocationRuangan = 999;
-    public int indexBendaYangDisentuh = 999;
-    public int indexRumahYangDimasuki = 999;
-    public int currentMap = 0;
-    public static String keteranganMati = "";
-    public boolean isMati = false;
-    public boolean isUpgradeDone = false;
-    public boolean isBarangSampai = false;
-    public String tempDialogUpgrade = "";
-    public String tempDialogBarang = "";
+    private boolean lightUpdated = false;
+    private Benda currentLight;
+    private String currentLocation;
+    private int indexLocationRuangan = 999;
+    private int indexBendaYangDisentuh = 999;
+    private int indexRumahYangDimasuki = 999;
+    private int currentMap = 0;
+    private static String keteranganMati = "";
+    private boolean isMati = false;
+    private boolean isUpgradeDone = false;
+    private boolean isBarangSampai = false;
+    private String tempDialogUpgrade = "";
+    private String tempDialogBarang = "";
 
     KeyHandler keyHandler;
 
     public final int screenX;
     public final int screenY;
 
-    public Rumah rumah;
+    private Rumah rumah;
 
     // TEMPORARY VARIABLES
-    public int tempInt = -1;
-    public Benda tempBenda;
+    private int tempInt = -1;
+    private Benda tempBenda;
 
-    public boolean isCanBuy = true;
-    public int remainingTimeBuy = 0;
-    public int indexSimSaatBeli = 0;
-    public int itemBuyTempIndex = 0;
-    public boolean isLockBuy = true;
+    private boolean isCanBuy = true;
+    private int remainingTimeBuy = 0;
+    private int indexSimSaatBeli = 0;
+    private int itemBuyTempIndex = 0;
+    private boolean isLockBuy = true;
 
     // gw nambah lagi darr, buat waktu efek tidak tidur, dan efek tidak buang air
-    public int efekWaktuTidakTidurCounter = 0;
-    public int efekWaktuTidakBuangAirCounter = 0;
-    public boolean isUdahMakanDalamSatuHari = false;
+    private int efekWaktuTidakTidurCounter = 0;
+    private int efekWaktuTidakBuangAirCounter = 0;
+    private boolean isUdahMakanDalamSatuHari = false;
+
+    // --------------------------------------------------------------------------
+
+    public String getNama(){
+        return nama;
+    }
+
+    public void setNama(String nama){
+        this.nama=nama;
+    }
+
+    public Pekerjaan getPekerjaan(){
+        return pekerjaan;
+    }
+    
+    public void setPekerjaan(Pekerjaan pekerjaan){
+        this.pekerjaan=pekerjaan;
+    }
+
+    public int getUang(){
+        return uang;
+    }
+
+    public void setUang(int uang){
+        this.uang=uang;
+    }
+
+    public int getKesehatan(){
+        return kesehatan;
+    }
+
+    public void setKesehatan(int kesehatan){
+        this.kesehatan=kesehatan;
+    }
+
+    public int getKekenyangan(){
+        return kekenyangan;
+    }
+
+    public void setKekenyangan(int kekenyangan){
+        this.kekenyangan=kekenyangan;
+    }
+
+    public int getMood(){
+        return mood;
+    }
+
+    public void setMood(int mood){
+        this.mood=mood;
+    }
+
+    public boolean getLightUpdated(){
+        return lightUpdated;
+    }
+
+    public void setLightUpdated(boolean lightUpdated){
+        this.lightUpdated=lightUpdated;
+    } 
+
+    public Benda getCurrentLight(){
+        return currentLight;
+    }
+
+    public void setCurrentLight(Benda currentLight){
+        this.currentLight=currentLight;
+    }
+
+    public String getCurrentLocation(){
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(String currentLocation){
+        this.currentLocation=currentLocation;
+    }
+
+    public int getIndexLocationRuangan(){
+        return indexLocationRuangan;
+    }
+
+    public void setIndexLocationRuangan(int indexLocationRuangan){
+        this.indexLocationRuangan=indexLocationRuangan;
+    }
+
+    public int getIndexBendaYangDisentuh(){
+        return indexBendaYangDisentuh;
+    }
+
+    public void setIndexBendaYangDisentuh(int indexBendaYangDisentuh){
+        this.indexBendaYangDisentuh=indexBendaYangDisentuh;
+    }
+
+    public int getIndexRumahYangDimasuki(){
+        return indexRumahYangDimasuki;
+    }
+
+    public void setIndexRumahYangDimasuki(int indexRumahYangDimasuki){
+        this.indexRumahYangDimasuki=indexRumahYangDimasuki;
+    }
+
+    public int getCurrentMap(){
+        return currentMap;
+    }
+
+    public void setCurrentMap(int currentMap){
+        this.currentMap=currentMap;
+    }
+
+    public static String getKeteranganMati(){
+        return keteranganMati;
+    }
+
+    public static void setKeteranganMati(String newKeteranganMati){
+        keteranganMati=newKeteranganMati;
+    }
+
+    public boolean getIsMati(){
+        return isMati;
+    }
+
+    public void setIsMati(boolean isMati){
+        this.isMati=isMati;
+    }
+
+    public boolean getIsUpgradeDone(){
+        return isUpgradeDone;
+    }
+
+    public void setIsUpgradeDone(boolean isUpgradeDone){
+        this.isUpgradeDone=isUpgradeDone;
+    }
+
+    public boolean getIsBarangSampai(){
+        return isBarangSampai;
+    }
+
+    public void setIsBarangSampai(boolean isBarangSampai){
+        this.isBarangSampai=isBarangSampai;
+    }
+
+    public String getTempDialogUpgrade(){
+        return tempDialogUpgrade;
+    }
+
+    public void setTempDialogUpgrade(String tempDialogUpgrade){
+        this.tempDialogUpgrade=tempDialogUpgrade;
+    }
+
+    public String getTempDialogBarang(){
+        return tempDialogBarang;
+    }
+
+    public void setTempDialogBarang(String tempDialogBarang){
+        this.tempDialogBarang=tempDialogBarang;
+    }
+
+    public Rumah getRumah(){
+        return rumah;
+    }
+
+    public void setRumah(Rumah rumah){
+        this.rumah=rumah;
+    }
+
+    public int getTempInt(){
+        return tempInt;
+    }
+
+    public void setTempInt(int tempInt){
+        this.tempInt=tempInt;
+    }
+
+    public Benda getTempBenda(){
+        return tempBenda;
+    }
+
+    public void setTempBenda(Benda tempBenda){
+        this.tempBenda=tempBenda;
+    }
+
+    public boolean getIsCanBuy(){
+        return isCanBuy;
+    }
+
+    public void setIsCanBuy(boolean isCanBuy){
+        this.isCanBuy=isCanBuy;
+    }
+
+    public int getRemainingTimeBuy(){
+        return remainingTimeBuy;
+    }
+
+    public void setRemainingTimeBuy(int remainingTimeBuy){
+        this.remainingTimeBuy=remainingTimeBuy;
+    }
+
+    public int getIndexSimSaatBeli(){
+        return indexSimSaatBeli;
+    }
+
+    public void setIndexSimSaatBeli(int indexSimSaatBeli){
+        this.indexSimSaatBeli=indexSimSaatBeli;
+    }
+
+    public int getItemBuyTempIndex(){
+        return itemBuyTempIndex;
+    }
+
+    public void setItemBuyTempIndex(int itemBuyTempIndex){
+        this.itemBuyTempIndex=itemBuyTempIndex;
+    }
+
+    public boolean getIsLockBuy(){
+        return isLockBuy;
+    }
+
+    public void setIsLockBuy(boolean isLockBuy){
+        this.isLockBuy=isLockBuy;
+    }
+
+    public int getEfekWaktuTidakTidurCounter(){
+        return efekWaktuTidakTidurCounter;
+    }
+
+    public void setEfekWaktuTidakTidurCounter(int efekWaktuTidakTidurCounter){
+        this.efekWaktuTidakTidurCounter=efekWaktuTidakTidurCounter;
+    }
+
+    public int getEfekWaktuTidakBuangAirCounter(){
+        return efekWaktuTidakBuangAirCounter;
+    }
+
+    public void setEfekWaktuTidakBuangAirCounter(int efekWaktuTidakBuangAirCounter){
+        this.efekWaktuTidakBuangAirCounter=efekWaktuTidakBuangAirCounter;
+    }
+
+    public boolean getIsUdahMakanDalamSatuHari(){
+        return isUdahMakanDalamSatuHari;
+    }
+
+    public void setIsUdahMakanDalamSatuHari(boolean isUdahMakanDalamSatuHari){
+        this.isUdahMakanDalamSatuHari=isUdahMakanDalamSatuHari;
+    }
+
 
     public Sim(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);

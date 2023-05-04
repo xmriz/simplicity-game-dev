@@ -1,4 +1,4 @@
-package environment;
+package Environment;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -30,7 +30,7 @@ public class Lighting {
         darknessFilter = new BufferedImage(gamePanel.screenWidth, gamePanel.screenHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = (Graphics2D) darknessFilter.getGraphics();
 
-        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentLight == null) {
+        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getCurrentLight() == null) {
             g2d.setColor(new Color(0, 0, 0, 0.8f));
         } else {
             // get the center x and y of the light circle
@@ -120,14 +120,14 @@ public class Lighting {
         }
 
         // update the light source
-        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).lightUpdated) {
+        if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getLightUpdated()) {
             setLightSource();
-            gamePanel.listSim.get(gamePanel.indexCurrentSim).lightUpdated = false;
+            gamePanel.listSim.get(gamePanel.indexCurrentSim).setLightUpdated(false);
         }
     }
 
     public void draw(Graphics2D g2d) {
-        if (gamePanel.getCurrentSim().currentMap == 0){
+        if (gamePanel.getCurrentSim().getCurrentMap() == 0){
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha)); // set the alpha value of the filter
             g2d.drawImage(darknessFilter, 0, 0, null); // draw the filter
         }

@@ -125,48 +125,48 @@ public class SaveLoad {
             ds.indexCurrentSim = gamePanel.indexCurrentSim;
 
             for (int k = 0; k < gamePanel.listSim.size(); k++) {
-                ds.infoSimStrings.add(gamePanel.listSim.get(k).nama);
-                ds.infoSimStrings.add(gamePanel.listSim.get(k).rumah.getPosisiUpgrade());
-                if (gamePanel.listSim.get(k).rumah.getRuanganUpgrade() != null) {
-                    ds.infoSimStrings.add(gamePanel.listSim.get(k).rumah.getRuanganUpgrade().getName());
+                ds.infoSimStrings.add(gamePanel.listSim.get(k).getNama());
+                ds.infoSimStrings.add(gamePanel.listSim.get(k).getRumah().getPosisiUpgrade());
+                if (gamePanel.listSim.get(k).getRumah().getRuanganUpgrade() != null) {
+                    ds.infoSimStrings.add(gamePanel.listSim.get(k).getRumah().getRuanganUpgrade().getName());
                 } else {
                     ds.infoSimStrings.add("");
                 }
-                ds.infoSimStrings.add(gamePanel.listSim.get(k).currentLocation);
-                ds.infoSimStrings.add(gamePanel.listSim.get(k).tempDialogUpgrade);
-                ds.infoSimStrings.add(gamePanel.listSim.get(k).tempDialogBarang);
+                ds.infoSimStrings.add(gamePanel.listSim.get(k).getCurrentLocation());
+                ds.infoSimStrings.add(gamePanel.listSim.get(k).getTempDialogUpgrade());
+                ds.infoSimStrings.add(gamePanel.listSim.get(k).getTempDialogBarang());
                 // ds.infoSimStrings.add(gamePanel.listSim.get(k).currentLocation);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).uang);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).kesehatan);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).kekenyangan);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).mood);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).pekerjaan.indexPekerjaan);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).pekerjaan.durasiKerjaYangBelumDigaji);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).pekerjaan.totalDurasiKerjaPerPekerjaan);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).pekerjaan.worldTimeCounterForStartJobAfterChangeJob);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).rumah.getRemainingTimeUpgrade());
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).rumah.getIndexLocationSaatUpgrade());
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).rumah.getIndexSimSaatUpgrade());
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).remainingTimeBuy);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).indexSimSaatBeli);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).itemBuyTempIndex);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).efekWaktuTidakBuangAirCounter);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).efekWaktuTidakTidurCounter);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).indexLocationRuangan);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).indexRumahYangDimasuki);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).indexBendaYangDisentuh);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).currentMap);
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getUang());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getKesehatan());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getKekenyangan());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getMood());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getPekerjaan().indexPekerjaan);
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getPekerjaan().durasiKerjaYangBelumDigaji);
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getPekerjaan().totalDurasiKerjaPerPekerjaan);
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob);
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getRumah().getRemainingTimeUpgrade());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getRumah().getIndexLocationSaatUpgrade());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getRumah().getIndexSimSaatUpgrade());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getRemainingTimeBuy());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getIndexSimSaatBeli());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getItemBuyTempIndex());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getEfekWaktuTidakBuangAirCounter());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getEfekWaktuTidakTidurCounter());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getIndexLocationRuangan());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getIndexRumahYangDimasuki());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getIndexBendaYangDisentuh());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getCurrentMap());
                 ds.infoSimIntegers.add(gamePanel.listSim.get(k).worldX);
                 ds.infoSimIntegers.add(gamePanel.listSim.get(k).worldY);
 
-                ds.infoSimBooleans.add(gamePanel.listSim.get(k).pekerjaan.isCanChangePekerjaan);
-                ds.infoSimBooleans.add(gamePanel.listSim.get(k).pekerjaan.isCanStartPekerjaan);
-                ds.infoSimBooleans.add(gamePanel.listSim.get(k).rumah.getIsCanUpgrade());
-                ds.infoSimBooleans.add(gamePanel.listSim.get(k).isCanBuy);
-                ds.infoSimBooleans.add(gamePanel.listSim.get(k).isUdahMakanDalamSatuHari);
-                ds.infoSimBooleans.add(gamePanel.listSim.get(k).isUpgradeDone);
-                ds.infoSimBooleans.add(gamePanel.listSim.get(k).isBarangSampai);
-                ds.infoSimIntegers.add(gamePanel.listSim.get(k).rumah.getJumlahRuangan());
+                ds.infoSimBooleans.add(gamePanel.listSim.get(k).getPekerjaan().isCanChangePekerjaan);
+                ds.infoSimBooleans.add(gamePanel.listSim.get(k).getPekerjaan().isCanStartPekerjaan);
+                ds.infoSimBooleans.add(gamePanel.listSim.get(k).getRumah().getIsCanUpgrade());
+                ds.infoSimBooleans.add(gamePanel.listSim.get(k).getIsCanBuy());
+                ds.infoSimBooleans.add(gamePanel.listSim.get(k).getIsUdahMakanDalamSatuHari());
+                ds.infoSimBooleans.add(gamePanel.listSim.get(k).getIsUpgradeDone());
+                ds.infoSimBooleans.add(gamePanel.listSim.get(k).getIsBarangSampai());
+                ds.infoSimIntegers.add(gamePanel.listSim.get(k).getRumah().getJumlahRuangan());
                 // ds.infoSimIntegers.add(gamePanel.listSim.get(k).solidArea.x);
                 // ds.infoSimIntegers.add(gamePanel.listSim.get(k).solidArea.y);
                 // ds.infoSimIntegers.add(gamePanel.listSim.get(k).indexLocationRuangan);
@@ -185,52 +185,52 @@ public class SaveLoad {
                 }
 
                 ds.rumah.add(k);
-                ds.rumah.add(gamePanel.listSim.get(k).rumah.getJumlahRuangan());
-                ds.rumah.add(gamePanel.listSim.get(k).rumah.getWorldX());
-                ds.rumah.add(gamePanel.listSim.get(k).rumah.getWorldY());
+                ds.rumah.add(gamePanel.listSim.get(k).getRumah().getJumlahRuangan());
+                ds.rumah.add(gamePanel.listSim.get(k).getRumah().getWorldX());
+                ds.rumah.add(gamePanel.listSim.get(k).getRumah().getWorldY());
 
-                for (int i = 0; i < gamePanel.listSim.get(k).rumah.getJumlahRuangan(); i++) {
-                    ds.ruangan.add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getIndex());
-                    ds.namaRuangan.add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getName());
-                    if (gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getUp() != null) {
-                        ds.ruangan.add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getUp().getIndex());
+                for (int i = 0; i < gamePanel.listSim.get(k).getRumah().getJumlahRuangan(); i++) {
+                    ds.ruangan.add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getIndex());
+                    ds.namaRuangan.add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getName());
+                    if (gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getUp() != null) {
+                        ds.ruangan.add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getUp().getIndex());
                     } else {
                         ds.ruangan.add(null);
                     }
-                    if (gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getDown() != null) {
-                        ds.ruangan.add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getDown().getIndex());
+                    if (gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getDown() != null) {
+                        ds.ruangan.add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getDown().getIndex());
                     } else {
                         ds.ruangan.add(null);
                     }
-                    if (gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getRight() != null) {
-                        ds.ruangan.add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getRight().getIndex());
+                    if (gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getRight() != null) {
+                        ds.ruangan.add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getRight().getIndex());
                     } else {
                         ds.ruangan.add(null);
                     }
-                    if (gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getLeft() != null) {
-                        ds.ruangan.add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getLeft().getIndex());
+                    if (gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getLeft() != null) {
+                        ds.ruangan.add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getLeft().getIndex());
                     } else {
                         ds.ruangan.add(null);
                     }
 
-                    ds.bendaRuangan.add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getIndex()
+                    ds.bendaRuangan.add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getIndex()
                             + "");
-                    ds.bendaRuangan.add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getBendaRuangan().size()
+                    ds.bendaRuangan.add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getBendaRuangan().size()
                             + "");
-                    for (int j = 0; j < gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getBendaRuangan().size(); j++) {
+                    for (int j = 0; j < gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getBendaRuangan().size(); j++) {
                         ds.bendaRuangan
-                                .add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getBendaRuangan().get(j).getName());
+                                .add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getBendaRuangan().get(j).getName());
                         ds.bendaRuangan
-                                .add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getBendaRuangan().get(j).getWorldX()
+                                .add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getBendaRuangan().get(j).getWorldX()
                                         + "");
                         ds.bendaRuangan
-                                .add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getBendaRuangan().get(j).getWorldY()
+                                .add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getBendaRuangan().get(j).getWorldY()
                                         + "");
                         ds.bendaRuangan
-                                .add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getBendaRuangan().get(j).getSolidArea().x
+                                .add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getBendaRuangan().get(j).getSolidArea().x
                                         + "");
                         ds.bendaRuangan
-                                .add(gamePanel.listSim.get(k).rumah.getRuanganRumah().get(i).getBendaRuangan().get(j).getSolidArea().y
+                                .add(gamePanel.listSim.get(k).getRumah().getRuanganRumah().get(i).getBendaRuangan().get(j).getSolidArea().y
                                         + "");
 
                     }
@@ -360,58 +360,55 @@ public class SaveLoad {
                 // gamePanel.listSim.get(j).worldY = 2 * gamePanel.tileSize;
                 gamePanel.listSim.get(j).direction = "down";
 
-                gamePanel.listSim.get(j).nama = ds.infoSimStrings.get(sumStrings);
-                gamePanel.listSim.get(j).rumah.setPosisiUpgrade(ds.infoSimStrings.get(sumStrings + 1));
+                gamePanel.listSim.get(j).setNama(ds.infoSimStrings.get(sumStrings));
+                gamePanel.listSim.get(j).getRumah().setPosisiUpgrade(ds.infoSimStrings.get(sumStrings + 1));
                 Ruangan ruangan = new Ruangan(gamePanel);
-                gamePanel.listSim.get(j).rumah.setRuanganUpgrade(ruangan);
-                gamePanel.listSim.get(j).rumah.getRuanganUpgrade().setName(ds.infoSimStrings.get(sumStrings + 2));
-                gamePanel.listSim.get(j).currentLocation = ds.infoSimStrings.get(sumStrings + 3);
-                gamePanel.listSim.get(j).tempDialogUpgrade = ds.infoSimStrings.get(sumStrings + 4);
-                gamePanel.listSim.get(j).tempDialogBarang = ds.infoSimStrings.get(sumStrings + 5);
+                gamePanel.listSim.get(j).getRumah().setRuanganUpgrade(ruangan);
+                gamePanel.listSim.get(j).getRumah().getRuanganUpgrade().setName(ds.infoSimStrings.get(sumStrings + 2));
+                gamePanel.listSim.get(j).setCurrentLocation(ds.infoSimStrings.get(sumStrings + 3));
+                gamePanel.listSim.get(j).setTempDialogUpgrade(ds.infoSimStrings.get(sumStrings + 4));
+                gamePanel.listSim.get(j).setTempDialogBarang(ds.infoSimStrings.get(sumStrings + 5));
 
                 sumStrings += 6;
 
-                gamePanel.listSim.get(j).pekerjaan.isCanChangePekerjaan = ds.infoSimBooleans.get(sumBooleans);
-                gamePanel.listSim.get(j).pekerjaan.isCanStartPekerjaan = ds.infoSimBooleans.get(sumBooleans + 1);
-                gamePanel.listSim.get(j).rumah.setIsCanUpgrade(ds.infoSimBooleans.get(sumBooleans + 2));
-                gamePanel.listSim.get(j).isCanBuy = ds.infoSimBooleans.get(sumBooleans + 3);
-                gamePanel.listSim.get(j).isUdahMakanDalamSatuHari = ds.infoSimBooleans.get(sumBooleans + 4);
-                gamePanel.listSim.get(j).isUpgradeDone = ds.infoSimBooleans.get(sumBooleans + 5);
-                gamePanel.listSim.get(j).isBarangSampai = ds.infoSimBooleans.get(sumBooleans + 6);
+                gamePanel.listSim.get(j).getPekerjaan().isCanChangePekerjaan = ds.infoSimBooleans.get(sumBooleans);
+                gamePanel.listSim.get(j).getPekerjaan().isCanStartPekerjaan = ds.infoSimBooleans.get(sumBooleans + 1);
+                gamePanel.listSim.get(j).getRumah().setIsCanUpgrade(ds.infoSimBooleans.get(sumBooleans + 2));
+                gamePanel.listSim.get(j).setIsCanBuy(ds.infoSimBooleans.get(sumBooleans + 3));
+                gamePanel.listSim.get(j).setIsUdahMakanDalamSatuHari(ds.infoSimBooleans.get(sumBooleans + 4));
+                gamePanel.listSim.get(j).setIsUpgradeDone(ds.infoSimBooleans.get(sumBooleans + 5));
+                gamePanel.listSim.get(j).setIsBarangSampai(ds.infoSimBooleans.get(sumBooleans + 6));
 
                 sumBooleans += 7;
 
-                gamePanel.listSim.get(j).uang = ds.infoSimIntegers.get(sumIntegers);
-                gamePanel.listSim.get(j).kesehatan = ds.infoSimIntegers.get(sumIntegers + 1);
-                gamePanel.listSim.get(j).kekenyangan = ds.infoSimIntegers.get(sumIntegers + 2);
-                gamePanel.listSim.get(j).mood = ds.infoSimIntegers.get(sumIntegers + 3);
-                gamePanel.listSim.get(j).pekerjaan.indexPekerjaan = ds.infoSimIntegers.get(sumIntegers + 4);
-                gamePanel.listSim.get(j).pekerjaan.durasiKerjaYangBelumDigaji = ds.infoSimIntegers.get(sumIntegers + 5);
-                gamePanel.listSim.get(j).pekerjaan.totalDurasiKerjaPerPekerjaan = ds.infoSimIntegers
+                gamePanel.listSim.get(j).setUang(ds.infoSimIntegers.get(sumIntegers));
+                gamePanel.listSim.get(j).setKesehatan(ds.infoSimIntegers.get(sumIntegers + 1));
+                gamePanel.listSim.get(j).setKekenyangan(ds.infoSimIntegers.get(sumIntegers + 2));
+                gamePanel.listSim.get(j).setMood(ds.infoSimIntegers.get(sumIntegers + 3));
+                gamePanel.listSim.get(j).getPekerjaan().indexPekerjaan = ds.infoSimIntegers.get(sumIntegers + 4);
+                gamePanel.listSim.get(j).getPekerjaan().durasiKerjaYangBelumDigaji = ds.infoSimIntegers.get(sumIntegers + 5);
+                gamePanel.listSim.get(j).getPekerjaan().totalDurasiKerjaPerPekerjaan = ds.infoSimIntegers
                         .get(sumIntegers + 6);
-                gamePanel.listSim.get(j).pekerjaan.worldTimeCounterForStartJobAfterChangeJob = ds.infoSimIntegers
+                gamePanel.listSim.get(j).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob = ds.infoSimIntegers
                         .get(sumIntegers + 7);
-                gamePanel.listSim.get(j).rumah.setRemainingTimeUpgrade(ds.infoSimIntegers
+                gamePanel.listSim.get(j).getRumah().setRemainingTimeUpgrade(ds.infoSimIntegers
                         .get(sumIntegers + 8));
-                gamePanel.listSim.get(j).rumah.setIndexLocationSaatUpgrade(ds.infoSimIntegers
+                gamePanel.listSim.get(j).getRumah().setIndexLocationSaatUpgrade(ds.infoSimIntegers
                         .get(sumIntegers + 9));
-                gamePanel.listSim.get(j).rumah.setIndexSimSaatUpgrade(ds.infoSimIntegers
+                gamePanel.listSim.get(j).getRumah().setIndexSimSaatUpgrade(ds.infoSimIntegers
                         .get(sumIntegers + 10));
-                gamePanel.listSim.get(j).remainingTimeBuy = ds.infoSimIntegers
-                        .get(sumIntegers + 11);
-                gamePanel.listSim.get(j).indexSimSaatBeli = ds.infoSimIntegers
-                        .get(sumIntegers + 12);
-                gamePanel.listSim.get(j).itemBuyTempIndex = ds.infoSimIntegers
-                        .get(sumIntegers + 13);
-                gamePanel.listSim.get(j).efekWaktuTidakBuangAirCounter = ds.infoSimIntegers.get(sumIntegers + 14);
-                gamePanel.listSim.get(j).efekWaktuTidakTidurCounter = ds.infoSimIntegers.get(sumIntegers + 15);
-                gamePanel.listSim.get(j).indexLocationRuangan = ds.infoSimIntegers.get(sumIntegers + 16);
-                gamePanel.listSim.get(j).indexRumahYangDimasuki = ds.infoSimIntegers.get(sumIntegers + 17);
-                gamePanel.listSim.get(j).indexBendaYangDisentuh = ds.infoSimIntegers.get(sumIntegers + 18);
-                gamePanel.listSim.get(j).currentMap = ds.infoSimIntegers.get(sumIntegers + 19);
+                gamePanel.listSim.get(j).setRemainingTimeBuy(ds.infoSimIntegers.get(sumIntegers + 11));
+                gamePanel.listSim.get(j).setIndexSimSaatBeli(ds.infoSimIntegers.get(sumIntegers + 12));
+                gamePanel.listSim.get(j).setItemBuyTempIndex(ds.infoSimIntegers.get(sumIntegers + 13));
+                gamePanel.listSim.get(j).setEfekWaktuTidakBuangAirCounter(ds.infoSimIntegers.get(sumIntegers + 14));
+                gamePanel.listSim.get(j).setEfekWaktuTidakTidurCounter(ds.infoSimIntegers.get(sumIntegers + 15));
+                gamePanel.listSim.get(j).setIndexLocationRuangan(ds.infoSimIntegers.get(sumIntegers + 16));
+                gamePanel.listSim.get(j).setIndexRumahYangDimasuki(ds.infoSimIntegers.get(sumIntegers + 17));
+                gamePanel.listSim.get(j).setIndexBendaYangDisentuh(ds.infoSimIntegers.get(sumIntegers + 18));
+                gamePanel.listSim.get(j).setCurrentMap(ds.infoSimIntegers.get(sumIntegers + 19));
                 gamePanel.listSim.get(j).worldX = ds.infoSimIntegers.get(sumIntegers + 20);
                 gamePanel.listSim.get(j).worldY = ds.infoSimIntegers.get(sumIntegers + 21);
-                gamePanel.listSim.get(j).rumah.setJumlahRuangan(ds.infoSimIntegers
+                gamePanel.listSim.get(j).getRumah().setJumlahRuangan(ds.infoSimIntegers
                         .get(sumIntegers + 22));
                 sumIntegers += 23;
 
@@ -426,65 +423,65 @@ public class SaveLoad {
                 }
                 sumInventory += jumlahLoop + 2;
 
-                gamePanel.listSim.get(j).rumah.setWorldX(ds.rumah.get(sumRumah + 2));
-                gamePanel.listSim.get(j).rumah.setWorldY(ds.rumah.get(sumRumah + 3));
-                gamePanel.listSim.get(j).rumah.setColRumah(ds.rumah.get(sumRumah + 2) /
+                gamePanel.listSim.get(j).getRumah().setWorldX(ds.rumah.get(sumRumah + 2));
+                gamePanel.listSim.get(j).getRumah().setWorldY(ds.rumah.get(sumRumah + 3));
+                gamePanel.listSim.get(j).getRumah().setColRumah(ds.rumah.get(sumRumah + 2) /
                         gamePanel.tileSize);
-                gamePanel.listSim.get(j).rumah.setRowRumah(ds.rumah.get(sumRumah + 3) /
+                gamePanel.listSim.get(j).getRumah().setRowRumah(ds.rumah.get(sumRumah + 3) /
                         gamePanel.tileSize);
-                gamePanel.listRumah[0].set(j, gamePanel.listSim.get(j).rumah);
+                gamePanel.listRumah[0].set(j, gamePanel.listSim.get(j).getRumah());
 
                 Ruangan ruanganUtama = new Ruangan(gamePanel);
-                gamePanel.listSim.get(j).rumah.getRuanganRumah().clear();
-                gamePanel.listSim.get(j).rumah.getRuanganRumah().add(ruanganUtama);
-                gamePanel.listSim.get(j).rumah.getRuanganRumah().get(0).setName("Ruangan Utama");
+                gamePanel.listSim.get(j).getRumah().getRuanganRumah().clear();
+                gamePanel.listSim.get(j).getRumah().getRuanganRumah().add(ruanganUtama);
+                gamePanel.listSim.get(j).getRumah().getRuanganRumah().get(0).setName("Ruangan Utama");
 
                 for (int i = 0; i < ds.rumah.get(sumRumah + 1) - 1; i++) {
                     Ruangan ruangan1 = new Ruangan(gamePanel);
                     ruangan1.setName(ds.namaRuangan.get(i + 1));
-                    gamePanel.listSim.get(j).rumah.getRuanganRumah().add(ruangan1);
+                    gamePanel.listSim.get(j).getRumah().getRuanganRumah().add(ruangan1);
                 }
 
                 for (int i = 0; i < ds.rumah.get(sumRumah + 1); i++) {
 
                     if (ds.ruangan.get(num + 1) != null) {
-                        gamePanel.listSim.get(j).rumah.getRuanganRumah()
-                                .get(i).setUp(gamePanel.listSim.get(j).rumah.getRuanganRumah().get(ds.ruangan.get(num + 1)));
+                        gamePanel.listSim.get(j).getRumah().getRuanganRumah()
+                                .get(i).setUp(gamePanel.listSim.get(j).getRumah().getRuanganRumah().get(ds.ruangan.get(num + 1)));
                     }
                     if (ds.ruangan.get(num + 2) != null) {
                         if (i != 0) {
-                            gamePanel.listSim.get(j).rumah.getRuanganRumah()
-                                    .get(i).setDown(gamePanel.listSim.get(j).rumah.getRuanganRumah()
+                            gamePanel.listSim.get(j).getRumah().getRuanganRumah()
+                                    .get(i).setDown(gamePanel.listSim.get(j).getRumah().getRuanganRumah()
                                             .get(ds.ruangan.get(num + 2)));
                         }
                     }
                     if (ds.ruangan.get(num + 3) != null) {
-                        gamePanel.listSim.get(j).rumah.getRuanganRumah()
-                                .get(i).setRight(gamePanel.listSim.get(j).rumah.getRuanganRumah()
+                        gamePanel.listSim.get(j).getRumah().getRuanganRumah()
+                                .get(i).setRight(gamePanel.listSim.get(j).getRumah().getRuanganRumah()
                                         .get(ds.ruangan.get(num + 3)));
                     }
                     if (ds.ruangan.get(num + 4) != null) {
-                        gamePanel.listSim.get(j).rumah.getRuanganRumah()
-                                .get(i).setLeft(gamePanel.listSim.get(j).rumah.getRuanganRumah()
+                        gamePanel.listSim.get(j).getRumah().getRuanganRumah()
+                                .get(i).setLeft(gamePanel.listSim.get(j).getRumah().getRuanganRumah()
                                         .get(ds.ruangan.get(num + 4)));
                     }
                     num += 5;
 
-                    gamePanel.listSim.get(j).rumah.getRuanganRumah().get(i).setIndex(Integer
+                    gamePanel.listSim.get(j).getRumah().getRuanganRumah().get(i).setIndex(Integer
                             .parseInt(ds.bendaRuangan.get(indexPencariBenda)));
 
                     int nums = 0;
                     for (int x = 0; x < Integer.parseInt(ds.bendaRuangan.get(indexPencariBenda +
                             1)); x++) {
-                        gamePanel.listSim.get(j).rumah.getRuanganRumah().get(i).getBendaRuangan()
+                        gamePanel.listSim.get(j).getRumah().getRuanganRumah().get(i).getBendaRuangan()
                                 .add(getObject(ds.bendaRuangan.get(indexPencariBenda + 2 + x * 5)));
-                        gamePanel.listSim.get(j).rumah.getRuanganRumah().get(i).getBendaRuangan().get(x).setWorldX(Integer
+                        gamePanel.listSim.get(j).getRumah().getRuanganRumah().get(i).getBendaRuangan().get(x).setWorldX(Integer
                                 .parseInt(ds.bendaRuangan.get(indexPencariBenda + 3 + x * 5)));
-                        gamePanel.listSim.get(j).rumah.getRuanganRumah().get(i).getBendaRuangan().get(x).setWorldY(Integer
+                        gamePanel.listSim.get(j).getRumah().getRuanganRumah().get(i).getBendaRuangan().get(x).setWorldY(Integer
                                 .parseInt(ds.bendaRuangan.get(indexPencariBenda + 4 + x * 5)));
-                        gamePanel.listSim.get(j).rumah.getRuanganRumah().get(i).getBendaRuangan().get(x).getSolidArea().x = Integer
+                        gamePanel.listSim.get(j).getRumah().getRuanganRumah().get(i).getBendaRuangan().get(x).getSolidArea().x = Integer
                                 .parseInt(ds.bendaRuangan.get(indexPencariBenda + 5 + x * 5));
-                        gamePanel.listSim.get(j).rumah.getRuanganRumah().get(i).getBendaRuangan().get(x).getSolidArea().y = Integer
+                        gamePanel.listSim.get(j).getRumah().getRuanganRumah().get(i).getBendaRuangan().get(x).getSolidArea().y = Integer
                                 .parseInt(ds.bendaRuangan.get(indexPencariBenda + 6 + x * 5));
 
                         nums += 1;

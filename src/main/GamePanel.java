@@ -11,7 +11,7 @@ import java.util.*;
 
 import benda.Benda;
 import entity.*;
-import environment.EnvironmentManager;
+import Environment.EnvironmentManager;
 import map.TileManager;
 import map.Map;
 import data.*;
@@ -172,39 +172,39 @@ public class GamePanel extends JPanel implements Runnable {
         
 
         for (int i = 0; i < listSim.size(); i++) {
-            if (listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob >= 720) {
-                listSim.get(i).pekerjaan.isCanStartPekerjaan = true;
-                listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob = 0;
+            if (listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob >= 720) {
+                listSim.get(i).getPekerjaan().isCanStartPekerjaan = true;
+                listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob = 0;
                 
             }
 
             if (worldTimeSatuHariCounter >= 720) {
                 worldTimeSatuHariCounter = 0;
-                listSim.get(i).efekWaktuTidakTidurCounter = 0;
-                listSim.get(i).efekWaktuTidakBuangAirCounter = 0;
-                listSim.get(i).isUdahMakanDalamSatuHari = false;
+                listSim.get(i).setEfekWaktuTidakTidurCounter(0);
+                listSim.get(i).setEfekWaktuTidakBuangAirCounter(0);
+                listSim.get(i).setIsUdahMakanDalamSatuHari(false);
             }
 
-            if (listSim.get(i).pekerjaan.totalDurasiKerjaPerPekerjaan >= 720) {
-                listSim.get(i).pekerjaan.isCanChangePekerjaan = true;
+            if (listSim.get(i).getPekerjaan().totalDurasiKerjaPerPekerjaan >= 720) {
+                listSim.get(i).getPekerjaan().isCanChangePekerjaan = true;
             } else {
-                listSim.get(i).pekerjaan.isCanChangePekerjaan = false;   
+                listSim.get(i).getPekerjaan().isCanChangePekerjaan = false;   
             }
 
-            if (listSim.get(i).efekWaktuTidakTidurCounter >= 600){
+            if (listSim.get(i).getEfekWaktuTidakTidurCounter() >= 600){
                 // kurangin kesejahteraan
-                listSim.get(i).efekWaktuTidakTidurCounter = 0;
-                listSim.get(i).mood -= 5;
-                listSim.get(i).kesehatan -= 5;
+                listSim.get(i).setEfekWaktuTidakTidurCounter(0);
+                listSim.get(i).setMood(listSim.get(i).getMood() - 5);
+                listSim.get(i).setKesehatan(listSim.get(i).getKesehatan() - 5);
                 ui.addMessage("-5 mood, -5 kesehatan");
             }
 
-            if (listSim.get(i).efekWaktuTidakBuangAirCounter >= 240){
+            if (listSim.get(i).getEfekWaktuTidakBuangAirCounter() >= 240){
                 // kurangin kesejahteraan
-                if (listSim.get(i).isUdahMakanDalamSatuHari){
-                    listSim.get(i).efekWaktuTidakBuangAirCounter = 0;
-                    listSim.get(i).mood -= 5;
-                    listSim.get(i).kesehatan -= 5;
+                if (listSim.get(i).getIsUdahMakanDalamSatuHari()){
+                    listSim.get(i).setEfekWaktuTidakBuangAirCounter(0);
+                    listSim.get(i).setMood(listSim.get(i).getMood() - 5);
+                    listSim.get(i).setKesehatan(listSim.get(i).getKesehatan() - 5);
                     ui.addMessage("-5 mood, -5 kesehatan");
                 }
             }
@@ -216,9 +216,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (gameState == playState) {
             listSim.get(indexCurrentSim).update();
-            for (int i = 0; i < npc[listSim.get(indexCurrentSim).currentMap].length; i++) {
-                if (npc[listSim.get(indexCurrentSim).currentMap][i] != null) {
-                    npc[listSim.get(indexCurrentSim).currentMap][i].update();
+            for (int i = 0; i < npc[listSim.get(indexCurrentSim).getCurrentMap()].length; i++) {
+                if (npc[listSim.get(indexCurrentSim).getCurrentMap()][i] != null) {
+                    npc[listSim.get(indexCurrentSim).getCurrentMap()][i].update();
                 }
             }
         } else if (gameState == pauseState) {
@@ -228,9 +228,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         // memastikan kalau sim berada di world indexRuangan 999
-        if (listSim.get(indexCurrentSim).currentMap == 0) {
-            listSim.get(indexCurrentSim).indexLocationRuangan = 999;
-            listSim.get(indexCurrentSim).currentLocation = "World";
+        if (listSim.get(indexCurrentSim).getCurrentMap() == 0) {
+            listSim.get(indexCurrentSim).setIndexLocationRuangan(999);
+            listSim.get(indexCurrentSim).setCurrentLocation("World");
         }
     }
 
@@ -267,35 +267,35 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2d); // draw the title screen
         } else {
             // draw the background
-            if (listSim.get(indexCurrentSim).currentMap == 0) {
+            if (listSim.get(indexCurrentSim).getCurrentMap() == 0) {
                 tileManager.draw(g2d, 999);
             } else {
-                tileManager.draw(g2d, listSim.get(indexCurrentSim).indexLocationRuangan);
+                tileManager.draw(g2d, listSim.get(indexCurrentSim).getIndexLocationRuangan());
             }
 
             // draw benda
-            if (listSim.get(indexCurrentSim).currentMap == 0) {
-                for (int i = 0; i < listRumah[listSim.get(indexCurrentSim).currentMap].size(); i++) {
-                    if (listRumah[listSim.get(indexCurrentSim).currentMap].get(i) != null) {
-                        listRumah[listSim.get(indexCurrentSim).currentMap].get(i).draw(g2d, this);
+            if (listSim.get(indexCurrentSim).getCurrentMap() == 0) {
+                for (int i = 0; i < listRumah[listSim.get(indexCurrentSim).getCurrentMap()].size(); i++) {
+                    if (listRumah[listSim.get(indexCurrentSim).getCurrentMap()].get(i) != null) {
+                        listRumah[listSim.get(indexCurrentSim).getCurrentMap()].get(i).draw(g2d, this);
                     }
                 }
             } else {
-                for (int i = 0; i < listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
-                        .get(listSim.get(indexCurrentSim).indexLocationRuangan).getBendaRuangan().size(); i++) {
-                    if (listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
-                            .get(listSim.get(indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i) != null) {
-                        listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah()
-                                .get(listSim.get(indexCurrentSim).indexLocationRuangan).getBendaRuangan().get(i)
+                for (int i = 0; i < listSim.get(listSim.get(indexCurrentSim).getIndexRumahYangDimasuki()).getRumah().getRuanganRumah()
+                        .get(listSim.get(indexCurrentSim).getIndexLocationRuangan()).getBendaRuangan().size(); i++) {
+                    if (listSim.get(listSim.get(indexCurrentSim).getIndexRumahYangDimasuki()).getRumah().getRuanganRumah()
+                            .get(listSim.get(indexCurrentSim).getIndexLocationRuangan()).getBendaRuangan().get(i) != null) {
+                        listSim.get(listSim.get(indexCurrentSim).getIndexRumahYangDimasuki()).getRumah().getRuanganRumah()
+                                .get(listSim.get(indexCurrentSim).getIndexLocationRuangan()).getBendaRuangan().get(i)
                                 .draw(g2d, this);
                     }
                 }
             }
 
             // draw npc
-            for (int i = 0; i < npc[listSim.get(indexCurrentSim).currentMap].length; i++) {
-                if (npc[listSim.get(indexCurrentSim).currentMap][i] != null) {
-                    npc[listSim.get(indexCurrentSim).currentMap][i].draw(g2d);
+            for (int i = 0; i < npc[listSim.get(indexCurrentSim).getCurrentMap()].length; i++) {
+                if (npc[listSim.get(indexCurrentSim).getCurrentMap()][i] != null) {
+                    npc[listSim.get(indexCurrentSim).getCurrentMap()][i].draw(g2d);
                 }
             }
 
@@ -324,7 +324,7 @@ public class GamePanel extends JPanel implements Runnable {
             if (keyHandler.checkCurrentLocation) {
                 g2d.setColor(Color.white);
                 g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN,40f));
-                g2d.drawString("Current Location: " + listSim.get(indexCurrentSim).currentLocation, 10, 700);
+                g2d.drawString("Current Location: " + listSim.get(indexCurrentSim).getCurrentLocation(), 10, 700);
             }
 
         }
