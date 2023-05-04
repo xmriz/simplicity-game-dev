@@ -2333,23 +2333,23 @@ public class KeyHandler implements KeyListener {
                 gamePanel.gameState = gamePanel.timerState;
                 gamePanel.ui.currentAksiDone = false;
                 // efek
-                gamePanel.getCurrentSim().mood += (durasi / 5) * 5;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi / 5) * 5;
-                if (gamePanel.getCurrentSim().mood > 100) {
-                    gamePanel.getCurrentSim().mood = 100;
+                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 5) * 5);
+                gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 5) * 5);
+                if (gamePanel.getCurrentSim().getMood() > 100) {
+                    gamePanel.getCurrentSim().setMood(100);
                 }
-                if (gamePanel.getCurrentSim().kekenyangan > 100) {
-                    gamePanel.getCurrentSim().kekenyangan = 100;
+                if (gamePanel.getCurrentSim().getKekenyangan() > 100) {
+                    gamePanel.getCurrentSim().setKekenyangan(100);
                 }
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                    gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
-                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
-                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
-                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    gamePanel.listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).setEfekWaktuTidakTidurCounter(gamePanel.listSim.get(i).getEfekWaktuTidakTidurCounter() + durasi);
+                    if (gamePanel.listSim.get(i).getIsUdahMakanDalamSatuHari()) {
+                        gamePanel.listSim.get(i).setEfekWaktuTidakBuangAirCounter(gamePanel.listSim.get(i).getEfekWaktuTidakBuangAirCounter() + durasi);
                     }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
@@ -2447,23 +2447,23 @@ public class KeyHandler implements KeyListener {
                 gamePanel.gameState = gamePanel.timerState;
                 gamePanel.ui.currentAksiDone = false;
                 // efek
-                gamePanel.getCurrentSim().mood += (durasi / 10) * 10;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi / 10) * 3;
-                if (gamePanel.getCurrentSim().mood > 100) {
-                    gamePanel.getCurrentSim().mood = 100;
+                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 10) * 10);
+                gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 10) * 3);
+                if (gamePanel.getCurrentSim().getMood() > 100) {
+                    gamePanel.getCurrentSim().setMood(100);
                 }
-                if (gamePanel.getCurrentSim().kekenyangan > 100) {
-                    gamePanel.getCurrentSim().kekenyangan = 100;
+                if (gamePanel.getCurrentSim().getKekenyangan() > 100) {
+                    gamePanel.getCurrentSim().setKekenyangan(100);
                 }
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                    gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
-                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
-                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
-                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    gamePanel.listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).setEfekWaktuTidakTidurCounter(gamePanel.listSim.get(i).getEfekWaktuTidakTidurCounter() + durasi);
+                    if (gamePanel.listSim.get(i).getIsUdahMakanDalamSatuHari()) {
+                        gamePanel.listSim.get(i).setEfekWaktuTidakBuangAirCounter(gamePanel.listSim.get(i).getEfekWaktuTidakBuangAirCounter() + durasi);
                     }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
@@ -2560,21 +2560,21 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.currentAksi = "Setel Radio";
                 gamePanel.gameState = gamePanel.timerState;
                 gamePanel.ui.currentAksiDone = false;
-                gamePanel.getCurrentSim().mood += (durasi / 10) * 10;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi / 30) * 1;
-                if (gamePanel.getCurrentSim().mood > 100) {
-                    gamePanel.getCurrentSim().mood = 100;
+                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 10) * 10);
+                gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 30) * 1);
+                if (gamePanel.getCurrentSim().getMood() > 100) {
+                    gamePanel.getCurrentSim().setMood(100);
                 }
-                if (gamePanel.getCurrentSim().kekenyangan > 100) {
-                    gamePanel.getCurrentSim().kekenyangan = 100;
+                if (gamePanel.getCurrentSim().getKekenyangan() > 100) {
+                    gamePanel.getCurrentSim().setKekenyangan(100);
                 }
                 gamePanel.worldTimeCounter += durasi;
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                    gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
-                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
-                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
-                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    gamePanel.listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).setEfekWaktuTidakTidurCounter(gamePanel.listSim.get(i).getEfekWaktuTidakTidurCounter() + durasi);
+                    if (gamePanel.listSim.get(i).getIsUdahMakanDalamSatuHari()) {
+                        gamePanel.listSim.get(i).setEfekWaktuTidakBuangAirCounter(gamePanel.listSim.get(i).getEfekWaktuTidakBuangAirCounter() + durasi);
                     }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
@@ -2672,27 +2672,27 @@ public class KeyHandler implements KeyListener {
                 gamePanel.gameState = gamePanel.timerState;
                 gamePanel.ui.currentAksiDone = false;
                 // efek
-                gamePanel.getCurrentSim().mood += (durasi / 10) * 10;
-                gamePanel.getCurrentSim().kesehatan += (durasi / 10) * 5;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi / 10) * 5;
-                if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
-                    gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
+                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 10) * 10);
+                gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getKesehatan() + (durasi / 10) * 5);
+                gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 10) * 5);
+                if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().maxMood) {
+                    gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().maxMood);
                 }
-                if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
-                    gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
+                if (gamePanel.getCurrentSim().getKesehatan() > gamePanel.getCurrentSim().maxKesehatan) {
+                    gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().maxKesehatan);
                 }
-                if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
-                    gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
+                if (gamePanel.getCurrentSim().getKekenyangan() > gamePanel.getCurrentSim().maxKekenyangan) {
+                    gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().maxKekenyangan);
                 }
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                    gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
-                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
-                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
-                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    gamePanel.listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).setEfekWaktuTidakTidurCounter(gamePanel.listSim.get(i).getEfekWaktuTidakTidurCounter() + durasi);
+                    if (gamePanel.listSim.get(i).getIsUdahMakanDalamSatuHari()) {
+                        gamePanel.listSim.get(i).setEfekWaktuTidakBuangAirCounter(gamePanel.listSim.get(i).getEfekWaktuTidakBuangAirCounter() + durasi);
                     }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
@@ -2797,27 +2797,27 @@ public class KeyHandler implements KeyListener {
                 gamePanel.gameState = gamePanel.timerState;
                 gamePanel.ui.currentAksiDone = false;
                 // efek
-                gamePanel.getCurrentSim().mood += (durasi / 30) * 30;
-                gamePanel.getCurrentSim().kesehatan -= (durasi / 30) * 5;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi / 30) * 10;
-                if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
-                    gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
+                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 30) * 30);
+                gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getKesehatan() - (durasi / 30) * 5);
+                gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 30) * 10);
+                if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().maxMood) {
+                    gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().maxMood);
                 }
-                if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
-                    gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
+                if (gamePanel.getCurrentSim().getKesehatan() > gamePanel.getCurrentSim().maxKesehatan) {
+                    gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().maxKesehatan);
                 }
-                if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
-                    gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
+                if (gamePanel.getCurrentSim().getKekenyangan() > gamePanel.getCurrentSim().maxKekenyangan) {
+                    gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().maxKekenyangan);
                 }
 
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                    gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
-                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
-                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
-                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    gamePanel.listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).setEfekWaktuTidakTidurCounter(gamePanel.listSim.get(i).getEfekWaktuTidakTidurCounter() + durasi);
+                    if (gamePanel.listSim.get(i).getIsUdahMakanDalamSatuHari()) {
+                        gamePanel.listSim.get(i).setEfekWaktuTidakBuangAirCounter(gamePanel.listSim.get(i).getEfekWaktuTidakBuangAirCounter() + durasi);
                     }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
@@ -2921,25 +2921,25 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.currentAksi = "Olahraga";
                 gamePanel.gameState = gamePanel.timerState;
                 gamePanel.ui.currentAksiDone = false;
-                gamePanel.getCurrentSim().mood += (durasi / 20) * 10;
-                gamePanel.getCurrentSim().kesehatan += (durasi / 20) * 5;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi / 20) * 5;
-                if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
-                    gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
+                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 20) * 10);
+                gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getKesehatan() + (durasi / 20) * 5);
+                gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 20) * 5);
+                if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().maxMood) {
+                    gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().maxMood);
                 }
-                if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
-                    gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
+                if (gamePanel.getCurrentSim().getKesehatan() > gamePanel.getCurrentSim().maxKesehatan) {
+                    gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().maxKesehatan);
                 }
-                if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
-                    gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
+                if (gamePanel.getCurrentSim().getKekenyangan() > gamePanel.getCurrentSim().maxKekenyangan) {
+                    gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().maxKekenyangan);
                 }
                 gamePanel.worldTimeCounter += durasi;
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                    gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
-                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
-                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
-                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    gamePanel.listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).setEfekWaktuTidakTidurCounter(gamePanel.listSim.get(i).getEfekWaktuTidakTidurCounter() + durasi);
+                    if (gamePanel.listSim.get(i).getIsUdahMakanDalamSatuHari()) {
+                        gamePanel.listSim.get(i).setEfekWaktuTidakBuangAirCounter(gamePanel.listSim.get(i).getEfekWaktuTidakBuangAirCounter() + durasi);
                     }
                 }
                 threadTemp = gamePanel.ui.startTimerThread(durasi);
@@ -3045,34 +3045,33 @@ public class KeyHandler implements KeyListener {
                 gamePanel.ui.currentAksiDone = false;
 
                 // efek
-                gamePanel.getCurrentSim().mood -= (durasi / 30) * 10;
-                gamePanel.getCurrentSim().kekenyangan -= (durasi / 30) * 10;
-                gamePanel.getCurrentSim().pekerjaan.totalDurasiKerjaPerPekerjaan += durasi;
-                gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji += durasi;
-                if (gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji >= 240) {
-                    gamePanel.getCurrentSim().uang += gamePanel.getCurrentSim().pekerjaan.gaji[gamePanel
-                            .getCurrentSim().pekerjaan.indexPekerjaan]
-                            * (gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji / 240);
-                    gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji -= 240 * (durasi / 240);
+                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() - (durasi / 30) * 10);
+                gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 30) * 10);
+                gamePanel.getCurrentSim().getPekerjaan().totalDurasiKerjaPerPekerjaan += durasi;
+                gamePanel.getCurrentSim().getPekerjaan().durasiKerjaYangBelumDigaji += durasi;
+                if (gamePanel.getCurrentSim().getPekerjaan().durasiKerjaYangBelumDigaji >= 240) {
+                    gamePanel.getCurrentSim().setUang(gamePanel.getCurrentSim().getUang() + gamePanel.getCurrentSim().getPekerjaan().gaji[gamePanel
+                            .getCurrentSim().getPekerjaan().indexPekerjaan]
+                            * (gamePanel.getCurrentSim().getPekerjaan().durasiKerjaYangBelumDigaji / 240));
+                    gamePanel.getCurrentSim().getPekerjaan().durasiKerjaYangBelumDigaji -= 240 * (durasi / 240);
                 }
-                if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
-                    gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
+                if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().maxMood) {
+                    gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().maxMood);
                 }
-                if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
-                    gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
+                if (gamePanel.getCurrentSim().getKesehatan() > gamePanel.getCurrentSim().maxKesehatan) {
+                    gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().maxKesehatan);
                 }
-                if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
-                    gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
+                if (gamePanel.getCurrentSim().getKekenyangan() > gamePanel.getCurrentSim().maxKekenyangan) {
+                    gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().maxKekenyangan);
                 }
-
                 // nambah WorldTimeCounter
                 gamePanel.worldTimeCounter += durasi;
                 gamePanel.worldTimeSatuHariCounter += durasi;
                 for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                    gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += durasi;
-                    gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += durasi;
-                    if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
-                        gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += durasi;
+                    gamePanel.listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob += durasi;
+                    gamePanel.listSim.get(i).setEfekWaktuTidakTidurCounter(gamePanel.listSim.get(i).getEfekWaktuTidakTidurCounter() + durasi);
+                    if (gamePanel.listSim.get(i).getIsUdahMakanDalamSatuHari()) {
+                        gamePanel.listSim.get(i).setEfekWaktuTidakBuangAirCounter(gamePanel.listSim.get(i).getEfekWaktuTidakBuangAirCounter() + durasi);
                     }
                 }
 
@@ -3143,16 +3142,16 @@ public class KeyHandler implements KeyListener {
                 if (gamePanel.getCurrentSim().getUang() >= (int) gamePanel
                         .getCurrentSim().getPekerjaan().gaji[gamePanel.ui.commandNumber] / 2) {
                     gamePanel.getCurrentSim().getPekerjaan().indexPekerjaan = gamePanel.ui.commandNumber;
-                    gamePanel.getCurrentSim().uang -= (int) gamePanel
-                            .getCurrentSim().pekerjaan.gaji[gamePanel.ui.commandNumber] / 2;
+                    gamePanel.getCurrentSim().setUang(gamePanel.getCurrentSim().getUang() - (int) gamePanel
+                            .getCurrentSim().getPekerjaan().gaji[gamePanel.ui.commandNumber] / 2);
                     gamePanel.ui.currentDialog = "Pekerjaan berhasil diganti menjadi\n" + gamePanel
-                            .getCurrentSim().pekerjaan.listPekerjaan[gamePanel.getCurrentSim().pekerjaan.indexPekerjaan]
+                            .getCurrentSim().getPekerjaan().listPekerjaan[gamePanel.getCurrentSim().getPekerjaan().indexPekerjaan]
                             + ".";
                     cursorSound();
                     gamePanel.ui.commandNumber = 0;
-                    gamePanel.getCurrentSim().pekerjaan.durasiKerjaYangBelumDigaji = 0;
-                    gamePanel.getCurrentSim().pekerjaan.totalDurasiKerjaPerPekerjaan = 0;
-                    gamePanel.getCurrentSim().pekerjaan.isCanStartPekerjaan = false;
+                    gamePanel.getCurrentSim().getPekerjaan().durasiKerjaYangBelumDigaji = 0;
+                    gamePanel.getCurrentSim().getPekerjaan().totalDurasiKerjaPerPekerjaan = 0;
+                    gamePanel.getCurrentSim().getPekerjaan().isCanStartPekerjaan = false;
                 } else {
                     gamePanel.ui.charIndex = 0;
                     gamePanel.ui.combinedText = "";
@@ -3223,7 +3222,7 @@ public class KeyHandler implements KeyListener {
                 cursorSound();
                 gamePanel.ui.commandNumber = 0;
             }
-        } else if (gamePanel.getCurrentSim().pekerjaan.isCanStartPekerjaan) {
+        } else if (gamePanel.getCurrentSim().getPekerjaan().isCanStartPekerjaan) {
             if (keyCode == KeyEvent.VK_UP) {
                 gamePanel.ui.commandNumber--;
                 if (gamePanel.ui.commandNumber < 0) {

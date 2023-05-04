@@ -87,10 +87,10 @@ public class TileManager {
         int tileNum;
 
         while (worldCol < gamePanel.maxWorldCol && worldRow < gamePanel.maxWorldRow){
-            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap == 0){
-                tileNum = mapTileNum[gamePanel.listSim.get(gamePanel.indexCurrentSim).currentMap][worldCol][worldRow];
+            if (gamePanel.listSim.get(gamePanel.indexCurrentSim).getCurrentMap() == 0){
+                tileNum = mapTileNum[gamePanel.listSim.get(gamePanel.indexCurrentSim).getCurrentMap()][worldCol][worldRow];
             } else{
-                tileNum = gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).indexRumahYangDimasuki).rumah.getRuanganRumah().get(indexRuangan).getMapRuangan()[worldCol][worldRow];
+                tileNum = gamePanel.listSim.get(gamePanel.listSim.get(gamePanel.indexCurrentSim).getIndexRumahYangDimasuki()).getRumah().getRuanganRumah().get(indexRuangan).getMapRuangan()[worldCol][worldRow];
             }
 
             int worldX = worldCol * gamePanel.tileSize; // position of the tile in the world 
