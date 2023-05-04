@@ -14,12 +14,12 @@ import entity.*;
 // import map.Map;
 
 public class UI {
-    GamePanel gamePanel;
-    Graphics2D g2d;
+    private GamePanel gamePanel;
+    private Graphics2D g2d;
 
-    Font maruMonica;
+    private Font maruMonica;
 
-    String inputFirstSimName = "";
+    private String inputFirstSimName = "";
 
     String inputNamaRuangan = "";
 
@@ -65,6 +65,15 @@ public class UI {
         }
     }
 
+    public String getInputFirstSimName(){
+        return inputFirstSimName;
+    }
+    public void setInputFirstSimName(String inputFirstSimName){
+        this.inputFirstSimName = inputFirstSimName;
+    }
+    public void addInputFirstSimName(String nextChar){
+        inputFirstSimName += nextChar;
+    }
     public void addMessage(String message) {
         this.message.add(message);
         messageCounter.add(0);

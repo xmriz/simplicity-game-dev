@@ -48,7 +48,7 @@ public class KeyHandler implements KeyListener {
                 } else if (keyCode == KeyEvent.VK_ENTER) {
                     if (gamePanel.ui.commandNumber == 0) {
                         gamePanel.ui.titleScreenState = 1; // go to input name screen
-                        gamePanel.ui.inputFirstSimName = "";
+                        gamePanel.ui.setInputFirstSimName("");
                     } else if (gamePanel.ui.commandNumber == 1) {
                         gamePanel.ui.titleScreenState = 2;
                         gamePanel.ui.commandNumber = 0;
@@ -74,9 +74,9 @@ public class KeyHandler implements KeyListener {
                         gamePanel.ui.commandNumber = 0;
                     }
                     cursorSound();
-                } else if (keyCode == KeyEvent.VK_BACK_SPACE && gamePanel.ui.inputFirstSimName.length() > 0) {
-                    gamePanel.ui.inputFirstSimName = gamePanel.ui.inputFirstSimName.substring(0,
-                            gamePanel.ui.inputFirstSimName.length() - 1);
+                } else if (keyCode == KeyEvent.VK_BACK_SPACE && gamePanel.ui.getInputFirstSimName().length() > 0) {
+                    gamePanel.ui.setInputFirstSimName(gamePanel.ui.getInputFirstSimName().substring(0,
+                    gamePanel.ui.getInputFirstSimName().length() - 1));
                     cursorSound();
                 } else if (keyCode == KeyEvent.VK_ENTER) {
                     if (gamePanel.ui.commandNumber == 0) { // start game
@@ -102,7 +102,7 @@ public class KeyHandler implements KeyListener {
                         gamePanel.isOneSim = true;
                         gamePanel.worldTimeSatuHariCounter = 0;
 
-                        gamePanel.listSim.get(0).setNama(gamePanel.ui.inputFirstSimName);
+                        gamePanel.listSim.get(0).setNama(gamePanel.ui.getInputFirstSimName());
                         if (gamePanel.listSim.get(0).getNama().length() == 0) {
                             gamePanel.listSim.get(0).setNama("Sim");
                         } else {
@@ -123,93 +123,93 @@ public class KeyHandler implements KeyListener {
                     } else if (gamePanel.ui.commandNumber == 1) { // back to Title Screen 0
                         gamePanel.ui.titleScreenState = 0;
                         gamePanel.ui.commandNumber = 0;
-                        gamePanel.ui.inputFirstSimName = "";
+                        gamePanel.ui.setInputFirstSimName("");
                     }
                     cursorSound();
                 }
 
                 // input name
-                if (gamePanel.ui.inputFirstSimName.length() < 25) {
+                if (gamePanel.ui.getInputFirstSimName().length() < 25) {
                     if (keyCode == KeyEvent.VK_A) {
-                        gamePanel.ui.inputFirstSimName += "A";
+                        gamePanel.ui.addInputFirstSimName("A");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_B) {
-                        gamePanel.ui.inputFirstSimName += "B";
+                        gamePanel.ui.addInputFirstSimName("B");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_C) {
-                        gamePanel.ui.inputFirstSimName += "C";
+                        gamePanel.ui.addInputFirstSimName("C");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_D) {
-                        gamePanel.ui.inputFirstSimName += "D";
+                        gamePanel.ui.addInputFirstSimName("D");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_E) {
-                        gamePanel.ui.inputFirstSimName += "E";
+                        gamePanel.ui.addInputFirstSimName("E");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_F) {
-                        gamePanel.ui.inputFirstSimName += "F";
+                        gamePanel.ui.addInputFirstSimName("F");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_G) {
-                        gamePanel.ui.inputFirstSimName += "G";
+                        gamePanel.ui.addInputFirstSimName("G");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_H) {
-                        gamePanel.ui.inputFirstSimName += "H";
+                        gamePanel.ui.addInputFirstSimName("H");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_I) {
-                        gamePanel.ui.inputFirstSimName += "I";
+                        gamePanel.ui.addInputFirstSimName("I");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_J) {
-                        gamePanel.ui.inputFirstSimName += "J";
+                        gamePanel.ui.addInputFirstSimName("J");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_K) {
-                        gamePanel.ui.inputFirstSimName += "K";
+                        gamePanel.ui.addInputFirstSimName("K");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_L) {
-                        gamePanel.ui.inputFirstSimName += "L";
+                        gamePanel.ui.addInputFirstSimName("L");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_M) {
-                        gamePanel.ui.inputFirstSimName += "M";
+                        gamePanel.ui.addInputFirstSimName("M");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_N) {
-                        gamePanel.ui.inputFirstSimName += "N";
+                        gamePanel.ui.addInputFirstSimName("N");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_O) {
-                        gamePanel.ui.inputFirstSimName += "O";
+                        gamePanel.ui.addInputFirstSimName("O");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_P) {
-                        gamePanel.ui.inputFirstSimName += "P";
+                        gamePanel.ui.addInputFirstSimName("P");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_Q) {
-                        gamePanel.ui.inputFirstSimName += "Q";
+                        gamePanel.ui.addInputFirstSimName("Q");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_R) {
-                        gamePanel.ui.inputFirstSimName += "R";
+                        gamePanel.ui.addInputFirstSimName("R");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_S) {
-                        gamePanel.ui.inputFirstSimName += "S";
+                        gamePanel.ui.addInputFirstSimName("S");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_T) {
-                        gamePanel.ui.inputFirstSimName += "T";
+                        gamePanel.ui.addInputFirstSimName("T");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_U) {
-                        gamePanel.ui.inputFirstSimName += "U";
+                        gamePanel.ui.addInputFirstSimName("U");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_V) {
-                        gamePanel.ui.inputFirstSimName += "V";
+                        gamePanel.ui.addInputFirstSimName("V");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_W) {
-                        gamePanel.ui.inputFirstSimName += "W";
+                        gamePanel.ui.addInputFirstSimName("W");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_X) {
-                        gamePanel.ui.inputFirstSimName += "X";
+                        gamePanel.ui.addInputFirstSimName("X");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_Y) {
-                        gamePanel.ui.inputFirstSimName += "Y";
+                        gamePanel.ui.addInputFirstSimName("Y");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_Z) {
-                        gamePanel.ui.inputFirstSimName += "Z";
+                        gamePanel.ui.addInputFirstSimName("Z");
                         cursorSound();
                     } else if (keyCode == KeyEvent.VK_SPACE) {
-                        gamePanel.ui.inputFirstSimName += " ";
+                        gamePanel.ui.addInputFirstSimName(" ");
                         cursorSound();
                     }
                 }

@@ -23,26 +23,6 @@ public class CutsceneManager {
     // scene number
     private final int ending = 0;
 
-    public int getScenePhase(){
-        return scenePhase;
-    }
-
-    public void setScenePhase(int scenePhase){
-        this.scenePhase = scenePhase;
-    }
-
-    public int getSceneNum(){
-        return sceneNum;
-    }
-
-    public void setSceneNum(int sceneNum){
-        this.sceneNum = sceneNum;
-    }
-
-    public int getEnding(){
-        return ending;
-    }
-
     public CutsceneManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
 
@@ -121,6 +101,26 @@ public class CutsceneManager {
                 "Institut Teknologi Bandung\n" +
                 "\n\n\n\n" + 
                 "Terima kasih telah bermain...\n";
+    }
+
+    public int getScenePhase(){
+        return scenePhase;
+    }
+
+    public void setScenePhase(int scenePhase){
+        this.scenePhase = scenePhase;
+    }
+
+    public int getSceneNum(){
+        return sceneNum;
+    }
+
+    public void setSceneNum(int sceneNum){
+        this.sceneNum = sceneNum;
+    }
+
+    public int getEnding(){
+        return ending;
     }
 
     public void draw (Graphics2D g2d){
