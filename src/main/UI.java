@@ -335,6 +335,15 @@ public class UI {
         int y = gamePanel.screenHeight / 2;
 
         g2d.drawString(message, x, y);
+
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Play", x2 + 24, y2 + 60);
     }
 
     // DIALOG SCREEN
@@ -426,10 +435,31 @@ public class UI {
         value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).mood + "/"
                 + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxMood);
         g2d.drawString(value, tailX, textY);
+
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
     }
 
     // INVENTORY SCREEN
     public void drawInventoryScreen(Entity entity, int slotCol, int slotRow) {
+        // hint 
+        // draw hint window
+        if (entity instanceof Sim){
+            int x = gamePanel.tileSize * 2;
+            int y = gamePanel.tileSize * 13;
+            int width = gamePanel.tileSize * 6;
+            int height = gamePanel.tileSize * 2;
+            drawSubWindow(x, y, width, height);
+            g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+            g2d.drawString("[ESC] Back", x + 24, y + 60);
+        }
+
         // create frame
         int frameX = gamePanel.tileSize * 2;
         int frameY = gamePanel.tileSize;
@@ -730,7 +760,7 @@ public class UI {
         int width = gamePanel.tileSize * 6;
         int height = gamePanel.tileSize * 2;
         drawSubWindow(x, y, width, height);
-        g2d.drawString("[ESC/B] Back", x + 24, y + 60);
+        g2d.drawString("[ESC] Back", x + 24, y + 60);
 
         // draw sim uang window
         x = gamePanel.tileSize * 8;
@@ -977,6 +1007,15 @@ public class UI {
             }
         }
 
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
+
         // batas
     }
 
@@ -1034,12 +1073,22 @@ public class UI {
         y = gamePanel.tileSize * 13;
         width = gamePanel.tileSize * 6;
         height = gamePanel.tileSize * 2;
-        drawSubWindow(x, y, width, height);
+        drawSubWindow(x, y, width-24, height);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
         g2d.drawString("Harga: 1500", x + 24, y + 60);
+
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2 + width, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + width + 24, y2 + 60);
     }
 
     public void drawInputKoordinatBendaScreen(String judul) {
+
         // draw window
         int x = getXforCenteredText(judul);
         x -= 3 * gamePanel.tileSize;
@@ -1073,6 +1122,15 @@ public class UI {
         g2d2.setColor(Color.BLACK);
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
     }
 
     public void drawInputNamaRuanganScreen(String judul) {
@@ -1107,6 +1165,15 @@ public class UI {
         g2d2.setColor(Color.BLACK);
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
     }
 
     public void drawInputSimNameScreen(String judul) {
@@ -1140,6 +1207,15 @@ public class UI {
         g2d2.setColor(Color.BLACK);
         g2d2.setFont(g2d2.getFont().deriveFont(Font.PLAIN, 30f));
         g2d2.drawString(gamePanel.ui.inputText, x + 10, y + gamePanel.tileSize - 14);
+
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
 
     }
 
@@ -1267,16 +1343,16 @@ public class UI {
     public void drawMenuScreen() {
         // create frame
         int frameX = gamePanel.tileSize * 4;
-        int frameY = gamePanel.tileSize * 3;
+        int frameY = gamePanel.tileSize * 2;
         int frameWidth = gamePanel.screenWidth - gamePanel.tileSize * 8;
         int frameHeight = gamePanel.screenHeight - gamePanel.tileSize * 6;
-        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight-10);
 
         // title
         g2d.setFont(g2d.getFont().deriveFont(32f));
         String text = "OPTIONS";
         int x = getXforCenteredText(text);
-        int y = gamePanel.tileSize * 4;
+        int y = gamePanel.tileSize * 3;
         g2d.setColor(Color.WHITE);
         g2d.drawString(text, x, y);
 
@@ -1369,6 +1445,15 @@ public class UI {
                 gamePanel.gameState = gamePanel.playState;
             }
         }
+
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
     }
 
     public void drawSaveScreen() {
@@ -1573,6 +1658,13 @@ public class UI {
                 }
             }
         }
+
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        g2d.setColor(Color.white);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 85);
     }
 
     public void drawMiniMap(Graphics2D g2d) {
@@ -1720,6 +1812,8 @@ public class UI {
 
     // TIMER SCREEN
     public void drawTimerScreen() {
+        gamePanel.keyHandler.checkWorldTime = false;
+        gamePanel.keyHandler.checkCurrentLocation = false;
         // draw window
         int x = getXforCenteredText("Sedang " + currentAksi + "...");
         x -= 4 * gamePanel.tileSize;
@@ -1760,9 +1854,18 @@ public class UI {
     // ----------------------------------- BATAS SUCI
     // ----------------------------------------
     public void drawInputDurasiTidurScreen(String judul) {
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
+
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 4 * gamePanel.tileSize;
+        x -= 2 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1796,9 +1899,18 @@ public class UI {
     }
 
     public void drawInputDurasiNontonScreen(String judul) {
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
+
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 4 * gamePanel.tileSize;
+        x -= 2 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1832,9 +1944,18 @@ public class UI {
     }
 
     public void drawInputDurasiMandiScreen(String judul) {
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
+
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 4 * gamePanel.tileSize;
+        x -= 2 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1868,9 +1989,18 @@ public class UI {
     }
 
     public void drawInputDurasiShalatScreen(String judul) {
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
+
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 4 * gamePanel.tileSize;
+        x -= 2 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1904,9 +2034,18 @@ public class UI {
     }
 
     public void drawInputDurasiBacaBukuScreen(String judul) {
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
+
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 4 * gamePanel.tileSize;
+        x -= 2 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1940,9 +2079,18 @@ public class UI {
     }
 
     public void drawInputDurasiRadioScreen(String judul) {
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
+
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 4 * gamePanel.tileSize;
+        x -= 2 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -1976,9 +2124,18 @@ public class UI {
     }
 
     public void drawInputDurasiSiramTanamanScreen(String judul) {
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
+
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 4 * gamePanel.tileSize;
+        x -= 2 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -2012,9 +2169,18 @@ public class UI {
     }
 
     public void drawInputDurasiMainGameScreen(String judul) {
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
+
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 4 * gamePanel.tileSize;
+        x -= 2 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -2092,12 +2258,40 @@ public class UI {
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
         g2d.drawString("Harga: " + (int) gamePanel.getCurrentSim().pekerjaan.gaji[commandNumber] / 2, x + 24, y + 60);
 
+        // TODO O OO
+        // // draw hint text
+        // x = gamePanel.tileSize * 2;
+        // y = gamePanel.tileSize * 13;
+        // width = gamePanel.tileSize * 6;
+        // height = gamePanel.tileSize * 2;
+        // drawSubWindow(x, y, width-24, height);
+        // g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        // g2d.drawString("Harga: 1500", x + 24, y + 60);
+
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2 + width +24, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + width + 48, y2 + 60);
+
     }
 
     public void drawInputDurasiOlahragaScreen(String judul) {
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
+
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 4 * gamePanel.tileSize;
+        x -= 2 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -2131,9 +2325,18 @@ public class UI {
     }
 
     public void drawKerjaScreen(String judul) {
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
+
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 4 * gamePanel.tileSize;
+        x -= 3 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;
@@ -2219,9 +2422,18 @@ public class UI {
     }
 
     public void drawInputDurasiKerjaScreen(String judul) {
+        // hint 
+        int x2 = gamePanel.tileSize * 2;
+        int y2 = gamePanel.tileSize * 13;
+        int width2 = gamePanel.tileSize * 6;
+        int height2 = gamePanel.tileSize * 2;
+        drawSubWindow(x2, y2, width2, height2);
+        g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
+        g2d.drawString("[ESC] Back", x2 + 24, y2 + 60);
+
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 4 * gamePanel.tileSize;
+        x -= 2 * gamePanel.tileSize;
         int y = gamePanel.tileSize * 4;
         int width = gamePanel.screenWidth - 2 * x;
         int height = gamePanel.screenHeight - y - gamePanel.tileSize * 5;

@@ -1223,6 +1223,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.ui.commandNumber = 0;
             gamePanel.gameState = gamePanel.inventoryState;
             gamePanel.listSim.get(gamePanel.indexCurrentSim).canObtainItem(tempFurnitur); // INI JANGAN DIHAPUS
+            cursorSound();
         }
     }
 
