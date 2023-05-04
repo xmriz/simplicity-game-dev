@@ -416,15 +416,15 @@ public class UI {
         g2d.drawString(" : " + value, tailX, textY);
         textY += lineHeight;
         value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).getKesehatan() + "/"
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxKesehatan);
+                + gamePanel.listSim.get(gamePanel.indexCurrentSim).getMaxKesehatan());
         g2d.drawString(value, tailX, textY);
         textY += lineHeight;
         value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).getKekenyangan() + "/"
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxKekenyangan);
+                + gamePanel.listSim.get(gamePanel.indexCurrentSim).getMaxKekenyangan());
         g2d.drawString(value, tailX, textY);
         textY += lineHeight;
         value = String.valueOf(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).getMood() + "/"
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).maxMood);
+                + gamePanel.listSim.get(gamePanel.indexCurrentSim).getMaxMood());
         g2d.drawString(value, tailX, textY);
     }
 
@@ -1225,8 +1225,8 @@ public class UI {
 
                         // efek
                         gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + 10);
-                        if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().maxMood) {
-                            gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().maxMood);
+                        if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().getMaxMood()) {
+                            gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMaxMood());
                         }
 
                         // simpan makanan yang udah jadi ke inventory

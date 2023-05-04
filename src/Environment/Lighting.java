@@ -34,8 +34,8 @@ public class Lighting {
             g2d.setColor(new Color(0, 0, 0, 0.8f));
         } else {
             // get the center x and y of the light circle
-            int centerX = gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX + gamePanel.tileSize / 2;
-            int centerY = gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY + gamePanel.tileSize / 2;
+            int centerX = gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX() + gamePanel.tileSize / 2;
+            int centerY = gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY() + gamePanel.tileSize / 2;
 
             // create a gradation effect within the light circle
             Color color[] = new Color[10];

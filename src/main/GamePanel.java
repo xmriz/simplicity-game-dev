@@ -116,7 +116,6 @@ public class GamePanel extends JPanel implements Runnable {
     public final int saveState = 31;
     public final int melihatWaktuState = 32;
     public final int cutsceneState = 33;
-    public Object cutsceneManager;
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {

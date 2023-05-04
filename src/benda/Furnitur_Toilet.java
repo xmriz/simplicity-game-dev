@@ -38,14 +38,14 @@ public class Furnitur_Toilet extends Furnitur {
         gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan()-20);
         gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood()+10);
         gamePanel.getCurrentSim().setEfekWaktuTidakBuangAirCounter(0);
-        if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().maxMood) {
-            gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().maxMood);
+        if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().getMaxMood()) {
+            gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMaxMood());
         }
-        if (gamePanel.getCurrentSim().getKesehatan() > gamePanel.getCurrentSim().maxKesehatan) {
-            gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().maxKesehatan);
+        if (gamePanel.getCurrentSim().getKesehatan() > gamePanel.getCurrentSim().getMaxKesehatan()) {
+            gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getMaxKesehatan());
         }
-        if (gamePanel.getCurrentSim().getKekenyangan() > gamePanel.getCurrentSim().maxKekenyangan) {
-            gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().maxKekenyangan);
+        if (gamePanel.getCurrentSim().getKekenyangan() > gamePanel.getCurrentSim().getMaxKekenyangan()) {
+            gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getMaxKekenyangan());
         }
         gamePanel.ui.tempDurasi = 10;
         gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);

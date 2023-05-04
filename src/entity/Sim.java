@@ -15,11 +15,11 @@ public class Sim extends Entity {
     private Pekerjaan pekerjaan = new Pekerjaan();
     private int uang = 99999999;
     private int kesehatan = 80;
-    public final int maxKesehatan = 100;
+    private final int maxKesehatan = 100;
     private int kekenyangan = 80;
-    public final int maxKekenyangan = 100;
+    private final int maxKekenyangan = 100;
     private int mood = 80;
-    public final int maxMood = 100;
+    private final int maxMood = 100;
     private boolean lightUpdated = false;
     private Benda currentLight;
     private String currentLocation;
@@ -36,8 +36,8 @@ public class Sim extends Entity {
 
     KeyHandler keyHandler;
 
-    public final int screenX;
-    public final int screenY;
+    private final int screenX;
+    private final int screenY;
 
     private Rumah rumah;
 
@@ -90,6 +90,10 @@ public class Sim extends Entity {
         this.kesehatan=kesehatan;
     }
 
+    public int getMaxKesehatan(){
+        return maxKesehatan;
+    }
+
     public int getKekenyangan(){
         return kekenyangan;
     }
@@ -98,12 +102,20 @@ public class Sim extends Entity {
         this.kekenyangan=kekenyangan;
     }
 
+    public int getMaxKekenyangan(){
+        return maxKekenyangan;
+    }
+
     public int getMood(){
         return mood;
     }
 
     public void setMood(int mood){
         this.mood=mood;
+    }
+
+    public int getMaxMood(){
+        return maxMood;
     }
 
     public boolean getLightUpdated(){
@@ -208,6 +220,14 @@ public class Sim extends Entity {
 
     public void setTempDialogBarang(String tempDialogBarang){
         this.tempDialogBarang=tempDialogBarang;
+    }
+
+    public int getScreenX(){
+        return screenX;
+    }
+
+    public int getScreenY(){
+        return screenY;
     }
 
     public Rumah getRumah(){

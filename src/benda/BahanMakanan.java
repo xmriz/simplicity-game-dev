@@ -28,14 +28,14 @@ public abstract class BahanMakanan extends Benda {
 
     public void eat(Sim sim){
         sim.setKekenyangan(sim.getKekenyangan()+kekenyangan);
-        if (sim.getKekenyangan() > sim.maxKekenyangan){
-            sim.setKekenyangan(sim.maxKekenyangan);
+        if (sim.getKekenyangan() > sim.getMaxKekenyangan()){
+            sim.setKekenyangan(sim.getMaxKekenyangan());
         }
-        if (sim.getMood() > sim.maxMood) {
-            sim.setMood(sim.maxMood);
+        if (sim.getMood() > sim.getMaxMood()) {
+            sim.setMood(sim.getMaxMood());
         }
-        if (sim.getKesehatan() > sim.maxKesehatan) {
-            sim.setKesehatan(sim.maxKesehatan);
+        if (sim.getKesehatan() > sim.getMaxKesehatan()) {
+            sim.setKesehatan(sim.getMaxKesehatan());
         }
     }
 } 

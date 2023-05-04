@@ -112,18 +112,18 @@ public abstract class Entity {
     public void draw(Graphics2D g2d) {
         BufferedImage image = null;
         int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX; // position of the tile in the screen
+                + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX(); // position of the tile in the screen
         int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY;
+                + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY();
 
         if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
+                + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX()
                 && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
-                        - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
+                        - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenX()
                 && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
-                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY
+                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY()
                 && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
-                        - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY) {
+                        - gamePanel.listSim.get(gamePanel.indexCurrentSim).getScreenY()) {
 
             switch (direction) {
                 case "up":

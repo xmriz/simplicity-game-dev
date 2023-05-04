@@ -196,14 +196,14 @@ public class EventHandler {
                         // efek
                         gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi/30)*10);
                         gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi/30)*10);
-                        if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().maxMood) {
-                                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().maxMood); 
+                        if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().getMaxMood()) {
+                                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMaxMood()); 
                         }
-                        if (gamePanel.getCurrentSim().getKesehatan() > gamePanel.getCurrentSim().maxKesehatan) {
-                                gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().maxKesehatan);
+                        if (gamePanel.getCurrentSim().getKesehatan() > gamePanel.getCurrentSim().getMaxKesehatan()) {
+                                gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getMaxKesehatan());
                         }
-                        if (gamePanel.getCurrentSim().getKekenyangan() > gamePanel.getCurrentSim().maxKekenyangan) {
-                                gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().maxKekenyangan);
+                        if (gamePanel.getCurrentSim().getKekenyangan() > gamePanel.getCurrentSim().getMaxKekenyangan()) {
+                                gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getMaxKekenyangan());
                         }
 
                         // matiiin mini map
