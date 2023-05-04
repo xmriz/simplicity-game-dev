@@ -21,9 +21,9 @@ public class UI {
 
     private String inputFirstSimName = "";
 
-    String inputNamaRuangan = "";
+    private String inputNamaRuangan = "";
 
-    String inputText = "";
+    private String inputText = "";
 
     boolean inputTextDone = false;
 
@@ -74,6 +74,27 @@ public class UI {
     public void addInputFirstSimName(String nextChar){
         inputFirstSimName += nextChar;
     }
+
+    public String getInputNamaRuangan(){
+        return inputNamaRuangan;
+    }
+    public void setInputNamaRuangan(String inputNamaRuangan){
+        this.inputNamaRuangan = inputNamaRuangan;
+    }
+    public void addInputNamaRuangan(String nextChar){
+        inputNamaRuangan += nextChar;
+    }
+
+    public String getInputText(){
+        return inputText;
+    }
+    public void setInputText(String inputText){
+        this.inputText = inputText;
+    }
+    public void addInputText(String nextChar){
+        inputText += nextChar;
+    }
+
     public void addMessage(String message) {
         this.message.add(message);
         messageCounter.add(0);
