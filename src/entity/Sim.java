@@ -333,7 +333,7 @@ public class Sim extends Entity {
 
         // random pekerjaan index 0-4
         Random rand = new Random();
-        pekerjaan.indexPekerjaan = rand.nextInt(5);
+        pekerjaan.setIndexPekerjaan(rand.nextInt(5));
 
         screenX = gamePanel.screenWidth / 2 - (gamePanel.tileSize / 2); // set the player's position on the screen
                                                                         // (always center)
@@ -701,7 +701,8 @@ public class Sim extends Entity {
                             gamePanel.worldTimeSatuHariCounter += 30;
 
                             for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                                gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += 30;
+                                gamePanel.listSim.get(i).pekerjaan.setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.listSim
+                                    .get(i).pekerjaan.getWorldTimeCounterForStartJobAfterChangeJob() + 30);
                                 gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += 30;
                                 if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
                                     gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += 30;
@@ -753,7 +754,8 @@ public class Sim extends Entity {
                             gamePanel.worldTimeCounter += 30;
                             gamePanel.worldTimeSatuHariCounter += 30;
                             for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                                gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += 30;
+                                gamePanel.listSim.get(i).pekerjaan.setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.listSim
+                                    .get(i).pekerjaan.getWorldTimeCounterForStartJobAfterChangeJob() + 30);
                                 gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += 30;
                                 if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari) {
                                     gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += 30;

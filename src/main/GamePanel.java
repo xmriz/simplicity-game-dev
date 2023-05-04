@@ -171,9 +171,9 @@ public class GamePanel extends JPanel implements Runnable {
         
 
         for (int i = 0; i < listSim.size(); i++) {
-            if (listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob >= 720) {
-                listSim.get(i).getPekerjaan().isCanStartPekerjaan = true;
-                listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob = 0;
+            if (listSim.get(i).getPekerjaan().getWorldTimeCounterForStartJobAfterChangeJob() >= 720) {
+                listSim.get(i).getPekerjaan().setIsCanStartPekerjaan(true);
+                listSim.get(i).getPekerjaan().setWorldTimeCounterForStartJobAfterChangeJob(0);
                 
             }
 
@@ -184,10 +184,10 @@ public class GamePanel extends JPanel implements Runnable {
                 listSim.get(i).setIsUdahMakanDalamSatuHari(false);
             }
 
-            if (listSim.get(i).getPekerjaan().totalDurasiKerjaPerPekerjaan >= 720) {
-                listSim.get(i).getPekerjaan().isCanChangePekerjaan = true;
+            if (listSim.get(i).getPekerjaan().getTotalDurasiKerjaPerPekerjaan() >= 720) {
+                listSim.get(i).getPekerjaan().setIsCanChangePekerjaan(true);
             } else {
-                listSim.get(i).getPekerjaan().isCanChangePekerjaan = false;   
+                listSim.get(i).getPekerjaan().setIsCanChangePekerjaan(false);   
             }
 
             if (listSim.get(i).getEfekWaktuTidakTidurCounter() >= 600){

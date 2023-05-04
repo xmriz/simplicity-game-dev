@@ -186,7 +186,8 @@ public class EventHandler {
 
                         // efek waktu
                         for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                                gamePanel.listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob += durasi;
+                                gamePanel.listSim.get(i).getPekerjaan().setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.listSim
+                                        .get(i).getPekerjaan().getWorldTimeCounterForStartJobAfterChangeJob() + durasi);
                                 gamePanel.listSim.get(i).setEfekWaktuTidakTidurCounter(gamePanel.listSim.get(i).getEfekWaktuTidakTidurCounter() + durasi);
                                 if (gamePanel.listSim.get(i).getIsUdahMakanDalamSatuHari()){
                                         gamePanel.listSim.get(i).setEfekWaktuTidakBuangAirCounter(gamePanel.listSim.get(i).getEfekWaktuTidakBuangAirCounter() + durasi);

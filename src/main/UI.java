@@ -409,7 +409,7 @@ public class UI {
         g2d.drawString(" : " + gamePanel.listSim.get(gamePanel.indexCurrentSim).getNama(), tailX, textY);
         textY += lineHeight;
         g2d.drawString(" : "
-                + gamePanel.getCurrentSim().getPekerjaan().listPekerjaan[gamePanel.getCurrentSim().getPekerjaan().indexPekerjaan],
+                + gamePanel.getCurrentSim().getPekerjaan().getListPekerjaan()[gamePanel.getCurrentSim().getPekerjaan().getIndexPekerjaan()],
                 tailX, textY);
         textY += lineHeight;
         value = String.valueOf(gamePanel.listSim.get(gamePanel.indexCurrentSim).getUang());
@@ -968,7 +968,7 @@ public class UI {
                 Sim sim = gamePanel.listSim.get(itemIndex);
                 g2d.drawString(" : " + sim.getNama(), iTailX, textY);
                 textY += lineHeight;
-                g2d.drawString(" : " + sim.getPekerjaan().listPekerjaan[sim.getPekerjaan().indexPekerjaan], iTailX, textY);
+                g2d.drawString(" : " + sim.getPekerjaan().getListPekerjaan()[sim.getPekerjaan().getIndexPekerjaan()], iTailX, textY);
                 textY += lineHeight;
                 iValue = String.valueOf(" : " + sim.getRumah().getColRumah() + ", " + sim.getRumah().getRowRumah());
                 g2d.drawString(iValue, iTailX, textY);
@@ -1237,7 +1237,8 @@ public class UI {
 
                         // nambah world time
                         for (int i = 0; i < gamePanel.listSim.size(); i++) {
-                            gamePanel.listSim.get(i).getPekerjaan().worldTimeCounterForStartJobAfterChangeJob += durasi;
+                            gamePanel.listSim.get(i).getPekerjaan().setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.listSim.get(i)
+                                .getPekerjaan().getWorldTimeCounterForStartJobAfterChangeJob() + durasi);
                             gamePanel.listSim.get(i).setEfekWaktuTidakTidurCounter(gamePanel.listSim.get(i).getEfekWaktuTidakTidurCounter() + durasi);
                             if (gamePanel.listSim.get(i).getIsUdahMakanDalamSatuHari()){
                                 gamePanel.listSim.get(i).setEfekWaktuTidakBuangAirCounter(gamePanel.listSim.get(i).getEfekWaktuTidakBuangAirCounter() + durasi);
@@ -2072,8 +2073,8 @@ public class UI {
         y += 15;
 
         // draw pekerjaan
-        for (int i = 0; i < gamePanel.getCurrentSim().getPekerjaan().listPekerjaan.length; i++) {
-            text = gamePanel.getCurrentSim().getPekerjaan().listPekerjaan[i];
+        for (int i = 0; i < gamePanel.getCurrentSim().getPekerjaan().getListPekerjaan().length; i++) {
+            text = gamePanel.getCurrentSim().getPekerjaan().getListPekerjaan()[i];
             x = getXforCenteredText(text);
             y += gamePanel.tileSize - 10;
             g2d.drawString(text, x, y);
@@ -2090,7 +2091,7 @@ public class UI {
         height = gamePanel.tileSize * 2;
         drawSubWindow(x, y, width, height);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
-        g2d.drawString("Harga: " + (int) gamePanel.getCurrentSim().getPekerjaan().gaji[commandNumber] / 2, x + 24, y + 60);
+        g2d.drawString("Harga: " + (int) gamePanel.getCurrentSim().getPekerjaan().getGaji()[commandNumber] / 2, x + 24, y + 60);
 
     }
 
@@ -2147,15 +2148,15 @@ public class UI {
         g2d.drawString(judul, x, y);
 
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 35f));
-        x = getXforCenteredText("Pekerjaan: " + gamePanel.getCurrentSim().getPekerjaan().listPekerjaan[gamePanel
-                .getCurrentSim().getPekerjaan().indexPekerjaan]) /* - 2 * gamePanel.tileSize - 35 */;
+        x = getXforCenteredText("Pekerjaan: " + gamePanel.getCurrentSim().getPekerjaan().getListPekerjaan()[gamePanel
+                .getCurrentSim().getPekerjaan().getIndexPekerjaan()]) /* - 2 * gamePanel.tileSize - 35 */;
         y += gamePanel.tileSize + 35;
         g2d.drawString("Pekerjaan: "
-                + gamePanel.getCurrentSim().getPekerjaan().listPekerjaan[gamePanel.getCurrentSim().getPekerjaan().indexPekerjaan],
+                + gamePanel.getCurrentSim().getPekerjaan().getListPekerjaan()[gamePanel.getCurrentSim().getPekerjaan().getIndexPekerjaan()],
                 x, y);
 
-        if (gamePanel.getCurrentSim().getPekerjaan().isCanStartPekerjaan
-                && gamePanel.getCurrentSim().getPekerjaan().isCanChangePekerjaan) {
+        if (gamePanel.getCurrentSim().getPekerjaan().getIsCanStartPekerjaan()
+                && gamePanel.getCurrentSim().getPekerjaan().getIsCanChangePekerjaan()) {
             // draw text
             g2d.setColor(Color.WHITE);
             g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
@@ -2172,7 +2173,7 @@ public class UI {
             if (commandNumber == 1) {
                 g2d.drawString(">", x - 40, y);
             }
-        } else if (gamePanel.getCurrentSim().getPekerjaan().isCanChangePekerjaan) {
+        } else if (gamePanel.getCurrentSim().getPekerjaan().getIsCanChangePekerjaan()) {
             // draw text
             g2d.setColor(Color.GRAY);
             g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
@@ -2187,7 +2188,7 @@ public class UI {
             if (commandNumber == 0) {
                 g2d.drawString(">", x - 40, y);
             }
-        } else if (gamePanel.getCurrentSim().getPekerjaan().isCanStartPekerjaan) {
+        } else if (gamePanel.getCurrentSim().getPekerjaan().getIsCanStartPekerjaan()) {
             // draw text
             g2d.setColor(Color.WHITE);
             g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
