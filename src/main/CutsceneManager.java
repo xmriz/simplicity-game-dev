@@ -100,7 +100,11 @@ public class CutsceneManager {
                 "STI 2021\n" +
                 "Institut Teknologi Bandung\n" +
                 "\n\n\n\n" + 
-                "Terima kasih telah bermain...\n";
+                "Terima kasih telah bermain...\n" +
+                "\n\n\n\n" + 
+                "Akhir kata,\n" +
+                "Wassalamu'alaikum Warahmatullahi Wabarakatuh \n" +
+                "\n\n\n\n\n\n\n\n\n";
     }
 
     public void draw (Graphics2D g2d){
@@ -184,7 +188,6 @@ public class CutsceneManager {
             y--;
             drawString(1f, 38f, y, credit, 40);
         }
-
         // if (scenePhase == 4){ // fade out black background
         //     alpha += 0.005f;
         //     if (alpha >= 1.0f){
