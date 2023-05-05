@@ -128,7 +128,7 @@ Cuplikan permainan :
 <br></br>
 <img src='https://user-images.githubusercontent.com/88937716/236494870-03ac10dd-7c5d-4db7-8e5e-7ae3bccefbe8.png' width='250' style="display: inline-block;">
 <img src='https://user-images.githubusercontent.com/88937716/236494866-7e7336c7-c177-4a5d-b5fa-ea047e045707.png' width='250' style="display: inline-block;">
-<img src='https://user-images.githubusercontent.com/88937716/236494863-484750c3-e6c5-4b40-a5dd-2e5129b400f3.png' width='250' style="display: inline-block;">
+<img src='https://user-images.githubusercontent.com/88937716/236502459-f34207e2-6b6f-4923-91a5-9a7f1167414b.png' width='250' style="display: inline-block;">
 <img src='https://user-images.githubusercontent.com/88937716/236494851-c1d285d2-c77d-4666-ba88-b01fcc707d7f.png' width='250' style="display: inline-block;">
 <img src='https://user-images.githubusercontent.com/88937716/236494858-4c82a61b-b7fc-4b48-9230-ea603dc06261.png' width='250' style="display: inline-block;">
 <img src='https://user-images.githubusercontent.com/88937716/236494862-9bd343b7-be48-4d4f-b12e-d6736b102ab0.png' width='250' style="display: inline-block;">
