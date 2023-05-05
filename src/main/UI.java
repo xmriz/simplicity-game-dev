@@ -2459,7 +2459,6 @@ public class UI {
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
         g2d.drawString("Harga: " + (int) gamePanel.getCurrentSim().getPekerjaan().getGaji()[commandNumber] / 2, x + 24, y + 60);
 
-        // TODO O OO
         // // draw hint text
         // x = gamePanel.tileSize * 2;
         // y = gamePanel.tileSize * 13;
@@ -2505,7 +2504,7 @@ public class UI {
         y += gamePanel.getTileSize() + 5;
         g2d.drawString(judul, x, y);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
-        String text = "(dalam detik)";
+        String text = "(dalam kelipatan 20 detik)";
         String textTemp = "(maks. 15 karakter)";
         x = getXforCenteredText(text);
         y += gamePanel.getTileSize() - 10;
@@ -2634,7 +2633,7 @@ public class UI {
 
         // draw window
         int x = getXforCenteredText(judul);
-        x -= 4 * gamePanel.getTileSize();
+        x -= 2 * gamePanel.getTileSize();
         int y = gamePanel.getTileSize() * 4;
         int width = gamePanel.getScreenWidth() - 2 * x;
         int height = gamePanel.getScreenHeight() - y - gamePanel.getTileSize() * 5;
@@ -2647,7 +2646,7 @@ public class UI {
         y += gamePanel.getTileSize() + 5;
         g2d.drawString(judul, x, y);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
-        String text = "(dalam detik)";
+        String text = "(dalam kelipatan 120 detik)";
         String textTemp = "(maks. 15 karakter)";
         x = getXforCenteredText(text);
         y += gamePanel.getTileSize() - 10;
@@ -2686,7 +2685,6 @@ public class UI {
         g2d.drawString("Waktu", x, y);
 
         // draw text
-        // TODO MELIHAT WAKTU
         g2d.setColor(Color.WHITE);
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
         x = getXforCenteredText("Waktu") - 3 * gamePanel.getTileSize();

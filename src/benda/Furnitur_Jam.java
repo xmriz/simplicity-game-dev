@@ -20,7 +20,6 @@ public class Furnitur_Jam extends Furnitur{
     @Override
     public void action(){
         // aksi masak
-        // TODO : KERJA AKSI MELIHAT WAKTU
         // gamePanel.gameState = gamePanel.melihatWaktuState;
         gamePanel.setGameState(gamePanel.getMelihatWaktuState());
     }
