@@ -2013,8 +2013,8 @@ public class UI {
 
     // TIMER SCREEN
     public void drawTimerScreen() {
-        gamePanel.getKeyHandler().setIsCheckWorldTime(false);
-        gamePanel.getKeyHandler().setIsCheckCurrentLocation(false);
+        gamePanel.getKeyHandler().setCheckWorldTime(false);
+        gamePanel.getKeyHandler().setCheckCurrentLocation(false);
         // draw window
         int x = getXforCenteredText("Sedang " + currentAksi + "...");
         x -= 4 * gamePanel.getTileSize();

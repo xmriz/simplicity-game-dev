@@ -618,7 +618,7 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2d);
 
             // world time
-            if (keyHandler.getIsCheckWorldTime()) {
+            if (keyHandler.getCheckWorldTime()) {
                 g2d.setColor(Color.white);
                 g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN,40f));
                 g2d.drawString("World Time: " + worldTimeCounter % 720, 10, 700);
@@ -626,7 +626,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             // current location
-            if (keyHandler.getIsCheckCurrentLocation()) {
+            if (keyHandler.getCheckCurrentLocation()) {
                 g2d.setColor(Color.white);
                 g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN,40f));
                 g2d.drawString("Current Location: " + listSim.get(indexCurrentSim).getCurrentLocation(), 10, 700);

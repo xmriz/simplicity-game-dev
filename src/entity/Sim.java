@@ -648,6 +648,8 @@ public class Sim extends Entity {
         if (gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).indexRumahYangDimasuki != 999) {
             if (indexBendayangDisentuh != 999) {
                 if (gamePanel.getKeyHandler().isEnterPressed()) {
+                    gamePanel.getKeyHandler().setCheckWorldTime(false);
+                    gamePanel.getKeyHandler().setCheckCurrentLocation(false);
                     int indexRumahYangDimasuki = gamePanel.getListSim()
                             .get(gamePanel.getIndexCurrentSim()).indexRumahYangDimasuki;
                     int indexLocationRuangan = gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).indexLocationRuangan;

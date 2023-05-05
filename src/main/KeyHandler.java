@@ -68,19 +68,19 @@ public class KeyHandler implements KeyListener {
         this.threadTemp = threadTemp;
     }
     
-    public boolean getIsCheckWorldTime() {
+    public boolean getCheckWorldTime() {
         return checkWorldTime;
     }
 
-    public void setIsCheckWorldTime(boolean checkWorldTime){
+    public void setCheckWorldTime(boolean checkWorldTime){
         this.checkWorldTime = checkWorldTime;
     }
 
-    public boolean getIsCheckCurrentLocation() {
+    public boolean getCheckCurrentLocation() {
         return checkCurrentLocation;
     }
 
-    public void setIsCheckCurrentLocation(boolean checkCurrentLocation){
+    public void setCheckCurrentLocation(boolean checkCurrentLocation){
         this.checkCurrentLocation = checkCurrentLocation;
     }
 
@@ -419,11 +419,14 @@ public class KeyHandler implements KeyListener {
         // BACA BUKU STATE
         else if (gamePanel.getGameState() == gamePanel.getInputDurasiBacaBukuState()) {
             inputDurasiBacaBukuState(keyCode);
+            
         }
 
         // INPUT DURASI RADIO STATE
         else if (gamePanel.getGameState() == gamePanel.getInputDurasiRadioState()) {
             inputDurasiRadioState(keyCode);
+            checkWorldTime = false;
+            checkCurrentLocation = false;
         }
 
         // TIMER STATE
@@ -3068,7 +3071,7 @@ public class KeyHandler implements KeyListener {
             cursorSound();
         }
     }
-    
+
     public void inputDurasiKerjaState(int keyCode) {
         if (gamePanel.getUi().getInputText().length() < 5) {
             if (keyCode == KeyEvent.VK_1) {
