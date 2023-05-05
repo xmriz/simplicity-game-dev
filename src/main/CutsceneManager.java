@@ -151,8 +151,8 @@ public class CutsceneManager {
             // TITLE NAME
             g2d.setFont(g2d.getFont().deriveFont(Font.BOLD, 96f));
             String title = "SIM-PLICITY";
-            int x = gamePanel.ui.getXforCenteredText(title);
-            int y = gamePanel.tileSize * 7 - 20;
+            int x = gamePanel.getUi().getXforCenteredText(title);
+            int y = gamePanel.getTileSize() * 7 - 20;
 
             // shadow
             g2d.setColor(Color.GRAY);
@@ -168,8 +168,8 @@ public class CutsceneManager {
                 // resize
                 logo = UtilityTool.resizeImage(logo, logo.getWidth() / 4, logo.getHeight() / 4);
                 // draw in center
-                x = gamePanel.screenWidth / 2 - logo.getWidth() / 2;
-                y += gamePanel.tileSize;
+                x = gamePanel.getScreenWidth() / 2 - logo.getWidth() / 2;
+                y += gamePanel.getTileSize();
                 g2d.drawImage(logo, x, y, null);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -183,7 +183,7 @@ public class CutsceneManager {
 
         if (scenePhase == 2){ // credit scene
             drawBlackBackground(1f);
-            y = gamePanel.screenHeight/2;
+            y = gamePanel.getScreenHeight()/2;
             drawString(1f, 38f, y, credit, 40);
 
             if (counterReached(300)){
@@ -223,7 +223,7 @@ public class CutsceneManager {
     public void drawBlackBackground (float alpha){
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         g2d.setColor(Color.BLACK);
-        g2d.fillRect(0, 0, gamePanel.screenWidth, gamePanel.screenHeight);
+        g2d.fillRect(0, 0, gamePanel.getScreenWidth(), gamePanel.getScreenHeight());
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
     }
 
@@ -233,7 +233,7 @@ public class CutsceneManager {
         g2d.setFont(g2d.getFont().deriveFont(fontSize));
         
         for (String line : text.split("\n")){
-            int x = gamePanel.ui.getXforCenteredText(line);
+            int x = gamePanel.getUi().getXforCenteredText(line);
             g2d.drawString(line, x, y);
             y += lineHeight;
         }
