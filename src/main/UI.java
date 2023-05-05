@@ -292,65 +292,65 @@ public class UI {
             drawDialogScreen();
         } else if (gamePanel.getGameState() == gamePanel.getSimInfoState()) { // if game is in sim info
             drawSimInfoScreen();
-        } else if (gamePanel.getGameState() == gamePanel.inventoryState) { // if game is in inventory
+        } else if (gamePanel.getGameState() == gamePanel.getInventoryState()) { // if game is in inventory
             drawInventoryScreen(gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()), simSlotCol, simSlotRow);
-        } else if (gamePanel.getGameState() == gamePanel.beliState) { // if game is in beli
+        } else if (gamePanel.getGameState() == gamePanel.getBeliState()) { // if game is in beli
             drawBeliScreen();
-        } else if (gamePanel.getGameState() == gamePanel.upgradeRumahState) { // if game is in upgrade rumah
+        } else if (gamePanel.getGameState() == gamePanel.getUpgradeRumahState()) { // if game is in upgrade rumah
             drawUpgradeRumahScreen();
-        } else if (gamePanel.getGameState() == gamePanel.inputNamaRuanganState) { // if game is in input nama ruangan
+        } else if (gamePanel.getGameState() == gamePanel.getInputNamaRuanganState()) { // if game is in input nama ruangan
             drawInputNamaRuanganScreen("Input nama:");
-        } else if (gamePanel.getGameState() == gamePanel.inputKoordinatBendaState) { // if game is in input koordinat
+        } else if (gamePanel.getGameState() == gamePanel.getInputKoordinatBendaState()) { // if game is in input koordinat
             drawInputKoordinatBendaScreen("Input koordinat:");
-        } else if (gamePanel.getGameState() == gamePanel.addSimState) {
+        } else if (gamePanel.getGameState() == gamePanel.getAddSimState()) {
             drawInputSimNameScreen("Input nama:");
-        } else if (gamePanel.getGameState() == gamePanel.inputKoordinatRumahSimState) {
+        } else if (gamePanel.getGameState() == gamePanel.getInputKoordinatRumahSimState()) {
             drawInputKoordinatRumahSimScreen("Input koordinat:");
-        } else if (gamePanel.getGameState() == gamePanel.menuState) {
+        } else if (gamePanel.getGameState() == gamePanel.getMenuState()) {
             drawMenuScreen();
-        } else if (gamePanel.getGameState() == gamePanel.helpState) {
+        } else if (gamePanel.getGameState() == gamePanel.getHelpState()) {
             drawHelpScreen();
-        } else if (gamePanel.getGameState() == gamePanel.changeSimState) {
+        } else if (gamePanel.getGameState() == gamePanel.getChangeSimState()) {
             drawChangeSimScreen();
-        } else if (gamePanel.getGameState() == gamePanel.mapState) {
+        } else if (gamePanel.getGameState() == gamePanel.getMapState()) {
             drawFullMapScreen(g2d);
-        } else if (gamePanel.getGameState() == gamePanel.resepState) {
+        } else if (gamePanel.getGameState() == gamePanel.getResepState()) {
             drawResepScreen();
-        } else if (gamePanel.getGameState() == gamePanel.inputDurasiTidurState) {
+        } else if (gamePanel.getGameState() == gamePanel.getInputDurasiTidurState()) {
             drawInputDurasiTidurScreen("Input Durasi Tidur:");
-        } else if (gamePanel.getGameState() == gamePanel.inputDurasiNontonState) {
+        } else if (gamePanel.getGameState() == gamePanel.getInputDurasiNontonState()) {
             drawInputDurasiNontonScreen("Input Durasi Nonton:");
-        } else if (gamePanel.getGameState() == gamePanel.inputDurasiMandiState) {
+        } else if (gamePanel.getGameState() == gamePanel.getInputDurasiMandiState()) {
             drawInputDurasiMandiScreen("Input Durasi Mandi:");
-        } else if (gamePanel.getGameState() == gamePanel.inputDurasiBacaBukuState) {
+        } else if (gamePanel.getGameState() == gamePanel.getInputDurasiBacaBukuState()) {
             drawInputDurasiBacaBukuScreen("Input Durasi Baca: ");
-        } else if (gamePanel.getGameState() == gamePanel.inputDurasiShalatState) {
+        } else if (gamePanel.getGameState() == gamePanel.getInputDurasiShalatState()) {
             drawInputDurasiShalatScreen("Input Durasi Shalat: ");
-        } else if (gamePanel.getGameState() == gamePanel.inputDurasiRadioState) {
+        } else if (gamePanel.getGameState() == gamePanel.getInputDurasiRadioState()) {
             drawInputDurasiRadioScreen("Input Durasi Radio:");
-        } else if (gamePanel.getGameState() == gamePanel.timerState) {
+        } else if (gamePanel.getGameState() == gamePanel.getTimerState()) {
             drawTimerScreen();
-        } else if (gamePanel.getGameState() == gamePanel.gameOverState) {
+        } else if (gamePanel.getGameState() == gamePanel.getGameOverState()) {
             drawGameOverScreen();
-        } else if (gamePanel.getGameState() == gamePanel.inputDurasiSiramTanamanState) {
+        } else if (gamePanel.getGameState() == gamePanel.getInputDurasiSiramTanamanState()) {
             drawInputDurasiSiramTanamanScreen("Input Durasi Siram Tanaman:");
-        } else if (gamePanel.getGameState() == gamePanel.inputDurasiMainGameState) {
+        } else if (gamePanel.getGameState() == gamePanel.getInputDurasiMainGameState()) {
             drawInputDurasiMainGameScreen("Input Durasi Main Game:");
-        } else if (gamePanel.getGameState() == gamePanel.kerjaState) {
+        } else if (gamePanel.getGameState() == gamePanel.getKerjaState()) {
             drawKerjaScreen("Menu Kerja");
-        } else if (gamePanel.getGameState() == gamePanel.inputDurasiKerjaState) {
+        } else if (gamePanel.getGameState() == gamePanel.getInputDurasiKerjaState()) {
             drawInputDurasiKerjaScreen("Input Durasi Kerja:");
-        } else if (gamePanel.getGameState() == gamePanel.gantiPekerjaanState) {
+        } else if (gamePanel.getGameState() == gamePanel.getGantiPekerjaanState()) {
             drawGantiPekerjaanScreen("Pilih Pekerjaan");
-        } else if (gamePanel.getGameState() == gamePanel.saveState) {
+        } else if (gamePanel.getGameState() == gamePanel.getSaveState()) {
             drawSaveScreen();
-        } else if (gamePanel.getGameState() == gamePanel.inputDurasiOlahragaState) {
+        } else if (gamePanel.getGameState() == gamePanel.getInputDurasiOlahragaState()) {
             drawInputDurasiOlahragaScreen("Input Durasi Olahraga:");
-        } else if (gamePanel.getGameState() == gamePanel.melihatWaktuState){
+        } else if (gamePanel.getGameState() == gamePanel.getMelihatWaktuState()){
             drawMelihatWaktuScreen();
-        } else if (gamePanel.getGameState() == gamePanel.cutsceneState){
+        } else if (gamePanel.getGameState() == gamePanel.getCutsceneState()){
             // CUTSCENE
-            gamePanel.cutsceneManager.draw(g2d);
+            gamePanel.getCutsceneManager().draw(g2d);
         }
     }
 
@@ -2495,9 +2495,9 @@ public class UI {
         g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 30f));
         x = getXforCenteredText("Waktu") + 2 *gamePanel.getTileSize() -30;
         y = gamePanel.getTileSize() * 6 + 25;
-        g2d.drawString(": " + gamePanel.worldTimeCounter%720, x, y);
+        g2d.drawString(": " + gamePanel.getWorldTimeCounter()%720, x, y);
         y += 35;
-        g2d.drawString(": " + gamePanel.worldTimeCounter/720, x, y);
+        g2d.drawString(": " + gamePanel.getWorldTimeCounter()/720, x, y);
         y += gamePanel.getTileSize() + 15 + 35;
         g2d.drawString(": " + gamePanel.getCurrentSim().getRumah().getRemainingTimeUpgrade() + " detik", x, y);
         y += 35;
