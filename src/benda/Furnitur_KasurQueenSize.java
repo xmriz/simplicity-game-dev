@@ -6,21 +6,20 @@ import main.GamePanel;
 
 public class Furnitur_KasurQueenSize extends Furnitur {
     public Furnitur_KasurQueenSize(GamePanel gamePanel){
-        name = "Kasur Queen Size";
-        image = setupImage("benda/furnitur/kasur_queen_size");
-        collision = false;
-        dimensiX = 4;
-        dimensiY = 2;
-        harga = 100;
-        aksi = "Tidur";
-        solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
+        setName("Kasur Queen Size");
+        setImage(setupImage("benda/furnitur/kasur_queen_size"));
+        setCollision(false);
+        setDimensiX(4);
+        setDimensiY(2);
+        setHarga(100);
+        setAksi("Tidur");
+        setSolidArea(new Rectangle(0, 0, 48*getDimensiX(), 48*getDimensiY()));
         this.gamePanel = gamePanel;
     }
 
     @Override
     public void action(){
         // aksi tidur
-        gamePanel.gameState = gamePanel.inputDurasiTidurState;
-
+        gamePanel.setGameState(gamePanel.getInputDurasiTidurState());
     }
 }

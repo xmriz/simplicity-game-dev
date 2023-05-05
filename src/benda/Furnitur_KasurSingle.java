@@ -6,20 +6,20 @@ import main.GamePanel;
 
 public class Furnitur_KasurSingle extends Furnitur{
     public Furnitur_KasurSingle(GamePanel gamePanel){
-        name = "Kasur Single";
-        image = setupImage("benda/furnitur/kasur_single");
-        collision = false;
-        dimensiX = 4;
-        dimensiY = 1;
-        harga = 50;
-        aksi = "Tidur";
-        solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
+        setName("Kasur Single");
+        setImage(setupImage("benda/furnitur/kasur_single"));
+        setCollision(false);
+        setDimensiX(4);
+        setDimensiY(1);
+        setHarga(50);
+        setAksi("Tidur");
+        setSolidArea(new Rectangle(0, 0, 48*getDimensiX(), 48*getDimensiY()));
         this.gamePanel = gamePanel;
     }
 
     @Override
     public void action(){
         // aksi tidur
-        gamePanel.gameState = gamePanel.inputDurasiTidurState;
+        gamePanel.setGameState(gamePanel.getInputDurasiTidurState());
     }
 }

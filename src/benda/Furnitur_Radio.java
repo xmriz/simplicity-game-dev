@@ -6,20 +6,21 @@ import main.GamePanel;
 
 public class Furnitur_Radio extends Furnitur {
     public Furnitur_Radio(GamePanel gamePanel) {
-        name = "Radio";
-        image = setupImage("benda/furnitur/radio");
-        collision = false;
-        dimensiX = 1;
-        dimensiY = 1;
-        harga = 50;
-        aksi = "Menyetel Radio";
-        solidArea = new Rectangle(0, 0, 48 * dimensiX, 48 * dimensiY);
+        setName("Radio");
+       setImage(setupImage("benda/furnitur/radio"));
+        setCollision(false);
+        setDimensiX(1);
+        setDimensiY(1);
+        setHarga(50);
+        setAksi("Menyetel Radio");
+        setSolidArea(new Rectangle(0, 0, 48 * getDimensiX(), 48 * getDimensiY()));
         this.gamePanel = gamePanel;
     }
 
     @Override
     public void action() {
         // aksi tidur
-        gamePanel.gameState = gamePanel.inputDurasiRadioState;
+        System.out.println("Setel Radio");
+        gamePanel.setGameState(gamePanel.getInputDurasiRadioState());
     }
 }

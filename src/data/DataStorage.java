@@ -2,15 +2,13 @@ package data;
 
 import java.io.Serializable;
 import java.util.*;
-import java.util.List;
-import java.util.ArrayList;
-import entity.*;
 
 public class DataStorage implements Serializable {
 
     int jumlahSim;
     int indexCurrentSim;
     int worldTimeCounter;
+    int worldTimeSatuHariCounter;
     boolean isOneSim;
 
     // SIM

@@ -3,15 +3,32 @@ package benda;
 import main.GamePanel;
 
 public class Lampu extends Benda {
-    public String aksi;
-    public int harga = 10;
+    private String aksi;
+    private int harga = 10;
+
 
     public Lampu(GamePanel gamePanel){
         this.gamePanel = gamePanel;
-        name = "Lampu";
-        image = setupImage("benda/lampu");
+        setName("Lampu");
+        setImage(setupImage("benda/lampu"));
         aksi = "Menyalakan lampu";
-        category = "Equipment";
-        stackable = true;
+        setCategory("Equipment");
+        setStackable(true);
+    }
+
+    public String getAksi(){
+        return aksi;
+    }
+
+    public void setAksi(String aksi){
+        this.aksi=aksi;
+    }
+
+    public int getHarga(){
+        return harga;
+    }
+
+    public void setHarga(int harga){
+        this.harga=harga;
     }
 }

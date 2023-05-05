@@ -4,48 +4,52 @@ import java.awt.Rectangle;
 
 import main.GamePanel;
 
-public class Furnitur_Toilet extends Furnitur{
-    public Furnitur_Toilet(GamePanel gamePanel){
-        name = "Toilet";
-        image = setupImage("benda/furnitur/toilet");
-        collision = false;
-        dimensiX = 1;
-        dimensiY = 1;
-        harga = 50;
-        aksi = "Boker";
-        solidArea = new Rectangle(0, 0, 48*dimensiX, 48*dimensiY);
+public class Furnitur_Toilet extends Furnitur {
+    public Furnitur_Toilet(GamePanel gamePanel) {
+        setName("Toilet");
+        setImage(setupImage("benda/furnitur/toilet"));
+        setCollision(false);
+        setDimensiX(1);
+        setDimensiY(1);
+        setHarga(50);
+        setAksi("Boker");
+        setSolidArea(new Rectangle(0, 0, 48*getDimensiX(), 48*getDimensiY()));
         this.gamePanel = gamePanel;
     }
 
     @Override
-    public void action(){
+    public void action() {
         // aksi boker
-        gamePanel.ui.currentAksi = "Boker";
-        gamePanel.gameState = gamePanel.timerState;
-        gamePanel.ui.currentAksiDone = false;
-        gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);
-        gamePanel.worldTimeCounter += 10;
-        gamePanel.worldTimeSatuHariCounter += 10;
-        gamePanel.getCurrentSim().isUdahMakanDalamSatuHari = false;
+        gamePanel.getUi().setCurrentAksi("Boker");
+        gamePanel.setGameState(gamePanel.getTimerState());
+        gamePanel.getUi().setCurrentAksiDone(false);
+        // gamePanel.keyHandler.threadTemp = gamePanel.ui.startTimerThread(10);
+        gamePanel.incWorldTimeCounter(10);
+        gamePanel.incWorldTimeSatuHariCounter(10);
+        gamePanel.getCurrentSim().setIsUdahMakanDalamSatuHari(false);
 
-        for (int i = 0; i < gamePanel.listSim.size(); i++) {
-            gamePanel.listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob += 10;
-            gamePanel.listSim.get(i).efekWaktuTidakTidurCounter += 10;
-            if (gamePanel.listSim.get(i).isUdahMakanDalamSatuHari){
-                gamePanel.listSim.get(i).efekWaktuTidakBuangAirCounter += 10;
+        for (int i = 0; i < gamePanel.getListSim().size(); i++) {
+            gamePanel.getListSim().get(i).getPekerjaan().setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.getListSim().get(i)
+                .getPekerjaan().getWorldTimeCounterForStartJobAfterChangeJob() + 10);
+            gamePanel.getListSim().get(i).setEfekWaktuTidakTidurCounter(gamePanel.getListSim().get(i).getEfekWaktuTidakTidurCounter()+10);
+            if (gamePanel.getListSim().get(i).getIsUdahMakanDalamSatuHari()) {
+                gamePanel.getListSim().get(i).setEfekWaktuTidakBuangAirCounter(gamePanel.getListSim().get(i).getEfekWaktuTidakBuangAirCounter()+10);
             }
         }
-        gamePanel.getCurrentSim().kekenyangan -= 20;
-        gamePanel.getCurrentSim().mood += 10;
-        gamePanel.getCurrentSim().efekWaktuTidakBuangAirCounter = 0;
-        if (gamePanel.getCurrentSim().mood > gamePanel.getCurrentSim().maxMood) {
-            gamePanel.getCurrentSim().mood = gamePanel.getCurrentSim().maxMood;
+        gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan()-20);
+        gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood()+10);
+        gamePanel.getCurrentSim().setEfekWaktuTidakBuangAirCounter(0);
+        if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().getMaxMood()) {
+            gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMaxMood());
         }
-        if (gamePanel.getCurrentSim().kesehatan > gamePanel.getCurrentSim().maxKesehatan) {
-            gamePanel.getCurrentSim().kesehatan = gamePanel.getCurrentSim().maxKesehatan;
+        if (gamePanel.getCurrentSim().getKesehatan() > gamePanel.getCurrentSim().getMaxKesehatan()) {
+            gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getMaxKesehatan());
         }
-        if (gamePanel.getCurrentSim().kekenyangan > gamePanel.getCurrentSim().maxKekenyangan) {
-            gamePanel.getCurrentSim().kekenyangan = gamePanel.getCurrentSim().maxKekenyangan;
+        if (gamePanel.getCurrentSim().getKekenyangan() > gamePanel.getCurrentSim().getMaxKekenyangan()) {
+            gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getMaxKekenyangan());
         }
+        gamePanel.getUi().setTempDurasi(10);
+        gamePanel.getKeyHandler().setThreadTemp(gamePanel.getUi().startTimerThread(10));
+        // gamePanel.ui.setelahAksi(10);
     }
 }

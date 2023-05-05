@@ -17,27 +17,222 @@ public abstract class Entity {
 
     GamePanel gamePanel;
 
-    public int worldX, worldY;
-    public int speed;
+    private int worldX, worldY;
+    private int speed;
 
-    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    public String direction;
+    private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    private String direction;
 
-    public int spriteCounter = 0;
-    public int spriteNumber = 1;
+    private int spriteCounter = 0;
+    private int spriteNumber = 1;
 
-    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
-    public int solidAreaDefaultX, solidAreaDefaultY;
-    public boolean collisionOn = false;
+    private Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    private int solidAreaDefaultX, solidAreaDefaultY;
+    private boolean collisionOn = false;
 
-    public int actionLockCounter = 0;
+    private int actionLockCounter = 0;
     int dialogCounter = 0;
 
-    public List<String> dialogs = new ArrayList<String>();
+    private List<String> dialogs = new ArrayList<String>();
 
-    public List<Benda> inventory = new ArrayList<>();
-    public int maxInventorySize = 33;
+    private List<Benda> inventory = new ArrayList<>();
+    private int maxInventorySize = 33;
 
+    public int getMaxInventorySize(){
+        return maxInventorySize;
+    }
+
+    public void setMaxInventorySize(int maxInventorySize){
+        this.maxInventorySize=maxInventorySize;
+    }
+    public List<Benda> getInventory(){
+        return inventory;
+    }
+
+    public void setInventory(List<Benda> inventory){
+        this.inventory=inventory;
+    }
+
+    public List<String> getDialogs(){
+        return dialogs;
+    }
+
+    public void setDialogs(List<String> dialogs){
+        this.dialogs=dialogs;
+    }
+
+    public int getActionLoctCounter(){
+        return actionLockCounter;
+    }
+
+    public void incActionLoctCounter(int num){
+        this.actionLockCounter+=num;
+    }
+
+    public void setActionLoctCounter(int actionLockCounter){
+        this.actionLockCounter=actionLockCounter;
+    }
+    public boolean getCollisionOn(){
+        return collisionOn;
+    }
+
+    public void setCollisionOn(boolean collisionOn){
+        this.collisionOn=collisionOn;
+    }
+    public int getSolidAreaDefaultX(){
+        return solidAreaDefaultX;
+    }
+
+    public void setSolidAreaDefaultX(int solidAreaDefaultX){
+        this.solidAreaDefaultX=solidAreaDefaultX;
+    }
+
+    public int getSolidAreaDefaultY(){
+        return solidAreaDefaultY;
+    }
+
+    public void setSolidAreaDefaultY(int solidAreaDefaultY){
+        this.solidAreaDefaultY=solidAreaDefaultY;
+    }
+    public Rectangle getSolidArea(){
+        return solidArea;
+    }
+
+    public void setSolidArea(Rectangle solidArea){
+        this.solidArea=solidArea;
+    }
+
+    public int getSpriteNumber(){
+        return spriteNumber;
+    }
+
+    public void setSpriteNumber(int spriteNumber){
+        this.spriteNumber=spriteNumber;
+    }
+    
+    public int getSpriteCounter(){
+        return spriteCounter;
+    }
+
+    public void incSpriteCounter(int a){
+        this.spriteCounter+=a;
+    }
+    
+    public void setSpriteCounter(int spriteCounter){
+        this.spriteCounter=spriteCounter;
+    }
+    
+    public String getDirection(){
+        return direction;
+    }
+
+    public void setDirection(String direction){
+        this.direction=direction;
+    }
+    
+    public int getWorldX(){
+        return worldX;
+    }
+
+    public void incWorldX(int a){
+        this.worldX+=a;
+    }
+
+    public void decWorldX(int a){
+        this.worldX-=a;
+    }
+
+    public void setWorldX(int worldX){
+        this.worldX=worldX;
+    }
+
+    public int getWorldY(){
+        return worldY;
+    }
+
+    public void setWorldY(int worldY){
+        this.worldY=worldY;
+    }
+
+    public void incWorldY(int a){
+        this.worldY+=a;
+    }
+
+    public void decWorldY(int a){
+        this.worldY-=a;
+    }
+
+    public int getSpeed(){
+        return speed;
+    }
+
+    public void setSpeed(int speed){
+        this.speed=speed;
+    }
+
+    public BufferedImage getUp1(){
+        return up1;
+    }
+
+    public void setUp1(BufferedImage up1){
+        this.up1=up1;
+    }
+       
+    public BufferedImage getUp2(){
+        return up2;
+    }
+
+    public void setUp2(BufferedImage up2){
+        this.up2=up2;
+    }
+
+    public BufferedImage getDown1(){
+        return down1;
+    }
+
+    public void setDown1(BufferedImage down1){
+        this.down1=down1;
+    }
+       
+    public BufferedImage getDown2(){
+        return down2;
+    }
+
+    public void setDown2(BufferedImage down2){
+        this.down2=down2;
+    }
+
+    public BufferedImage getLeft1(){
+        return left1;
+    }
+
+    public void setLeft1(BufferedImage left1){
+        this.left1=left1;
+    }
+       
+    public BufferedImage getLeft2(){
+        return left2;
+    }
+
+    public void setLeft2(BufferedImage left2){
+        this.left2=left2;
+    }
+
+    public BufferedImage getRight1(){
+        return right1;
+    }
+
+    public void setRight1(BufferedImage right1){
+        this.right1=right1;
+    }
+       
+    public BufferedImage getRight2(){
+        return right2;
+    }
+
+    public void setRight2(BufferedImage right2){
+        this.right2=right2;
+    }
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
@@ -47,8 +242,8 @@ public abstract class Entity {
     }
 
     public void speak() {
-        if (gamePanel.ui.currentDialog != null) {
-            gamePanel.ui.currentDialog = dialogs.get(dialogCounter);
+        if (gamePanel.getUi().getCurrentDialog() != null) {
+            gamePanel.getUi().setCurrentDialog(dialogs.get(dialogCounter));
             dialogCounter++;
             if (dialogCounter > dialogs.size() - 1) {
                 dialogCounter = 0;
@@ -58,7 +253,7 @@ public abstract class Entity {
         }
 
         // ganti direction sim
-        switch (gamePanel.listSim.get(gamePanel.indexCurrentSim).direction) {
+        switch (gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getDirection()) {
             case "up":
                 direction = "down";
                 break;
@@ -78,8 +273,8 @@ public abstract class Entity {
         setAction();
 
         collisionOn = false;
-        gamePanel.collisionChecker.checkTile(this);
-        gamePanel.collisionChecker.checkSim(this);
+        gamePanel.getCollisionChecker().checkTile(this);
+        gamePanel.getCollisionChecker().checkSim(this);
 
         if (!collisionOn) {
             switch (direction) {
@@ -111,19 +306,19 @@ public abstract class Entity {
 
     public void draw(Graphics2D g2d) {
         BufferedImage image = null;
-        int screenX = worldX - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX; // position of the tile in the screen
-        int screenY = worldY - gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY;
+        int screenX = worldX - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX()
+                + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX(); // position of the tile in the screen
+        int screenY = worldY - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY()
+                + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY();
 
-        if (worldX - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
-                + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
-                && worldX + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldX
-                        - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenX
-                && worldY - gamePanel.tileSize < gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
-                        + gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY
-                && worldY + gamePanel.tileSize > gamePanel.listSim.get(gamePanel.indexCurrentSim).worldY
-                        - gamePanel.listSim.get(gamePanel.indexCurrentSim).screenY) {
+        if (worldX - gamePanel.getTileSize() < gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX()
+                + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX()
+                && worldX + gamePanel.getTileSize() > gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldX()
+                        - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX()
+                && worldY - gamePanel.getTileSize() < gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY()
+                        + gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY()
+                && worldY + gamePanel.getTileSize() > gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getWorldY()
+                        - gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY()) {
 
             switch (direction) {
                 case "up":
@@ -156,7 +351,7 @@ public abstract class Entity {
                     break;
             }
 
-            g2d.drawImage(image, screenX, screenY, gamePanel.tileSize, gamePanel.tileSize, null);
+            g2d.drawImage(image, screenX, screenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
         }
     }
 
@@ -165,7 +360,7 @@ public abstract class Entity {
 
         try {
             scaledImage = ImageIO.read(new FileInputStream(new File("assets/" + imagePath + ".png")));
-            scaledImage = UtilityTool.scaleImage(scaledImage, gamePanel.tileSize, gamePanel.tileSize);
+            scaledImage = UtilityTool.scaleImage(scaledImage, gamePanel.getTileSize(), gamePanel.getTileSize());
         } catch (IOException e) {
             e.printStackTrace();
         }

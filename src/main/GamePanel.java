@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.*;
@@ -21,97 +22,406 @@ public class GamePanel extends JPanel implements Runnable {
     final int originalTileSize = 16; // 16x16 tile
     final int scale = 3; // 3x scale
 
-    public final int tileSize = originalTileSize * scale; // 48x48 tile (1 kotak)
-    public final int maxScreenCol = 16;
-    public final int maxScreenRow = 16;
-    public final int screenWidth = maxScreenCol * tileSize; // 768 pixels
-    public final int screenHeight = maxScreenRow * tileSize; // 768 pixels
+    private final int tileSize = originalTileSize * scale; // 48x48 tile (1 kotak)
+    private final int maxScreenCol = 16;
+    private final int maxScreenRow = 16;
+    private final int screenWidth = maxScreenCol * tileSize; // 768 pixels
+    private final int screenHeight = maxScreenRow * tileSize; // 768 pixels
 
     // WORLD SETTINGS
-    public final int maxWorldCol = 66;
-    public final int maxWorldRow = 66;
-    public final int worldWidth = maxWorldCol * tileSize; // 3168 pixels
-    public final int worldHeight = maxWorldRow * tileSize; // 3168 pixels
-    public int worldTimeCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
+    private final int maxWorldCol = 66;
+    private final int maxWorldRow = 66;
+    private final int worldWidth = maxWorldCol * tileSize; // 3168 pixels
+    private final int worldHeight = maxWorldRow * tileSize; // 3168 pixels
+    private int worldTimeCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
+
 
     // darr ini gua tambah lagi
-    public int worldTimeSatuHariCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
+    private int worldTimeSatuHariCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
 
     // MAP SETTINGS
-    public final int maxMap = 2; // Ruangan and world
+    private final int maxMap = 2; // Ruangan and world
     // public int listSim.get(indexCurrentSim).currentMap = 0;
 
     // FPS
     int fps = 60; // frames per second
 
     // SYSTEM
-    public TileManager tileManager = new TileManager(this); // create a new TileManager object
-    public KeyHandler keyHandler = new KeyHandler(this); // create a new KeyHandler object
+    private TileManager tileManager = new TileManager(this); // create a new TileManager object
+    private KeyHandler keyHandler = new KeyHandler(this); // create a new KeyHandler object
     Sound music = new Sound();
     Sound soundEffect = new Sound();
     AssetSetter assetSetter = new AssetSetter(this); // create a new AssetSetter object
-    public CollisionChecker collisionChecker = new CollisionChecker(this); // create a new CollisionChecker object
-    public UI ui = new UI(this); // create a new UI object
-    public EventHandler eventHandler = new EventHandler(this); // create a new EventHandler object
+    private CollisionChecker collisionChecker = new CollisionChecker(this); // create a new CollisionChecker object
+    private UI ui = new UI(this); // create a new UI object
+    private EventHandler eventHandler = new EventHandler(this); // create a new EventHandler object
     EnvironmentManager environmentManager = new EnvironmentManager(this); // create a new EnvironmentManager object
     Map map = new Map(this);
     SaveLoad saveLoad = new SaveLoad(this);
+    private CutsceneManager cutsceneManager = new CutsceneManager(this);
     Thread gameThread; // thread for the game
 
     // Multisim
-    public List<Sim> listSim = new ArrayList<>();
-    public int indexCurrentSim;
-    public boolean isOneSim = true;
+    private List<Sim> listSim = new ArrayList<>();
+    private int indexCurrentSim;
+    private boolean isOneSim = true;
     // public Sim currentSim = listSim.get(indexCurrentSim);
 
     // ENTITY
     // public Sim sim = new Sim(this, keyHandler);
-    public Entity npc[][] = new Entity[maxMap][6]; // create an array of NPC objects
-    public Entity kokiTemp = new NPC_Koki(this);
+    private Entity npc[][] = new Entity[maxMap][6]; // create an array of NPC objects
+    private Entity kokiTemp = new NPC_Koki(this);
 
     // BENDA
     // @SuppressWarnings("unchecked")
     @SuppressWarnings("unchecked")
-    public List<Benda>[] listRumah = new ArrayList[maxMap]; // create an array of ArrayList of Integer objects
+    private List<Benda>[] listRumah = new ArrayList[maxMap]; // create an array of ArrayList of Integer objects
 
     // public Benda rumah[][] = new Benda[maxMap][8]; // create an array of Benda
     // objects yang dapat diletakkan
 
     // GAME STATE
-    public int gameState;
-    public final int titleState = 0;
-    public final int playState = 1;
-    public final int pauseState = 2;
-    public final int dialogState = 3;
-    public final int simInfoState = 4;
-    public final int inventoryState = 5;
-    public final int beliState = 6;
-    public final int upgradeRumahState = 7;
-    public final int inputNamaRuanganState = 8;
-    public final int inputKoordinatBendaState = 9;
-    public final int addSimState = 10;
-    public final int inputKoordinatRumahSimState = 11;
-    public final int changeSimState = 12;
-    public final int menuState = 13;
-    public final int helpState = 14;
-    public final int mapState = 15;
-    public final int resepState = 16;
-    public final int timerState = 17;
-    public final int inputDurasiTidurState = 18;
-    public final int gameOverState = 19;
-    public final int inputDurasiNontonState = 20;
-    public final int inputDurasiMandiState = 21;
-    public final int inputDurasiShalatState = 22;
-    public final int inputDurasiBacaBukuState = 23;
-    public final int inputDurasiRadioState = 24;
-    public final int inputDurasiSiramTanamanState = 25;
-    public final int inputDurasiMainGameState = 26;
-    public final int kerjaState = 27;
-    public final int inputDurasiKerjaState = 28;
-    public final int gantiPekerjaanState = 29;
-    public final int inputDurasiOlahragaState = 30;
-    public final int saveState = 31;
-    public final int melihatWaktuState = 32;
+    private int gameState;
+    private final int titleState = 0;
+    private final int playState = 1;
+    private final int pauseState = 2;
+    private final int dialogState = 3;
+    private final int simInfoState = 4;
+    private final int inventoryState = 5;
+    private final int beliState = 6;
+    private final int upgradeRumahState = 7;
+    private final int inputNamaRuanganState = 8;
+    private final int inputKoordinatBendaState = 9;
+    private final int addSimState = 10;
+    private final int inputKoordinatRumahSimState = 11;
+    private final int changeSimState = 12;
+    private final int menuState = 13;
+    private final int helpState = 14;
+    private final int mapState = 15;
+    private final int resepState = 16;
+    private final int timerState = 17;
+    private final int inputDurasiTidurState = 18;
+    private final int gameOverState = 19;
+    private final int inputDurasiNontonState = 20;
+    private final int inputDurasiMandiState = 21;
+    private final int inputDurasiShalatState = 22;
+    private final int inputDurasiBacaBukuState = 23;
+    private final int inputDurasiRadioState = 24;
+    private final int inputDurasiSiramTanamanState = 25;
+    private final int inputDurasiMainGameState = 26;
+    private final int kerjaState = 27;
+    private final int inputDurasiKerjaState = 28;
+    private final int gantiPekerjaanState = 29;
+    private final int inputDurasiOlahragaState = 30;
+    private final int saveState = 31;
+    private final int melihatWaktuState = 32;
+    private final int cutsceneState = 33;
+
+    // Getter and Setter
+    public int getTileSize() {
+        return tileSize;
+    }
+
+    public int getMaxScreenCol() {
+        return maxScreenCol;
+    }
+
+    public int getMaxScreenRow() {
+        return maxScreenRow;
+    }
+
+    public int getScreenWidth() {
+        return screenWidth;
+    }
+
+    public int getScreenHeight() {
+        return screenHeight;
+    }
+
+    public int getMaxWorldCol() {
+        return maxWorldCol;
+    }
+
+    public int getMaxWorldRow() {
+        return maxWorldRow;
+    }
+
+    public int getWorldWidth() {
+        return worldWidth;
+    }
+
+    public int getWorldHeight() {
+        return worldHeight;
+    }
+
+    public int getWorldTimeCounter() {
+        return worldTimeCounter;
+    }
+
+    public void setWorldTimeCounter(int worldTimeCounter) {
+        this.worldTimeCounter = worldTimeCounter;
+    }
+
+    public void incWorldTimeCounter(int inc){
+        this.worldTimeCounter += inc;
+    }
+
+    public int getWorldTimeSatuHariCounter() {
+        return worldTimeSatuHariCounter;
+    }
+
+    public void setWorldTimeSatuHariCounter(int worldTimeSatuHariCounter) {
+        this.worldTimeSatuHariCounter = worldTimeSatuHariCounter;
+    }
+
+    public void incWorldTimeSatuHariCounter(int inc){
+        this.worldTimeSatuHariCounter += inc;
+    }
+
+    public int getMaxMap() {
+        return maxMap;
+    }
+
+    public TileManager getTileManager() {
+        return tileManager;
+    }
+
+    public void setTileManager(TileManager tileManager) {
+        this.tileManager = tileManager;
+    }
+
+    public KeyHandler getKeyHandler() {
+        return keyHandler;
+    }
+
+    public void setKeyHandler(KeyHandler keyHandler) {
+        this.keyHandler = keyHandler;
+    }
+
+    public CollisionChecker getCollisionChecker() {
+        return collisionChecker;
+    }
+
+    public void setCollisionChecker(CollisionChecker collisionChecker) {
+        this.collisionChecker = collisionChecker;
+    }
+
+    public UI getUi() {
+        return ui;
+    }
+
+    public void setUi(UI ui) {
+        this.ui = ui;
+    }
+
+    public EventHandler getEventHandler() {
+        return eventHandler;
+    }
+
+    public void setEventHandler(EventHandler eventHandler) {
+        this.eventHandler = eventHandler;
+    }
+
+    public CutsceneManager getCutsceneManager() {
+        return cutsceneManager;
+    }
+
+    public void setCutsceneManager(CutsceneManager cutsceneManager) {
+        this.cutsceneManager = cutsceneManager;
+    }
+
+    public List<Sim> getListSim() {
+        return listSim;
+    }
+
+    public void setListSim(List<Sim> listSim) {
+        this.listSim = listSim;
+    }
+
+    public int getIndexCurrentSim() {
+        return indexCurrentSim;
+    }
+
+    public void setIndexCurrentSim(int indexCurrentSim) {
+        this.indexCurrentSim = indexCurrentSim;
+    }
+
+    public boolean getIsOneSim() {
+        return isOneSim;
+    }
+
+    public void setIsOneSim(boolean isOneSim) {
+        this.isOneSim = isOneSim;
+    }
+
+    public Entity[][] getNpc() {
+        return npc;
+    }
+
+    public void setNpc(Entity[][] npc) {
+        this.npc = npc;
+    }
+
+    public Entity getKokiTemp() {
+        return kokiTemp;
+    }
+
+    public void setKokiTemp(Entity kokiTemp) {
+        this.kokiTemp = kokiTemp;
+    }
+
+    public List<Benda>[] getListRumah() {
+        return listRumah;
+    }
+
+    public void setListRumah(List<Benda>[] listRumah) {
+        this.listRumah = listRumah;
+    }
+
+    public int getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(int gameState) {
+        this.gameState = gameState;
+    }
+
+
+    public int getTitleState() {
+        return titleState;
+    }
+
+    public int getPlayState() {
+        return playState;
+    }
+
+    public int getPauseState() {
+        return pauseState;
+    }
+
+    public int getDialogState() {
+        return dialogState;
+    }
+
+    public int getSimInfoState() {
+        return simInfoState;
+    }
+
+    public int getInventoryState() {
+        return inventoryState;
+    }
+
+    public int getBeliState() {
+        return beliState;
+    }
+
+    public int getUpgradeRumahState() {
+        return upgradeRumahState;
+    }
+
+    public int getInputNamaRuanganState() {
+        return inputNamaRuanganState;
+    }
+
+    public int getInputKoordinatBendaState() {
+        return inputKoordinatBendaState;
+    }
+
+    public int getAddSimState() {
+        return addSimState;
+    }
+
+    public int getInputKoordinatRumahSimState() {
+        return inputKoordinatRumahSimState;
+    }
+
+    public int getChangeSimState() {
+        return changeSimState;
+    }
+
+    public int getMenuState() {
+        return menuState;
+    }
+
+    public int getHelpState() {
+        return helpState;
+    }
+
+    public int getMapState() {
+        return mapState;
+    }
+
+    public int getResepState() {
+        return resepState;
+    }
+
+    public int getTimerState() {
+        return timerState;
+    }
+
+    public int getInputDurasiTidurState() {
+        return inputDurasiTidurState;
+    }
+
+    public int getGameOverState() {
+        return gameOverState;
+    }
+
+    public int getInputDurasiNontonState() {
+        return inputDurasiNontonState;
+    }
+
+    public int getInputDurasiMandiState() {
+        return inputDurasiMandiState;
+    }
+
+    public int getInputDurasiShalatState() {
+        return inputDurasiShalatState;
+    }
+
+    public int getInputDurasiBacaBukuState() {
+        return inputDurasiBacaBukuState;
+    }
+
+    public int getInputDurasiRadioState() {
+        return inputDurasiRadioState;
+    }
+
+    public int getInputDurasiSiramTanamanState() {
+        return inputDurasiSiramTanamanState;
+    }
+
+    public int getInputDurasiMainGameState() {
+        return inputDurasiMainGameState;
+    }
+
+    public int getKerjaState() {
+        return kerjaState;
+    }
+
+    public int getInputDurasiKerjaState() {
+        return inputDurasiKerjaState;
+    }
+
+    public  int getGantiPekerjaanState() {
+        return gantiPekerjaanState;
+    }
+
+    public int getInputDurasiOlahragaState() {
+        return inputDurasiOlahragaState;
+    }
+
+    public int getSaveState() {
+        return saveState;
+    }
+
+    public int getMelihatWaktuState() {
+        return melihatWaktuState;
+    }
+
+    public int getCutsceneState() {
+        return cutsceneState;
+    }
 
     public GamePanel() {
         for (int i = 0; i < maxMap; i++) {
@@ -167,38 +477,40 @@ public class GamePanel extends JPanel implements Runnable {
         
 
         for (int i = 0; i < listSim.size(); i++) {
-            if (listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob >= 720) {
-                listSim.get(i).pekerjaan.isCanStartPekerjaan = true;
-                listSim.get(i).pekerjaan.worldTimeCounterForStartJobAfterChangeJob = 0;
+            if (listSim.get(i).getPekerjaan().getWorldTimeCounterForStartJobAfterChangeJob() >= 720) {
+                listSim.get(i).getPekerjaan().setIsCanStartPekerjaan(true);
+                listSim.get(i).getPekerjaan().setWorldTimeCounterForStartJobAfterChangeJob(0);
                 
             }
 
             if (worldTimeSatuHariCounter >= 720) {
                 worldTimeSatuHariCounter = 0;
-                listSim.get(i).efekWaktuTidakTidurCounter = 0;
-                listSim.get(i).efekWaktuTidakBuangAirCounter = 0;
-                listSim.get(i).isUdahMakanDalamSatuHari = false;
+                listSim.get(i).setEfekWaktuTidakTidurCounter(0);
+                listSim.get(i).setEfekWaktuTidakBuangAirCounter(0);
+                listSim.get(i).setIsUdahMakanDalamSatuHari(false);
             }
 
-            if (listSim.get(i).pekerjaan.totalDurasiKerjaPerPekerjaan >= 720) {
-                listSim.get(i).pekerjaan.isCanChangePekerjaan = true;
+            if (listSim.get(i).getPekerjaan().getTotalDurasiKerjaPerPekerjaan() >= 720) {
+                listSim.get(i).getPekerjaan().setIsCanChangePekerjaan(true);
             } else {
-                listSim.get(i).pekerjaan.isCanChangePekerjaan = false;   
+                listSim.get(i).getPekerjaan().setIsCanChangePekerjaan(false);   
             }
 
-            if (listSim.get(i).efekWaktuTidakTidurCounter >= 600){
+            if (listSim.get(i).getEfekWaktuTidakTidurCounter() >= 600){
                 // kurangin kesejahteraan
-                listSim.get(i).efekWaktuTidakTidurCounter = 0;
-                listSim.get(i).mood -= 5;
-                listSim.get(i).kesehatan -= 5;
+                listSim.get(i).setEfekWaktuTidakTidurCounter(0);
+                listSim.get(i).setMood(listSim.get(i).getMood() - 5);
+                listSim.get(i).setKesehatan(listSim.get(i).getKesehatan() - 5);
+                ui.addMessage("-5 mood, -5 kesehatan");
             }
 
-            if (listSim.get(i).efekWaktuTidakBuangAirCounter >= 240){
+            if (listSim.get(i).getEfekWaktuTidakBuangAirCounter() >= 240){
                 // kurangin kesejahteraan
-                if (listSim.get(i).isUdahMakanDalamSatuHari){
-                    listSim.get(i).efekWaktuTidakBuangAirCounter = 0;
-                    listSim.get(i).mood -= 5;
-                    listSim.get(i).kesehatan -= 5;
+                if (listSim.get(i).getIsUdahMakanDalamSatuHari()){
+                    listSim.get(i).setEfekWaktuTidakBuangAirCounter(0);
+                    listSim.get(i).setMood(listSim.get(i).getMood() - 5);
+                    listSim.get(i).setKesehatan(listSim.get(i).getKesehatan() - 5);
+                    ui.addMessage("-5 mood, -5 kesehatan");
                 }
             }
         }
@@ -209,9 +521,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (gameState == playState) {
             listSim.get(indexCurrentSim).update();
-            for (int i = 0; i < npc[listSim.get(indexCurrentSim).currentMap].length; i++) {
-                if (npc[listSim.get(indexCurrentSim).currentMap][i] != null) {
-                    npc[listSim.get(indexCurrentSim).currentMap][i].update();
+            for (int i = 0; i < npc[listSim.get(indexCurrentSim).getCurrentMap()].length; i++) {
+                if (npc[listSim.get(indexCurrentSim).getCurrentMap()][i] != null) {
+                    npc[listSim.get(indexCurrentSim).getCurrentMap()][i].update();
                 }
             }
         } else if (gameState == pauseState) {
@@ -221,9 +533,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         // memastikan kalau sim berada di world indexRuangan 999
-        if (listSim.get(indexCurrentSim).currentMap == 0) {
-            listSim.get(indexCurrentSim).indexLocationRuangan = 999;
-            listSim.get(indexCurrentSim).currentLocation = "World";
+        if (listSim.get(indexCurrentSim).getCurrentMap() == 0) {
+            listSim.get(indexCurrentSim).setIndexLocationRuangan(999);
+            listSim.get(indexCurrentSim).setCurrentLocation("World");
         }
     }
 
@@ -260,35 +572,35 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2d); // draw the title screen
         } else {
             // draw the background
-            if (listSim.get(indexCurrentSim).currentMap == 0) {
+            if (listSim.get(indexCurrentSim).getCurrentMap() == 0) {
                 tileManager.draw(g2d, 999);
             } else {
-                tileManager.draw(g2d, listSim.get(indexCurrentSim).indexLocationRuangan);
+                tileManager.draw(g2d, listSim.get(indexCurrentSim).getIndexLocationRuangan());
             }
 
             // draw benda
-            if (listSim.get(indexCurrentSim).currentMap == 0) {
-                for (int i = 0; i < listRumah[listSim.get(indexCurrentSim).currentMap].size(); i++) {
-                    if (listRumah[listSim.get(indexCurrentSim).currentMap].get(i) != null) {
-                        listRumah[listSim.get(indexCurrentSim).currentMap].get(i).draw(g2d, this);
+            if (listSim.get(indexCurrentSim).getCurrentMap() == 0) {
+                for (int i = 0; i < listRumah[listSim.get(indexCurrentSim).getCurrentMap()].size(); i++) {
+                    if (listRumah[listSim.get(indexCurrentSim).getCurrentMap()].get(i) != null) {
+                        listRumah[listSim.get(indexCurrentSim).getCurrentMap()].get(i).draw(g2d, this);
                     }
                 }
             } else {
-                for (int i = 0; i < listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                        .get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.size(); i++) {
-                    if (listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                            .get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i) != null) {
-                        listSim.get(listSim.get(indexCurrentSim).indexRumahYangDimasuki).rumah.ruanganRumah
-                                .get(listSim.get(indexCurrentSim).indexLocationRuangan).bendaRuangan.get(i)
+                for (int i = 0; i < listSim.get(listSim.get(indexCurrentSim).getIndexRumahYangDimasuki()).getRumah().getRuanganRumah()
+                        .get(listSim.get(indexCurrentSim).getIndexLocationRuangan()).getBendaRuangan().size(); i++) {
+                    if (listSim.get(listSim.get(indexCurrentSim).getIndexRumahYangDimasuki()).getRumah().getRuanganRumah()
+                            .get(listSim.get(indexCurrentSim).getIndexLocationRuangan()).getBendaRuangan().get(i) != null) {
+                        listSim.get(listSim.get(indexCurrentSim).getIndexRumahYangDimasuki()).getRumah().getRuanganRumah()
+                                .get(listSim.get(indexCurrentSim).getIndexLocationRuangan()).getBendaRuangan().get(i)
                                 .draw(g2d, this);
                     }
                 }
             }
 
             // draw npc
-            for (int i = 0; i < npc[listSim.get(indexCurrentSim).currentMap].length; i++) {
-                if (npc[listSim.get(indexCurrentSim).currentMap][i] != null) {
-                    npc[listSim.get(indexCurrentSim).currentMap][i].draw(g2d);
+            for (int i = 0; i < npc[listSim.get(indexCurrentSim).getCurrentMap()].length; i++) {
+                if (npc[listSim.get(indexCurrentSim).getCurrentMap()][i] != null) {
+                    npc[listSim.get(indexCurrentSim).getCurrentMap()][i].draw(g2d);
                 }
             }
 
@@ -306,20 +618,18 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2d);
 
             // world time
-            if (keyHandler.checkWorldTime) {
-                keyHandler.checkCurrentLocation = false;
+            if (keyHandler.isCheckWorldTime()) {
                 g2d.setColor(Color.white);
-                g2d.setFont(g2d.getFont().deriveFont(40f));
+                g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN,40f));
                 g2d.drawString("World Time: " + worldTimeCounter % 720, 10, 700);
                 g2d.drawString("World Day: " + worldTimeCounter / 720, 10, 748);
             }
 
             // current location
-            if (keyHandler.checkCurrentLocation) {
-                keyHandler.checkWorldTime = false;
+            if (keyHandler.isCheckCurrentLocation()) {
                 g2d.setColor(Color.white);
-                g2d.setFont(g2d.getFont().deriveFont(40f));
-                g2d.drawString("Current Location: " + listSim.get(indexCurrentSim).currentLocation, 10, 700);
+                g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN,40f));
+                g2d.drawString("Current Location: " + listSim.get(indexCurrentSim).getCurrentLocation(), 10, 700);
             }
 
         }
