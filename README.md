@@ -64,7 +64,7 @@ Tugas Besar OOP IF2212
   <a href="https://www.linkedin.com/in/mrsyaban"><img width="32px" src="https://www.linkpicture.com/q/linkedin-3-48.png" type="image"></a>
 </p> -->
 <p align="center"> 
-<table>
+<table style="margin: 0 auto;>
     <tr>
         <td colspan=4 align="left">Anggota :</td>
     </tr>
@@ -105,7 +105,7 @@ Tugas Besar OOP IF2212
         <td><a href="mailto:18221151@std.stei.itb.ac.id">18221151@std.stei.itb.ac.id</a></td>
     </tr>
 </table>
- </p>
+</p>
 
 <br>
 
