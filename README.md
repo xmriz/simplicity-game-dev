@@ -66,7 +66,7 @@ Tugas Besar OOP IF2212
 <p align="center"> 
 <table>
     <tr>
-        <td colspan=3 align="left">Anggota :</td>
+        <td colspan=4 align="left">Anggota :</td>
     </tr>
     <tr>
         <td>No.</td>
