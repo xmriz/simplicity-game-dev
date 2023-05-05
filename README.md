@@ -63,10 +63,14 @@ Tugas Besar OOP IF2212
   &#8287;&#8287;&#8287;&#8287;&#8287;
   <a href="https://www.linkedin.com/in/mrsyaban"><img width="32px" src="https://www.linkpicture.com/q/linkedin-3-48.png" type="image"></a>
 </p> -->
+
+## **Anggota Kelompok**
+
+
 <p align="center"> 
-<table style="margin: 0 auto;>
+<table>
     <tr>
-        <td colspan=4 align="left">Anggota :</td>
+        <td colspan=4 align="center">Kelompok 8</td>
     </tr>
     <tr>
         <td>No.</td>
