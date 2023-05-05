@@ -208,7 +208,7 @@ public class EventHandler {
                         }
 
                         // matiiin mini map
-                        gamePanel.map.mapOn = false;
+                        gamePanel.map.setMapOn(false);
                     }
                 }
                 // if (hit(0,gamePanel.listSim.get(gamePanel.indexCurrentSim).rumah.colRumah,

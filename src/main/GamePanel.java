@@ -403,7 +403,7 @@ public class GamePanel extends JPanel implements Runnable {
         return inputDurasiKerjaState;
     }
 
-    public int getGantiPekerjaanState() {
+    public  int getGantiPekerjaanState() {
         return gantiPekerjaanState;
     }
 

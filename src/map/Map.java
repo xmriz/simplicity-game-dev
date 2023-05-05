@@ -10,7 +10,15 @@ import main.GamePanel;
 public class Map extends TileManager {
     GamePanel gamePanel;
     public BufferedImage worldMap[];
-    public boolean mapOn = false;
+    private boolean mapOn = false;
+
+    public boolean getMapOn(){
+        return mapOn;
+    }
+
+    public void setMapOn(boolean mapOn){
+        this.mapOn=mapOn;
+    }
 
     public Map(GamePanel gamePanel) {
         super(gamePanel);
