@@ -64,11 +64,22 @@
 
 <br>
 
-## **How to Compile & Run**
+## **How to Run**
+1. Clone repository ini</br>
+```bash
+    git clone https://github.com/xmriz/IF2212_TB_08.git 
+```
 
-Pada path file Main.java,</br>
-- compile : `javac Main.java`</br>
-- run : `java Main`
+2. Masuk ke folder src</br>
+```bash
+    cd IF2212_TB_08/src
+```
+
+3. compile dan run Main.java</br>
+```bash
+    javac Main.java
+    java Main
+```
 
 <br>
 
