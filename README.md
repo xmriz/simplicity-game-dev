@@ -8,7 +8,7 @@
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=747B2E&center=true&vCenter=true&width=435&lines=Kelompok+8+-+K1;Sistem+dan+Teknologi+Informasi;SIM+-+PLICITY" alt="Typing SVG" /></a>
 </p>
 
-## **Anggota Kelompok**
+## **Author**
 
 
 <p align="center"> 
@@ -57,7 +57,7 @@
 
 <br>
 
-## **Spesifikasi dan Buklet**
+## **Specification and Booklet**
 - [Spesifikasi Tugas Besar IF2212 OOP STI 2023](https://docs.google.com/document/d/1NOLD-QEy8csPCbS-QpMsCVSS3dt6499Q/edit#)
 - [QnA Tugas Besar IF2212 OOP STI 2023](https://docs.google.com/spreadsheets/d/11a105sXUanMc_Mi0rLHKJAKAuxwYdbQEovtcaS9mC5w/edit#gid=472512090)
 - [Buklet Tugas Besar Kelompok 8 - K1](https://www.canva.com/design/DAFgVCme00I/k9AoZIstxvDQOB3LF10RBA/view?utm_content=DAFgVCme00I&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
@@ -83,7 +83,7 @@
 
 <br>
 
-## **Screenshoot Permainan**
+## **Gameplay Screenshot**
 Cuplikan permainan : 
 <br></br>
 <img src='https://user-images.githubusercontent.com/88937716/236494870-03ac10dd-7c5d-4db7-8e5e-7ae3bccefbe8.png' width='250' style="display: inline-block;">
