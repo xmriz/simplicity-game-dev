@@ -3267,7 +3267,7 @@ public class KeyHandler implements KeyListener {
                 if (gamePanel.getUi().getCommandNumber() == 0) {
                     gamePanel.setGameState(gamePanel.getInputDurasiKerjaState());
                 } else {
-                    gamePanel.setGameState(gamePanel.setGantiPekerjaanState());
+                    gamePanel.setGameState(gamePanel.getGantiPekerjaanState());
                 }
                 cursorSound();
                 gamePanel.getUi().setCommandNumber(0);
@@ -3286,7 +3286,7 @@ public class KeyHandler implements KeyListener {
                 }
                 cursorSound();
             } else if (keyCode == KeyEvent.VK_ENTER) {
-                gamePanel.setGameState(gamePanel.setGantiPekerjaanState());
+                gamePanel.setGameState(gamePanel.getGantiPekerjaanState());
                 cursorSound();
                 gamePanel.getUi().setCommandNumber(0);
             }
