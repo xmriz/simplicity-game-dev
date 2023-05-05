@@ -287,16 +287,31 @@ public class KeyHandler implements KeyListener {
                     if (gamePanel.getUi().getCommandNumber() == 0) {
                         gamePanel.saveLoad.load("save1");
                         gamePanel.setGameState(gamePanel.getPlayState());
+                        gamePanel.getUi().setCharIndex(0);
+                        gamePanel.getUi().setCombinedText("");
+                        gamePanel.setGameState(gamePanel.getDialogState());
+                        gamePanel.getUi()
+                                .setCurrentDialog("Load berhasil.");
                         gamePanel.stopMusic();
                         gamePanel.playMusic(1);
                     } else if (gamePanel.getUi().getCommandNumber() == 1) {
                         gamePanel.saveLoad.load("save2");
                         gamePanel.setGameState(gamePanel.getPlayState());
+                        gamePanel.getUi().setCharIndex(0);
+                        gamePanel.getUi().setCombinedText("");
+                        gamePanel.setGameState(gamePanel.getDialogState());
+                        gamePanel.getUi()
+                                .setCurrentDialog("Load berhasil.");
                         gamePanel.stopMusic();
                         gamePanel.playMusic(1);
                     } else if (gamePanel.getUi().getCommandNumber() == 2) {
                         gamePanel.saveLoad.load("save3");
                         gamePanel.setGameState(gamePanel.getPlayState());
+                        gamePanel.getUi().setCharIndex(0);
+                        gamePanel.getUi().setCombinedText("");
+                        gamePanel.setGameState(gamePanel.getDialogState());
+                        gamePanel.getUi()
+                                .setCurrentDialog("Load berhasil.");
                         gamePanel.stopMusic();
                         gamePanel.playMusic(1);
                     } else if (gamePanel.getUi().getCommandNumber() == 3) {
@@ -839,6 +854,11 @@ public class KeyHandler implements KeyListener {
                 gamePanel.getUi().setCommandNumber(0);
                 gamePanel.setGameState(gamePanel.getPlayState());
                 gamePanel.saveLoad.save("save1");
+                gamePanel.getUi().setCharIndex(0);
+                gamePanel.getUi().setCombinedText("");
+                gamePanel.setGameState(gamePanel.getDialogState());
+                gamePanel.getUi()
+                        .setCurrentDialog("Save berhasil.");
             }
         } else if (gamePanel.getUi().getCommandNumber() == 1) {
             if (keyCode == KeyEvent.VK_UP) {
@@ -852,6 +872,11 @@ public class KeyHandler implements KeyListener {
                 gamePanel.getUi().setCommandNumber(0);
                 gamePanel.setGameState(gamePanel.getPlayState());
                 gamePanel.saveLoad.save("save2");
+                gamePanel.getUi().setCharIndex(0);
+                gamePanel.getUi().setCombinedText("");
+                gamePanel.setGameState(gamePanel.getDialogState());
+                gamePanel.getUi()
+                        .setCurrentDialog("Save berhasil.");
             }
         } else if (gamePanel.getUi().getCommandNumber() == 2) {
             if (keyCode == KeyEvent.VK_UP) {
@@ -865,6 +890,11 @@ public class KeyHandler implements KeyListener {
                 gamePanel.getUi().setCommandNumber(0);
                 gamePanel.setGameState(gamePanel.getPlayState());
                 gamePanel.saveLoad.save("save3");
+                gamePanel.getUi().setCharIndex(0);
+                gamePanel.getUi().setCombinedText("");
+                gamePanel.setGameState(gamePanel.getDialogState());
+                gamePanel.getUi()
+                        .setCurrentDialog("Save berhasil.");
             }
         } else if (gamePanel.getUi().getCommandNumber() == 3) {
             if (keyCode == KeyEvent.VK_UP) {

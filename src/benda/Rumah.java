@@ -152,6 +152,11 @@ public class Rumah extends Benda {
                                 .get(gamePanel.getIndexCurrentSim()).getIndexLocationRuangan();
                         indexSimSaatUpgrade = gamePanel.getIndexCurrentSim();
                         remainingTimeUpgrade = 18 * 60;
+                        gamePanel.getUi().setCharIndex(0);
+                        gamePanel.getUi().setCombinedText("");
+                        gamePanel.setGameState(gamePanel.getDialogState());
+                        gamePanel.getUi()
+                                .setCurrentDialog("Anda berhasil mengupgrade rumah.\nSilahkan tunggu 1080 detik.");
                     } else {
                         gamePanel.getUi().setCharIndex(0);
                         gamePanel.getUi().setCombinedText("");
@@ -191,6 +196,11 @@ public class Rumah extends Benda {
                             indexSimSaatUpgrade = gamePanel.getIndexCurrentSim();
                             remainingTimeUpgrade = 18 * 60;
                             ruanganUpgrade = ruangan;
+                            gamePanel.getUi().setCharIndex(0);
+                            gamePanel.getUi().setCombinedText("");
+                            gamePanel.setGameState(gamePanel.getDialogState());
+                            gamePanel.getUi()
+                                    .setCurrentDialog("Anda berhasil mengupgrade rumah.\nSilahkan tunggu 1080 detik.");
                         } else {
                             gamePanel.getUi().setCharIndex(0);
                             gamePanel.getUi().setCombinedText("");
@@ -224,6 +234,11 @@ public class Rumah extends Benda {
                         indexSimSaatUpgrade = gamePanel.getIndexCurrentSim();
                         remainingTimeUpgrade = 18 * 60;
                         ruanganUpgrade = ruangan;
+                        gamePanel.getUi().setCharIndex(0);
+                        gamePanel.getUi().setCombinedText("");
+                        gamePanel.setGameState(gamePanel.getDialogState());
+                        gamePanel.getUi()
+                                .setCurrentDialog("Anda berhasil mengupgrade rumah.\nSilahkan tunggu 1080 detik.");
                     } else {
                         gamePanel.getUi().setCharIndex(0);
                         gamePanel.getUi().setCombinedText("");
@@ -255,6 +270,11 @@ public class Rumah extends Benda {
                         indexSimSaatUpgrade = gamePanel.getIndexCurrentSim();
                         remainingTimeUpgrade = 18 * 60;
                         ruanganUpgrade = ruangan;
+                        gamePanel.getUi().setCharIndex(0);
+                        gamePanel.getUi().setCombinedText("");
+                        gamePanel.setGameState(gamePanel.getDialogState());
+                        gamePanel.getUi()
+                                .setCurrentDialog("Anda berhasil mengupgrade rumah.\nSilahkan tunggu 1080 detik.");
                     } else {
                         gamePanel.getUi().setCharIndex(0);
                         gamePanel.getUi().setCombinedText("");
