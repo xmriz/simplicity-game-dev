@@ -34,14 +34,10 @@ public class GamePanel extends JPanel implements Runnable {
     private final int worldWidth = maxWorldCol * tileSize; // 3168 pixels
     private final int worldHeight = maxWorldRow * tileSize; // 3168 pixels
     private int worldTimeCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
-
-
-    // darr ini gua tambah lagi
     private int worldTimeSatuHariCounter = 0; // Time : worldTimeCounter%720 ; Day : worldTimeCounter/720
 
     // MAP SETTINGS
     private final int maxMap = 2; // Ruangan and world
-    // public int listSim.get(indexCurrentSim).currentMap = 0;
 
     // FPS
     int fps = 60; // frames per second
@@ -65,10 +61,8 @@ public class GamePanel extends JPanel implements Runnable {
     private List<Sim> listSim = new ArrayList<>();
     private int indexCurrentSim;
     private boolean isOneSim = true;
-    // public Sim currentSim = listSim.get(indexCurrentSim);
 
     // ENTITY
-    // public Sim sim = new Sim(this, keyHandler);
     private Entity npc[][] = new Entity[maxMap][6]; // create an array of NPC objects
     private Entity kokiTemp = new NPC_Koki(this);
 
@@ -76,9 +70,6 @@ public class GamePanel extends JPanel implements Runnable {
     // @SuppressWarnings("unchecked")
     @SuppressWarnings("unchecked")
     private List<Benda>[] listRumah = new ArrayList[maxMap]; // create an array of ArrayList of Integer objects
-
-    // public Benda rumah[][] = new Benda[maxMap][8]; // create an array of Benda
-    // objects yang dapat diletakkan
 
     // GAME STATE
     private int gameState;
@@ -162,7 +153,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.worldTimeCounter = worldTimeCounter;
     }
 
-    public void incWorldTimeCounter(int inc){
+    public void incWorldTimeCounter(int inc) {
         this.worldTimeCounter += inc;
     }
 
@@ -174,7 +165,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.worldTimeSatuHariCounter = worldTimeSatuHariCounter;
     }
 
-    public void incWorldTimeSatuHariCounter(int inc){
+    public void incWorldTimeSatuHariCounter(int inc) {
         this.worldTimeSatuHariCounter += inc;
     }
 
@@ -285,7 +276,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void setGameState(int gameState) {
         this.gameState = gameState;
     }
-
 
     public int getTitleState() {
         return titleState;
@@ -403,7 +393,7 @@ public class GamePanel extends JPanel implements Runnable {
         return inputDurasiKerjaState;
     }
 
-    public  int getGantiPekerjaanState() {
+    public int getGantiPekerjaanState() {
         return gantiPekerjaanState;
     }
 
@@ -474,13 +464,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
 
-        
-
         for (int i = 0; i < listSim.size(); i++) {
             if (listSim.get(i).getPekerjaan().getWorldTimeCounterForStartJobAfterChangeJob() >= 720) {
                 listSim.get(i).getPekerjaan().setIsCanStartPekerjaan(true);
                 listSim.get(i).getPekerjaan().setWorldTimeCounterForStartJobAfterChangeJob(0);
-                
+
             }
 
             if (worldTimeSatuHariCounter >= 720) {
@@ -493,10 +481,10 @@ public class GamePanel extends JPanel implements Runnable {
             if (listSim.get(i).getPekerjaan().getTotalDurasiKerjaPerPekerjaan() >= 720) {
                 listSim.get(i).getPekerjaan().setIsCanChangePekerjaan(true);
             } else {
-                listSim.get(i).getPekerjaan().setIsCanChangePekerjaan(false);   
+                listSim.get(i).getPekerjaan().setIsCanChangePekerjaan(false);
             }
 
-            if (listSim.get(i).getEfekWaktuTidakTidurCounter() >= 600){
+            if (listSim.get(i).getEfekWaktuTidakTidurCounter() >= 600) {
                 // kurangin kesejahteraan
                 listSim.get(i).setEfekWaktuTidakTidurCounter(0);
                 listSim.get(i).setMood(listSim.get(i).getMood() - 5);
@@ -504,9 +492,9 @@ public class GamePanel extends JPanel implements Runnable {
                 ui.addMessage("-5 mood, -5 kesehatan");
             }
 
-            if (listSim.get(i).getEfekWaktuTidakBuangAirCounter() >= 240){
+            if (listSim.get(i).getEfekWaktuTidakBuangAirCounter() >= 240) {
                 // kurangin kesejahteraan
-                if (listSim.get(i).getIsUdahMakanDalamSatuHari()){
+                if (listSim.get(i).getIsUdahMakanDalamSatuHari()) {
                     listSim.get(i).setEfekWaktuTidakBuangAirCounter(0);
                     listSim.get(i).setMood(listSim.get(i).getMood() - 5);
                     listSim.get(i).setKesehatan(listSim.get(i).getKesehatan() - 5);
@@ -514,10 +502,6 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
-
-        // for (int i = 0; i < listSim.size(); i++) {
-            
-        // }
 
         if (gameState == playState) {
             listSim.get(indexCurrentSim).update();
@@ -586,11 +570,15 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             } else {
-                for (int i = 0; i < listSim.get(listSim.get(indexCurrentSim).getIndexRumahYangDimasuki()).getRumah().getRuanganRumah()
+                for (int i = 0; i < listSim.get(listSim.get(indexCurrentSim).getIndexRumahYangDimasuki()).getRumah()
+                        .getRuanganRumah()
                         .get(listSim.get(indexCurrentSim).getIndexLocationRuangan()).getBendaRuangan().size(); i++) {
-                    if (listSim.get(listSim.get(indexCurrentSim).getIndexRumahYangDimasuki()).getRumah().getRuanganRumah()
-                            .get(listSim.get(indexCurrentSim).getIndexLocationRuangan()).getBendaRuangan().get(i) != null) {
-                        listSim.get(listSim.get(indexCurrentSim).getIndexRumahYangDimasuki()).getRumah().getRuanganRumah()
+                    if (listSim.get(listSim.get(indexCurrentSim).getIndexRumahYangDimasuki()).getRumah()
+                            .getRuanganRumah()
+                            .get(listSim.get(indexCurrentSim).getIndexLocationRuangan()).getBendaRuangan()
+                            .get(i) != null) {
+                        listSim.get(listSim.get(indexCurrentSim).getIndexRumahYangDimasuki()).getRumah()
+                                .getRuanganRumah()
                                 .get(listSim.get(indexCurrentSim).getIndexLocationRuangan()).getBendaRuangan().get(i)
                                 .draw(g2d, this);
                     }
@@ -611,16 +599,13 @@ public class GamePanel extends JPanel implements Runnable {
             environmentManager.update();
             environmentManager.draw(g2d);
 
-            // // draw mini map
-            // map.drawMiniMap(g2d);
-
             // draw ui
             ui.draw(g2d);
 
             // world time
             if (keyHandler.getCheckWorldTime()) {
                 g2d.setColor(Color.white);
-                g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN,40f));
+                g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 40f));
                 g2d.drawString("World Time: " + worldTimeCounter % 720, 10, 700);
                 g2d.drawString("World Day: " + worldTimeCounter / 720, 10, 748);
             }
@@ -628,10 +613,9 @@ public class GamePanel extends JPanel implements Runnable {
             // current location
             if (keyHandler.getCheckCurrentLocation()) {
                 g2d.setColor(Color.white);
-                g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN,40f));
+                g2d.setFont(g2d.getFont().deriveFont(Font.PLAIN, 40f));
                 g2d.drawString("Current Location: " + listSim.get(indexCurrentSim).getCurrentLocation(), 10, 700);
             }
-
         }
 
         g2d.dispose(); // dispose the Graphics2D object, freeing up memory

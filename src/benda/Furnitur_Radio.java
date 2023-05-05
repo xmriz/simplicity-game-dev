@@ -7,7 +7,7 @@ import main.GamePanel;
 public class Furnitur_Radio extends Furnitur {
     public Furnitur_Radio(GamePanel gamePanel) {
         setName("Radio");
-       setImage(setupImage("benda/furnitur/radio"));
+        setImage(setupImage("benda/furnitur/radio"));
         setCollision(false);
         setDimensiX(1);
         setDimensiY(1);
@@ -19,8 +19,7 @@ public class Furnitur_Radio extends Furnitur {
 
     @Override
     public void action() {
-        // aksi tidur
-        System.out.println("Setel Radio");
+        // aksi menyetel radio
         gamePanel.setGameState(gamePanel.getInputDurasiRadioState());
     }
 }

@@ -1,7 +1,7 @@
 package benda;
 
-public class Makanan_NasiKari extends Makanan{
-    public Makanan_NasiKari(){
+public class Makanan_NasiKari extends Makanan {
+    public Makanan_NasiKari() {
         setName("Nasi Kari");
         setImage(setupImage("benda/makanan/nasi_kari"));
         getBahan().add("Nasi");

@@ -3,18 +3,17 @@ package entity;
 import main.*;
 import benda.*;
 
-public class NPC_Koki extends Entity{
+public class NPC_Koki extends Entity {
     public NPC_Koki(GamePanel gamePanel) {
         super(gamePanel);
 
         setDirection("down");
-
         getImage();
         setDialog();
         setItems();
     }
 
-    public void getImage(){
+    public void getImage() {
         setUp1(setupImage("npc/koki"));
         setUp2(setupImage("npc/koki"));
         setDown1(setupImage("npc/koki"));
@@ -25,11 +24,11 @@ public class NPC_Koki extends Entity{
         setRight2(setupImage("npc/koki"));
     }
 
-    public void setDialog(){
+    public void setDialog() {
         getDialogs().add("Hahaha... Haloo, \nAnda ingin memakan apa?");
     }
 
-    public void setItems(){
+    public void setItems() {
         // BARANG YANG BISA DIMASAK
         // MAKANAN
         getInventory().add(new Makanan_Bistik());
@@ -40,7 +39,7 @@ public class NPC_Koki extends Entity{
 
     }
 
-    public void speak(){
+    public void speak() {
         super.speak();
         gamePanel.setGameState(gamePanel.getResepState());
     }

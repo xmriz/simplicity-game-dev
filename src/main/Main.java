@@ -10,11 +10,12 @@ public class Main {
         openingLoad.dispose();
 
         JFrame window = new JFrame(); // creates a new MyFrame object
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // set the default close operation (exit when it is
-                                                               // closed)
+        // set the default close operation (exit when it is closed)
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false); // set the frame to be unresizable
         window.setTitle("Sim-Plicity"); // set the title of the frame
-        ImageIcon smallLogo = new ImageIcon("assets/logo/small-logo.png"); // create an ImageIcon object from an image file
+        // create an ImageIcon object from an image file
+        ImageIcon smallLogo = new ImageIcon("assets/logo/small-logo.png");
         window.setIconImage(smallLogo.getImage());
 
         GamePanel gamePanel = new GamePanel(); // creates a new GamePanel object
@@ -29,8 +30,4 @@ public class Main {
         gamePanel.startGameThread();
 
     }
-
-    // -------------------------------------------------------------------------------
-
-    
 }

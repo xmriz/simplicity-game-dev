@@ -1,4 +1,5 @@
 package main;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -9,7 +10,7 @@ public class LoadFrame extends JFrame {
     private Border borderWelcomingLabel;
     private JLabel welcomingLabel;
 
-    public LoadFrame(){
+    public LoadFrame() {
 
         // Create ImageIcon objects from image files
         bigLogo = new ImageIcon("assets/logo/big-logo.png");

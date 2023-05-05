@@ -3,34 +3,33 @@ package entity;
 import main.*;
 import benda.*;
 
-public class NPC_Penjual extends Entity{
-    
+public class NPC_Penjual extends Entity {
+
     public NPC_Penjual(GamePanel gamePanel) {
         super(gamePanel);
 
         setDirection("down");
-
         getImage();
         setDialog();
         setItems();
     }
 
-    public void getImage(){
+    public void getImage() {
         setUp1(setupImage("npc/penjual"));
         setUp2(setupImage("npc/penjual"));
         setDown1(setupImage("npc/penjual"));
         setDown2(setupImage("npc/penjual"));
         setLeft1(setupImage("npc/penjual"));
         setLeft2(setupImage("npc/penjual"));
-       setRight1(setupImage("npc/penjual"));
+        setRight1(setupImage("npc/penjual"));
         setRight2(setupImage("npc/penjual"));
     }
 
-    public void setDialog(){
+    public void setDialog() {
         getDialogs().add("Hahaha... Haloo, \nada yang bisa saya bantu?");
     }
 
-    public void setItems(){
+    public void setItems() {
         // BARANG YANG BISA DIJUAL
         // BAHAN MAKANAN
         getInventory().add(new BahanMakanan_Ayam());
@@ -63,7 +62,7 @@ public class NPC_Penjual extends Entity{
         getInventory().add(new Lampu(gamePanel));
     }
 
-    public void speak(){
+    public void speak() {
         super.speak();
         gamePanel.setGameState(gamePanel.getBeliState());
     }

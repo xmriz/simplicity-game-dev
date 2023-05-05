@@ -5,30 +5,31 @@ import entity.*;
 public abstract class BahanMakanan extends Benda {
     private int harga;
     private int kekenyangan;
-    public BahanMakanan(){
+
+    public BahanMakanan() {
         setCategory("Bahan Makanan");
         setStackable(true);
     }
 
-    public int getHarga(){
+    public int getHarga() {
         return harga;
     }
 
-    public void setHarga(int harga){
-        this.harga=harga;
+    public void setHarga(int harga) {
+        this.harga = harga;
     }
 
-    public int getKekenyangan(){
+    public int getKekenyangan() {
         return kekenyangan;
     }
 
-    public void setKekenyangan(int kekenyangan){
-        this.kekenyangan=kekenyangan;
+    public void setKekenyangan(int kekenyangan) {
+        this.kekenyangan = kekenyangan;
     }
 
-    public void eat(Sim sim){
-        sim.setKekenyangan(sim.getKekenyangan()+kekenyangan);
-        if (sim.getKekenyangan() > sim.getMaxKekenyangan()){
+    public void eat(Sim sim) {
+        sim.setKekenyangan(sim.getKekenyangan() + kekenyangan);
+        if (sim.getKekenyangan() > sim.getMaxKekenyangan()) {
             sim.setKekenyangan(sim.getMaxKekenyangan());
         }
         if (sim.getMood() > sim.getMaxMood()) {
@@ -38,4 +39,4 @@ public abstract class BahanMakanan extends Benda {
             sim.setKesehatan(sim.getMaxKesehatan());
         }
     }
-} 
+}
