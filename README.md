@@ -59,6 +59,7 @@
 
 ## **Spesifikasi dan Buklet**
 - [Spesifikasi Tugas Besar IF2212 OOP STI 2023](https://docs.google.com/document/d/1NOLD-QEy8csPCbS-QpMsCVSS3dt6499Q/edit#)
+- [QnA Tugas Besar IF2212 OOP STI 2023](https://docs.google.com/spreadsheets/d/11a105sXUanMc_Mi0rLHKJAKAuxwYdbQEovtcaS9mC5w/edit#gid=472512090)
 - [Buklet Tugas Besar Kelompok 8 - K1](https://www.canva.com/design/DAFgVCme00I/k9AoZIstxvDQOB3LF10RBA/view?utm_content=DAFgVCme00I&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
 
 <br>
