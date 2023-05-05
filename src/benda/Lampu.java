@@ -6,8 +6,7 @@ public class Lampu extends Benda {
     private String aksi;
     private int harga = 10;
 
-
-    public Lampu(GamePanel gamePanel){
+    public Lampu(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         setName("Lampu");
         setImage(setupImage("benda/lampu"));
@@ -16,19 +15,19 @@ public class Lampu extends Benda {
         setStackable(true);
     }
 
-    public String getAksi(){
+    public String getAksi() {
         return aksi;
     }
 
-    public void setAksi(String aksi){
-        this.aksi=aksi;
+    public void setAksi(String aksi) {
+        this.aksi = aksi;
     }
 
-    public int getHarga(){
+    public int getHarga() {
         return harga;
     }
 
-    public void setHarga(int harga){
-        this.harga=harga;
+    public void setHarga(int harga) {
+        this.harga = harga;
     }
 }

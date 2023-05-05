@@ -49,7 +49,7 @@ public class UtilityTool {
 
     public static void delay(int s) {
         try {
-            Thread.sleep(s*1000);
+            Thread.sleep(s * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

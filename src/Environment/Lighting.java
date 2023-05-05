@@ -27,15 +27,18 @@ public class Lighting {
 
     public void setLightSource() {
         // create bufferedImage
-        darknessFilter = new BufferedImage(gamePanel.getScreenWidth(), gamePanel.getScreenHeight(), BufferedImage.TYPE_INT_ARGB);
+        darknessFilter = new BufferedImage(gamePanel.getScreenWidth(), gamePanel.getScreenHeight(),
+                BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = (Graphics2D) darknessFilter.getGraphics();
 
         if (gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getCurrentLight() == null) {
             g2d.setColor(new Color(0, 0, 0, 0.8f));
         } else {
             // get the center x and y of the light circle
-            int centerX = gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX() + gamePanel.getTileSize() / 2;
-            int centerY = gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY() + gamePanel.getTileSize() / 2;
+            int centerX = gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenX()
+                    + gamePanel.getTileSize() / 2;
+            int centerY = gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getScreenY()
+                    + gamePanel.getTileSize() / 2;
 
             // create a gradation effect within the light circle
             Color color[] = new Color[10];
@@ -80,9 +83,9 @@ public class Lighting {
         int time = gamePanel.getWorldTimeCounter() % 720;
 
         if (dayState == day) {
-            if (time == 360) { 
+            if (time == 360) {
                 dayState = dusk;
-            } else if (time < 360){
+            } else if (time < 360) {
                 dayState = day;
                 filterAlpha = 0.0f;
             } else {
@@ -127,8 +130,9 @@ public class Lighting {
     }
 
     public void draw(Graphics2D g2d) {
-        if (gamePanel.getCurrentSim().getCurrentMap() == 0){
-            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha)); // set the alpha value of the filter
+        if (gamePanel.getCurrentSim().getCurrentMap() == 0) {
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha)); // set the alpha value
+                                                                                                // of the filter
             g2d.drawImage(darknessFilter, 0, 0, null); // draw the filter
         }
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); // reset the alpha value
@@ -151,6 +155,5 @@ public class Lighting {
         g2d.setColor(Color.WHITE);
         g2d.setFont(g2d.getFont().deriveFont(20f));
         g2d.drawString(situation, 700, 700);
-
     }
 }
