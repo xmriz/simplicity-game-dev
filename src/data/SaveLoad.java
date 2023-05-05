@@ -116,6 +116,7 @@ public class SaveLoad {
                     new FileOutputStream(new File("src/res/" + string + ".dat")));
             DataStorage ds = new DataStorage();
 
+            // Save data
             ds.jumlahSim = gamePanel.getListSim().size();
             ds.isOneSim = gamePanel.getIsOneSim();
             ds.worldTimeCounter = gamePanel.getWorldTimeCounter();
@@ -249,6 +250,7 @@ public class SaveLoad {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("src/res/" + string + ".dat")));
             DataStorage ds = (DataStorage) ois.readObject();
 
+            // Load Data
             gamePanel.setIndexCurrentSim(0);
             gamePanel.setIsOneSim(ds.isOneSim);
             gamePanel.setWorldTimeCounter(ds.worldTimeCounter);

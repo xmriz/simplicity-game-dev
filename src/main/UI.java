@@ -2646,7 +2646,6 @@ public class UI {
     }
 
     // inner class for timer thread
-
     public class TimerThread implements Runnable {
         private int duration;
 
