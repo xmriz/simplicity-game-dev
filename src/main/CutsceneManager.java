@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-
 import javax.imageio.ImageIO;
 
 public class CutsceneManager {
@@ -19,6 +18,7 @@ public class CutsceneManager {
     private float alpha = 0.0f;
     private int y;
     private String credit;
+    private boolean isSongPlay = false;
 
     // scene number
     private final int ending = 0;
@@ -65,6 +65,7 @@ public class CutsceneManager {
                 "Luthfi Hanif (18221151)\n"
                 + "\n\n\n" + 
                 "Tester:\n" +
+                "Muhammad Naufal (1822089)\n" +
                 "Abraham Megantoro (18221123)\n" +
                 "Kevin Sebastian (1822143)\n" +
                 "Ahmad Rizki (18221071)\n" +
@@ -100,7 +101,11 @@ public class CutsceneManager {
                 "STI 2021\n" +
                 "Institut Teknologi Bandung\n" +
                 "\n\n\n\n" + 
-                "Terima kasih telah bermain...\n";
+                "Terima kasih telah bermain...\n" +
+                "\n\n\n\n" + 
+                "Akhir kata,\n" +
+                "Wassalamu'alaikum Warahmatullahi Wabarakatuh \n" +
+                "\n\n\n\n\n\n\n\n\n";
     }
 
     public int getScenePhase(){
@@ -109,6 +114,14 @@ public class CutsceneManager {
 
     public void setScenePhase(int scenePhase){
         this.scenePhase = scenePhase;
+    }
+
+    public boolean getIsSongPlay(){
+        return isSongPlay;
+    }
+
+    public void setIsSongPlay(boolean isSongPlay){
+        this.isSongPlay = isSongPlay;
     }
 
     public int getSceneNum(){
@@ -127,11 +140,19 @@ public class CutsceneManager {
         this.g2d = g2d;
 
         switch (sceneNum){
-            case ending : scene_ending(); break;
+            case ending : 
+            scene_ending(); 
+            break;
         }
     }
 
     public void scene_ending(){
+        if (!isSongPlay){
+            gamePanel.stopMusic();
+            gamePanel.playMusic(23);
+            isSongPlay = true;
+        }
+
         if (scenePhase == 0){ // fade in black background
             alpha += 0.008f;
             if (alpha >= 1.0f){
@@ -193,10 +214,9 @@ public class CutsceneManager {
 
         if (scenePhase == 3){ // scrolling up the credit
             drawBlackBackground(1f);
-            y--;
             drawString(1f, 38f, y, credit, 40);
+            y--;
         }
-
         // if (scenePhase == 4){ // fade out black background
         //     alpha += 0.005f;
         //     if (alpha >= 1.0f){

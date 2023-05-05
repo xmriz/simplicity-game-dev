@@ -68,12 +68,20 @@ public class KeyHandler implements KeyListener {
         this.threadTemp = threadTemp;
     }
     
-    public boolean isCheckWorldTime() {
+    public boolean getIsCheckWorldTime() {
         return checkWorldTime;
     }
 
-    public boolean isCheckCurrentLocation() {
+    public void setIsCheckWorldTime(boolean checkWorldTime){
+        this.checkWorldTime = checkWorldTime;
+    }
+
+    public boolean getIsCheckCurrentLocation() {
         return checkCurrentLocation;
+    }
+
+    public void setIsCheckCurrentLocation(boolean checkCurrentLocation){
+        this.checkCurrentLocation = checkCurrentLocation;
     }
 
     @Override
@@ -481,6 +489,9 @@ public class KeyHandler implements KeyListener {
         if (keyCode == KeyEvent.VK_ENTER) {
             gamePanel.setGameState(gamePanel.getMenuState());
             gamePanel.getCutsceneManager().setScenePhase(0);
+            gamePanel.getCutsceneManager().setIsSongPlay(false);
+            gamePanel.stopMusic();
+            gamePanel.playMusic(1);
         }
     }
 
@@ -1275,6 +1286,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getInventoryState());
             gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).canObtainItem(tempFurnitur); // INI JANGAN DIHAPUS
+            cursorSound();
         }
     }
 
