@@ -509,7 +509,6 @@ public class GamePanel extends JPanel implements Runnable {
                     listSim.get(i).setMood(listSim.get(i).getMood() - 5);
                     listSim.get(i).setKesehatan(listSim.get(i).getKesehatan() - 5);
                     ui.addMessage("-5 mood, -5 kesehatan");
-                    listSim.get(i).setisUdahMakan(false);
                 }
             }
         }
