@@ -40,7 +40,7 @@ public class Sim extends Entity {
     private boolean isLockBuy = true;
     private int efekWaktuTidakTidurCounter = 0;
     private int efekWaktuTidakBuangAirCounter = 0;
-    private boolean isUdahMakanDalamSatuHari = false;
+    private boolean isUdahMakan = false;
 
     KeyHandler keyHandler;
 
@@ -304,12 +304,12 @@ public class Sim extends Entity {
         this.efekWaktuTidakBuangAirCounter = efekWaktuTidakBuangAirCounter;
     }
 
-    public boolean getIsUdahMakanDalamSatuHari() {
-        return isUdahMakanDalamSatuHari;
+    public boolean getisUdahMakan() {
+        return isUdahMakan;
     }
 
-    public void setIsUdahMakanDalamSatuHari(boolean isUdahMakanDalamSatuHari) {
-        this.isUdahMakanDalamSatuHari = isUdahMakanDalamSatuHari;
+    public void setisUdahMakan(boolean isUdahMakan) {
+        this.isUdahMakan = isUdahMakan;
     }
 
     public Sim(GamePanel gamePanel, KeyHandler keyHandler) {
@@ -539,7 +539,7 @@ public class Sim extends Entity {
                                         .setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.getListSim()
                                                 .get(i).pekerjaan.getWorldTimeCounterForStartJobAfterChangeJob() + 30);
                                 gamePanel.getListSim().get(i).efekWaktuTidakTidurCounter += 30;
-                                if (gamePanel.getListSim().get(i).isUdahMakanDalamSatuHari) {
+                                if (gamePanel.getListSim().get(i).isUdahMakan) {
                                     gamePanel.getListSim().get(i).efekWaktuTidakBuangAirCounter += 30;
                                 }
                             }
@@ -555,7 +555,7 @@ public class Sim extends Entity {
                             gamePanel.getUi().setCurrentAksi("Makan");
                             gamePanel.setGameState(gamePanel.getTimerState());
                             gamePanel.getUi().setCurrentAksiDone(false);
-                            isUdahMakanDalamSatuHari = true;
+                            isUdahMakan = true;
                             gamePanel.getUi().setTempDurasi(30);
                             gamePanel.getKeyHandler().setThreadTemp(gamePanel.getUi().startTimerThread(30));
 
@@ -593,7 +593,7 @@ public class Sim extends Entity {
                                         .setWorldTimeCounterForStartJobAfterChangeJob(gamePanel.getListSim()
                                                 .get(i).pekerjaan.getWorldTimeCounterForStartJobAfterChangeJob() + 30);
                                 gamePanel.getListSim().get(i).efekWaktuTidakTidurCounter += 30;
-                                if (gamePanel.getListSim().get(i).isUdahMakanDalamSatuHari) {
+                                if (gamePanel.getListSim().get(i).isUdahMakan) {
                                     gamePanel.getListSim().get(i).efekWaktuTidakBuangAirCounter += 30;
                                 }
                             }
@@ -608,7 +608,7 @@ public class Sim extends Entity {
                             gamePanel.getUi().setCurrentAksi("Makan");
                             gamePanel.setGameState(gamePanel.getTimerState());
                             gamePanel.getUi().setCurrentAksiDone(false);
-                            isUdahMakanDalamSatuHari = true;
+                            isUdahMakan = true;
                             gamePanel.getUi().setTempDurasi(30);
                             gamePanel.getKeyHandler().setThreadTemp(gamePanel.getUi().startTimerThread(30));
                         } else {

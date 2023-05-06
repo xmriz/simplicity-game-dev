@@ -111,7 +111,7 @@ public class EventHandler {
                                                                                         .getEfekWaktuTidakTidurCounter()
                                                                                         + durasi);
                                                         if (gamePanel.getListSim().get(i)
-                                                                        .getIsUdahMakanDalamSatuHari()) {
+                                                                        .getisUdahMakan()) {
                                                                 gamePanel.getListSim().get(i)
                                                                                 .setEfekWaktuTidakBuangAirCounter(
                                                                                                 gamePanel.getListSim()

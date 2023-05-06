@@ -485,7 +485,7 @@ public class GamePanel extends JPanel implements Runnable {
                 listSim.get(i).setEfekWaktuTidakTidurCounter(0);
                 listSim.get(i).setEfekWaktuTidakBuangAirCounter(0);
                 isCanAddSim = true;
-                listSim.get(i).setIsUdahMakanDalamSatuHari(false);
+                listSim.get(i).setisUdahMakan(false);
             }
 
             if (listSim.get(i).getPekerjaan().getTotalDurasiKerjaPerPekerjaan() >= 720) {
@@ -504,11 +504,12 @@ public class GamePanel extends JPanel implements Runnable {
 
             if (listSim.get(i).getEfekWaktuTidakBuangAirCounter() >= 240) {
                 // kurangin kesejahteraan
-                if (listSim.get(i).getIsUdahMakanDalamSatuHari()) {
+                if (listSim.get(i).getisUdahMakan()) {
                     listSim.get(i).setEfekWaktuTidakBuangAirCounter(0);
                     listSim.get(i).setMood(listSim.get(i).getMood() - 5);
                     listSim.get(i).setKesehatan(listSim.get(i).getKesehatan() - 5);
                     ui.addMessage("-5 mood, -5 kesehatan");
+                    listSim.get(i).setisUdahMakan(false);
                 }
             }
         }

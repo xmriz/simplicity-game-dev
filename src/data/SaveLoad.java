@@ -163,7 +163,7 @@ public class SaveLoad {
                 ds.infoSimBooleans.add(gamePanel.getListSim().get(k).getPekerjaan().getIsCanStartPekerjaan());
                 ds.infoSimBooleans.add(gamePanel.getListSim().get(k).getRumah().getIsCanUpgrade());
                 ds.infoSimBooleans.add(gamePanel.getListSim().get(k).getIsCanBuy());
-                ds.infoSimBooleans.add(gamePanel.getListSim().get(k).getIsUdahMakanDalamSatuHari());
+                ds.infoSimBooleans.add(gamePanel.getListSim().get(k).getisUdahMakan());
                 ds.infoSimBooleans.add(gamePanel.getListSim().get(k).getIsUpgradeDone());
                 ds.infoSimBooleans.add(gamePanel.getListSim().get(k).getIsBarangSampai());
                 ds.infoSimIntegers.add(gamePanel.getListSim().get(k).getRumah().getJumlahRuangan());
@@ -297,7 +297,7 @@ public class SaveLoad {
                         .setIsCanStartPekerjaan(ds.infoSimBooleans.get(sumBooleans + 1));
                 gamePanel.getListSim().get(j).getRumah().setIsCanUpgrade(ds.infoSimBooleans.get(sumBooleans + 2));
                 gamePanel.getListSim().get(j).setIsCanBuy(ds.infoSimBooleans.get(sumBooleans + 3));
-                gamePanel.getListSim().get(j).setIsUdahMakanDalamSatuHari(ds.infoSimBooleans.get(sumBooleans + 4));
+                gamePanel.getListSim().get(j).setisUdahMakan(ds.infoSimBooleans.get(sumBooleans + 4));
                 gamePanel.getListSim().get(j).setIsUpgradeDone(ds.infoSimBooleans.get(sumBooleans + 5));
                 gamePanel.getListSim().get(j).setIsBarangSampai(ds.infoSimBooleans.get(sumBooleans + 6));
                 sumBooleans += 7;

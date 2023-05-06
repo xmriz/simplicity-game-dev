@@ -1416,7 +1416,7 @@ public class UI {
                                             .getPekerjaan().getWorldTimeCounterForStartJobAfterChangeJob() + durasi);
                             gamePanel.getListSim().get(i).setEfekWaktuTidakTidurCounter(
                                     gamePanel.getListSim().get(i).getEfekWaktuTidakTidurCounter() + durasi);
-                            if (gamePanel.getListSim().get(i).getIsUdahMakanDalamSatuHari()) {
+                            if (gamePanel.getListSim().get(i).getisUdahMakan()) {
                                 gamePanel.getListSim().get(i).setEfekWaktuTidakBuangAirCounter(
                                         gamePanel.getListSim().get(i).getEfekWaktuTidakBuangAirCounter() + durasi);
                             }
