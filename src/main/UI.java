@@ -1680,6 +1680,10 @@ public class UI {
         y += gamePanel.getTileSize();
         g2d.drawString(text, x, y);
 
+        text = "N: Add Sim";
+        y += gamePanel.getTileSize();
+        g2d.drawString(text, x, y);
+
         text = "G: Change Sim";
         y += gamePanel.getTileSize();
         g2d.drawString(text, x, y);
