@@ -1779,6 +1779,10 @@ public class KeyHandler implements KeyListener {
             cursorSound();
             gamePanel.getUi().setListSimSlotCol(0);
             gamePanel.getUi().setListSimSlotRow(0);
+
+            // turn of the light
+            gamePanel.getCurrentSim().setCurrentLight(null);
+            gamePanel.getCurrentSim().setLightUpdated(true);
         }
     }
 

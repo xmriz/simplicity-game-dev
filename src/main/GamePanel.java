@@ -11,8 +11,8 @@ import java.util.*;
 
 import benda.Benda;
 import entity.*;
-import environment.EnvironmentManager;
 import map.TileManager;
+import surrounding.EnvironmentManager;
 import map.Map;
 import data.*;
 

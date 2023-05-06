@@ -1,4 +1,4 @@
-package environment;
+package surrounding;
 
 import java.awt.Graphics2D;
 
