@@ -274,7 +274,7 @@ public class KeyHandler implements KeyListener {
                 if (keyCode == KeyEvent.VK_UP) {
                     gamePanel.getUi().setCommandNumber(gamePanel.getUi().getCommandNumber() - 1);
                     if (gamePanel.getUi().getCommandNumber() < 0) {
-                        gamePanel.getUi().setCommandNumber(1);
+                        gamePanel.getUi().setCommandNumber(3);
                     }
                     cursorSound();
                 } else if (keyCode == KeyEvent.VK_DOWN) {
@@ -319,10 +319,7 @@ public class KeyHandler implements KeyListener {
                     }
                     gamePanel.getUi().setCommandNumber(0);
                     keyCode = KeyEvent.VK_0;
-                } else if (keyCode == KeyEvent.VK_ESCAPE) {
-                    gamePanel.getUi().setTitleScreenState(0);
-                    gamePanel.getUi().setCommandNumber(0);
-                }
+                } 
             }
         }
 
@@ -504,6 +501,7 @@ public class KeyHandler implements KeyListener {
             gamePanel.getCutsceneManager().setIsSongPlay(false);
             gamePanel.stopMusic();
             gamePanel.playMusic(1);
+            cursorSound();
         }
     }
 
@@ -520,20 +518,24 @@ public class KeyHandler implements KeyListener {
             gamePanel.setGameState(gamePanel.getPauseState());
             checkWorldTime = false;
             checkCurrentLocation = false;
+            cursorSound();
         } else if (keyCode == KeyEvent.VK_C) {
             gamePanel.setGameState(gamePanel.getSimInfoState());
             checkWorldTime = false;
             checkCurrentLocation = false;
+            cursorSound();
         } else if (keyCode == KeyEvent.VK_I) {
             gamePanel.setGameState(gamePanel.getInventoryState());
             checkWorldTime = false;
             checkCurrentLocation = false;
+            cursorSound();
         } else if (keyCode == KeyEvent.VK_B) {
             gamePanel.getUi().setCharIndex(0);
             gamePanel.getUi().setCombinedText("");
             gamePanel.getNpc()[0][4].speak();
             checkWorldTime = false;
             checkCurrentLocation = false;
+            cursorSound();
         } else if (keyCode == KeyEvent.VK_ENTER) {
             enterPressed = true;
         } else if (keyCode == KeyEvent.VK_T) {
@@ -543,6 +545,7 @@ public class KeyHandler implements KeyListener {
             } else {
                 checkWorldTime = false;
             }
+            cursorSound();
         } else if (keyCode == KeyEvent.VK_L) {
             if (checkCurrentLocation == false) {
                 checkCurrentLocation = true;
@@ -550,7 +553,9 @@ public class KeyHandler implements KeyListener {
             } else {
                 checkCurrentLocation = false;
             }
+            cursorSound();
         } else if (keyCode == KeyEvent.VK_U) {
+            cursorSound();
             if (gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getCurrentMap() == 0) {
                 gamePanel.getUi().setCharIndex(0);
                 gamePanel.getUi().setCombinedText("");
@@ -571,18 +576,22 @@ public class KeyHandler implements KeyListener {
             checkWorldTime = false;
             checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_N) {
+            cursorSound();
             gamePanel.setGameState(gamePanel.getAddSimState());
             checkWorldTime = false;
             checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_ESCAPE) {
+            cursorSound();
             gamePanel.setGameState(gamePanel.getMenuState());
             checkWorldTime = false;
             checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_G) {
+            cursorSound();
             gamePanel.setGameState(gamePanel.getChangeSimState());
             checkWorldTime = false;
             checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_M) {
+            cursorSound();
             if (gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getCurrentMap() == 0) {
                 gamePanel.setGameState(gamePanel.getMapState());
             } else {
@@ -594,6 +603,7 @@ public class KeyHandler implements KeyListener {
             checkWorldTime = false;
             checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_X) {
+            cursorSound();
             if (gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).getCurrentMap() == 0) {
                 if (gamePanel.map.getMapOn() == false) {
                     gamePanel.map.setMapOn(true);
@@ -611,10 +621,12 @@ public class KeyHandler implements KeyListener {
                 gamePanel.getCurrentSim().pickUpObject(gamePanel.getCurrentSim().getIndexBendaYangDisentuh());
             }
         } else if (keyCode == KeyEvent.VK_K) {
+            cursorSound();
             gamePanel.setGameState(gamePanel.getKerjaState());
             checkWorldTime = false;
             checkCurrentLocation = false;
         } else if (keyCode == KeyEvent.VK_O) {
+            cursorSound();
             gamePanel.setGameState(gamePanel.getInputDurasiOlahragaState());
             checkWorldTime = false;
             checkCurrentLocation = false;
@@ -635,6 +647,7 @@ public class KeyHandler implements KeyListener {
 
     public void dialogState(int keyCode) {
         if (keyCode == KeyEvent.VK_ENTER) {
+            cursorSound();
             gamePanel.getCurrentSim().update();
             if (gamePanel.getCurrentSim().getIsBarangSampai() == true) {
                 gamePanel.getUi().setCharIndex(0);
@@ -928,7 +941,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.setGameState(gamePanel.getPlayState());
             gamePanel.getUi().setSubState(0);
             gamePanel.getUi().setCommandNumber(0);
-            cursorSound();
         }
         if (keyCode == KeyEvent.VK_ENTER) {
             enterPressed = true;
@@ -1252,7 +1264,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getInventoryState());
             gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).canObtainItem(tempFurnitur);
-            cursorSound();
         }
     }
 
@@ -1409,7 +1420,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getUpgradeRumahState());
-            cursorSound();
         }
 
     }
@@ -1556,7 +1566,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getAddSimState());
             gamePanel.getListSim().remove(gamePanel.getListSim().size() - 1);
-            cursorSound();
         }
     }
 
@@ -1693,7 +1702,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         }
     }
 
@@ -1703,7 +1711,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.setGameState(gamePanel.getPlayState());
             gamePanel.getUi().setListSimSlotCol(0);
             gamePanel.getUi().setListSimSlotRow(0);
-            cursorSound();
         } else if (keyCode == KeyEvent.VK_UP) {
             if (gamePanel.getUi().getListSimSlotRow() > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.getUi().getListSimSlotRow() - 1,
@@ -1785,7 +1792,6 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         } else if (keyCode == KeyEvent.VK_UP) {
             if (gamePanel.getUi().getKokiSlotRow() > 0) {
                 index = UI.getItemIndexOnSlot(gamePanel.getUi().getKokiSlotRow() - 1,
@@ -1848,7 +1854,6 @@ public class KeyHandler implements KeyListener {
     public void timerState(int keyCode) {
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
             gamePanel.getKeyHandler().threadTemp.interrupt();
             gamePanel.getUi().setDurasiTimer(0);
         }
@@ -1987,7 +1992,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -2093,7 +2097,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -2198,7 +2201,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -2302,7 +2304,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -2401,7 +2402,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -2501,7 +2501,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -2598,7 +2597,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -2702,7 +2700,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -2806,7 +2803,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -2918,7 +2914,6 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getKerjaState());
-            cursorSound();
         }
 
         if (keyCode == KeyEvent.VK_ENTER) {
@@ -3050,7 +3045,6 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.setGameState(gamePanel.getKerjaState());
-            cursorSound();
         }
     }
 
@@ -3121,14 +3115,12 @@ public class KeyHandler implements KeyListener {
             gamePanel.getUi().setInputTextDone(false);
             gamePanel.getUi().setCommandNumber(0);
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         }
     }
 
     public void melihatWaktuState(int keyCode) {
         if (keyCode == KeyEvent.VK_ESCAPE) {
             gamePanel.setGameState(gamePanel.getPlayState());
-            cursorSound();
         }
     }
 

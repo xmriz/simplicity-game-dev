@@ -461,6 +461,7 @@ public class Sim extends Entity {
 
     public void pickUpObject(int index) {
         if (index != 999) {
+            gamePanel.getKeyHandler().cursorSound();
             if (gamePanel.getListSim().get(indexRumahYangDimasuki).rumah.getRuanganRumah().get(indexLocationRuangan)
                     .getBendaRuangan()
                     .get(index) instanceof Furnitur) {
@@ -495,6 +496,7 @@ public class Sim extends Entity {
         if (gamePanel.getListSim().get(gamePanel.getIndexCurrentSim()).indexRumahYangDimasuki != 999) {
             if (indexBendayangDisentuh != 999) {
                 if (gamePanel.getKeyHandler().isEnterPressed()) {
+                    gamePanel.getKeyHandler().cursorSound();
                     gamePanel.getKeyHandler().setCheckWorldTime(false);
                     gamePanel.getKeyHandler().setCheckCurrentLocation(false);
                     int indexRumahYangDimasuki = gamePanel.getListSim()
