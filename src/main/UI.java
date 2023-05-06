@@ -1079,6 +1079,10 @@ public class UI {
         g2d.setFont(g2d.getFont().deriveFont(32f));
 
         int itemIndex = getItemIndexOnSlot(listSimSlotRow, listSimSlotCol);
+        // TODO :debug
+        System.out.println(listSimSlotCol + " " +listSimSlotRow);
+        System.out.println(itemIndex);
+        // --------
         if (itemIndex < gamePanel.getListSim().size()) {
             if (gamePanel.getListSim().get(itemIndex) != null) {
 

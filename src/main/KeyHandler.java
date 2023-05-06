@@ -1709,7 +1709,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.getUi().getListSimSlotRow() - 1,
                         gamePanel.getUi().getListSimSlotCol());
                 if (index <= gamePanel.getListSim().size() - 1) {
-                    gamePanel.getUi().setListSimSlotRow(gamePanel.getUi().getSimSlotRow() - 1);
+                    gamePanel.getUi().setListSimSlotRow(gamePanel.getUi().getListSimSlotRow() - 1);
                     cursorSound();
                 }
             } else {
@@ -1723,7 +1723,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.getUi().getListSimSlotRow() + 1,
                         gamePanel.getUi().getListSimSlotCol());
                 if (index <= gamePanel.getListSim().size() - 1) {
-                    gamePanel.getUi().setListSimSlotRow(gamePanel.getUi().getSimSlotRow() + 1);
+                    gamePanel.getUi().setListSimSlotRow(gamePanel.getUi().getListSimSlotRow() + 1);
                     cursorSound();
                 }
             } else {
@@ -1737,7 +1737,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.getUi().getListSimSlotRow(),
                         gamePanel.getUi().getListSimSlotCol() - 1);
                 if (index <= gamePanel.getListSim().size() - 1) {
-                    gamePanel.getUi().setListSimSlotCol(gamePanel.getUi().getSimSlotCol() - 1);
+                    gamePanel.getUi().setListSimSlotCol(gamePanel.getUi().getListSimSlotCol() - 1);
                     cursorSound();
                 }
             } else {
@@ -1751,7 +1751,7 @@ public class KeyHandler implements KeyListener {
                 index = UI.getItemIndexOnSlot(gamePanel.getUi().getListSimSlotRow(),
                         gamePanel.getUi().getListSimSlotCol() + 1);
                 if (index <= gamePanel.getListSim().size() - 1) {
-                    gamePanel.getUi().setListSimSlotCol(gamePanel.getUi().getSimSlotCol() + 1);
+                    gamePanel.getUi().setListSimSlotCol(gamePanel.getUi().getListSimSlotCol() + 1);
                     cursorSound();
                 }
             } else {
