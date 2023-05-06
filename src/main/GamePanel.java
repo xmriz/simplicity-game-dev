@@ -61,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
     private List<Sim> listSim = new ArrayList<>();
     private int indexCurrentSim;
     private boolean isOneSim = true;
+    private boolean isCanAddSim = true;
 
     // ENTITY
     private Entity npc[][] = new Entity[maxMap][6]; // create an array of NPC objects
@@ -243,6 +244,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setIsOneSim(boolean isOneSim) {
         this.isOneSim = isOneSim;
+    }
+
+    public boolean getIsCanAddSim() {
+        return isCanAddSim;
+    }
+
+    public void setIsCanAddSim(boolean isCanAddSim) {
+        this.isCanAddSim = isCanAddSim;
     }
 
     public Entity[][] getNpc() {
@@ -475,6 +484,7 @@ public class GamePanel extends JPanel implements Runnable {
                 worldTimeSatuHariCounter = 0;
                 listSim.get(i).setEfekWaktuTidakTidurCounter(0);
                 listSim.get(i).setEfekWaktuTidakBuangAirCounter(0);
+                isCanAddSim = true;
                 listSim.get(i).setIsUdahMakanDalamSatuHari(false);
             }
 

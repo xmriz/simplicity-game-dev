@@ -1543,6 +1543,7 @@ public class KeyHandler implements KeyListener {
                             gamePanel.setGameState(gamePanel.getDialogState());
                             gamePanel.getUi().setCurrentDialog("Berhasil menambah sim.");
                             gamePanel.setIsOneSim(false);
+                            gamePanel.setIsCanAddSim(false);
                         }
                     }
                 }
@@ -1663,29 +1664,39 @@ public class KeyHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_ENTER) {
             if (gamePanel.getUi().getInputText().length() > 0) {
-                // name can't be same with other sim
-                gamePanel.setGameState(gamePanel.getPlayState());
-                String input = UtilityTool.capitalizeFirstLetter(gamePanel.getUi().getInputText());
-                boolean isNameExist = false;
-                for (int i = 0; i < gamePanel.getListSim().size(); i++) {
-                    if (gamePanel.getListSim().get(i).getNama().equals(input)) {
-                        isNameExist = true;
-                    }
-                }
-                if (isNameExist) {
+                if (!gamePanel.getIsCanAddSim()){
                     gamePanel.getUi().setCharIndex(0);
                     gamePanel.getUi().setCombinedText("");
                     gamePanel.setGameState(gamePanel.getDialogState());
-                    gamePanel.getUi().setCurrentDialog("Nama sudah dimiliki sim lain!");
+                    gamePanel.getUi().setCurrentDialog("Hanya dapat menambah sim sekali\nsehari!");
                     gamePanel.getUi().setCommandNumber(0);
                     gamePanel.getUi().setInputText("");
                     gamePanel.getUi().setInputTextDone(false);
                 } else {
-                    gamePanel.getListSim().add(new Sim(gamePanel, gamePanel.getKeyHandler()));
-                    gamePanel.getListSim().get(gamePanel.getListSim().size() - 1).setNama(input);
-                    gamePanel.setGameState(gamePanel.getInputKoordinatRumahSimState());
-                    gamePanel.getUi().setInputText("");
-                    gamePanel.getUi().setInputTextDone(false);
+                    // name can't be same with other sim
+                    gamePanel.setGameState(gamePanel.getPlayState());
+                    String input = UtilityTool.capitalizeFirstLetter(gamePanel.getUi().getInputText());
+                    boolean isNameExist = false;
+                    for (int i = 0; i < gamePanel.getListSim().size(); i++) {
+                        if (gamePanel.getListSim().get(i).getNama().equals(input)) {
+                            isNameExist = true;
+                        }
+                    }
+                    if (isNameExist) {
+                        gamePanel.getUi().setCharIndex(0);
+                        gamePanel.getUi().setCombinedText("");
+                        gamePanel.setGameState(gamePanel.getDialogState());
+                        gamePanel.getUi().setCurrentDialog("Nama sudah dimiliki sim lain!");
+                        gamePanel.getUi().setCommandNumber(0);
+                        gamePanel.getUi().setInputText("");
+                        gamePanel.getUi().setInputTextDone(false);
+                    } else {
+                        gamePanel.getListSim().add(new Sim(gamePanel, gamePanel.getKeyHandler()));
+                        gamePanel.getListSim().get(gamePanel.getListSim().size() - 1).setNama(input);
+                        gamePanel.setGameState(gamePanel.getInputKoordinatRumahSimState());
+                        gamePanel.getUi().setInputText("");
+                        gamePanel.getUi().setInputTextDone(false);
+                    }
                 }
             } else {
                 gamePanel.getUi().setCharIndex(0);
@@ -2518,7 +2529,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.getUi().setCurrentAksi("Setel Radio");
                 gamePanel.setGameState(gamePanel.getTimerState());
                 gamePanel.getUi().setCurrentAksiDone(false);
-                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 10) * 10);
+                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 10) * 1);
                 gamePanel.getCurrentSim()
                         .setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 30) * 1);
                 if (gamePanel.getCurrentSim().getMood() > 100) {

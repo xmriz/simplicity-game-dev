@@ -11,6 +11,7 @@ public class DataStorage implements Serializable {
     int worldTimeCounter;
     int worldTimeSatuHariCounter;
     boolean isOneSim;
+    boolean isCanAddSim;
 
     ArrayList<String> infoSimStrings = new ArrayList<>();
     ArrayList<Integer> infoSimIntegers = new ArrayList<>();

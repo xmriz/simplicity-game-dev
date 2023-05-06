@@ -121,6 +121,7 @@ public class SaveLoad {
             ds.isOneSim = gamePanel.getIsOneSim();
             ds.worldTimeCounter = gamePanel.getWorldTimeCounter();
             ds.worldTimeSatuHariCounter = gamePanel.getWorldTimeSatuHariCounter();
+            ds.isCanAddSim = gamePanel.getIsCanAddSim();
 
             ds.indexCurrentSim = gamePanel.getIndexCurrentSim();
 
@@ -255,6 +256,7 @@ public class SaveLoad {
             gamePanel.setIsOneSim(ds.isOneSim);
             gamePanel.setWorldTimeCounter(ds.worldTimeCounter);
             gamePanel.setWorldTimeSatuHariCounter(ds.worldTimeSatuHariCounter);
+            gamePanel.setIsCanAddSim(ds.isCanAddSim);
 
             int tempSize = gamePanel.getListSim().size();
             for (int i = 1; i < tempSize; i++) {
