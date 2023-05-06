@@ -2128,7 +2128,7 @@ public class KeyHandler implements KeyListener {
                 // efek
                 gamePanel.getCurrentSim()
                         .setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 60) * 5);
-                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 60) * 15);
+                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 60) * 10);
                 gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getKesehatan() - (durasi / 60) * 5);
                 if (gamePanel.getCurrentSim().getKekenyangan() > 100) {
                     gamePanel.getCurrentSim().setKekenyangan(100);
@@ -2334,12 +2334,16 @@ public class KeyHandler implements KeyListener {
                 gamePanel.getUi().setCurrentAksiDone(false);
                 // efek
                 gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 5) * 5);
-                gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 5) * 5);
+                gamePanel.getCurrentSim().setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() + (durasi / 5) * 5);
+                gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getKesehatan() + (durasi / 5) * 5);
                 if (gamePanel.getCurrentSim().getMood() > 100) {
                     gamePanel.getCurrentSim().setMood(100);
                 }
                 if (gamePanel.getCurrentSim().getKekenyangan() > 100) {
                     gamePanel.getCurrentSim().setKekenyangan(100);
+                }
+                if (gamePanel.getCurrentSim().getKesehatan() > 100) {
+                    gamePanel.getCurrentSim().setKesehatan(100);
                 }
 
                 // nambah WorldTimeCounter
@@ -2431,7 +2435,7 @@ public class KeyHandler implements KeyListener {
                 gamePanel.setGameState(gamePanel.getTimerState());
                 gamePanel.getUi().setCurrentAksiDone(false);
                 // efek
-                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 10) * 10);
+                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 10) * 3);
                 gamePanel.getCurrentSim()
                         .setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 10) * 3);
                 if (gamePanel.getCurrentSim().getMood() > 100) {
@@ -2626,10 +2630,10 @@ public class KeyHandler implements KeyListener {
                 gamePanel.setGameState(gamePanel.getTimerState());
                 gamePanel.getUi().setCurrentAksiDone(false);
                 // efek
-                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 10) * 10);
-                gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getKesehatan() + (durasi / 10) * 5);
+                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 10) * 1);
+                gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getKesehatan() + (durasi / 10) * 1);
                 gamePanel.getCurrentSim()
-                        .setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 10) * 5);
+                        .setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 10) * 1);
                 if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().getMaxMood()) {
                     gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMaxMood());
                 }
@@ -2729,10 +2733,10 @@ public class KeyHandler implements KeyListener {
                 gamePanel.setGameState(gamePanel.getTimerState());
                 gamePanel.getUi().setCurrentAksiDone(false);
                 // efek
-                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 30) * 30);
+                gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMood() + (durasi / 30) * 5);
                 gamePanel.getCurrentSim().setKesehatan(gamePanel.getCurrentSim().getKesehatan() - (durasi / 30) * 5);
                 gamePanel.getCurrentSim()
-                        .setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 30) * 10);
+                        .setKekenyangan(gamePanel.getCurrentSim().getKekenyangan() - (durasi / 30) * 5);
                 if (gamePanel.getCurrentSim().getMood() > gamePanel.getCurrentSim().getMaxMood()) {
                     gamePanel.getCurrentSim().setMood(gamePanel.getCurrentSim().getMaxMood());
                 }
