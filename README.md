@@ -1,6 +1,6 @@
 <p align="center">
     <h1 align="center">
-      <span style="color: white; font-weight: bold;">TUGAS BESAR OOP IF2212</span>
+      <span style="color: white; font-weight: bold;">GAME DEVELOPMENT with Java</span>
     </h1>
 </p>
 <p align="center">
