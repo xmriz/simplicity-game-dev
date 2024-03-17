@@ -5,7 +5,7 @@
 </p>
 <p align="center">
   <!-- Typing SVG by DenverCoder1 - https://github.com/DenverCoder1/readme-typing-svg -->
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=747B2E&center=true&vCenter=true&width=700&lines=Kelompok+8+-+K1;Sistem+dan+Teknologi+Informasi;SIM+-+PLICITY" alt="Typing SVG" /></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=747B2E&center=true&vCenter=true&width=700&lines=Game-Development;SIM+-+PLICITY" alt="Typing SVG" /></a>
 </p>
 
 ## **Author**
